@@ -36,7 +36,7 @@ namespace :frontend do
       within "#{fetch(:release_path)}/frontend" do
         execute :npm, '--quiet install'
         execute :npm, 'run build'
-        execute :npm, 'run build-storybook'
+        # execute :npm, 'run build-storybook'
       end
       within fetch(:release_path).to_s do
         execute :cp, '-a frontend/build/. public/'
