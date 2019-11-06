@@ -24,10 +24,10 @@ brew services start postgresql
 
 ### Tips
 
-Edit credentials in VIM by running: 
+Edit credentials in VIM by running:
 
 `EDITOR=vim rails credentials:edit`
 
-Edit credentials in VSCode by running: 
+Edit credentials in VSCode by running:
 
 `EDITOR='code --wait' rails credentials:edit`
