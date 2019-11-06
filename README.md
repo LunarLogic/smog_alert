@@ -14,6 +14,13 @@ cd frontend
 npm install
 npm start
 ```
+* Install and run PostgreSQL
+
+```
+brew update
+brew install postgresql
+brew services start postgresql
+```
 
 ### Tips
 
