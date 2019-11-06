@@ -14,3 +14,13 @@ cd frontend
 npm install
 npm start
 ```
+
+### Tips
+
+Edit credentials in VIM by running: 
+
+`EDITOR=vim rails credentials:edit`
+
+Edit credentials in VSCode by running: 
+
+`EDITOR='code --wait' rails credentials:edit`
