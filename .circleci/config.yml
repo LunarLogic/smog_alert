@@ -4,6 +4,7 @@
      docker:
        - image: circleci/ruby:2.6.5-node-browsers
          environment:
+            BUNDLER_VERSION: 2.0.2
             PGHOST: localhost
             PGUSER: root
             RAILS_ENV: test
