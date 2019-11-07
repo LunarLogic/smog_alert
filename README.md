@@ -38,3 +38,7 @@ Edit credentials in VIM by running:
 Edit credentials in VSCode by running:
 
 `EDITOR='code --wait' rails credentials:edit`
+
+#### Tests
+
+`bundle exec rspec`
