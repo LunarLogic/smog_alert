@@ -78,3 +78,7 @@ jobs:
           paths:
             - frontend/node_modules
           key: v1-dependencies-{{ checksum "frontend/package.json" }}
+
+      - run:
+          name: run js tests
+          command: cd frontend && npm run ci_test
