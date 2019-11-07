@@ -91,3 +91,12 @@ jobs:
 
       - store_artifacts:
           path: frontend/coverage
+
+      #Deploy
+      - deploy:
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              bundle exec cap staging deploy
+            else
+              echo "${CIRCLE_BRANCH} is a feature branch so no deploy"
+            fi
