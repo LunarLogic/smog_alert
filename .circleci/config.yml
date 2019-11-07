@@ -3,6 +3,15 @@
    build:
      docker:
        - image: circleci/ruby:2.6.5-node-browsers
+         environment:
+            PGHOST: localhost
+            PGUSER: root
+            RAILS_ENV: test
+       - image: circleci/postgres:11.5
+         environment:
+            POSTGRES_DB: smogalert_test
+            POSTGRES_PASSWORD: ""
+            POSTGRES_USER: root
      steps:
        - checkout
        - run: echo "A first hello"
