@@ -34,12 +34,18 @@
            key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
        # Database setup
-       - run: bundle exec rake db:create
-       - run: bundle exec rake db:schema:load
-
-       - run: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
+       - run:
+           name: database setup
+           command: |
+             bundle exec rake db:create
+             bundle exec rake db:schema:load
 
        - run:
+           name: check bundle
+           command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
+
+       - run:
+           name: run rspec tests
            command: |
             mkdir /tmp/test-results
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
