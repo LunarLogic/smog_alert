@@ -40,7 +40,7 @@
        - run: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
        - run: mkdir ~/rspec-results
        - run:
-           command: bundle exec rspec --format progress --format RspecJunitFormatter -o ~/rspec-results/rspec.xml
+           command: bin/bundle exec rspec --format progress --format RspecJunitFormatter -o ~/rspec-results/rspec.xml
            when: always
        - store_test_results:
            path: ~/rspec-results
