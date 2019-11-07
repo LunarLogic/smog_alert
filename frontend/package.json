@@ -11,7 +11,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "ci_test": "CI=true react-scripts test",
+    "ci_test": "JEST_JUNIT_OUTPUT=reports/junit/js-test-results.xml CI=true react-scripts test --ci --all --runInBand --collectCoverage=true --reporters=jest-junit",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -28,5 +28,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "jest-junit": "^9.0.0"
   }
 }
