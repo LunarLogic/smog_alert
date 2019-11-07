@@ -64,3 +64,17 @@ jobs:
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
+
+      # client
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "client/package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run:
+          name: instal npm packages
+          command: cd client && npm install
+      - save_cache:
+          paths:
+            - client/node_modules
+          key: v1-dependencies-{{ checksum "client/package.json" }}
