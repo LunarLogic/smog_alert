@@ -80,5 +80,14 @@ jobs:
           key: v1-dependencies-{{ checksum "frontend/package.json" }}
 
       - run:
-          name: run js tests
+          name: run tests with JUnit as reporter
           command: cd frontend && npm run ci_test
+
+      - store_test_results:
+          path: frontend/reports/junit
+
+      - store_artifacts:
+          path: frontend/reports/junit
+
+      - store_artifacts:
+          path: frontend/coverage
