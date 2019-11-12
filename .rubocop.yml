@@ -78,6 +78,9 @@ Style/FrozenStringLiteralComment:
 Style/SymbolArray:
   Enabled: false
 
+Style/BlockComments:
+  Enabled: false
+
 require: rubocop-rails
 
 Rails:
