@@ -95,7 +95,7 @@ jobs:
       # linter
       - run:
           name: run RuboCop
-          command: rubocop
+          command: bundle exec rubocop
 
       # Deploy
       - deploy:
