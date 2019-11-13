@@ -2,10 +2,10 @@
 
 class FrontendController < ApplicationController
   def index
-    if Rails.env.production?
-      render file: 'public/index.html'
-    else
-      render plain: 'In development please use npm start and visit localhost:3000.'
-    end
+    render file: 'public/index.html' if Rails.env.production?
+  end
+
+  def health
+    render :index
   end
 end

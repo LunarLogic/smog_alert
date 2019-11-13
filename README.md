@@ -23,11 +23,24 @@ rake db:create
 
 bundle install
 bundle exec rails s -p 4000
+# Compile rails assets
+bin/webpack-dev-server
 
 cd frontend
 npm install
 npm start
 ```
+
+#### Deployment
+
+* To deploy from master branch use:
+
+`cap staging deploy`
+
+* To specify a branch for deployment use:
+
+`BRANCH=example_branch cap staging deploy`
+
 
 #### Tips
 
@@ -46,3 +59,4 @@ npm start
 #### Tests
 
 `bundle exec rspec`
+
