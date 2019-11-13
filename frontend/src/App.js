@@ -1,5 +1,5 @@
 // import React from "react";
-// import "./App.css";
+// import "./App.scss";
 // import Logo from "./Logo";
 
 // class App extends React.Component {
@@ -30,10 +30,11 @@
 import React from "react";
 // import Blank from "./";
 import File from "./components/File.js";
+import "./App.scss";
 
 const App = () => {
     return (
-        <div>
+        <div className="container">
             <File />
         </div>
     );
