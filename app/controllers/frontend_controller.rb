@@ -2,9 +2,7 @@
 
 class FrontendController < ApplicationController
   def index
-    if Rails.env.production?
-      render file: 'public/index.html'
-    end
+    render file: 'public/index.html' if Rails.env.production?
   end
 
   def health
