@@ -31,6 +31,17 @@ npm install
 npm start
 ```
 
+#### Deployment
+
+* To deploy from master branch use:
+
+`cap staging deploy`
+
+* To specify a branch for deployment use:
+
+`BRANCH=example_branch cap staging deploy`
+
+
 #### Tips
 
 Edit credentials in VIM by running:
@@ -44,3 +55,4 @@ Edit credentials in VSCode by running:
 #### Tests
 
 `bundle exec rspec`
+
