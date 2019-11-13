@@ -92,7 +92,12 @@ jobs:
       - store_artifacts:
           path: frontend/coverage
 
-      #Deploy
+      # linter
+      - run:
+          name: run RuboCop
+          command: bundle exec rubocop
+
+      # Deploy
       - deploy:
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then

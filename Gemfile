@@ -33,6 +33,9 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'rspec-rails', '~> 3.9'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # Rubocop
+  gem 'rubocop', require: false
+  gem 'rubocop-rails'
 end
 
 group :production do
