@@ -23,6 +23,8 @@ rake db:create
 
 bundle install
 bundle exec rails s -p 4000
+# Compile rails assets
+bin/webpack-dev-server
 
 cd frontend
 npm install

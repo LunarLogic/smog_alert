@@ -33,6 +33,9 @@ namespace :frontend do
   desc 'Installs, builds and serves frontend'
   task :run do
     on roles(:web) do
+      within fetch(:release_path) do
+        execute :rm, '-r node_modules'
+      end
       within "#{fetch(:release_path)}/frontend" do
         execute :npm, '--quiet install'
         execute :npm, 'run build'

@@ -6,4 +6,8 @@ class FrontendController < ApplicationController
       render file: 'public/index.html'
     end
   end
+
+  def health
+    render :index
+  end
 end
