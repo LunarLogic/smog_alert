@@ -1,21 +1,52 @@
 {
-  "name": "smog_alert",
-  "private": true,
-  "dependencies": {
-    "@babel/preset-react": "^7.7.0",
-    "@rails/webpacker": "^4.2.0",
-    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "prop-types": "^15.7.2",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "react_ujs": "^2.6.0",
-    "@rails/ujs": "^6.0.0-alpha",
-    "turbolinks": "^5.2.0",
-    "@rails/activestorage": "^6.0.0-alpha",
-    "@rails/actioncable": "^6.0.0-alpha"
-  },
-  "version": "0.1.0",
-  "devDependencies": {
-    "webpack-dev-server": "^3.9.0"
-  }
+    "name": "smog_alert",
+    "private": true,
+    "dependencies": {
+        "@babel/preset-react": "^7.7.0",
+        "@rails/webpacker": "^4.2.0",
+        "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+        "prop-types": "^15.7.2",
+        "react": "^16.11.0",
+        "react-dom": "^16.11.0",
+        "react_ujs": "^2.6.0",
+        "@rails/ujs": "^6.0.0-alpha",
+        "turbolinks": "^5.2.0",
+        "@rails/activestorage": "^6.0.0-alpha",
+        "@rails/actioncable": "^6.0.0-alpha",
+        "@material-ui/core": "^4.6.1",
+        "@material-ui/icons": "^4.5.1",
+        "node-sass": "^4.13.0",
+        "react-scripts": "3.2.0"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "ci_test": "JEST_JUNIT_OUTPUT=reports/junit/js-test-results.xml CI=true react-scripts test --ci --all --runInBand --collectCoverage=true --reporters=jest-junit",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "version": "0.1.0",
+    "devDependencies": {
+        "webpack-dev-server": "^3.9.0",
+        "eslint": "^6.6.0",
+        "eslint-plugin-prettier": "^3.1.1",
+        "eslint-plugin-react": "^7.16.0",
+        "jest-junit": "^9.0.0",
+        "prettier": "1.19.1"
+    }
 }
