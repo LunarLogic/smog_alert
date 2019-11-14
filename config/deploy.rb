@@ -34,9 +34,8 @@ namespace :frontend do
   task :run do
     on roles(:web) do
       within "#{fetch(:release_path)}/frontend" do
-        execute :npm, '--quiet install'
-        execute :npm, 'run build'
-        # execute :npm, 'run build-storybook'
+        execute :yarn, '--quiet install'
+        execute :yarn, 'run build'
       end
       within fetch(:release_path).to_s do
         execute :cp, '-a frontend/build/. public/'
