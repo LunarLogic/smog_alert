@@ -31,7 +31,7 @@ gem 'webpacker', '~> 4.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'rspec-rails', '~> 3.9'
+  gem 'rspec-rails', '~> 4.0.0.beta3'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Rubocop
   gem 'rubocop', require: false
