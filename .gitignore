@@ -37,11 +37,7 @@
 yarn-debug.log*
 .yarn-integrity
 
-# Files from old frontend .gitignore
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
-/node_modules
 /.pnp
 .pnp.js
 
@@ -59,5 +55,4 @@ yarn-debug.log*
 .env.production.local
 
 npm-debug.log*
-yarn-debug.log*
 yarn-error.log*

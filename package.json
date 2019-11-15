@@ -18,13 +18,6 @@
         "node-sass": "^4.13.0",
         "react-scripts": "3.2.0"
     },
-    "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "ci_test": "JEST_JUNIT_OUTPUT=reports/junit/js-test-results.xml CI=true react-scripts test --ci --all --runInBand --collectCoverage=true --reporters=jest-junit",
-        "eject": "react-scripts eject"
-    },
     "eslintConfig": {
         "extends": "react-app"
     },
