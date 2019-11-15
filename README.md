@@ -19,16 +19,14 @@ brew services start postgresql
 - Run below commands
 
 ```
-rake db:create
+rake db:setup
 
 bundle install
-bundle exec rails s -p 4000
-# Compile rails assets
-bin/webpack-dev-server
+yarn install
+bundle exec rails s
 
-cd frontend
-npm install
-npm start
+# In separate terminal window run:
+bin/webpack-dev-server
 ```
 
 ### Editor config
