@@ -1,0 +1,39 @@
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 7.7rem;
+  padding: 0 3rem;
+  &__brand {
+    display: flex;
+    align-items: center;
+    width: 30%;
+    &-logo {
+      border-radius: 50%;
+      background-color: black;
+      width: 4.3em;
+      height: 4.3rem;
+      margin-right: 1rem;
+    }
+    &-name {
+      width: 11rem;
+      text-transform: uppercase;
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+  &__links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 70%;
+    &-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-grow: 1;
+      height: inherit;
+    }
+  }
+}
