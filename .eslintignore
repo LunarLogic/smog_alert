@@ -1,0 +1,4 @@
+/node_modules
+/vendor
+/config
+babel.config.js

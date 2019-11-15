@@ -27,6 +27,7 @@ jobs:
           command: |
             gem install bundler:2.0.2
             bundle install --jobs=4 --retry=3 --path vendor/bundle
+            yarn install
 
       - save_cache:
           paths:
@@ -65,37 +66,14 @@ jobs:
           path: /tmp/test-results
           destination: test-results
 
-      # frontend
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "frontend/package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-      - run:
-          name: instal npm packages
-          command: cd frontend && npm install
-      - save_cache:
-          paths:
-            - frontend/node_modules
-          key: v1-dependencies-{{ checksum "frontend/package.json" }}
-
-      - run:
-          name: run tests with JUnit as reporter
-          command: cd frontend && npm run ci_test
-
-      - store_test_results:
-          path: frontend/reports/junit
-
-      - store_artifacts:
-          path: frontend/reports/junit
-
-      - store_artifacts:
-          path: frontend/coverage
-
       # linter
       - run:
           name: run RuboCop
           command: bundle exec rubocop
+
+      - run:
+          name: run ESLint
+          command: ./node_modules/eslint/bin/eslint.js .
 
       # Deploy
       - deploy:
