@@ -51,10 +51,10 @@
       align-items: center;
       justify-content: space-around;
       flex-grow: 1;
-      &-active {
+      &:hover {
         color: $secondaryColor;
         box-sizing: border-box;
-        &::after {
+        &::before {
           height: 0.5rem;
           width: 100%;
           background-color: $secondaryColor;
