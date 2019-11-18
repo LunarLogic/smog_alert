@@ -1,8 +1,8 @@
-require "rails_helper"
+require 'rails_helper'
 
-describe "/admin/settings" do
-  describe "/edit" do
-    it "is successful" do
+describe '/admin/settings' do
+  describe '/edit' do
+    it 'is successful' do
       get '/admin/settings/edit'
       expect(response).to be_successful
     end

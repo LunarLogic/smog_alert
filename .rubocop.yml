@@ -82,6 +82,12 @@ Style/SymbolArray:
 Style/BlockComments:
   Enabled: false
 
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/EmptyMethod:
+  Enabled: false
+
 require: rubocop-rails
 
 Rails:
