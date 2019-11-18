@@ -5,10 +5,13 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application-admin', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application-admin' %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class = "container">
+      <%= yield %>
+    </div>
   </body>
 </html>
