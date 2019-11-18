@@ -1,29 +1,15 @@
 @import "./styles/variables";
 
-.App {
-    text-align: center;
+html {
+  font-size: 10px;
+  box-sizing: border-box;
 }
 
-.App-logo {
-    height: 40vmin;
-}
-
-.App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-}
-
-.App-link {
-    color: #09d3ac;
-}
-
-.container {
-    background-color: black;
-    color: $primaryColor;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
 }
