@@ -10,6 +10,9 @@
   </head>
 
   <body>
+    <% if signed_in? %>
+      <%= render 'layouts/admin_navbar'%>
+    <% end %>
     <div class = "container">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
