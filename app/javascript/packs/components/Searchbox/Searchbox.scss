@@ -1,1 +1,34 @@
 @import "../../styles/variables";
+
+.searchbox {
+  display: flex;
+  width: 44rem;
+  height: 6rem;
+  border: 0.1rem solid $frameColor;
+  border-radius: 0.4rem;
+  overflow: hidden;
+
+  &__icon {
+    height: 6rem;
+    width: 6rem;
+    background-color: $iconBackground;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      width: 3.2rem;
+      height: 3.2rem;
+      color: $iconColor;
+    }
+  }
+  &__input {
+    width: 100%;
+    border: none;
+    outline: none;
+    margin-left: 1.2rem;
+    font-size: 1.6rem;
+    color: $iconColor;
+  }
+}
