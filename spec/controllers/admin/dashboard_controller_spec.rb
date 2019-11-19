@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-describe Admin::SettingsController do
-  describe 'edit' do
+describe Admin::DashboardController do
+  describe 'index' do
     it 'renders form successfully' do
-      get :edit
+      get :index
       expect(response).to be_successful
     end
   end
