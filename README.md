@@ -35,6 +35,12 @@ RAILS_ENV=test rails db:migrate
 
 ```
 
+- Run seeds to setup sample records in database (email: admin@example.com, password: `123456`)
+
+```
+rails db:seed
+```
+
 ### Editor config
 
 - Visual Studio Code
