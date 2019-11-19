@@ -3,4 +3,10 @@ Rails.application.routes.draw do
 
   root to: 'frontend#index'
   get '/health', to: 'frontend#health'
+
+  namespace :admin do
+    root to: 'settings#edit'
+
+    get '/settings/edit'
+  end
 end

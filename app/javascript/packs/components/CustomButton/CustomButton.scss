@@ -1,0 +1,16 @@
+@import "../../styles/variables";
+
+.custom-button {
+  height: 4.4rem;
+  width: 13rem;
+  background-color: $secondaryColor;
+  color: $secondaryColorContrast;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  margin-left: 2rem;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
