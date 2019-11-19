@@ -4,7 +4,7 @@ describe '/admin/dashboard' do
   describe 'GET / (main page of admin panel)' do
     context 'when user signed in' do
       it 'allows user to the admin panel' do
-        user = User.create(email: 'test@test.com', password: "password", password_confirmation: "password")
+        user = User.create(email: 'test@test.com', password: 'password', password_confirmation: 'password')
         user.confirm
         sign_in user
         get admin_root_path
