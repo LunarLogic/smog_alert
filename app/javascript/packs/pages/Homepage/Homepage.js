@@ -3,6 +3,7 @@ import "./Homepage.scss";
 import Searchbox from "../../components/Searchbox/Searchbox";
 import CardPollution from "../../components/CardPollution/CardPollution";
 import Town from "../../../../assets/images/Town.png";
+import ScalePollution from "../../components/ScalePollution/ScalePollution";
 
 const Homepage = () => {
   return (
@@ -13,7 +14,10 @@ const Homepage = () => {
         <span className="homepage__heading--bold">Zabierzów</span>
       </div>
       <div className="homepage__content">
-        <CardPollution />
+        <div>
+          <CardPollution />
+          <ScalePollution />
+        </div>
         <div className="homepage__content-image">
           <img src={Town} alt="town view" />
         </div>
