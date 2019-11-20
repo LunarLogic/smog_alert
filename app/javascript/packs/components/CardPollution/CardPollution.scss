@@ -62,8 +62,10 @@
 
         &-index {
           font-size: 1.6rem;
+          font-weight: bold;
           line-height: 1.9rem;
           color: $textColor;
+          opacity: 0.52;
           margin: 0 1rem 0.7rem 0;
         }
 
@@ -86,8 +88,10 @@
 
         &-index {
           font-size: 1.6rem;
+          font-weight: bold;
           line-height: 1.9rem;
           color: $textColor;
+          opacity: 0.52;
           margin: 0 1rem 0 0;
         }
         &-value {
