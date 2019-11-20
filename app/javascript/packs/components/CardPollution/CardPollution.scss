@@ -1,19 +1,15 @@
 @import "../../styles/variables";
 
 .card-pollution {
-  &__container {
-    width: 53rem;
-    height: 39rem;
-    // border: 1px grey dashed;
-  }
   &__current-data {
     &-container {
-      width: 100%;
+      width: 53rem;
       height: 19.5rem;
       box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.15);
       border: 0.1rem solid $frameColor;
       border-radius: 0.6rem;
       overflow: hidden;
+      margin-bottom: 3.1rem;
 
       display: flex;
     }
@@ -62,8 +58,10 @@
 
         &-index {
           font-size: 1.6rem;
+          font-weight: bold;
           line-height: 1.9rem;
           color: $textColor;
+          opacity: 0.52;
           margin: 0 1rem 0.7rem 0;
         }
 
@@ -75,7 +73,7 @@
 
           &--bold {
             font-size: 5.7rem;
-            font-weight: bold;
+            font-weight: 700;
           }
         }
       }
@@ -86,8 +84,10 @@
 
         &-index {
           font-size: 1.6rem;
+          font-weight: bold;
           line-height: 1.9rem;
           color: $textColor;
+          opacity: 0.52;
           margin: 0 1rem 0 0;
         }
         &-value {
