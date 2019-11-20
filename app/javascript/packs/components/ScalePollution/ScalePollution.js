@@ -1,6 +1,6 @@
 import React from "react";
 import "./ScalePollution.scss";
-import scalePollutionContent from "./scalePollutionConent";
+import scalePollutionContent from "./scalePollutionContent";
 
 const ScalePollution = () => {
   const { colorBox, description } = scalePollutionContent;
