@@ -54,8 +54,15 @@
   }
   &__recommendations-text {
     margin-top: 1.5rem;
-    color: $iconColor;
+    color: $grey;
     font-size: 1.6rem;
     line-height: 1.9rem;
+  }
+  &__recommendations-icons {
+    width: 100%;
+    margin-top: 3.3rem;
+
+    display: flex;
+    justify-content: space-around;
   }
 }

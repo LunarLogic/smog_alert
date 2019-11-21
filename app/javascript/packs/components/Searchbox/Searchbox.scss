@@ -20,7 +20,7 @@
     svg {
       width: 3.2rem;
       height: 3.2rem;
-      color: $iconColor;
+      color: $grey;
     }
   }
   &__input {
@@ -29,6 +29,6 @@
     outline: none;
     margin-left: 1.2rem;
     font-size: 1.6rem;
-    color: $iconColor;
+    color: $grey;
   }
 }
