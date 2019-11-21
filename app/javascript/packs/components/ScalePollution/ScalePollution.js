@@ -14,7 +14,7 @@ const ScalePollution = () => {
       </div>
       <div className="scale__container-legend">
         {description.map(desc => (
-          <div key="desc" className="scale__container-legend-item">
+          <div key={desc} className="scale__container-legend-item">
             {desc}
           </div>
         ))}

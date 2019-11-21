@@ -15,11 +15,47 @@
   &__content {
     display: flex;
     justify-content: space-between;
+    &-information {
+      margin-top: 3rem;
+      color: $secondaryColor;
+      cursor: pointer;
+
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      &:hover {
+        color: $secondaryColorDark;
+      }
+
+      &-icon {
+        margin-right: 0.3rem;
+        svg {
+          height: 2rem;
+          width: 2rem;
+        }
+      }
+      &-question {
+        font-size: 1.6rem;
+        line-height: 1.9rem;
+      }
+    }
     &-image {
       img {
         width: 56rem;
       }
       margin-right: 4.8rem;
     }
+  }
+  &__horizontal-line {
+    width: 100%;
+    margin-top: 2.2rem;
+    border: 0.5px solid $frameColor;
+  }
+  &__recommendations-text {
+    margin-top: 1.5rem;
+    color: $iconColor;
+    font-size: 1.6rem;
+    line-height: 1.9rem;
   }
 }
