@@ -4,9 +4,7 @@ describe '/admin/dashboard' do
   describe 'GET / (main page of admin panel)' do
     context 'when an admin signed in' do
       it 'allows user to the admin panel' do
-        user = User.create(email: 'test@test.com', password: 'password', password_confirmation: 'password')
-        user.confirm
-        user.admin = true
+        user = FactoryBot.create(:admin)
         sign_in user
         get admin_root_path
         expect(response).to be_successful
@@ -22,9 +20,7 @@ describe '/admin/dashboard' do
 
     context 'when user is not an admin' do
       it 'redirects to the root' do
-        user = User.create(email: 'test@test.com', password: 'password', password_confirmation: 'password')
-        user.confirm
-        user.admin = false
+        user = FactoryBot.create(:user)
         sign_in user
         get admin_root_path
         expect(response).to redirect_to(root_path)
