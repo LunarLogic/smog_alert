@@ -11,7 +11,7 @@ const CardPollution = () => {
         </div>
       </div>
       <div className="card-pollution__current-data-specific">
-        <div className="card-pollution__current-data-specific-wrapper">
+        <div className="card-pollution__current-data-specific-container">
           <div className="card-pollution__current-data-specific-primary">
             <div className="card-pollution__current-data-specific-primary-index">
               PM 10

@@ -1,0 +1,40 @@
+@import "./../../styles/variables";
+
+.icon {
+  width: 8.7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__content {
+    width: 6.2rem;
+    height: 6.2rem;
+    border-radius: 50%;
+    position: relative;
+    &--forbidden {
+      border: 0.2rem solid $badSecond;
+      &::before {
+        content: "";
+        width: 102%;
+        border-bottom: solid 0.2rem $badSecond;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        z-index: 1;
+        transform: rotate(-45deg);
+      }
+    }
+    &--allowed {
+      border: 0.2rem solid $goodFirst;
+    }
+    &--recommended {
+      border: 0.2rem solid $grey;
+    }
+  }
+  &__text {
+    margin-top: 1rem;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    text-align: center;
+    color: $grey;
+  }
+}
