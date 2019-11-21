@@ -27,6 +27,12 @@ bundle exec rails s
 
 # In separate terminal window run:
 bin/webpack-dev-server
+
+# To run migrations in database:
+
+rails db:migrate
+RAILS_ENV=test rails db:migrate
+
 ```
 
 ### Editor config
