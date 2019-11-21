@@ -19,7 +19,7 @@ append :linked_dirs,
        'tmp/cache',
        'tmp/sockets'
 
-append :linked_files, 'config/database.yml', 'config/master.key' #, 'config/secrets.yml'
+append :linked_files, 'config/database.yml', 'config/credentials.yml'
 
 namespace :deploy do
   task :restart do
