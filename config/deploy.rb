@@ -6,7 +6,6 @@ set :repo_url, "git@github.com:LunarLogic/smog_alert.git"
 set :user, "smogalert"
 
 set :deploy_to, '/home/smogalert/application/'
-set :rails_env, 'production'
 
 set :rbenv_type, :system
 

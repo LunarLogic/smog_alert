@@ -1,5 +1,6 @@
 server 'staging.smogalert.lunarlogic.io', user: 'smogalert', roles: %w[app db web]
 set :branch, ENV.fetch('BRANCH', 'master')
+set :rails_env, 'staging'
 
 # server-based syntax
 # ======================
