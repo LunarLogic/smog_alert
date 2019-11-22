@@ -2,4 +2,8 @@
 
 .homepage {
   width: 100%;
+  &__horizontal-line {
+    margin: 7rem -9.2rem 5rem -9.2rem;
+    border: 0.05rem solid $frameColor;
+  }
 }

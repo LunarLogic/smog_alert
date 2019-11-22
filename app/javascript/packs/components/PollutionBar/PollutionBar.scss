@@ -1,0 +1,23 @@
+@import "../../styles/variables";
+.pollution-bar {
+  height: 8.3rem;
+  &__info {
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+    font-weight: 500;
+
+    display: flex;
+    &-location {
+      margin-right: 2.2rem;
+    }
+  }
+  &__bar {
+    height: 2.2rem;
+    border-radius: 1.1rem;
+    margin-top: 0.9rem;
+  }
+  > hr {
+    margin: 1.7rem 0;
+    border: 0.05rem solid $frameColor;
+  }
+}
