@@ -1,0 +1,66 @@
+@import "../../styles/variables";
+
+.scale__container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-row-gap: 0.5rem;
+  &-indicator {
+    grid-column: 4 / 5;
+    border-top: 1.6rem solid $unhealthySecond;
+    border-left: 1.6rem solid transparent;
+    border-right: 1.6rem solid transparent;
+    width: 0;
+    height: 0;
+  }
+  &-ranges {
+    grid-column: 1 / 7;
+
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-column-gap: 0.5rem;
+    > div {
+      height: 100%;
+    }
+  }
+  &-legend {
+    grid-column: 1 / 7;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    &-item {
+      font-size: 1.4rem;
+      line-height: 1.6rem;
+      color: $textColor;
+      border-left: 0.1rem solid $textColor;
+
+      display: flex;
+      justify-content: center;
+      &:last-of-type {
+        border-right: 0.1rem solid $textColor;
+      }
+    }
+  }
+}
+
+.scale__color-background {
+  &--good-first {
+    background-color: $goodFirst;
+  }
+  &--good-second {
+    background-color: $goodSecond;
+  }
+  &--unhealthy-first {
+    background-color: $unhealthyFirst;
+  }
+  &--unhealthy-second {
+    background-color: $unhealthySecond;
+  }
+  &--bad-first {
+    background-color: $badFirst;
+  }
+  &--bad-second {
+    background-color: $badSecond;
+  }
+}
