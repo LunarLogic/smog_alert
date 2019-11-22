@@ -1,8 +1,8 @@
 import React from "react";
 import "./MapSection.scss";
-import PollutionBar from "../../PollutionBar/PollutionBar";
 import mapSectionContent from "./mapSectionContent";
-import Map from "../../../../../assets/images/Map.png";
+import Map from "../../../../assets/images/Map.png";
+import PollutionBar from "../../components/PollutionBar/PollutionBar";
 
 const MapSection = () => {
   const sortedPollutionData = mapSectionContent.sort(

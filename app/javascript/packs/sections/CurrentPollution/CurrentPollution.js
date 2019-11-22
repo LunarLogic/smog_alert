@@ -1,9 +1,9 @@
 import React from "react";
-import CardPollution from "../../CardPollution/CardPollution";
-import ScalePollution from "../../ScalePollution/ScalePollution";
+import CardPollution from "../../components/CardPollution/CardPollution";
+import ScalePollution from "../../components/ScalePollution/ScalePollution";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
-import Icon from "../../Icon/Icon";
-import Town from "../../../../../assets/images/Town.png";
+import Icon from "../../components/Icon/Icon";
+import Town from "../../../../assets/images/Town.png";
 import "./CurrentPollution.scss";
 
 const currentPollution = () => {
