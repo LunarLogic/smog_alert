@@ -26,6 +26,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+/config/credentials/staging.key
 
 # Ignore system files
 .DS_Store
@@ -56,4 +57,3 @@ yarn-debug.log*
 
 npm-debug.log*
 yarn-error.log*
-/config/credentials/staging.key

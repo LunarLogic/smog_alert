@@ -64,6 +64,10 @@ RAILS_ENV=test rails db:migrate
 
 `EDITOR='code --wait' rails credentials:edit`
 
+or
+
+`EDITOR='code --wait' rails credentials:edit -e staging`
+
 - To use RuboCop Linter run:
 
 `bundle exec rubocop`
