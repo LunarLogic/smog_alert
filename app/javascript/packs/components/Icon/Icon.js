@@ -8,8 +8,8 @@ const Icon = ({ iconId }) => {
 
   return (
     <div className="icon">
-      <div className={`icon__content ${icon[1]}`}></div>
-      <div className="icon__text">{icon[0]}</div>
+      <div className={`icon__content ${icon.className}`}></div>
+      <div className="icon__text">{icon.text}</div>
     </div>
   );
 };

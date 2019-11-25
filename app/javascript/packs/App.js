@@ -5,6 +5,7 @@ import theme from "./themes/MyTheme";
 import Navigation from "./components/Navigation/Navigation";
 import Homepage from "./pages/Homepage/Homepage";
 import WebFont from "webfontloader";
+import Footer from "./components/Footer/Footer";
 
 WebFont.load({
   google: {
@@ -19,6 +20,7 @@ const App = () => {
       <div className="container">
         <Homepage />
       </div>
+      <Footer />
     </ThemeProvider>
   );
 };
