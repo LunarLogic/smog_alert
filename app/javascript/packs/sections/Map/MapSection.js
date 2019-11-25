@@ -9,6 +9,9 @@ const MapSection = () => {
       <div className="map-section__heading">
         Jakość powietrza w gminie Zabierzów
       </div>
+      <div className="map-section__subheading">
+        Porównanie zanieczyszczenia powietrza w gminie Zabierzów i okolicy
+      </div>
       <div className="map-section__content">
         <div className="map-section__content--map">
           <img src={Map} alt="map" />

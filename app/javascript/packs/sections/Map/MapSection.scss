@@ -8,11 +8,20 @@
 
   &__heading {
     margin: auto;
-    font-size: 2.8rem;
-    line-height: 3.4rem;
-    font-weight: 500;
+    font-size: 3.4rem;
+    line-height: 4rem;
+    font-weight: bold;
     color: $textColor;
-    margin-bottom: 5rem;
+    margin-bottom: 1.8rem;
+  }
+  &__subheading {
+    width: 38rem;
+    margin: auto;
+    font-size: 2.1rem;
+    line-height: 3.2rem;
+    text-align: center;
+    color: $grey;
+    margin-bottom: 4.3rem;
   }
   &__content {
     width: inherit;
