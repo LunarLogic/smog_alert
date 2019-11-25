@@ -1,5 +1,8 @@
 server 'smogalert.lunarlogic.io', user: 'smogalert', roles: %w[app db web]
 set :branch, ENV.fetch('BRANCH', 'master')
+set :rails_env, 'production'
+
+append :linked_files, "config/credentials/#{fetch(:rails_env)}.key"
 
 # server-based syntax
 # ======================

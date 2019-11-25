@@ -23,3 +23,7 @@ test:
 production:
   <<: *default
   database: smogalert_production
+
+staging:
+  <<: *default
+  database: smogalert_staging

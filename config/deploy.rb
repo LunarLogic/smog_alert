@@ -6,7 +6,6 @@ set :repo_url, "git@github.com:LunarLogic/smog_alert.git"
 set :user, "smogalert"
 
 set :deploy_to, '/home/smogalert/application/'
-set :rails_env, 'production'
 
 set :rbenv_type, :system
 
@@ -19,7 +18,7 @@ append :linked_dirs,
        'tmp/cache',
        'tmp/sockets'
 
-append :linked_files, 'config/database.yml', 'config/master.key' #, 'config/secrets.yml'
+append :linked_files, 'config/database.yml'
 
 namespace :deploy do
   task :restart do
