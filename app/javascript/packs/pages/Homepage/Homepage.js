@@ -1,6 +1,6 @@
 import React from "react";
 import "./Homepage.scss";
-import CurrentPollution from "../../sections/CurrentPollution/CurrentPollution";
+import CurrentPollutionSection from "../../sections/CurrentPollutionSection/CurrentPollutionSection";
 import MapSection from "../../sections/Map/MapSection";
 import Searchbox from "../../components/Searchbox/Searchbox";
 
@@ -8,7 +8,7 @@ const Homepage = () => {
   return (
     <div className="homepage">
       <Searchbox />
-      <CurrentPollution />
+      <CurrentPollutionSection />
       <hr className="homepage__horizontal-line" />
       <MapSection />
     </div>

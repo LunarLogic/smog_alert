@@ -6,8 +6,6 @@ Rails.application.routes.draw do
   get '/health', to: 'frontend#health'
 
   namespace :admin do
-    root to: 'settings#edit'
-
-    get '/settings/edit'
+    root to: 'dashboard#index'
   end
 end

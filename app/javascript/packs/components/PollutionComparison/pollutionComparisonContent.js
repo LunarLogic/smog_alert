@@ -1,4 +1,4 @@
-const mapSectionContent = [
+const pollutionComparisonContent = [
   { location: "Burów", value: 120, color: "#7d0d0f" },
   { location: "Rząska", value: 50, color: "#c3d735" },
   { location: "Szczyglice", value: 70, color: "#ff8f00" },
@@ -10,4 +10,4 @@ const mapSectionContent = [
   { location: "Kleszczów", value: 45, color: "#c3d735" }
 ];
 
-export default mapSectionContent;
+export default pollutionComparisonContent;
