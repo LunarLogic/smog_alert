@@ -13,7 +13,9 @@ const MapSection = () => {
         <div className="map-section__content--map">
           <img src={Map} alt="map" />
         </div>
-        <PollutionComparison />
+        <div className="map-section__content--info">
+          <PollutionComparison />
+        </div>
       </div>
     </div>
   );
