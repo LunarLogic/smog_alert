@@ -12,8 +12,7 @@
 
   <body>
     <%# TODO confirm with FE team if what is below is OK (maybe it would be better do do it like this:) %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <%= render 'layouts/flash_messages' if !flash.empty? %>
 
   </body>
 </html>
