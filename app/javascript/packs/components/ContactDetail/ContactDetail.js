@@ -5,7 +5,7 @@ import { PropTypes } from "prop-types";
 const ContactDetail = ({ item }) => {
   return (
     <div className="contact-detail">
-      <div className="contact-detail__icon"></div>
+      <div className="contact-detail__icon" />
       <div className="contact-detail__item">{item}</div>
     </div>
   );

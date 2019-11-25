@@ -4,9 +4,9 @@ import ScalePollution from "../../components/ScalePollution/ScalePollution";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import Icon from "../../components/Icon/Icon";
 import Town from "../../../../assets/images/Town.png";
-import "./CurrentPollution.scss";
+import "./CurrentPollutionSection.scss";
 
-const currentPollution = () => {
+const CurrentPollutionSection = () => {
   const iconData = ["id1", "id2", "id3", "id4"];
 
   return (
@@ -45,4 +45,4 @@ const currentPollution = () => {
   );
 };
 
-export default currentPollution;
+export default CurrentPollutionSection;
