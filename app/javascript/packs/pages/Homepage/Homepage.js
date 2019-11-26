@@ -1,7 +1,7 @@
 import React from "react";
 import "./Homepage.scss";
 import CurrentPollutionSection from "../../sections/CurrentPollutionSection/CurrentPollutionSection";
-import MapSection from "../../sections/Map/MapSection";
+import MapSection from "../../sections/MapSection/MapSection";
 import Searchbox from "../../components/Searchbox/Searchbox";
 
 const Homepage = () => {
