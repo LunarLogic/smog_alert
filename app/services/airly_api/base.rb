@@ -6,7 +6,7 @@ module AirlyAPI
     def headers
       {
         'Accept' => 'application/json',
-        'apikey' => 'to add' 
+        'apikey' => Rails.application.credentials.dig(:airly_api_key)
       }
     end
   end
