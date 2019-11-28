@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_27_152015) do
+ActiveRecord::Schema.define(version: 2019_11_28_141238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 2019_11_27_152015) do
 
   create_table "measurements", force: :cascade do |t|
     t.date "date"
-    t.time "hour"
     t.float "pm10"
     t.float "pm25"
     t.float "temperature"
@@ -37,6 +36,7 @@ ActiveRecord::Schema.define(version: 2019_11_27_152015) do
     t.bigint "location_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "hour"
     t.index ["date"], name: "index_measurements_on_date"
     t.index ["hour"], name: "index_measurements_on_hour"
     t.index ["location_id"], name: "index_measurements_on_location_id"
