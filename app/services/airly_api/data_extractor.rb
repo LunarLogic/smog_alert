@@ -1,9 +1,8 @@
 module AirlyAPI
   class DataExtractor
-    
     def extract(airly_data)
       @data = airly_data
-      {  
+      {
         date: date,
         hour: hour,
         pm10: get('PM10'),
@@ -12,18 +11,18 @@ module AirlyAPI
         humidity: get('HUMIDITY'),
         pressure: get('PRESSURE'),
         from_date_time: from_date_time,
-        till_date_time: till_date_time
+        till_date_time: till_date_time,
       }
     end
 
     private
 
     def date
-      Time.parse(@data['current']['tillDateTime']).to_date
+      Time.find_zone('UTC').parse(@data['current']['tillDateTime']).to_date
     end
 
     def hour
-      Time.parse(@data['current']['tillDateTime']).hour
+      Time.find_zone('UTC').parse(@data['current']['tillDateTime']).hour
     end
 
     def get(name)
@@ -37,7 +36,5 @@ module AirlyAPI
     def till_date_time
       @data['current']['tillDateTime']
     end
-
   end
-    
 end

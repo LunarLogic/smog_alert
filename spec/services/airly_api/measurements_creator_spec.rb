@@ -2,9 +2,8 @@ describe AirlyAPI::MeasurementCreator do
   subject { described_class.new(location) }
 
   let(:location) { FactoryBot.create(:location) }
-  
-  describe '#create' do
-    let(:measurement_object) { VCR.use_cassette('services/airly_api/measurements_zabierzow') { subject.create }}
+  describe '#build' do
+    let(:measurement_object) { VCR.use_cassette('services/airly_api/measurements_zabierzow') { subject.build } }
     it 'sets date correctly' do
       expect(measurement_object.date).to eq(Date.parse('Thu, 28 Nov 2019'))
     end
@@ -27,11 +26,10 @@ describe AirlyAPI::MeasurementCreator do
       expect(measurement_object.pressure).to eq(1000.02)
     end
     it 'sets from_date_time correctly' do
-      expect(measurement_object.from_date_time).to eq(DateTime.parse("2019-11-28T12:56:41.684Z"))
+      expect(measurement_object.from_date_time).to eq(DateTime.parse('2019-11-28T12:56:41.684Z'))
     end
     it 'sets till_date_time correctly' do
-      expect(measurement_object.till_date_time).to eq(DateTime.parse("2019-11-28T13:56:41.684Z"))
+      expect(measurement_object.till_date_time).to eq(DateTime.parse('2019-11-28T13:56:41.684Z'))
     end
-    
   end
 end

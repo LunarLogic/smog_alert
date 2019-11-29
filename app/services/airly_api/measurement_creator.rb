@@ -5,7 +5,7 @@ module AirlyAPI
       @extractor = DataExtractor.new
     end
 
-    def create
+    def build
       airly_data = Measurements.new.point(longitude, latitude)
       @location.measurements.build(@extractor.extract(airly_data))
     end
@@ -23,7 +23,5 @@ module AirlyAPI
     def latitude
       @location.latitude
     end
-
   end
-  
 end
