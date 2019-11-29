@@ -11,7 +11,7 @@ const pollutionComparisonContent = [
   { id: 10, location: "Radwanowice", value: 86, color: "#cc571a" },
   { id: 11, location: "Brzezinka", value: 96, color: "#cc571a" },
   { id: 12, location: "Kobylany", value: 92, color: "#cc571a" },
-  { id: 13, location: "Kamiowice", value: 49, color: "#c3d735" },
+  { id: 13, location: "Karniowice", value: 49, color: "#c3d735" },
   { id: 14, location: "Zelków", value: 40, color: "#c3d735" },
   { id: 15, location: "Bolechowice", value: 43, color: "#c3d735" },
   { id: 16, location: "Ujazd", value: 33, color: "#97cd2e" },
