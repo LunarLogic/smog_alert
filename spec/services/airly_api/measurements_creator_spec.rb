@@ -2,8 +2,9 @@ describe AirlyAPI::MeasurementCreator do
   subject { described_class.new(location) }
 
   let(:location) { FactoryBot.create(:location) }
-  let(:measurement_object) { VCR.use_cassette('services/airly_api/measurements_zabierzow') { subject.build } }
+
   describe '#build' do
+    let(:measurement_object) { VCR.use_cassette('services/airly_api/measurements_zabierzow') { subject.build } }
     it 'sets date correctly' do
       expect(measurement_object.date).to eq(Date.parse('Thu, 28 Nov 2019'))
     end
@@ -35,7 +36,9 @@ describe AirlyAPI::MeasurementCreator do
 
   describe '#create' do
     it 'creates new measurement object' do
-      expect { subject.create }.to change { Measurement.count }.by(1)
+      VCR.use_cassette 'services/airly_api/measurements_zabierzow' do
+        expect { subject.create }.to change { Measurement.count }.by(1)
+      end
     end
   end
 end
