@@ -1,0 +1,23 @@
+<h1>Lokalizacje:</h1>
+
+<% @locations.each do |location| %>
+  <div class = 'row'>
+    <div class = 'col-4'>
+      <p><%= location.name %></p>
+    </div>
+    <div class = 'col-2'>
+      <p><%= location.longitude %></p>
+    </div>
+    <div class = 'col-2'>
+      <p><%= location.latitude %></p>
+    </div>
+    <div class = 'col-2'>
+      <%= link_to 'Edytuj', '#'%>
+    </div>
+    <div class = 'col-2'>
+      <%= link_to 'Usuń', '#'%>
+    </div>
+  </div>
+<% end %>
+
+<%= link_to  "Dodaj lokalizację", new_admin_location_path %>
