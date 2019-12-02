@@ -64,11 +64,4 @@ RSpec.configure do |config|
 
   # https://github.com/plataformatec/devise/wiki/How-To:-sign-in-and-out-a-user-in-Request-type-specs-(specs-tagged-with-type:-:request)
   config.include Devise::Test::IntegrationHelpers, type: :request
-
-  Shoulda::Matchers.configure do |configuration|
-    configuration.integrate do |with|
-      with.test_framework :rspec
-      with.library :rails
-    end
-  end
 end
