@@ -27,7 +27,7 @@ class Admin::LocationsController < Admin::BaseController
 
   def update
     @location = Location.find(params[:id])
-    if @location.update_attributes(location_params)
+    if @location.update(location_params)
       flash[:success] = 'Pomyślnie edytowano lokalizację'
       redirect_to admin_locations_path
     else
