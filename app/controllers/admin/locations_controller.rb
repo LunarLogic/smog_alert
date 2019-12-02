@@ -15,16 +15,30 @@ class Admin::LocationsController < Admin::BaseController
     @location = Location.new(location_params)
     if @location.save
       flash[:success] = 'Pomyślnie utworzono lokalizację'
-      redirect_to admin_location_path(@location)
+      redirect_to admin_locations_path
     else
       render 'new'
     end
   end
 
   def edit
+    @location = Location.find(params[:id])
   end
 
-  def delete
+  def update
+    @location = Location.find(params[:id])
+    if @location.update_attributes(location_params)
+      flash[:success] = 'Pomyślnie edytowano lokalizację'
+      redirect_to admin_locations_path
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    Location.find(params[:id]).destroy
+    flash[:success] = 'Pomyślnie usunięto lokalizację'
+    redirect_to admin_locations_path
   end
 
   private
