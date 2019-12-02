@@ -44,12 +44,6 @@
   },
   "version": "0.1.0",
   "devDependencies": {
-    "@babel/core": "^7.7.4",
-    "@babel/plugin-proposal-class-properties": "^7.7.4",
-    "@babel/plugin-transform-runtime": "^7.7.4",
-    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "@babel/preset-env": "^7.7.4",
-    "babel-jest": "^24.9.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "eslint": "^6.6.0",
