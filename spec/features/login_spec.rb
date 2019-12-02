@@ -1,30 +1,8 @@
 require 'rails_helper'
 
-feature 'Login page: Validate page elements' do
-  background do
-    visit 'http://localhost:3000/users/sign_in'
-  end
-
-  scenario 'Displayed title: Login' do
-    expect(page).to have_css('h2', text: 'Log in')
-  end
-
-  scenario 'Displayed textbox: Email' do
-    expect(page).to have_field('Email')
-  end
-
-  scenario 'Displayed textbox: Password' do
-    expect(page).to have_field('Password')
-  end
-
-  scenario 'Displayed button: Log in' do
-    expect(page).to have_button('Log in')
-  end
-end
-
 feature 'Login page: invalid credentials display alert to user' do
   background do
-    visit 'http://localhost:3000/users/sign_in'
+    visit new_user_session_path
   end
 
   scenario 'Login with invalid email or password' do
@@ -38,24 +16,28 @@ end
 
 feature 'Login page: valid credentials' do
   background do
-    visit 'http://localhost:3000/admin'
+    visit admin_root_path
   end
+
+  let!(:user) { FactoryBot.create(:user) }
 
   scenario 'Signing in without admin permission' do
-    FactoryBot.create(:user)
-
-    fill_in('Email', with: 'joe@gmail.com')
-    fill_in('Password', with: 'blah456')
+    error_message = 'Nie masz uprawnień administratora'
+    fill_in('Email', with: user.email)
+    fill_in('Password', with: user.password)
     click_button('Log in')
-    expect(page).to have_current_path('http://localhost:3000/')
+    expect(page).to have_content(error_message)
+    expect(page).to have_current_path(root_path)
   end
 
-  scenario 'Signing in with admin permission' do
-    FactoryBot.create(:admin)
+  let!(:admin) { FactoryBot.create(:admin) }
 
-    fill_in('Email', with: 'admin@gmail.com')
-    fill_in('Password', with: 'blah123')
+  scenario 'Signing in with admin permission' do
+    welcome_message = 'Witaj w panelu Administratora!'
+    fill_in('Email', with: admin.email)
+    fill_in('Password', with: admin.password)
     click_button('Log in')
-    expect(page).to have_content('Witaj w panelu Administratora!')
+    expect(page).to have_content(welcome_message)
+    expect(page).to have_current_path(admin_root_path)
   end
 end
