@@ -75,6 +75,7 @@ group :test do
   gem 'rspec_junit_formatter'
   gem 'vcr'
   gem 'webmock'
+  gem 'shoulda-matchers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
