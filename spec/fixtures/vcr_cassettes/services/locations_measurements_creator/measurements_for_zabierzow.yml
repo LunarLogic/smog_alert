@@ -1,0 +1,148 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://airapi.airly.eu/v2/measurements/point?lat=50.116436&lng=19.801319
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - rest-client/2.1.0 (darwin18.7.0 x86_64) ruby/2.6.5p114
+      Apikey:
+      - yENXl3MA1134NQN9aqRCjSUo2JRQfdWw
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - airapi.airly.eu
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Date:
+      - Tue, 03 Dec 2019 17:27:23 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Expires:
+      - '0'
+      Pragma:
+      - no-cache
+      Server:
+      - nginx/1.16.1
+      X-Application-Context:
+      - application:prod:5000
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      X-Xss-Protection:
+      - 1; mode=block
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Location
+      X-Ratelimit-Limit-Day:
+      - '1000'
+      X-Ratelimit-Remaining-Minute:
+      - '49'
+      X-Ratelimit-Limit-Minute:
+      - '50'
+      X-Ratelimit-Remaining-Day:
+      - '965'
+      Request-Id:
+      - f5ba1bea-02ed-4ca8-a674-807de09f953c
+      X-Kong-Upstream-Latency:
+      - '31'
+      X-Kong-Proxy-Latency:
+      - '1'
+      Via:
+      - kong/1.4.0
+    body:
+      encoding: ASCII-8BIT
+      string: '{"current":{"fromDateTime":"2019-12-03T16:27:23.646Z","tillDateTime":"2019-12-03T17:27:23.646Z","values":[{"name":"PM1","value":71.22},{"name":"PM25","value":110.1},{"name":"PM10","value":200.11},{"name":"PRESSURE","value":1027.99},{"name":"HUMIDITY","value":85.13},{"name":"TEMPERATURE","value":-1.63}],"indexes":[{"name":"AIRLY_CAQI","value":105.59,"level":"EXTREME","description":"Very
+        high pollution!","advice":"The daily norm has exceeded the WHO limit many
+        times!","color":"#B00057"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":440.41},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":400.22}]},"history":[{"fromDateTime":"2019-12-02T17:00:00.000Z","tillDateTime":"2019-12-02T18:00:00.000Z","values":[{"name":"PM1","value":21.5},{"name":"PM25","value":34.37},{"name":"PM10","value":70.41},{"name":"PRESSURE","value":1018.6},{"name":"HUMIDITY","value":88.0},{"name":"TEMPERATURE","value":0.42}],"indexes":[{"name":"AIRLY_CAQI","value":62.76,"level":"MEDIUM","description":"Well...
+        It''s been better.","advice":"If you can, stay home.","color":"#EFBB0F"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":137.48},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":140.82}]},{"fromDateTime":"2019-12-02T18:00:00.000Z","tillDateTime":"2019-12-02T19:00:00.000Z","values":[{"name":"PM1","value":22.08},{"name":"PM25","value":35.48},{"name":"PM10","value":71.88},{"name":"PRESSURE","value":1019.18},{"name":"HUMIDITY","value":87.63},{"name":"TEMPERATURE","value":0.19}],"indexes":[{"name":"AIRLY_CAQI","value":63.67,"level":"MEDIUM","description":"Well...
+        It''s been better.","advice":"If you can, stay home.","color":"#EFBB0F"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":141.93},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":143.76}]},{"fromDateTime":"2019-12-02T19:00:00.000Z","tillDateTime":"2019-12-02T20:00:00.000Z","values":[{"name":"PM1","value":22.16},{"name":"PM25","value":35.73},{"name":"PM10","value":72.79},{"name":"PRESSURE","value":1019.59},{"name":"HUMIDITY","value":87.25},{"name":"TEMPERATURE","value":0.02}],"indexes":[{"name":"AIRLY_CAQI","value":64.24,"level":"MEDIUM","description":"Well...
+        It''s been better.","advice":"Things were good once... Let''s hope it doesn''t
+        get worse!","color":"#EFBB0F"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":142.91},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":145.58}]},{"fromDateTime":"2019-12-02T20:00:00.000Z","tillDateTime":"2019-12-02T21:00:00.000Z","values":[{"name":"PM1","value":21.57},{"name":"PM25","value":34.9},{"name":"PM10","value":70.72},{"name":"PRESSURE","value":1019.95},{"name":"HUMIDITY","value":91.25},{"name":"TEMPERATURE","value":0.24}],"indexes":[{"name":"AIRLY_CAQI","value":62.95,"level":"MEDIUM","description":"Well...
+        It''s been better.","advice":"Sadly, the air is not quite as clean as it looks
+        today.","color":"#EFBB0F"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":139.62},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":141.44}]},{"fromDateTime":"2019-12-02T21:00:00.000Z","tillDateTime":"2019-12-02T22:00:00.000Z","values":[{"name":"PM1","value":17.74},{"name":"PM25","value":27.65},{"name":"PM10","value":57.38},{"name":"PRESSURE","value":1020.16},{"name":"HUMIDITY","value":93.25},{"name":"TEMPERATURE","value":0.19}],"indexes":[{"name":"AIRLY_CAQI","value":54.61,"level":"MEDIUM","description":"Well...
+        It''s been better.","advice":"Protect your lungs!","color":"#EFBB0F"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":110.59},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":114.76}]},{"fromDateTime":"2019-12-02T22:00:00.000Z","tillDateTime":"2019-12-02T23:00:00.000Z","values":[{"name":"PM1","value":14.03},{"name":"PM25","value":20.92},{"name":"PM10","value":43.88},{"name":"PRESSURE","value":1020.28},{"name":"HUMIDITY","value":93.78},{"name":"TEMPERATURE","value":-0.38}],"indexes":[{"name":"AIRLY_CAQI","value":43.88,"level":"LOW","description":"Air
+        is quite good.","advice":"The air is nice and clean today!","color":"#D1CF1E"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":83.66},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":87.76}]},{"fromDateTime":"2019-12-02T23:00:00.000Z","tillDateTime":"2019-12-03T00:00:00.000Z","values":[{"name":"PM1","value":17.05},{"name":"PM25","value":26.49},{"name":"PM10","value":55.87},{"name":"PRESSURE","value":1020.25},{"name":"HUMIDITY","value":91.08},{"name":"TEMPERATURE","value":-0.03}],"indexes":[{"name":"AIRLY_CAQI","value":53.67,"level":"MEDIUM","description":"Well...
+        It''s been better.","advice":"Something''s hanging in the air. Take care!","color":"#EFBB0F"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":105.97},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":111.73}]},{"fromDateTime":"2019-12-03T00:00:00.000Z","tillDateTime":"2019-12-03T01:00:00.000Z","values":[{"name":"PM1","value":18.54},{"name":"PM25","value":29.38},{"name":"PM10","value":61.21},{"name":"PRESSURE","value":1020.36},{"name":"HUMIDITY","value":89.72},{"name":"TEMPERATURE","value":0.11}],"indexes":[{"name":"AIRLY_CAQI","value":57.01,"level":"MEDIUM","description":"Well...
+        It''s been better.","advice":"The air is slightly polluted.","color":"#EFBB0F"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":117.54},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":122.42}]},{"fromDateTime":"2019-12-03T01:00:00.000Z","tillDateTime":"2019-12-03T02:00:00.000Z","values":[{"name":"PM1","value":16.32},{"name":"PM25","value":24.94},{"name":"PM10","value":52.01},{"name":"PRESSURE","value":1020.66},{"name":"HUMIDITY","value":92.0},{"name":"TEMPERATURE","value":0.02}],"indexes":[{"name":"AIRLY_CAQI","value":51.26,"level":"MEDIUM","description":"Well...
+        It''s been better.","advice":"Neither good nor bad. Think before leaving the
+        house.","color":"#EFBB0F"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":99.75},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":104.02}]},{"fromDateTime":"2019-12-03T02:00:00.000Z","tillDateTime":"2019-12-03T03:00:00.000Z","values":[{"name":"PM1","value":14.86},{"name":"PM25","value":22.57},{"name":"PM10","value":46.95},{"name":"PRESSURE","value":1020.57},{"name":"HUMIDITY","value":96.4},{"name":"TEMPERATURE","value":-0.41}],"indexes":[{"name":"AIRLY_CAQI","value":46.95,"level":"LOW","description":"Air
+        is quite good.","advice":"You can go out and enjoy nature without worries.","color":"#D1CF1E"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":90.26},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":93.9}]},{"fromDateTime":"2019-12-03T03:00:00.000Z","tillDateTime":"2019-12-03T04:00:00.000Z","values":[{"name":"PM1","value":14.56},{"name":"PM25","value":22.1},{"name":"PM10","value":46.09},{"name":"PRESSURE","value":1020.98},{"name":"HUMIDITY","value":96.45},{"name":"TEMPERATURE","value":-0.27}],"indexes":[{"name":"AIRLY_CAQI","value":46.09,"level":"LOW","description":"Air
+        is quite good.","advice":"Time for a walk with friends or activities with
+        your family - because the air is clean!","color":"#D1CF1E"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":88.38},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":92.18}]},{"fromDateTime":"2019-12-03T04:00:00.000Z","tillDateTime":"2019-12-03T05:00:00.000Z","values":[{"name":"PM1","value":14.32},{"name":"PM25","value":21.62},{"name":"PM10","value":44.55},{"name":"PRESSURE","value":1021.48},{"name":"HUMIDITY","value":95.5},{"name":"TEMPERATURE","value":-0.1}],"indexes":[{"name":"AIRLY_CAQI","value":44.55,"level":"LOW","description":"Air
+        is quite good.","advice":"The air is nice and clean today!","color":"#D1CF1E"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":86.48},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":89.1}]},{"fromDateTime":"2019-12-03T05:00:00.000Z","tillDateTime":"2019-12-03T06:00:00.000Z","values":[{"name":"PM1","value":13.67},{"name":"PM25","value":20.6},{"name":"PM10","value":41.84},{"name":"PRESSURE","value":1022.33},{"name":"HUMIDITY","value":97.07},{"name":"TEMPERATURE","value":-0.17}],"indexes":[{"name":"AIRLY_CAQI","value":41.84,"level":"LOW","description":"Air
+        is quite good.","advice":"Don''t miss this day! The clean air calls!","color":"#D1CF1E"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":82.4},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":83.67}]},{"fromDateTime":"2019-12-03T06:00:00.000Z","tillDateTime":"2019-12-03T07:00:00.000Z","values":[{"name":"PM1","value":12.93},{"name":"PM25","value":19.41},{"name":"PM10","value":39.6},{"name":"PRESSURE","value":1023.19},{"name":"HUMIDITY","value":96.4},{"name":"TEMPERATURE","value":0.08}],"indexes":[{"name":"AIRLY_CAQI","value":39.6,"level":"LOW","description":"Air
+        is quite good.","advice":"Do you want to see what''s outside? The air is nice
+        today!","color":"#D1CF1E"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":77.62},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":79.2}]},{"fromDateTime":"2019-12-03T07:00:00.000Z","tillDateTime":"2019-12-03T08:00:00.000Z","values":[{"name":"PM1","value":8.9},{"name":"PM25","value":13.32},{"name":"PM10","value":24.67},{"name":"PRESSURE","value":1024.25},{"name":"HUMIDITY","value":95.5},{"name":"TEMPERATURE","value":0.08}],"indexes":[{"name":"AIRLY_CAQI","value":24.67,"level":"VERY_LOW","description":"Great
+        air here today!","advice":"The air is great!","color":"#6BC926"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":53.28},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":49.33}]},{"fromDateTime":"2019-12-03T08:00:00.000Z","tillDateTime":"2019-12-03T09:00:00.000Z","values":[{"name":"PM1","value":8.83},{"name":"PM25","value":12.78},{"name":"PM10","value":24.02},{"name":"PRESSURE","value":1025.0},{"name":"HUMIDITY","value":90.55},{"name":"TEMPERATURE","value":0.17}],"indexes":[{"name":"AIRLY_CAQI","value":24.02,"level":"VERY_LOW","description":"Great
+        air here today!","advice":"Feel free to run, walk, dance and let the air outside
+        in today!","color":"#6BC926"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":51.11},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":48.04}]},{"fromDateTime":"2019-12-03T09:00:00.000Z","tillDateTime":"2019-12-03T10:00:00.000Z","values":[{"name":"PM1","value":9.3},{"name":"PM25","value":13.5},{"name":"PM10","value":26.56},{"name":"PRESSURE","value":1025.77},{"name":"HUMIDITY","value":86.58},{"name":"TEMPERATURE","value":0.32}],"indexes":[{"name":"AIRLY_CAQI","value":26.56,"level":"LOW","description":"Air
+        is quite good.","advice":"How about going for a walk?","color":"#D1CF1E"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":53.98},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":53.11}]},{"fromDateTime":"2019-12-03T10:00:00.000Z","tillDateTime":"2019-12-03T11:00:00.000Z","values":[{"name":"PM1","value":12.26},{"name":"PM25","value":18.43},{"name":"PM10","value":35.72},{"name":"PRESSURE","value":1026.0},{"name":"HUMIDITY","value":88.45},{"name":"TEMPERATURE","value":0.41}],"indexes":[{"name":"AIRLY_CAQI","value":35.72,"level":"LOW","description":"Air
+        is quite good.","advice":"The air is nice and clean today!","color":"#D1CF1E"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":73.7},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":71.44}]},{"fromDateTime":"2019-12-03T11:00:00.000Z","tillDateTime":"2019-12-03T12:00:00.000Z","values":[{"name":"PM1","value":7.28},{"name":"PM25","value":10.22},{"name":"PM10","value":19.35},{"name":"PRESSURE","value":1026.37},{"name":"HUMIDITY","value":90.66},{"name":"TEMPERATURE","value":0.23}],"indexes":[{"name":"AIRLY_CAQI","value":19.35,"level":"VERY_LOW","description":"Great
+        air here today!","advice":"The air is grand today. ;)","color":"#6BC926"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":40.89},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":38.71}]},{"fromDateTime":"2019-12-03T12:00:00.000Z","tillDateTime":"2019-12-03T13:00:00.000Z","values":[{"name":"PM1","value":8.07},{"name":"PM25","value":11.68},{"name":"PM10","value":22.43},{"name":"PRESSURE","value":1026.5},{"name":"HUMIDITY","value":87.67},{"name":"TEMPERATURE","value":-0.23}],"indexes":[{"name":"AIRLY_CAQI","value":22.43,"level":"VERY_LOW","description":"Great
+        air here today!","advice":"Breathe to fill your lungs!","color":"#6BC926"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":46.7},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":44.87}]},{"fromDateTime":"2019-12-03T13:00:00.000Z","tillDateTime":"2019-12-03T14:00:00.000Z","values":[{"name":"PM1","value":11.38},{"name":"PM25","value":16.49},{"name":"PM10","value":31.98},{"name":"PRESSURE","value":1026.68},{"name":"HUMIDITY","value":83.65},{"name":"TEMPERATURE","value":-0.25}],"indexes":[{"name":"AIRLY_CAQI","value":31.98,"level":"LOW","description":"Air
+        is quite good.","advice":"Do you smell it? That''s the smell of clean air.
+        :)","color":"#D1CF1E"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":65.95},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":63.96}]},{"fromDateTime":"2019-12-03T14:00:00.000Z","tillDateTime":"2019-12-03T15:00:00.000Z","values":[{"name":"PM1","value":21.58},{"name":"PM25","value":34.48},{"name":"PM10","value":69.0},{"name":"PRESSURE","value":1026.8},{"name":"HUMIDITY","value":82.0},{"name":"TEMPERATURE","value":-0.24}],"indexes":[{"name":"AIRLY_CAQI","value":61.88,"level":"MEDIUM","description":"Well...
+        It''s been better.","advice":"Watch out - a few signs of smog today.","color":"#EFBB0F"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":137.92},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":138.0}]},{"fromDateTime":"2019-12-03T15:00:00.000Z","tillDateTime":"2019-12-03T16:00:00.000Z","values":[{"name":"PM1","value":28.05},{"name":"PM25","value":44.1},{"name":"PM10","value":84.8},{"name":"PRESSURE","value":1027.32},{"name":"HUMIDITY","value":79.58},{"name":"TEMPERATURE","value":-0.34}],"indexes":[{"name":"AIRLY_CAQI","value":71.75,"level":"MEDIUM","description":"Well...
+        It''s been better.","advice":"The air doesn''t encourage walking today.","color":"#EFBB0F"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":176.41},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":169.6}]},{"fromDateTime":"2019-12-03T16:00:00.000Z","tillDateTime":"2019-12-03T17:00:00.000Z","values":[{"name":"PM1","value":60.74},{"name":"PM25","value":94.6},{"name":"PM10","value":174.68},{"name":"PRESSURE","value":1027.82},{"name":"HUMIDITY","value":82.34},{"name":"TEMPERATURE","value":-1.01}],"indexes":[{"name":"AIRLY_CAQI","value":98.52,"level":"VERY_HIGH","description":"Poor
+        air quality!","advice":"The air quality is terrible today. Watch out for yourself
+        and your loved ones.","color":"#EF2A36"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":378.41},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":349.36}]}],"forecast":[{"fromDateTime":"2019-12-03T17:00:00.000Z","tillDateTime":"2019-12-03T18:00:00.000Z","values":[{"name":"PM25","value":96.23},{"name":"PM10","value":154.58}],"indexes":[{"name":"AIRLY_CAQI","value":93.74,"level":"VERY_HIGH","description":"Poor
+        air quality!","advice":"Unfortunately, today''s air means no fun at all.","color":"#EF2A36"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":384.9},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":309.16}]},{"fromDateTime":"2019-12-03T18:00:00.000Z","tillDateTime":"2019-12-03T19:00:00.000Z","values":[{"name":"PM25","value":94.7},{"name":"PM10","value":147.82}],"indexes":[{"name":"AIRLY_CAQI","value":93.04,"level":"VERY_HIGH","description":"Poor
+        air quality!","advice":"The air quality is terrible today. Watch out for yourself
+        and your loved ones.","color":"#EF2A36"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":378.79},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":295.63}]},{"fromDateTime":"2019-12-03T19:00:00.000Z","tillDateTime":"2019-12-03T20:00:00.000Z","values":[{"name":"PM25","value":91.92},{"name":"PM10","value":141.19}],"indexes":[{"name":"AIRLY_CAQI","value":91.78,"level":"VERY_HIGH","description":"Poor
+        air quality!","advice":"The air quality is terrible today. Watch out for yourself
+        and your loved ones.","color":"#EF2A36"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":367.69},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":282.39}]},{"fromDateTime":"2019-12-03T20:00:00.000Z","tillDateTime":"2019-12-03T21:00:00.000Z","values":[{"name":"PM25","value":87.68},{"name":"PM10","value":133.83}],"indexes":[{"name":"AIRLY_CAQI","value":89.85,"level":"VERY_HIGH","description":"Poor
+        air quality!","advice":"Unfortunately, outdoor physical activity isn''t a
+        good idea today.","color":"#EF2A36"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":350.7},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":267.65}]},{"fromDateTime":"2019-12-03T21:00:00.000Z","tillDateTime":"2019-12-03T22:00:00.000Z","values":[{"name":"PM25","value":83.5},{"name":"PM10","value":126.26}],"indexes":[{"name":"AIRLY_CAQI","value":87.95,"level":"VERY_HIGH","description":"Poor
+        air quality!","advice":"Dust in the lungs is not cool. Stay home today.","color":"#EF2A36"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":334.0},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":252.53}]},{"fromDateTime":"2019-12-03T22:00:00.000Z","tillDateTime":"2019-12-03T23:00:00.000Z","values":[{"name":"PM25","value":79.92},{"name":"PM10","value":119.81}],"indexes":[{"name":"AIRLY_CAQI","value":86.33,"level":"HIGH","description":"Poor
+        air quality!","advice":"Instead of running outdoors, how about a treadmill
+        instead?.","color":"#EF7120"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":319.68},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":239.61}]},{"fromDateTime":"2019-12-03T23:00:00.000Z","tillDateTime":"2019-12-04T00:00:00.000Z","values":[{"name":"PM25","value":76.21},{"name":"PM10","value":113.99}],"indexes":[{"name":"AIRLY_CAQI","value":84.64,"level":"HIGH","description":"Poor
+        air quality!","advice":"Don''t go out, unless you want to breathe like Darth
+        Vader!","color":"#EF7120"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":304.85},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":227.98}]},{"fromDateTime":"2019-12-04T00:00:00.000Z","tillDateTime":"2019-12-04T01:00:00.000Z","values":[{"name":"PM25","value":73.01},{"name":"PM10","value":109.26}],"indexes":[{"name":"AIRLY_CAQI","value":83.19,"level":"HIGH","description":"Poor
+        air quality!","advice":"Instead of running outdoors, how about a treadmill
+        instead?.","color":"#EF7120"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":292.03},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":218.52}]},{"fromDateTime":"2019-12-04T01:00:00.000Z","tillDateTime":"2019-12-04T02:00:00.000Z","values":[{"name":"PM25","value":70.35},{"name":"PM10","value":104.52}],"indexes":[{"name":"AIRLY_CAQI","value":81.98,"level":"HIGH","description":"Poor
+        air quality!","advice":"Instead of running outdoors, how about a treadmill
+        instead?.","color":"#EF7120"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":281.4},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":209.03}]},{"fromDateTime":"2019-12-04T02:00:00.000Z","tillDateTime":"2019-12-04T03:00:00.000Z","values":[{"name":"PM25","value":67.77},{"name":"PM10","value":100.11}],"indexes":[{"name":"AIRLY_CAQI","value":80.8,"level":"HIGH","description":"Poor
+        air quality!","advice":"Don''t go out, unless you want to breathe like Darth
+        Vader!","color":"#EF7120"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":271.07},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":200.23}]},{"fromDateTime":"2019-12-04T03:00:00.000Z","tillDateTime":"2019-12-04T04:00:00.000Z","values":[{"name":"PM25","value":65.84},{"name":"PM10","value":96.86}],"indexes":[{"name":"AIRLY_CAQI","value":79.93,"level":"HIGH","description":"Poor
+        air quality!","advice":"Instead of running outdoors, how about a treadmill
+        instead?.","color":"#EF7120"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":263.34},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":193.72}]},{"fromDateTime":"2019-12-04T04:00:00.000Z","tillDateTime":"2019-12-04T05:00:00.000Z","values":[{"name":"PM25","value":63.96},{"name":"PM10","value":93.75}],"indexes":[{"name":"AIRLY_CAQI","value":79.07,"level":"HIGH","description":"Poor
+        air quality!","advice":"Avoid being outside if possible.","color":"#EF7120"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":255.84},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":187.51}]},{"fromDateTime":"2019-12-04T05:00:00.000Z","tillDateTime":"2019-12-04T06:00:00.000Z","values":[{"name":"PM25","value":61.43},{"name":"PM10","value":90.51}],"indexes":[{"name":"AIRLY_CAQI","value":77.92,"level":"HIGH","description":"Poor
+        air quality!","advice":"Define the air quality in one word? NOT GOOD. Ok,
+        two words ;)","color":"#EF7120"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":245.7},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":181.02}]},{"fromDateTime":"2019-12-04T06:00:00.000Z","tillDateTime":"2019-12-04T07:00:00.000Z","values":[{"name":"PM25","value":58.55},{"name":"PM10","value":86.71}],"indexes":[{"name":"AIRLY_CAQI","value":76.61,"level":"HIGH","description":"Poor
+        air quality!","advice":"If you must go out today, a smog mask would be wise!","color":"#EF7120"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":234.21},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":173.43}]},{"fromDateTime":"2019-12-04T07:00:00.000Z","tillDateTime":"2019-12-04T08:00:00.000Z","values":[{"name":"PM25","value":54.97},{"name":"PM10","value":81.46}],"indexes":[{"name":"AIRLY_CAQI","value":74.97,"level":"MEDIUM","description":"Well...
+        It''s been better.","advice":"Watch out - a few signs of smog today.","color":"#EFBB0F"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":219.89},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":162.92}]},{"fromDateTime":"2019-12-04T08:00:00.000Z","tillDateTime":"2019-12-04T09:00:00.000Z","values":[{"name":"PM25","value":51.46},{"name":"PM10","value":76.7}],"indexes":[{"name":"AIRLY_CAQI","value":71.46,"level":"MEDIUM","description":"Well...
+        It''s been better.","advice":"The smog is coming! :O","color":"#EFBB0F"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":205.84},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":153.4}]},{"fromDateTime":"2019-12-04T09:00:00.000Z","tillDateTime":"2019-12-04T10:00:00.000Z","values":[{"name":"PM25","value":48.87},{"name":"PM10","value":73.96}],"indexes":[{"name":"AIRLY_CAQI","value":68.87,"level":"MEDIUM","description":"Well...
+        It''s been better.","advice":"Sadly, the air is not quite as clean as it looks
+        today.","color":"#EFBB0F"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":195.49},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":147.93}]},{"fromDateTime":"2019-12-04T10:00:00.000Z","tillDateTime":"2019-12-04T11:00:00.000Z","values":[{"name":"PM25","value":46.55},{"name":"PM10","value":71.3}],"indexes":[{"name":"AIRLY_CAQI","value":66.55,"level":"MEDIUM","description":"Well...
+        It''s been better.","advice":"Neither good nor bad. Think before leaving the
+        house.","color":"#EFBB0F"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":186.2},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":142.59}]},{"fromDateTime":"2019-12-04T11:00:00.000Z","tillDateTime":"2019-12-04T12:00:00.000Z","values":[{"name":"PM25","value":44.06},{"name":"PM10","value":68.58}],"indexes":[{"name":"AIRLY_CAQI","value":64.06,"level":"MEDIUM","description":"Well...
+        It''s been better.","advice":"Neither good nor bad. Think before leaving the
+        house.","color":"#EFBB0F"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":176.23},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":137.16}]},{"fromDateTime":"2019-12-04T12:00:00.000Z","tillDateTime":"2019-12-04T13:00:00.000Z","values":[{"name":"PM25","value":43.02},{"name":"PM10","value":69.12}],"indexes":[{"name":"AIRLY_CAQI","value":63.02,"level":"MEDIUM","description":"Well...
+        It''s been better.","advice":"Things were good once... Let''s hope it doesn''t
+        get worse!","color":"#EFBB0F"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":172.1},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":138.25}]},{"fromDateTime":"2019-12-04T13:00:00.000Z","tillDateTime":"2019-12-04T14:00:00.000Z","values":[{"name":"PM25","value":43.16},{"name":"PM10","value":70.8}],"indexes":[{"name":"AIRLY_CAQI","value":63.16,"level":"MEDIUM","description":"Well...
+        It''s been better.","advice":"If you can, stay home.","color":"#EFBB0F"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":172.63},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":141.61}]},{"fromDateTime":"2019-12-04T14:00:00.000Z","tillDateTime":"2019-12-04T15:00:00.000Z","values":[{"name":"PM25","value":46.26},{"name":"PM10","value":76.49}],"indexes":[{"name":"AIRLY_CAQI","value":66.56,"level":"MEDIUM","description":"Well...
+        It''s been better.","advice":"The air is slightly polluted.","color":"#EFBB0F"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":185.03},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":152.98}]},{"fromDateTime":"2019-12-04T15:00:00.000Z","tillDateTime":"2019-12-04T16:00:00.000Z","values":[{"name":"PM25","value":51.42},{"name":"PM10","value":84.79}],"indexes":[{"name":"AIRLY_CAQI","value":71.75,"level":"MEDIUM","description":"Well...
+        It''s been better.","advice":"Something''s hanging in the air. Take care!","color":"#EFBB0F"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":205.7},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":169.59}]},{"fromDateTime":"2019-12-04T16:00:00.000Z","tillDateTime":"2019-12-04T17:00:00.000Z","values":[{"name":"PM25","value":57.15},{"name":"PM10","value":93.24}],"indexes":[{"name":"AIRLY_CAQI","value":75.98,"level":"HIGH","description":"Poor
+        air quality!","advice":"Leave the car - trains, trams and buses are cool too!","color":"#EF7120"}],"standards":[{"name":"WHO","pollutant":"PM25","limit":25.0,"percent":228.6},{"name":"WHO","pollutant":"PM10","limit":50.0,"percent":186.48}]}]}'
+    http_version: 
+  recorded_at: Tue, 03 Dec 2019 17:27:20 GMT
+recorded_with: VCR 5.0.0

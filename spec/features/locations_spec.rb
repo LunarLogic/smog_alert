@@ -6,5 +6,4 @@ feature '#index' do
   sign_in user
   visit admin_locations_path
   expect(page).to have_content(Location.first.name)
-
 end

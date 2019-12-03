@@ -7,10 +7,10 @@ class LocationsMeasurementCreator
     airly_data = AirlyAPI::Measurements.new.point(latitude, longitude)
     data = AirlyExtractor::MeasurementData.extract(airly_data)
     if data
-      @location.measurements.create(data)
-      true
+      measurement = @location.measurements.create(data)
+      Result::Success.new(data: measurement)
     else
-      false
+      Result::Error.new(errors: ['There are no sensors in this area'])
     end
   end
 

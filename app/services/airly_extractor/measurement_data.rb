@@ -1,7 +1,7 @@
 module AirlyExtractor
   class MeasurementData
     def self.extract(data)
-     new(data).extract
+      new(data).extract
     end
 
     def initialize(data)
@@ -10,6 +10,7 @@ module AirlyExtractor
 
     def extract
       return if @data['current']['values'].empty?
+
       {
         date: date,
         hour: hour,
