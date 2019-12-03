@@ -118,4 +118,10 @@ cities = [
     longitude: 19.740849
   }
 ]
-location = Location.find_or_create_by(name: name)
+
+cities.each do |city|
+  location = Location.find_or_create_by(name: city[:name])
+  location.longitude = city[:longitude] if location.longitude.nil?
+  location.latitude = city[:latitude] if location.latitude.nil?
+  location.save!
+end
