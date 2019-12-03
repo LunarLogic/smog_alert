@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :location do
     name { 'Zabierzow' }
-    longitude { 50.118583 }
-    latitude { 19.790861 }
+    latitude { 50.11644 }
+    longitude { 19.80132 }
   end
 end
