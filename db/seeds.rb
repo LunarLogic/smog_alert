@@ -94,7 +94,7 @@ cities = [
   },
   {
     name: 'Brzoskwinia',
-    latitude: 50.096480
+    latitude: 50.096480,
     longitude: 19.71829
   },
   {
@@ -124,4 +124,19 @@ cities.each do |city|
   location.longitude = city[:longitude] if location.longitude.nil?
   location.latitude = city[:latitude] if location.latitude.nil?
   location.save!
+end
+
+Location.all.each do |location|
+  till_date_time = DateTime.now
+  location.measurements.build(
+    date: till_date_time.to_date,
+    hour: till_date_time.hour,
+    pm10: rand(10.0..80.0).round(2),
+    pm25: rand(10.0..80.0).round(2),
+    temperature: rand(-10..10),
+    humidity: rand(60.0..90.0).round(2),
+    pressure: rand(900.0..1100.0).round(2),
+    from_date_time: till_date_time - 1.hour,
+    till_date_time: till_date_time
+  ).save!
 end
