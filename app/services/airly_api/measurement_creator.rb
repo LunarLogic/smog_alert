@@ -6,7 +6,7 @@ module AirlyAPI
     end
 
     def build
-      airly_data = Measurements.new.point(longitude, latitude)
+      airly_data = Measurements.new.point(latitude, longitude)
       @location.measurements.build(@extractor.extract(airly_data))
     end
 
