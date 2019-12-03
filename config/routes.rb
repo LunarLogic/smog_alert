@@ -9,4 +9,14 @@ Rails.application.routes.draw do
     root to: 'dashboard#index'
     resources :locations
   end
+
+  namespace :api do
+    namespace :internal do
+      resources :measurements, only: [] do
+        collection do
+          get :current
+        end
+      end
+    end
+  end
 end
