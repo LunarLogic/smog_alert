@@ -1,7 +1,15 @@
-module AirlyAPI
-  class DataExtractor
-    def extract(airly_data)
-      @data = airly_data
+module AirlyExtractor
+  class MeasurementData
+    def self.extract(data)
+     new(data).extract
+    end
+
+    def initialize(data)
+      @data = data
+    end
+
+    def extract
+      return if @data['current']['values'].empty?
       {
         date: date,
         hour: hour,
