@@ -1,11 +1,13 @@
-user = User.find_or_create_by(email: 'admin@example.com')
+unless Rails.env.production?
+  user = User.find_or_create_by(email: 'admin@example.com')
 
-unless user.confirmed?
-  user.admin = true
-  password = '123456'
-  user.password = password
-  user.password_confirmation = password
-  user.confirm
+  unless user.confirmed?
+    user.admin = true
+    password = '123456'
+    user.password = password
+    user.password_confirmation = password
+    user.confirm
+  end
 end
 
 cities = [
@@ -113,22 +115,24 @@ cities = [
 
 cities.each do |city|
   location = Location.find_or_create_by(name: city[:name])
-  location.longitude = city[:longitude] if location.longitude.nil?
-  location.latitude = city[:latitude] if location.latitude.nil?
+  location.longitude = city[:longitude]
+  location.latitude = city[:latitude]
   location.save!
 end
 
-Location.all.each do |location|
-  till_date_time = DateTime.now
-  location.measurements.build(
-    date: till_date_time.to_date,
-    hour: till_date_time.hour,
-    pm10: rand(10.0..80.0).round(2),
-    pm25: rand(10.0..80.0).round(2),
-    temperature: rand(-10..10),
-    humidity: rand(60.0..90.0).round(2),
-    pressure: rand(900.0..1100.0).round(2),
-    from_date_time: till_date_time - 1.hour,
-    till_date_time: till_date_time,
-  ).save!
+if Rails.env.development?
+  Location.all.each do |location|
+    till_date_time = DateTime.now
+    location.measurements.build(
+      date: till_date_time.to_date,
+      hour: till_date_time.hour,
+      pm10: rand(10.0..80.0).round(2),
+      pm25: rand(10.0..80.0).round(2),
+      temperature: rand(-10..10),
+      humidity: rand(60.0..90.0).round(2),
+      pressure: rand(900.0..1100.0).round(2),
+      from_date_time: till_date_time - 1.hour,
+      till_date_time: till_date_time,
+    ).save!
+  end
 end
