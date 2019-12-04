@@ -6,6 +6,7 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
 
     def initialize(location)
       @location = location
+      @last_hour_measurement = location.last_hour_measurement
     end
 
     def to_hash
@@ -15,7 +16,6 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
 
   def current
     locations = Location.all
-    
     render json: { data: LocationWithLastMeasurementPresenter.collection(locations) }
   end
 end
