@@ -6,22 +6,5 @@
   position: relative;
   &__image {
     height: inherit;
-    .st0 {
-      fill: #e5e6e6;
-      &:hover {
-        // fill: rgba(255, 143, 0, 0.5);
-        fill: $grey;
-        opacity: 0.5;
-      }
-    }
-    .st1 {
-      fill: #0e0f20;
-    }
-    .st2 {
-      font-family: "Roboto";
-    }
-    .st3 {
-      font-size: 14px;
-    }
   }
 }

@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import "./Map.scss";
-import MapImage from "../../../../assets/images/map.svg";
-import SVG from "react-inlinesvg";
+import MapImage from "../MapImage/MapImage.js";
 import Dot from "../Dot/Dot";
 import { getCitiesPollutionData } from "../../redux/map/map.actions";
 import { connect } from "react-redux";
@@ -44,7 +43,7 @@ const Map = ({ citiesPollutionData }) => {
 
   return (
     <div className="map">
-      <SVG src={MapImage} className="map__image" onClick={handleColorChange} />
+      <MapImage className="map__map-image" onClick={handleColorChange} />
       {citiesPollutionData.map(cityData => (
         <Dot
           key={cityData.id}
