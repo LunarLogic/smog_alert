@@ -43,7 +43,11 @@ const Map = ({ citiesPollutionData }) => {
 
   return (
     <div className="map">
-      <MapImage className="map__map-image" onClick={handleColorChange} />
+      <MapImage
+        citiesPollutionData="citiesPollutionData"
+        className="map__map-image"
+        onClick={handleColorChange}
+      />
       {citiesPollutionData.map(cityData => (
         <Dot
           key={cityData.id}
