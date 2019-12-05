@@ -1,6 +1,7 @@
 module AirlyAPI
   class Base
-    AIRLY_API_URL = 'https://airapi.airly.eu/v2/'
+    AIRLY_API_URL = 'https://airapi.airly.eu/v2/'.freeze
+
     private
 
     def headers
