@@ -5,7 +5,7 @@ describe AirlyAPI::Measurements do
     subject { measurements.point('50.116436', '19.801319') }
 
     it do
-      VCR.use_cassette 'services/airly_api/measurements_for_zabierzow' do
+      VCR.use_cassette 'services/locations_measurements_creator/measurements_for_zabierzow' do
         expect(subject['current']['values']).not_to be_empty
       end
     end
