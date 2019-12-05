@@ -1,7 +1,8 @@
 import React from "react";
 import "./MapSection.scss";
-import PollutionComparison from "../../components/PollutionComparison/PollutionComparison";
+// import PollutionComparison from "../../components/PollutionComparison/PollutionComparison";
 import Map from "../../components/Map/Map";
+import SidePollutionCard from "../../components/SidePollutionCard/SidePollutionCard";
 
 const MapSection = () => {
   return (
@@ -17,7 +18,8 @@ const MapSection = () => {
           <Map />
         </div>
         <div className="map-section__content--info">
-          <PollutionComparison />
+          {/* <PollutionComparison /> */}
+          <SidePollutionCard />
         </div>
       </div>
     </div>

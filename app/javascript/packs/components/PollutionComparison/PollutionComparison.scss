@@ -1,9 +1,6 @@
 @import "../../styles/variables";
 
 .pollution-comparison {
-  height: 62.7rem;
-  border: 0.1rem solid $frameColor;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.15);
-  border-radius: 0.6rem;
+  height: inherit;
   overflow-y: scroll;
 }
