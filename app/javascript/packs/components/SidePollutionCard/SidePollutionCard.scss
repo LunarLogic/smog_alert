@@ -42,6 +42,36 @@
         line-height: 1.9rem;
         color: $grey;
       }
+      &-info {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2.7rem;
+        &-overview {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          &-face {
+            width: 7.9rem;
+            height: 7.9rem;
+            border-radius: 50%;
+            background-color: $unhealthySecond;
+          }
+
+          &-text {
+            font-size: 2.1rem;
+            line-height: 2.4rem;
+            color: $unhealthySecond;
+            font-weight: bold;
+            margin-top: 1.2rem;
+          }
+        }
+        &-specific {
+          width: 73%;
+          overflow-y: scroll;
+          height: 200px;
+        }
+      }
     }
   }
 }
