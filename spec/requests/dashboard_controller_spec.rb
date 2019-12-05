@@ -23,7 +23,7 @@ describe '/admin/dashboard' do
         user = FactoryBot.create(:user)
         sign_in user
         get admin_root_path
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(new_user_session_path)
       end
     end
   end
