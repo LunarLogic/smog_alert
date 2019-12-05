@@ -8,7 +8,8 @@ class Admin::BaseController < ApplicationController
   def authenticate_admin!
     unless current_user.admin?
       flash[:notice] = 'Nie masz uprawnień administratora'
-      redirect_to root_path
+      sign_out current_user
+      redirect_to new_user_session_path
     end
   end
 end
