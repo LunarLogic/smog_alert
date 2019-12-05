@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature '#index' do
-  #TODO; finnish all tests for locations controller
+  # TODO; finnish all tests for locations controller
   xit 'shows list of locations if user signed in' do
     user = FactoryBot.create(:admin)
     sign_in user
