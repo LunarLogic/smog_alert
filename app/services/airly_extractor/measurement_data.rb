@@ -5,11 +5,11 @@ module AirlyExtractor
     end
 
     def initialize(data)
-      @data = data
+      @data = data['current']
     end
 
     def extract
-      return if @data['current']['values'].empty?
+      return if @data['values'].empty?
 
       {
         date: date,
@@ -27,23 +27,23 @@ module AirlyExtractor
     private
 
     def date
-      Time.find_zone('UTC').parse(@data['current']['tillDateTime']).to_date
+      Time.find_zone('UTC').parse(till_date_time).to_date
     end
 
     def hour
-      Time.find_zone('UTC').parse(@data['current']['tillDateTime']).hour
+      Time.find_zone('UTC').parse(till_date_time).hour
     end
 
     def get(name)
-      @data['current']['values'].select { |e| e['name'] == name }[0]['value']
+      @data['values'].select { |e| e['name'] == name }[0]['value']
     end
 
     def from_date_time
-      @data['current']['fromDateTime']
+      @data['fromDateTime']
     end
 
     def till_date_time
-      @data['current']['tillDateTime']
+      @data['tillDateTime']
     end
   end
 end
