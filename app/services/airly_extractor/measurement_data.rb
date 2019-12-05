@@ -35,7 +35,12 @@ module AirlyExtractor
     end
 
     def get(name)
-      @data['values'].select { |e| e['name'] == name }[0]['value']
+      measurement = @data['values'].select { |e| e['name'] == name }[0]
+      if measurement.nil?
+        nil
+      else
+        measurement['value']
+      end
     end
 
     def from_date_time

@@ -4,7 +4,7 @@ describe AirlyExtractor::MeasurementData do
       data = {'current' => {'values' => []}}
       expect(described_class.extract(data)).to be nil
     end
-    it 'sets value to nil when there is no data for a given measurement name' do
+    it 'sets value to nil when there is no data for a given measurement' do
       data =
         {
           'current' =>
@@ -26,7 +26,7 @@ describe AirlyExtractor::MeasurementData do
                 'value' => 76.24,
               },
               {
-                'name' => 'TEMPERATRE',
+                'name' => 'TEMPERATURE',
                 'value' => 1.08,
               },
             ],
