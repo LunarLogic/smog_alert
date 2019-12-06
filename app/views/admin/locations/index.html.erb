@@ -1,6 +1,5 @@
 <h1>Lokalizacje:</h1>
-
-<table class="table">
+<table class="table" id='locations'>
   <thead class="thead-dark">
     <tr>
       <th scope="col">Id</th>
@@ -28,4 +27,4 @@
   </tbody>
 </table>
 
-<%= link_to  "Dodaj lokalizację", new_admin_location_path %>
+<%= link_to  "Dodaj lokalizację", new_admin_location_path, class: 'btn btn-primary', id:'new-location' %>
