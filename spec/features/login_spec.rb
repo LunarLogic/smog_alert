@@ -28,7 +28,7 @@ feature 'Login page: valid credentials' do
       fill_in('Password', with: user.password)
       click_button('Log in')
       expect(page).to have_content(error_message)
-      expect(page).to have_current_path(root_path)
+      expect(page).to have_current_path(new_user_session_path)
     end
   end
 

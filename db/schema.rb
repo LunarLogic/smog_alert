@@ -10,33 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_28_141238) do
+ActiveRecord::Schema.define(version: 2019_12_06_131956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "locations", force: :cascade do |t|
-    t.string "name"
-    t.float "longitude"
-    t.float "latitude"
+    t.string "name", null: false
+    t.float "longitude", null: false
+    t.float "latitude", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_locations_on_name", unique: true
   end
 
   create_table "measurements", force: :cascade do |t|
-    t.date "date"
+    t.date "date", null: false
     t.float "pm10"
     t.float "pm25"
     t.float "temperature"
     t.float "humidity"
     t.float "pressure"
-    t.datetime "from_date_time"
-    t.datetime "till_date_time"
+    t.datetime "from_date_time", null: false
+    t.datetime "till_date_time", null: false
     t.bigint "location_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "hour"
+    t.integer "hour", null: false
     t.index ["date"], name: "index_measurements_on_date"
     t.index ["hour"], name: "index_measurements_on_hour"
     t.index ["location_id"], name: "index_measurements_on_location_id"
