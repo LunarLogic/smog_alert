@@ -10,7 +10,7 @@ end
 describe 'admin interactions with locations' do
   before :each do
     user = FactoryBot.create(:admin)
-    login_as(user, :scope => :user)
+    login_as(user, scope: :user)
     visit admin_locations_path
   end
 
