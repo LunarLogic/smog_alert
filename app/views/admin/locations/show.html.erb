@@ -1,0 +1,9 @@
+<h1><%= @location.name %></h1>
+<p><br>Długość:</br><%= @location.longitude%></p>
+<p><br>Szerokość:</br><%= @location.latitude%></p>
+
+<%= link_to 'Edytuj', edit_admin_location_path(@location), class: "btn btn-light btn-sm"%>
+<%= link_to 'Usuń', admin_location_path(@location), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Czy na pewno chcesz usunąć lokalizację #{@location.name}?"} %>
+<div style="display=block">
+  <%= link_to 'Wróć', admin_locations_path %>
+</div>
