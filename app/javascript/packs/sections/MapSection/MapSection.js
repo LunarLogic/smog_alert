@@ -37,9 +37,9 @@ const MapSection = ({ getCitiesPollutionData, citiesPollutionData }) => {
   );
 };
 
-const mapStateToProps = ({ map: { citiesPollutionData } }) => {
-  citiesPollutionData;
-};
+const mapStateToProps = ({ map: { citiesPollutionData } }) => ({
+  citiesPollutionData
+});
 
 const mapDispatchToProps = dispatch => ({
   getCitiesPollutionData: citiesPollutionData =>
