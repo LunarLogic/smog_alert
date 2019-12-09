@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-def add_new_location
-  fill_in 'Name', with: 'new_location.name'
-  fill_in 'Longitude', with: 'new_location.longitude'
-  fill_in 'Latitude', with: 'new_location.latitude'
+def add_new_location(location)
+  fill_in 'Name', with: location.name
+  fill_in 'Longitude', with: location.longitude
+  fill_in 'Latitude', with: location.latitude
   click_on('Create Location')
 end
 
@@ -26,12 +26,12 @@ describe 'admin interactions with locations' do
     expect(page).to have_link('Dodaj lokalizację')
   end
 
-  # let(:new_location) { FactoryBot.create(:fake_zabierzow) }
+  let(:new_location) { FactoryBot.build(:fake_zabierzow) }
 
   scenario 'adding new location' do
     click_on('new-location')
     expect(page).to have_current_path(new_admin_location_path)
-    add_new_location
-    expect(page).to have_content('new_location.name')
+    add_new_location(new_location)
+    expect(page).to have_content(new_location.name)
   end
 end
