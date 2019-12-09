@@ -1,4 +1,4 @@
-const pollutionComparisonContent = [
+const data = [
   { id: 1, location: "Burów", value: 120, color: "#7d0d0f" },
   { id: 2, location: "Rząska", value: 50, color: "#c3d735" },
   { id: 3, location: "Szczyglice", value: 70, color: "#ff8f00" },
@@ -24,4 +24,4 @@ const pollutionComparisonContent = [
   { id: 23, location: "Brzezie", value: 60, color: "#fbd42d" }
 ];
 
-export default pollutionComparisonContent;
+export default data;
