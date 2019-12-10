@@ -36,9 +36,11 @@ const Map = ({ citiesPollutionData }) => {
         pathId = clickedElement.textContent;
         clickedElement = document.getElementById(pathId);
     }
+
     if (previouslyClickedElement) {
       previouslyClickedElement.removeAttribute("style");
     }
+
     citiesPollutionData.forEach(cityData => {
       if (cityData.location === pathId) {
         clickedElement.style.fill = cityData.color;
@@ -67,13 +69,19 @@ const Map = ({ citiesPollutionData }) => {
           >
             {mapElements.map(element => (
               <MapPath
+                id={element.location}
                 key={element.location}
                 color={findColor(element.location)}
                 d={element.path}
+                onClick={handleColorChange}
               />
             ))}
             {mapElements.map(element => (
-              <MapText key={element.location} transform={element.transform}>
+              <MapText
+                key={element.location}
+                transform={element.transform}
+                onClick={handleColorChange}
+              >
                 {element.location}
               </MapText>
             ))}
