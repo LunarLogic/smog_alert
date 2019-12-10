@@ -4,10 +4,11 @@ import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
-import pollutionComparisonContent from "../PollutionComparison/pollutionComparisonContent";
+// import pollutionComparisonContent from "../PollutionComparison/pollutionComparisonContent";
+import data from "../../pages/Homepage/data";
 
 const DropdownMenu = () => {
-  const options = pollutionComparisonContent.map(cityData => ({
+  const options = data.map(cityData => ({
     value: cityData.location,
     label: cityData.location,
     className: "dropdown__control--menu-option"

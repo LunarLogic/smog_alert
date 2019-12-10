@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import "./Searchbox.scss";
 import { PropTypes } from "prop-types";
+import { getCityPollutionData } from "../../redux/searchbox/searchbox.actions";
+import { connect } from "react-redux";
 
-const Searchbox = ({ cities }) => {
+const Searchbox = ({ cities, data, getCityPollutionData }) => {
   const [location, setLocation] = useState("");
   const [visibility, setVisibility] = useState("hidden");
 
@@ -11,18 +13,16 @@ const Searchbox = ({ cities }) => {
     const { value } = event.target;
     setLocation(value);
 
-    let elementClass;
-    if (value) {
-      elementClass = "visible";
-    } else {
-      elementClass = "hidden";
-    }
-    // const { elementClass } = value ? "visible" : console.log("tak");
+    const elementClass = value ? "visible" : "hidden";
     setVisibility(elementClass);
   };
 
   const handleInput = city => {
     setLocation(city);
+
+    const chosenCity = data.filter(item => item.location === city)[0];
+    console.log(chosenCity);
+    getCityPollutionData(chosenCity);
     setVisibility("hidden");
   };
 
@@ -61,8 +61,13 @@ const Searchbox = ({ cities }) => {
   );
 };
 
+const mapDispatchToProps = dispatch => ({
+  getCityPollutionData: cityPollutionData =>
+    dispatch(getCityPollutionData(cityPollutionData))
+});
+
 Searchbox.proptypes = {
   cities: PropTypes.array
 };
 
-export default Searchbox;
+export default connect(null, mapDispatchToProps)(Searchbox);
