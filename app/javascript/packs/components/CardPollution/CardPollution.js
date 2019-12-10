@@ -1,11 +1,15 @@
 import React from "react";
 import "./CardPollution.scss";
+import { connect } from "react-redux";
 
-const CardPollution = () => {
+const CardPollution = ({ location, pm10, pm25, color, text }) => {
   return (
     <div className="card-pollution__current-data-container">
       <div className="card-pollution__current-data-overview">
-        <div className="card-pollution__current-data-overview-face"></div>
+        <div
+          className="card-pollution__current-data-overview-face"
+          style={{ backgroundColor: color }}
+        ></div>
         <div className="card-pollution__current-data-overview-text">
           Niezdrowa
         </div>
@@ -18,7 +22,7 @@ const CardPollution = () => {
             </div>
             <div className="card-pollution__current-data-specific-primary-value">
               <span className="card-pollution__current-data-specific-primary-value--bold">
-                56
+                {pm10}
               </span>
               μg
             </div>
@@ -29,7 +33,7 @@ const CardPollution = () => {
             </div>
             <div className="card-pollution__current-data-specific-secondary-value">
               <span className="card-pollution__current-data-specific-secondary-value--bold">
-                22
+                {pm25}
               </span>
               μg
             </div>
@@ -40,4 +44,14 @@ const CardPollution = () => {
   );
 };
 
-export default CardPollution;
+const mapStateToProps = ({
+  searchbox: { location, pm10, pm25, color, text }
+}) => ({
+  location,
+  pm10,
+  pm25,
+  color,
+  text
+});
+
+export default connect(mapStateToProps)(CardPollution);
