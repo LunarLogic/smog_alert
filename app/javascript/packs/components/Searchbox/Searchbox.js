@@ -21,7 +21,6 @@ const Searchbox = ({ cities, data, getCityPollutionData }) => {
     setLocation(city);
 
     const chosenCity = data.filter(item => item.location === city)[0];
-    console.log(chosenCity);
     getCityPollutionData(chosenCity);
     setVisibility("hidden");
   };

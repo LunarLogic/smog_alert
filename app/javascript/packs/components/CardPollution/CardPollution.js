@@ -1,6 +1,6 @@
 import React from "react";
 import "./CardPollution.scss";
-import { connect } from "react-redux";
+import { OverviewText, DataSpecific } from "./CardPollution.styles.jsx";
 
 const CardPollution = ({ location, pm10, pm25, color, text }) => {
   return (
@@ -10,11 +10,9 @@ const CardPollution = ({ location, pm10, pm25, color, text }) => {
           className="card-pollution__current-data-overview-face"
           style={{ backgroundColor: color }}
         ></div>
-        <div className="card-pollution__current-data-overview-text">
-          Niezdrowa
-        </div>
+        <OverviewText color={color}>{text}</OverviewText>
       </div>
-      <div className="card-pollution__current-data-specific">
+      <DataSpecific color={color}>
         <div className="card-pollution__current-data-specific-container">
           <div className="card-pollution__current-data-specific-primary">
             <div className="card-pollution__current-data-specific-primary-index">
@@ -39,19 +37,9 @@ const CardPollution = ({ location, pm10, pm25, color, text }) => {
             </div>
           </div>
         </div>
-      </div>
+      </DataSpecific>
     </div>
   );
 };
 
-const mapStateToProps = ({
-  searchbox: { location, pm10, pm25, color, text }
-}) => ({
-  location,
-  pm10,
-  pm25,
-  color,
-  text
-});
-
-export default connect(mapStateToProps)(CardPollution);
+export default CardPollution;

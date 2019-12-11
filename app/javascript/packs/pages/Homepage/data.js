@@ -5,7 +5,9 @@ const data = [
     value: 120,
     pm10: 120,
     pm25: 60,
-    color: "#7d0d0f"
+    color: "#7d0d0f",
+    text: "Bardzo zła",
+    indicator: 6
   },
   {
     id: 2,
@@ -13,7 +15,9 @@ const data = [
     value: 50,
     pm10: 50,
     pm25: 25,
-    color: "#c3d735"
+    color: "#c3d735",
+    text: "Dobra",
+    indicator: 2
   },
   {
     id: 3,
@@ -21,7 +25,9 @@ const data = [
     value: 70,
     pm10: 70,
     pm25: 35,
-    color: "#ff8f00"
+    color: "#ff8f00",
+    text: "Niezdrowa",
+    indicator: 4
   },
   {
     id: 4,
@@ -29,7 +35,8 @@ const data = [
     value: 63,
     pm10: 63,
     pm25: 31,
-    color: "#fbd42d"
+    color: "#fbd42d",
+    text: "Niezdrowa"
   },
   {
     id: 5,
@@ -37,7 +44,9 @@ const data = [
     value: 30,
     pm10: 30,
     pm25: 15,
-    color: "#97cd2e"
+    color: "#97cd2e",
+    text: "Dobra",
+    indicator: 1
   },
   {
     id: 6,
@@ -45,7 +54,9 @@ const data = [
     value: 54,
     pm10: 54,
     pm25: 27,
-    color: "#ff8f00"
+    color: "#ff8f00",
+    text: "Niezdrowa",
+    indicator: 4
   },
   {
     id: 7,
@@ -53,7 +64,9 @@ const data = [
     value: 90,
     pm10: 90,
     pm25: 45,
-    color: "#cc571a"
+    color: "#cc571a",
+    text: "Bardzo zła",
+    indicator: 5
   },
   {
     id: 8,
@@ -61,7 +74,8 @@ const data = [
     value: 59,
     pm10: 59,
     pm25: 30,
-    color: "#fbd42d"
+    color: "#fbd42d",
+    text: "Niezdrowa"
   },
   {
     id: 9,
@@ -69,7 +83,9 @@ const data = [
     value: 45,
     pm10: 45,
     pm25: 22,
-    color: "#c3d735"
+    color: "#c3d735",
+    text: "Dobra",
+    indicator: 2
   },
   {
     id: 10,
@@ -77,7 +93,9 @@ const data = [
     value: 86,
     pm10: 86,
     pm25: 43,
-    color: "#cc571a"
+    color: "#cc571a",
+    text: "Bardzo zła",
+    indicator: 5
   },
   {
     id: 11,
@@ -85,7 +103,9 @@ const data = [
     value: 96,
     pm10: 96,
     pm25: 48,
-    color: "#cc571a"
+    color: "#cc571a",
+    text: "Bardzo zła",
+    indicator: 5
   },
   {
     id: 12,
@@ -93,7 +113,9 @@ const data = [
     value: 92,
     pm10: 92,
     pm25: 46,
-    color: "#cc571a"
+    color: "#cc571a",
+    text: "Bardzo zła",
+    indicator: 5
   },
   {
     id: 13,
@@ -101,7 +123,9 @@ const data = [
     value: 49,
     pm10: 49,
     pm25: 24,
-    color: "#c3d735"
+    color: "#c3d735",
+    text: "Dobra",
+    indicator: 2
   },
   {
     id: 14,
@@ -109,7 +133,9 @@ const data = [
     value: 40,
     pm10: 40,
     pm25: 20,
-    color: "#c3d735"
+    color: "#c3d735",
+    text: "Dobra",
+    indicator: 2
   },
   {
     id: 15,
@@ -117,7 +143,9 @@ const data = [
     value: 43,
     pm10: 43,
     pm25: 21,
-    color: "#c3d735"
+    color: "#c3d735",
+    text: "Dobra",
+    indicator: 2
   },
   {
     id: 16,
@@ -125,7 +153,9 @@ const data = [
     value: 33,
     pm10: 33,
     pm25: 16,
-    color: "#97cd2e"
+    color: "#97cd2e",
+    text: "Dobra",
+    indicator: 1
   },
   {
     id: 17,
@@ -133,7 +163,9 @@ const data = [
     value: 20,
     pm10: 20,
     pm25: 10,
-    color: "#97cd2e"
+    color: "#97cd2e",
+    text: "Dobra",
+    indicator: 1
   },
   {
     id: 18,
@@ -141,7 +173,9 @@ const data = [
     value: 75,
     pm10: 75,
     pm25: 37,
-    color: "#ff8f00"
+    color: "#ff8f00",
+    text: "Niezdrowa",
+    indicator: 4
   },
   {
     id: 19,
@@ -149,7 +183,9 @@ const data = [
     value: 69,
     pm10: 69,
     pm25: 34,
-    color: "#ff8f00"
+    color: "#ff8f00",
+    text: "Niezdrowa",
+    indicator: 4
   },
   {
     id: 20,
@@ -157,7 +193,9 @@ const data = [
     value: 130,
     pm10: 130,
     pm25: 75,
-    color: "#7d0d0f"
+    color: "#7d0d0f",
+    text: "Bardzo zła",
+    indicator: 6
   },
   {
     id: 21,
@@ -165,7 +203,9 @@ const data = [
     value: 125,
     pm10: 125,
     pm25: 63,
-    color: "#7d0d0f"
+    color: "#7d0d0f",
+    text: "Bardzo zła",
+    indicator: 6
   },
   {
     id: 22,
@@ -173,7 +213,9 @@ const data = [
     value: 95,
     pm10: 95,
     pm25: 47,
-    color: "#cc571a"
+    color: "#cc571a",
+    text: "Bardzo zła",
+    indicator: 5
   },
   {
     id: 23,
@@ -181,7 +223,8 @@ const data = [
     value: 60,
     pm10: 60,
     pm25: 30,
-    color: "#fbd42d"
+    color: "#fbd42d",
+    text: "Niezdrowa"
   }
 ];
 

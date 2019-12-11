@@ -2,10 +2,11 @@ import searchboxActionTypes from "./searchbox.types";
 
 const INITIAL_STATE = {
   location: "Zabierzów",
-  pm10: "55",
-  pm25: "23",
+  pm10: "54",
+  pm25: "27",
   color: "#ff8f00",
-  text: ""
+  text: "Niezdrowa",
+  indicator: 4
 };
 
 const searchboxReducer = (state = INITIAL_STATE, action) => {
@@ -16,8 +17,9 @@ const searchboxReducer = (state = INITIAL_STATE, action) => {
         location: action.payload.location,
         pm10: action.payload.pm10,
         pm25: action.payload.pm25,
-        color: action.payload.color
-        // text: action.payload.location
+        color: action.payload.color,
+        text: action.payload.text,
+        indicator: action.payload.indicator
       };
     default:
       return state;

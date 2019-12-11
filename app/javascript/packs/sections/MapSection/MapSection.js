@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./MapSection.scss";
-// import PollutionComparison from "../../components/PollutionComparison/PollutionComparison";
+import PollutionComparison from "../../components/PollutionComparison/PollutionComparison";
 import Map from "../../components/Map/Map";
 import SidePollutionCard from "../../components/SidePollutionCard/SidePollutionCard";
 import pollutionComparisonContent from "../../components/PollutionComparison/pollutionComparisonContent";
