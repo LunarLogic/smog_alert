@@ -5,6 +5,6 @@ class Location < ApplicationRecord
   validates :latitude, presence: true
 
   def last_hour_measurement
-    measurements.where(["till_date_time >= ?", (Time.now - 1.hour)]).order("till_date_time").last
+    measurements.where(["till_date_time >= ?", (Time.current - 1.hour)]).order("till_date_time").last
   end
 end
