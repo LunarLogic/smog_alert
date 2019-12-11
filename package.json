@@ -24,7 +24,17 @@
     "redux": "^4.0.4",
     "styled-components": "^4.4.1",
     "turbolinks": "^5.2.0",
-    "webfontloader": "^1.6.28"
+    "webfontloader": "^1.6.28",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "eslint": "^6.6.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
+    "jest": "^24.9.0",
+    "jest-junit": "^9.0.0",
+    "prettier": "1.19.1",
+    "redux-logger": "^3.0.6",
+    "webpack-dev-server": "^3.9.0"
   },
   "scripts": {
     "test": "jest"
@@ -44,17 +54,5 @@
       "last 1 safari version"
     ]
   },
-  "version": "0.1.0",
-  "devDependencies": {
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.15.1",
-    "eslint": "^6.6.0",
-    "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-react": "^7.16.0",
-    "jest": "^24.9.0",
-    "jest-junit": "^9.0.0",
-    "prettier": "1.19.1",
-    "redux-logger": "^3.0.6",
-    "webpack-dev-server": "^3.9.0"
-  }
+  "version": "0.1.0"
 }
