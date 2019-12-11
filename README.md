@@ -60,6 +60,10 @@ rails db:seed
 
 `BRANCH=example_branch cap staging deploy`
 
+- Run DB seeds on container:
+
+`cap staging deploy:seed`
+
 #### Tips
 
 - Edit credentials in VIM by running:
