@@ -1,12 +1,13 @@
 import React from "react";
 import "./ScalePollution.scss";
 import scalePollutionContent from "./scalePollutionContent";
+import { Indicator } from "./ScalePollution.styles.jsx";
 
-const ScalePollution = () => {
+const ScalePollution = ({ color, indicator }) => {
   const { colorBox, description } = scalePollutionContent;
   return (
     <div className="scale__container">
-      <div className="scale__container-indicator"></div>
+      <Indicator color={color} indicator={indicator} />
       <div className="scale__container-ranges">
         {colorBox.map(box => (
           <div key={box} className={`scale__color-background--${box}`}></div>

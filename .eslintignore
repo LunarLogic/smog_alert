@@ -2,3 +2,4 @@
 /vendor
 /config
 babel.config.js
+package.json

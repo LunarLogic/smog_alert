@@ -1,0 +1,10 @@
+@import "../../styles/variables";
+
+.map {
+  width: inherit;
+  height: inherit;
+  position: relative;
+  &__image {
+    height: inherit;
+  }
+}

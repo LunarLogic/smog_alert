@@ -1,0 +1,77 @@
+@import "../../styles/variables";
+
+.side-pollution-card {
+  height: inherit;
+  &__return-button {
+    height: 6.6rem;
+    border-bottom: 0.1rem solid $frameColor;
+    padding: 0 3.5rem;
+    color: $secondaryColor;
+
+    display: flex;
+    align-items: center;
+    svg {
+      width: 2rem;
+      height: 2rem;
+    }
+    &--text {
+      font-size: 1.6rem;
+      line-height: 1.9rem;
+      margin-left: 1rem;
+    }
+  }
+  &__content {
+    padding: 2.3rem 3.4rem;
+    &--dropdown {
+      margin-bottom: 4.1rem;
+      &-label {
+        font-size: 1.6rem;
+        line-height: 1.9rem;
+        font-weight: bold;
+        color: $grey;
+        margin-bottom: 0.8rem;
+      }
+      &-options {
+        height: 6rem;
+        width: 100%;
+      }
+    }
+    &--air-quality {
+      &-label {
+        font-size: 1.6rem;
+        line-height: 1.9rem;
+        color: $grey;
+      }
+      &-info {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2.7rem;
+        &-overview {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          &-face {
+            width: 7.9rem;
+            height: 7.9rem;
+            border-radius: 50%;
+            background-color: $unhealthySecond;
+          }
+
+          &-text {
+            font-size: 2.1rem;
+            line-height: 2.4rem;
+            color: $unhealthySecond;
+            font-weight: bold;
+            margin-top: 1.2rem;
+          }
+        }
+        &-specific {
+          width: 73%;
+          overflow-y: scroll;
+          height: 200px;
+        }
+      }
+    }
+  }
+}
