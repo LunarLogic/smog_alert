@@ -36,7 +36,8 @@ const data = [
     pm10: 63,
     pm25: 31,
     color: "#fbd42d",
-    text: "Niezdrowa"
+    text: "Niezdrowa",
+    indicator: 3
   },
   {
     id: 5,
@@ -75,7 +76,8 @@ const data = [
     pm10: 59,
     pm25: 30,
     color: "#fbd42d",
-    text: "Niezdrowa"
+    text: "Niezdrowa",
+    indicator: 3
   },
   {
     id: 9,
@@ -224,7 +226,8 @@ const data = [
     pm10: 60,
     pm25: 30,
     color: "#fbd42d",
-    text: "Niezdrowa"
+    text: "Niezdrowa",
+    indicator: 3
   }
 ];
 
