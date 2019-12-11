@@ -1,7 +1,12 @@
 import React, { useEffect } from "react";
 import "./Map.scss";
-import { MapContainer, MapPath, MapText } from "./MapImage.styles.jsx";
-import Dot from "../Dot/Dot";
+import {
+  MapContainer,
+  MapPath,
+  MapText,
+  MapDotImage,
+  MapDot
+} from "./Map.styles.jsx";
 import { getCitiesPollutionData } from "../../redux/map/map.actions";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
@@ -85,16 +90,25 @@ const Map = ({ citiesPollutionData }) => {
                 {element.location}
               </MapText>
             ))}
+            {mapElements.map(element => (
+              <MapDotImage
+                key={element.location}
+                width="543"
+                height="543"
+                xlinkHref={element.xlink}
+                transform={element.transformDot}
+              />
+            ))}
+            {mapElements.map(element => (
+              <MapDot
+                key={element.location}
+                cx={element.cx}
+                cy={element.cy}
+                color={findColor(element.location)}
+                r="10.5"
+              />
+            ))}
           </MapContainer>
-          {citiesPollutionData.map(cityData => (
-            <Dot
-              key={cityData.id}
-              id={`dot--${cityData.location}`}
-              className={`dot--${cityData.location}`}
-              backgroundColor={cityData.color}
-              onClick={handleColorChange}
-            />
-          ))}
         </div>
       )}
     </div>

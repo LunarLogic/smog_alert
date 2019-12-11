@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import "./MapSection.scss";
-// import PollutionComparison from "../../components/PollutionComparison/PollutionComparison";
+import PollutionComparison from "../../components/PollutionComparison/PollutionComparison";
 import Map from "../../components/Map/Map";
-import SidePollutionCard from "../../components/SidePollutionCard/SidePollutionCard";
+// import SidePollutionCard from "../../components/SidePollutionCard/SidePollutionCard";
 import pollutionComparisonContent from "../../components/PollutionComparison/pollutionComparisonContent";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
@@ -29,8 +29,8 @@ const MapSection = ({ getCitiesPollutionData, citiesPollutionData }) => {
           <Map citiesPollutionData={citiesPollutionData} />
         </div>
         <div className="map-section__content--info">
-          {/* <PollutionComparison /> */}
-          <SidePollutionCard />
+          <PollutionComparison />
+          {/* <SidePollutionCard /> */}
         </div>
       </div>
     </div>
