@@ -78,6 +78,18 @@ or
 
 `bundle exec rubocop`
 
+- How to run rails console inside of staging container:
+
+```
+ssh smogalert@staging.smogalert.lunarlogic.io
+
+# go to rails project directory
+smogalert@staging:~$ cd application/current
+
+# open rails console
+RAILS_ENV=staging /usr/local/rbenv/bin/rbenv exec bundle exec rails console
+```
+
 #### Tests
 
 `bundle exec rspec`
