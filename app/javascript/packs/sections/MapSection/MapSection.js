@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./MapSection.scss";
-// import PollutionComparison from "../../components/PollutionComparison/PollutionComparison";
+import PollutionComparison from "../../components/PollutionComparison/PollutionComparison";
 import Map from "../../components/Map/Map";
 import SidePollutionCard from "../../components/SidePollutionCard/SidePollutionCard";
+import pollutionComparisonContent from "../../components/PollutionComparison/pollutionComparisonContent";
+import { connect } from "react-redux";
+import { PropTypes } from "prop-types";
+import {
+  getCitiesPollutionData,
+  getMapAreaData
+} from "../../redux/map/map.actions";
 
-const MapSection = () => {
+const MapSection = ({ getCitiesPollutionData, citiesPollutionData }) => {
+  useEffect(() => {
+    getCitiesPollutionData(pollutionComparisonContent);
+  });
+
   return (
     <div className="map-section">
       <div className="map-section__heading">
@@ -15,7 +26,7 @@ const MapSection = () => {
       </div>
       <div className="map-section__content">
         <div className="map-section__content--map">
-          <Map />
+          <Map citiesPollutionData={citiesPollutionData} />
         </div>
         <div className="map-section__content--info">
           {/* <PollutionComparison /> */}
@@ -26,4 +37,19 @@ const MapSection = () => {
   );
 };
 
-export default MapSection;
+const mapStateToProps = ({ map: { citiesPollutionData } }) => ({
+  citiesPollutionData
+});
+
+const mapDispatchToProps = dispatch => ({
+  getCitiesPollutionData: citiesPollutionData =>
+    dispatch(getCitiesPollutionData(citiesPollutionData)),
+  getMapAreaData: mapAreaData => dispatch(getMapAreaData(mapAreaData))
+});
+
+MapSection.propTypes = {
+  getCitiesPollutionData: PropTypes.func,
+  citiesPollutionData: PropTypes.array
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MapSection);
