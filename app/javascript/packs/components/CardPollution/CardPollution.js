@@ -1,16 +1,18 @@
 import React from "react";
 import "./CardPollution.scss";
+import { OverviewText, DataSpecific } from "./CardPollution.styles.jsx";
 
-const CardPollution = () => {
+const CardPollution = ({ location, pm10, pm25, color, text }) => {
   return (
     <div className="card-pollution__current-data-container">
       <div className="card-pollution__current-data-overview">
-        <div className="card-pollution__current-data-overview-face"></div>
-        <div className="card-pollution__current-data-overview-text">
-          Niezdrowa
-        </div>
+        <div
+          className="card-pollution__current-data-overview-face"
+          style={{ backgroundColor: color }}
+        ></div>
+        <OverviewText color={color}>{text}</OverviewText>
       </div>
-      <div className="card-pollution__current-data-specific">
+      <DataSpecific color={color}>
         <div className="card-pollution__current-data-specific-container">
           <div className="card-pollution__current-data-specific-primary">
             <div className="card-pollution__current-data-specific-primary-index">
@@ -18,7 +20,7 @@ const CardPollution = () => {
             </div>
             <div className="card-pollution__current-data-specific-primary-value">
               <span className="card-pollution__current-data-specific-primary-value--bold">
-                56
+                {pm10}
               </span>
               μg
             </div>
@@ -29,13 +31,13 @@ const CardPollution = () => {
             </div>
             <div className="card-pollution__current-data-specific-secondary-value">
               <span className="card-pollution__current-data-specific-secondary-value--bold">
-                22
+                {pm25}
               </span>
               μg
             </div>
           </div>
         </div>
-      </div>
+      </DataSpecific>
     </div>
   );
 };

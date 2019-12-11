@@ -1,24 +1,39 @@
 @import "../../styles/variables";
 
 .pollution-bar {
-  height: 8.3rem;
-  &__info {
-    font-size: 1.6rem;
-    line-height: 1.9rem;
-    font-weight: 500;
+  padding: 1.95rem 2.4rem;
+  border-bottom: 1px solid $frameColor;
 
+  &:hover {
+    background-color: $greyLighter;
+
+    .pollution-bar__info-location {
+      color: $secondaryColor;
+    }
+  }
+  &__info {
     display: flex;
     &-location {
+      font-size: 1.8rem;
+      line-height: 2.1rem;
+      font-weight: bold;
+      color: $textColor;
       margin-right: 2.2rem;
+    }
+    &-type,
+    &-value {
+      font-size: 1.6rem;
+      line-height: 2.1rem;
+      color: $grey;
+    }
+    &-type {
+      font-weight: bold;
+      margin-right: 0.7rem;
     }
   }
   &__bar {
-    height: 2.2rem;
-    border-radius: 1.1rem;
+    height: 1.8rem;
+    border-radius: 0.9rem;
     margin-top: 0.9rem;
-  }
-  > hr {
-    margin: 1.7rem 0;
-    border: 0.05rem solid $frameColor;
   }
 }
