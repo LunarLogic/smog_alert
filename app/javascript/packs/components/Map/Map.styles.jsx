@@ -18,3 +18,13 @@ export const MapPath = styled.path`
 export const MapText = styled.text`
   fill: #0e0f20;
 `;
+
+export const MapDotImage = styled.image`
+  overflow: visible;
+  opacity: 0.22;
+`;
+
+export const MapDot = styled.circle`
+  fill: ${({ color }) => color};
+  filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.22));
+`;
