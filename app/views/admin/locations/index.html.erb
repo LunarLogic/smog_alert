@@ -11,7 +11,7 @@
   </thead>
   <tbody>
     <% @locations.each do |location| %>
-      <tr>
+      <tr class="location-row">
         <th scope="row"><%= location.id%></th>
         <td>
           <%= link_to  "#{location.name}", admin_location_path(location) %>

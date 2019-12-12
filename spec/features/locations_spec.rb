@@ -8,6 +8,8 @@ def add_new_location(location)
 end
 
 describe 'admin interactions with locations' do
+  let!(:location) { FactoryBot.create(:location) }
+
   before :each do
     user = FactoryBot.create(:admin)
     login_as(user, scope: :user)
@@ -33,5 +35,14 @@ describe 'admin interactions with locations' do
     expect(page).to have_current_path(new_admin_location_path)
     add_new_location(new_location)
     expect(page).to have_content(new_location.name)
+  end
+
+  scenario 'deleting a location' do
+    within('.location-row', text: location.name) do
+      click_on('Usuń')
+      accept_confirm("Czy na pewno chcesz usunąć lokalizację #{location.name}?")
+    end
+    expect(page).to have_current_path(admin_locations_path)
+    expect(page).not_to have_content(location.name)
   end
 end
