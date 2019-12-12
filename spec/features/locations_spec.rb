@@ -45,4 +45,14 @@ describe 'admin interactions with locations' do
     expect(page).to have_current_path(admin_locations_path)
     expect(page).not_to have_content(location.name)
   end
+
+  scenario 'updating a location' do
+    within('.location-row', text: location.name) do
+      click_on('Edytuj')
+    end
+    expect(page).to have_current_path(edit_admin_location_path(location))
+    fill_in 'Name', with: 'new name'
+    click_on('Update Location')
+    expect(page).to have_content('new name')
+  end
 end
