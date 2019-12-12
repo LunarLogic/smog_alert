@@ -16,10 +16,6 @@ describe 'admin interactions with locations' do
     visit admin_locations_path
   end
 
-  after :each do
-    Warden.test_reset!
-  end
-
   scenario 'verify table with locations exists' do
     expect(page).to have_table('locations')
   end
