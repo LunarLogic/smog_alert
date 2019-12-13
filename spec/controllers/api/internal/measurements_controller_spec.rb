@@ -32,7 +32,6 @@ RSpec.describe API::Internal::MeasurementsController, type: :controller do
       end
 
       it 'returns no measurement for location a' do
-        puts response.body
         expect(response.body).to have_json_path('data')
         expect(response.body).to have_json_size(2).at_path('data')
         expect(response.body).to have_json_path('data/0/location_name')
