@@ -1,33 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import "./Searchbox.scss";
 import { PropTypes } from "prop-types";
 import { getCityPollutionData } from "../../redux/searchbox/searchbox.actions";
 import { connect } from "react-redux";
+import { Input } from "./Searchbox.styles.jsx";
 
 const Searchbox = ({ cities, data, getCityPollutionData }) => {
   const [location, setLocation] = useState("");
-  const [visibility, setVisibility] = useState("hidden");
+  const [textColor, setTextColor] = useState("#747485");
+  const [filteredCities, setFilteredCities] = useState([]);
+
+  useEffect(() => {
+    if (location.length > 0) {
+      const filterCities = cities.filter(city =>
+        city.toLowerCase().includes(location.toLowerCase())
+      );
+      setFilteredCities(filterCities);
+      filterCities.length > 0
+        ? setTextColor("#747485")
+        : setTextColor("#7d0d0f");
+    } else {
+      setFilteredCities([]);
+    }
+  }, [location]);
 
   const handleChange = event => {
     const { value } = event.target;
     setLocation(value);
-
-    const elementClass = value ? "visible" : "hidden";
-    setVisibility(elementClass);
   };
 
   const handleInput = city => {
-    setLocation(city);
+    setLocation("");
 
     const chosenCity = data.filter(item => item.location === city)[0];
     getCityPollutionData(chosenCity);
-    setVisibility("hidden");
   };
-
-  const filteredCities = cities.filter(city =>
-    city.toLowerCase().includes(location.toLowerCase())
-  );
 
   return (
     <div className="searchbox">
@@ -35,27 +43,29 @@ const Searchbox = ({ cities, data, getCityPollutionData }) => {
         <div className="searchbox__input--icon">
           <SearchIcon />
         </div>
-        <input
-          className="searchbox__input--text-field"
+        <Input
           placeholder="Twoja miejscowość, lokalizacja..."
           onChange={handleChange}
           value={location}
           type="text"
-        ></input>
+          textColor={textColor}
+        ></Input>
       </div>
-      <div className={`searchbox__list ${visibility}`}>
-        {filteredCities.map(city => (
-          <div
-            key={`option-${city}`}
-            className="searchbox__list--city"
-            onClick={() => {
-              handleInput(city);
-            }}
-          >
-            {city}
-          </div>
-        ))}
-      </div>
+      {filteredCities.length > 0 && (
+        <div className={`searchbox__list`}>
+          {filteredCities.map(city => (
+            <div
+              key={`option-${city}`}
+              className="searchbox__list--city"
+              onClick={() => {
+                handleInput(city);
+              }}
+            >
+              {city}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
@@ -66,7 +76,9 @@ const mapDispatchToProps = dispatch => ({
 });
 
 Searchbox.proptypes = {
-  cities: PropTypes.array
+  cities: PropTypes.array,
+  data: PropTypes.object,
+  getCityPollutionData: PropTypes.func
 };
 
 export default connect(null, mapDispatchToProps)(Searchbox);
