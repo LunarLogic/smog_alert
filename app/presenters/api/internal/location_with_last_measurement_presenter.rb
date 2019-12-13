@@ -1,11 +1,7 @@
 class API::Internal::LocationWithLastMeasurementPresenter
-  def self.collection(locations)
-    locations.map { |location| new(location) }
-  end
-
-  def initialize(location)
+  def initialize(location, last_hour_measurement)
     @location = location
-    @last_hour_measurement = location.last_hour_measurement
+    @last_hour_measurement = last_hour_measurement
   end
 
   def to_hash
