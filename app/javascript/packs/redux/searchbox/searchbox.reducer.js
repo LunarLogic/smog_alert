@@ -2,8 +2,8 @@ import searchboxActionTypes from "./searchbox.types";
 
 const INITIAL_STATE = {
   location: "Zabierzów",
-  pm10: "54",
-  pm25: "27",
+  pm10: 54,
+  pm25: 27,
   color: "#ff8f00",
   text: "Niezdrowa",
   indicator: 4
