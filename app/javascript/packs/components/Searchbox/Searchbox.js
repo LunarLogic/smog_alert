@@ -5,32 +5,38 @@ import { PropTypes } from "prop-types";
 import { getCityPollutionData } from "../../redux/searchbox/searchbox.actions";
 import { connect } from "react-redux";
 import { Input } from "./Searchbox.styles.jsx";
+import { grey, warning } from "../../styles/_variables";
 
 const Searchbox = ({ cities, data, getCityPollutionData }) => {
+  const greyColor = grey;
+  const warningColor = warning;
   const [location, setLocation] = useState("");
-  const [textColor, setTextColor] = useState("#747485");
+  const [textColor, setTextColor] = useState(greyColor);
   const [filteredCities, setFilteredCities] = useState([]);
 
-  useEffect(() => {
-    if (location.length > 0) {
-      const filterCities = cities.filter(city =>
-        city.toLowerCase().includes(location.toLowerCase())
-      );
-      setFilteredCities(filterCities);
-      filterCities.length > 0
-        ? setTextColor("#747485")
-        : setTextColor("#7d0d0f");
-    } else {
+  const handleSearchboxList = () => {
+    if (!location.length > 0) {
       setFilteredCities([]);
+      return;
     }
-  }, [location]);
+
+    const filterCities = cities.filter(city =>
+      city.toLowerCase().includes(location.toLowerCase())
+    );
+    setFilteredCities(filterCities);
+    filterCities.length > 0
+      ? setTextColor(greyColor)
+      : setTextColor(warningColor);
+  };
+
+  useEffect(handleSearchboxList, [location]);
 
   const handleChange = event => {
     const { value } = event.target;
     setLocation(value);
   };
 
-  const handleInput = city => {
+  const handleChosenCity = city => {
     setLocation("");
 
     const chosenCity = data.filter(item => item.location === city)[0];
@@ -58,7 +64,7 @@ const Searchbox = ({ cities, data, getCityPollutionData }) => {
               key={`option-${city}`}
               className="searchbox__list--city"
               onClick={() => {
-                handleInput(city);
+                handleChosenCity(city);
               }}
             >
               {city}
@@ -75,9 +81,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch(getCityPollutionData(cityPollutionData))
 });
 
-Searchbox.proptypes = {
+Searchbox.propTypes = {
   cities: PropTypes.array,
-  data: PropTypes.object,
+  data: PropTypes.array,
   getCityPollutionData: PropTypes.func
 };
 
