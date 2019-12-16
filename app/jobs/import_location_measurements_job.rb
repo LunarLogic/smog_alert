@@ -3,6 +3,11 @@ class ImportLocationMeasurementsJob < ApplicationJob
 
   def perform(location_id)
     location = Location.find(location_id)
-    LocationsMeasurementCreator.new(location).call
+    result = LocationsMeasurementCreator.new(location).call
+    if result.success?
+      logger.info("Measurement for #{location.name} ID:#{location.id} created.")
+    else
+      logger.info("Measurement for #{location.name} ID:#{location.id} failed because of #{result.errors}")
+    end
   end
 end
