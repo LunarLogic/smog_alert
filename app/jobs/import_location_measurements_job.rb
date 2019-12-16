@@ -1,4 +1,4 @@
-class HourlyMeasurementsJob < ApplicationJob
+class ImportLocationMeasurementsJob < ApplicationJob
   queue_as :default
 
   def perform(location_id)

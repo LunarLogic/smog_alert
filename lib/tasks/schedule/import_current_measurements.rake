@@ -5,7 +5,7 @@ namespace :schedule do
       puts 'Start importing measurements for locations:'
       Location.all.each do |location|
         puts location.name
-        HourlyMeasurementsJob.perform_now(location.id)
+        ImportLocationMeasurementsJob.perform_now(location.id)
       end
       puts
       puts 'Done'
