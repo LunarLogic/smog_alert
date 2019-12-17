@@ -14,3 +14,10 @@ $unhealthyFirst: #fbd42d;
 $unhealthySecond: #ff8f00;
 $badFirst: #cc571a;
 $badSecond: #7d0d0f;
+
+$warningColor: #b71c1c;
+
+:export {
+  grey: $grey;
+  warning: $warningColor;
+}

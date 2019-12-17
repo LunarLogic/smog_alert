@@ -1,8 +1,9 @@
 import React from "react";
 import "./CardPollution.scss";
 import { OverviewText, DataSpecific } from "./CardPollution.styles.jsx";
+import { PropTypes } from "prop-types";
 
-const CardPollution = ({ location, pm10, pm25, color, text }) => {
+const CardPollution = ({ pm10, pm25, color, text }) => {
   return (
     <div className="card-pollution__current-data-container">
       <div className="card-pollution__current-data-overview">
@@ -40,6 +41,13 @@ const CardPollution = ({ location, pm10, pm25, color, text }) => {
       </DataSpecific>
     </div>
   );
+};
+
+CardPollution.propTypes = {
+  pm10: PropTypes.number,
+  pm25: PropTypes.number,
+  color: PropTypes.string,
+  text: PropTypes.string
 };
 
 export default CardPollution;

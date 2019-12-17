@@ -2,6 +2,7 @@ import React from "react";
 import "./ScalePollution.scss";
 import scalePollutionContent from "./scalePollutionContent";
 import { Indicator } from "./ScalePollution.styles.jsx";
+import { PropTypes } from "prop-types";
 
 const ScalePollution = ({ color, indicator }) => {
   const { colorBox, description } = scalePollutionContent;
@@ -22,6 +23,11 @@ const ScalePollution = ({ color, indicator }) => {
       </div>
     </div>
   );
+};
+
+ScalePollution.propTypes = {
+  color: PropTypes.string,
+  indicator: PropTypes.number
 };
 
 export default ScalePollution;
