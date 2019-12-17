@@ -20,5 +20,5 @@
 # Learn more: http://github.com/javan/whenever
 
 every :hour, at: 0 do
-  rake schedule:airly:import_current_measurements
+  rake "schedule:airly:import_current_measurements"
 end
