@@ -6,6 +6,7 @@ import Icon from "../../components/Icon/Icon";
 import Town from "../../../../assets/images/Town.png";
 import "./CurrentPollutionSection.scss";
 import { connect } from "react-redux";
+import { PropTypes } from "prop-types";
 
 const CurrentPollutionSection = ({
   location,
@@ -70,5 +71,14 @@ const mapStateToProps = ({
   text,
   indicator
 });
+
+CurrentPollutionSection.propTypes = {
+  location: PropTypes.string,
+  pm10: PropTypes.number,
+  pm25: PropTypes.number,
+  color: PropTypes.string,
+  text: PropTypes.string,
+  indicator: PropTypes.number
+};
 
 export default connect(mapStateToProps)(CurrentPollutionSection);
