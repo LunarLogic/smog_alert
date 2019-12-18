@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe API::Internal::MeasurementsController, type: :controller do
-  describe 'GET/ #current' do
+  describe '#current' do
     context 'when database contains various measurements for any given location' do
       let!(:location_a) { FactoryBot.create(:location) }
       let!(:location_b) { FactoryBot.create(:location) }
