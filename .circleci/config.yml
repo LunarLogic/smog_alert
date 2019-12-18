@@ -66,6 +66,10 @@ jobs:
           path: /tmp/test-results
           destination: test-results
 
+      - run:
+          name: run javascript tests
+          command: yarn test
+
       # linter
       - run:
           name: run RuboCop

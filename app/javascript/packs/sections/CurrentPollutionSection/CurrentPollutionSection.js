@@ -5,20 +5,36 @@ import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import Icon from "../../components/Icon/Icon";
 import Town from "../../../../assets/images/Town.png";
 import "./CurrentPollutionSection.scss";
+import { connect } from "react-redux";
+import { PropTypes } from "prop-types";
 
-const CurrentPollutionSection = () => {
+const CurrentPollutionSection = ({
+  location,
+  pm10,
+  pm25,
+  color,
+  text,
+  indicator
+}) => {
   const iconData = ["id1", "id2", "id3", "id4"];
 
   return (
     <div className="current-pollution">
       <div className="current-pollution__heading">
         Aktualna jakość powietrza w miejscowości{" "}
-        <span className="current-pollution__heading--bold">Zabierzów</span>
+        <span className="current-pollution__heading--bold">{location}</span>
       </div>
       <div className="current-pollution__content">
         <div>
-          <CardPollution />
-          <ScalePollution />
+          <CardPollution
+            location={location}
+            pm10={pm10}
+            pm25={pm25}
+            color={color}
+            text={text}
+            indicator={indicator}
+          />
+          <ScalePollution color={color} indicator={indicator} />
           <div className="current-pollution__content-information">
             <div className="current-pollution__content-information-icon">
               <InfoOutlinedIcon />
@@ -45,4 +61,24 @@ const CurrentPollutionSection = () => {
   );
 };
 
-export default CurrentPollutionSection;
+const mapStateToProps = ({
+  searchbox: { location, pm10, pm25, color, text, indicator }
+}) => ({
+  location,
+  pm10,
+  pm25,
+  color,
+  text,
+  indicator
+});
+
+CurrentPollutionSection.propTypes = {
+  location: PropTypes.string,
+  pm10: PropTypes.number,
+  pm25: PropTypes.number,
+  color: PropTypes.string,
+  text: PropTypes.string,
+  indicator: PropTypes.number
+};
+
+export default connect(mapStateToProps)(CurrentPollutionSection);

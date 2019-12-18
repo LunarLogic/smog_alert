@@ -21,7 +21,7 @@ Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
 
 Layout/SpaceInsideHashLiteralBraces:
-  EnforcedStyle: no_space
+  EnforcedStyle: space
 
 Metrics/AbcSize:
   Enabled: false
@@ -68,7 +68,7 @@ Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: comma
 
 Style/TrailingCommaInHashLiteral:
-  EnforcedStyleForMultiline: comma
+  Enabled: false
 
 Style/DoubleNegation:
   Enabled: false

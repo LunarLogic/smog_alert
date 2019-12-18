@@ -1,0 +1,40 @@
+@import "../../styles/variables";
+
+.pollution-index-data {
+  &__info {
+    background-color: $greyLighter;
+    height: 5.1rem;
+
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    &-indicator {
+      font-size: 1.4rem;
+      line-height: 1.9rem;
+      color: $grey;
+      font-weight: bold;
+      letter-spacing: 0.1rem;
+      margin-right: 2.2rem;
+    }
+    &-value,
+    &-percent {
+      font-size: 1.8rem;
+      line-height: 2.1rem;
+      color: $textColor;
+    }
+    &-value {
+      flex-grow: 1;
+      span {
+        font-weight: bold;
+      }
+    }
+  }
+  &__limit {
+    width: 100%;
+    text-align: end;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    color: $grey;
+    margin: 0.9rem 0 2.3rem 0;
+  }
+}

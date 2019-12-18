@@ -1,7 +1,7 @@
 describe AirlyExtractor::MeasurementData do
   describe '.extract' do
     it 'returns nil when there are no values' do
-      data = {'current' => {'values' => []}}
+      data = { 'current' => { 'values' => [] } }
       expect(described_class.extract(data)).to be nil
     end
     it 'sets value to nil when there is no data for a given measurement' do
