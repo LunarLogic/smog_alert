@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       resources :measurements, only: [] do
         collection do
           get :current
+          get :by_status
         end
       end
     end

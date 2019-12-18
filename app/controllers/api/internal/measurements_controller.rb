@@ -8,6 +8,11 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
     render json: { data: data }
   end
 
+  def by_status
+    measurements = Measurement.all
+    render json: { data: measurements }
+  end
+
   private
 
   def location_repository
