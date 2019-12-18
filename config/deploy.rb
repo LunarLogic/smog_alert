@@ -11,6 +11,8 @@ set :rbenv_type, :system
 
 set :rbenv_ruby, '2.6.5'
 
+set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
+
 append :linked_dirs,
        'public/assets',
        'log',
@@ -28,6 +30,4 @@ namespace :deploy do
   end
 end
 
-
 after 'deploy:publishing', 'deploy:restart'
-

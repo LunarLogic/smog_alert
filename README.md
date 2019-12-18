@@ -12,6 +12,14 @@ brew install postgresql
 brew services start postgresql
 ```
 
+- Install and run Redis
+
+```
+brew update
+brew install redis
+brew services start redis
+```
+
 ### Development setup
 
 - Create `config/master.key` file and insert tke key you can find in [credentials spreadsheet](https://docs.google.com/spreadsheets/d/1R73V6AilcW1EOpdyUY6PX7ZH6O1R9vVUI42WHqj2kMI/edit#gid=0).
@@ -46,8 +54,8 @@ rails db:seed
 - Visual Studio Code
 
 * Install [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-* Go to `Code > Peferences > Settings > Text Editor > Formatting`  
-  Turn on `Format On Save` checkbox  
+* Go to `Code > Peferences > Settings > Text Editor > Formatting`
+  Turn on `Format On Save` checkbox
   From now on every change in code base will be automatically formatted by [Prettier](https://prettier.io/).
 
 #### Deployment
