@@ -21,7 +21,7 @@ RSpec.describe ImportLocationMeasurementsJob, type: :job do
           expect(result).to receive(:success?).and_return(true)
 
           expect(job).to receive_message_chain(:logger, :info)
-            .with("Measurement for Zabierzow ID:#{location.id} created.")
+            .with("Measurement for #{location.name} ID:#{location.id} created.")
 
           subject
         end
@@ -38,7 +38,7 @@ RSpec.describe ImportLocationMeasurementsJob, type: :job do
           expect(result).to receive(:success?).and_return(false)
 
           expect(job).to receive_message_chain(:logger, :info)
-            .with("Measurement for Zabierzow ID:#{location.id} failed because of [\"Fake error message\"]")
+            .with("Measurement for #{location.name} ID:#{location.id} failed because of [\"Fake error message\"]")
 
           subject
         end
