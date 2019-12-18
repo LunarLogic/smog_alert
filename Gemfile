@@ -38,7 +38,7 @@ gem 'honeybadger', '~> 4.0'
 
 gem 'rest-client'
 
-# gem 'sidekiq'
+gem 'sidekiq'
 gem 'whenever', require: false
 
 group :development, :test do
