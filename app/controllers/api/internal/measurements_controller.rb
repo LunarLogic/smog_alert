@@ -10,13 +10,16 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
 
   def calendar_values
     location = Location.find(calendar_params[:location_id])
-    year = params[:year].to_i
-    daily_measurements = Calendar::DailyAverageValues.new.call(year, location)
+    year = calendar_params[:year].to_i
+    daily_measurements = Calendar::DailyAverageValues.new.call(location, year)
     render json: { data: { year: year, daily_average_measuremens: daily_measurements } }
   end
 
-  def calendar_by_status
-
+  def calendar_status
+    location = Location.find(calendar_params[:location_id])
+    year = calendar_params[:year].to_i
+    days_grouped_by_status = Calendar::StatusDaysCollector.new.call(location, year)
+    render json: { year => days_grouped_by_status }
   end
 
   private

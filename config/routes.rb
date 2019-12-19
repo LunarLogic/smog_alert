@@ -23,7 +23,7 @@ Rails.application.routes.draw do
         collection do
           get :current
           get :calendar_values
-          get :calendar_by_status
+          get :calendar_status
         end
       end
     end
