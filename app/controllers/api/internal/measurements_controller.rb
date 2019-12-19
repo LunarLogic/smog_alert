@@ -9,19 +9,10 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
   end
 
   def calendar_values
-    measurements = Measurement.all
-    location = Location.find(params[:location])
+    location = Location.find(calendar_params[:location_id])
     year = params[:year].to_i
-    year_measurements = location.measurements.where(date: Date.new(year,01,1)..Date.new(year,12,-1))
-    # year_measurements = location.measurements.where("date REGEXP ?", "/^2019/")
-    #day_measurements = Measurement.where(["date = ? and location_id = ?", "2019-12-18", location.id])
-    days = year_measurements.distinct.pluck(:date)
-    daily_measurements = []
-    days.each do |day|
-      day_measurements = year_measurements.where(date: day)
-      daily_measurements << [day, avarage_daily_measurement = Calendar::DailyAvaragePm10.new(day_measurements).call]
-    end
-    render json: { data: { year => daily_measurements } }
+    daily_measurements = Calendar::DailyAverageValues.new.call(year, location)
+    render json: { data: { year: year, daily_average_measuremens: daily_measurements } }
   end
 
   def calendar_by_status
@@ -32,5 +23,11 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
 
   def location_repository
     LocationsRepository.new
+  end
+
+  def calendar_params
+    params.require(:year)
+    params.require(:location_id)
+    params
   end
 end
