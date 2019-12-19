@@ -22,7 +22,8 @@ Rails.application.routes.draw do
       resources :measurements, only: [] do
         collection do
           get :current
-          get :by_status
+          get :calendar_values
+          get :calendar_by_status
         end
       end
     end
