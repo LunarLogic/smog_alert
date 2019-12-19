@@ -6,10 +6,7 @@ import Map from "../../components/Map/Map";
 import pollutionComparisonContent from "../../components/PollutionComparison/pollutionComparisonContent";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
-import {
-  getCitiesPollutionData,
-  getMapAreaData
-} from "../../redux/map/map.actions";
+import { getCitiesPollutionData } from "../../redux/map/map.actions";
 
 const MapSection = ({ getCitiesPollutionData, citiesPollutionData }) => {
   useEffect(() => {
@@ -43,8 +40,7 @@ const mapStateToProps = ({ map: { citiesPollutionData } }) => ({
 
 const mapDispatchToProps = dispatch => ({
   getCitiesPollutionData: citiesPollutionData =>
-    dispatch(getCitiesPollutionData(citiesPollutionData)),
-  getMapAreaData: mapAreaData => dispatch(getMapAreaData(mapAreaData))
+    dispatch(getCitiesPollutionData(citiesPollutionData))
 });
 
 MapSection.propTypes = {

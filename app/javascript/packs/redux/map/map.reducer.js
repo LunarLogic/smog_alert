@@ -13,12 +13,6 @@ const mapReducer = (state = INITIAL_STATE, action) => {
         ...state,
         citiesPollutionData: action.payload
       };
-    case mapActionTypes.GET_MAP_AREA_DATA:
-      return {
-        ...state,
-        location: action.payload.location,
-        pollutionValue: action.payload.pollutionValue
-      };
     default:
       return state;
   }

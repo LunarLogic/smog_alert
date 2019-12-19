@@ -3,10 +3,7 @@ import "./PollutionComparison.scss";
 import pollutionComparisonContent from "./pollutionComparisonContent";
 import PollutionBar from "../PollutionBar/PollutionBar";
 import { connect } from "react-redux";
-import {
-  getCitiesPollutionData,
-  getMapAreaData
-} from "../../redux/map/map.actions";
+import { getCitiesPollutionData } from "../../redux/map/map.actions";
 import { PropTypes } from "prop-types";
 
 class PollutionComparison extends React.Component {
@@ -52,8 +49,7 @@ class PollutionComparison extends React.Component {
 
 const mapDispatchToProps = dispatch => ({
   getCitiesPollutionData: citiesPollutionData =>
-    dispatch(getCitiesPollutionData(citiesPollutionData)),
-  getMapAreaData: mapAreaData => dispatch(getMapAreaData(mapAreaData))
+    dispatch(getCitiesPollutionData(citiesPollutionData))
 });
 
 const mapStateToProps = ({ map: { citiesPollutionData } }) => ({
