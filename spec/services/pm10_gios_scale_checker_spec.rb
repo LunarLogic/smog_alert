@@ -4,7 +4,7 @@ RSpec.describe Pm10GiosScaleChecker do
   describe '#call' do
     let(:pm10checker) { Pm10GiosScaleChecker.new(pm10) }
 
-    subject { pm10checker.call }   
+    subject { pm10checker.call }
 
     context 'when pm10 value is 20' do
       let(:pm10) { 20 }

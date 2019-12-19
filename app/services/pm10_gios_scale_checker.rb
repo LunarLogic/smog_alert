@@ -4,16 +4,15 @@ class Pm10GiosScaleChecker
   end
 
   def call
-    case
-    when 0 <= @pm10 && @pm10 <= 20
+    if @pm10 >= 0 && @pm10 <= 20
       'bardzo dobry'
-    when 20.0 < @pm10 && @pm10 <= 50
+    elsif @pm10 > 20.0 && @pm10 <= 50
       'dobry'
-    when 50.0 < @pm10 && @pm10 <= 80
+    elsif @pm10 > 50.0 && @pm10 <= 80
       'umiarkowany'
-    when 80.0 < @pm10 && @pm10 <= 110
+    elsif @pm10 > 80.0 && @pm10 <= 110
       'dostateczny'
-    when 110.0 < @pm10 && @pm10 <= 150
+    elsif @pm10 > 110.0 && @pm10 <= 150
       'zły'
     else
       'bardzo zły'
