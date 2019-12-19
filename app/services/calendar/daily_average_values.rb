@@ -1,6 +1,5 @@
 module Calendar
   class DailyAverageValues
-
     def call(location, year)
       year_measurements = location.measurements.where(date: Date.new(year, 1, 1)..Date.new(year, 12, -1))
       days = year_measurements.distinct.pluck(:date)
