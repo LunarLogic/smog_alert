@@ -5,6 +5,7 @@ import { getCitiesPollutionData } from "../../redux/map/map.actions";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
 import mapElements from "./MapElements";
+import { setColor } from "../../helpers";
 
 const Map = ({ citiesPollutionData, getCitiesPollutionData }) => {
   useEffect(() => {
@@ -17,8 +18,9 @@ const Map = ({ citiesPollutionData, getCitiesPollutionData }) => {
       cityData => cityData.location_name === city
     );
     let color;
+    console.log("city" + city2);
     if (city2 !== undefined) {
-      color = city2.color;
+      color = setColor(city2.last_hour_measurement.status);
     } else {
       color = "#888888";
     }
