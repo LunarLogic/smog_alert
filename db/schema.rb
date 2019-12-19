@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_12_110937) do
+ActiveRecord::Schema.define(version: 2019_12_18_173512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2019_12_12_110937) do
     t.index ["date"], name: "index_measurements_on_date"
     t.index ["hour"], name: "index_measurements_on_hour"
     t.index ["location_id"], name: "index_measurements_on_location_id"
-    t.index ["till_date_time"], name: "index_measurements_on_till_date_time", unique: true
+    t.index ["till_date_time"], name: "index_measurements_on_till_date_time"
   end
 
   create_table "users", force: :cascade do |t|

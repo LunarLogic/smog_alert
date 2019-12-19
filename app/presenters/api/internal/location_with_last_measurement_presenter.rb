@@ -17,13 +17,16 @@ class API::Internal::LocationWithLastMeasurementPresenter
   def last_hour_measurement_values
     return nil unless @last_hour_measurement
 
+    pm10checker = Pm10GiosScaleChecker.new(@last_hour_measurement.pm10)
+
     {
       from_date_time: @last_hour_measurement.from_date_time,
       till_date_time: @last_hour_measurement.till_date_time,
       values: {
         pm10: @last_hour_measurement.pm10,
         pm25: @last_hour_measurement.pm25,
-      }
+      },
+      status: pm10checker.call
     }
   end
 end
