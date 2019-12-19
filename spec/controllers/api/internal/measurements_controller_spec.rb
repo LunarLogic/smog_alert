@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe API::Internal::MeasurementsController, type: :controller do
-  describe 'GET/ #current' do
+  describe '#current' do
     context 'when database contains various measurements for any given location' do
       let!(:location_a) { FactoryBot.create(:location) }
       let!(:location_b) { FactoryBot.create(:location) }
@@ -24,6 +24,8 @@ RSpec.describe API::Internal::MeasurementsController, type: :controller do
         expect(response.body).to be_json_eql(location_b.id.to_json).at_path('data/1/location_id')
         expect(response.body).to be_json_eql(measurements_a_new.till_date_time.to_json)
           .at_path('data/0/last_hour_measurement/till_date_time')
+        expect(response.body).to be_json_eql('bardzo dobry'.to_json)
+          .at_path('data/0/last_hour_measurement/status')
       end
     end
 
