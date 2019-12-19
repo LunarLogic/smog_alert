@@ -3,15 +3,14 @@ import "./MapSection.scss";
 import PollutionComparison from "../../components/PollutionComparison/PollutionComparison";
 import Map from "../../components/Map/Map";
 // import SidePollutionCard from "../../components/SidePollutionCard/SidePollutionCard";
-import pollutionComparisonContent from "../../components/PollutionComparison/pollutionComparisonContent";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
 import { getCitiesPollutionData } from "../../redux/map/map.actions";
 
 const MapSection = ({ getCitiesPollutionData, citiesPollutionData }) => {
   useEffect(() => {
-    getCitiesPollutionData(pollutionComparisonContent);
-  });
+    getCitiesPollutionData();
+  }, []);
 
   return (
     <div className="map-section">
