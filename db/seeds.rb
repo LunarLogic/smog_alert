@@ -111,6 +111,22 @@ cities = [
     latitude: 50.103592,
     longitude: 19.740849,
   },
+  {
+    name: 'Karniowice',
+    latitude: 50.15064,
+    longitude: 19.77785,
+  },
+  {
+    name: 'Zelków',
+    latitude: 50.15869,
+    longitude: 19.79455,
+  },
+  {
+    name: 'Aleksandrowice',
+    latitude: 50.08110,
+    longitude: 19.76422,
+  },
+
 ]
 
 cities.each do |city|
