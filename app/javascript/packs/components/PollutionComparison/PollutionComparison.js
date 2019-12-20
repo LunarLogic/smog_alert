@@ -1,68 +1,49 @@
 import React from "react";
 import { PropTypes } from "prop-types";
-import { connect } from "react-redux";
 
 import { PollutionBar } from "../";
-import { getCitiesPollutionData } from "../../redux/homepage/homepage.actions";
+import { setColor } from "../../helpers";
 
 import "./PollutionComparison.scss";
 
-class PollutionComparison extends React.Component {
-  componentDidMount() {
-    const { getCitiesPollutionData } = this.props;
-    getCitiesPollutionData();
-  }
+const PollutionComparison = ({ citiesPollutionData }) => {
+  let highestPollutionValue;
+  let sortedPollutionData;
 
-  render() {
-    const { citiesPollutionData } = this.props;
-
-    let highestPollutionValue;
-    let sortedPollutionData;
-
-    if (citiesPollutionData.length !== 0) {
-      sortedPollutionData = citiesPollutionData.sort(
-        (a, b) => b.value - a.value
-      );
-      highestPollutionValue = sortedPollutionData[0].value;
-    }
-
-    return (
-      <div className="pollution-comparison">
-        {citiesPollutionData.length !== 0
-          ? sortedPollutionData.map(cityData => {
-              const { location, value, color } = cityData;
-              const width = (value * 100) / highestPollutionValue;
-              return (
-                <PollutionBar
-                  key={location}
-                  width={width}
-                  backgroundColor={color}
-                  location={location}
-                  value={value}
-                />
-              );
-            })
-          : "loading"}
-      </div>
+  if (citiesPollutionData.length !== 0) {
+    sortedPollutionData = citiesPollutionData.sort(
+      (a, b) =>
+        b.last_hour_measurement.values.pm10 -
+        a.last_hour_measurement.values.pm10
     );
+    highestPollutionValue =
+      sortedPollutionData[0].last_hour_measurement.values.pm10;
   }
-}
 
-const mapDispatchToProps = dispatch => ({
-  getCitiesPollutionData: citiesPollutionData =>
-    dispatch(getCitiesPollutionData(citiesPollutionData))
-});
-
-const mapStateToProps = ({ homepage: { citiesPollutionData } }) => ({
-  citiesPollutionData
-});
+  return (
+    <div className="pollution-comparison">
+      {citiesPollutionData.length !== 0
+        ? sortedPollutionData.map(cityData => {
+            const { location_name, last_hour_measurement } = cityData;
+            const width =
+              (last_hour_measurement.values.pm10 * 100) / highestPollutionValue;
+            return (
+              <PollutionBar
+                key={location_name}
+                width={width}
+                backgroundColor={setColor(last_hour_measurement.status)}
+                location={location_name}
+                value={last_hour_measurement.values.pm10}
+              />
+            );
+          })
+        : "loading"}
+    </div>
+  );
+};
 
 PollutionComparison.propTypes = {
-  getCitiesPollutionData: PropTypes.func,
   citiesPollutionData: PropTypes.array
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PollutionComparison);
+export default PollutionComparison;

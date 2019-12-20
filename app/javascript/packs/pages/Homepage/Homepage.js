@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { PropTypes } from "prop-types";
 
 import { getCitiesPollutionData } from "../../redux/homepage/homepage.actions";
 
@@ -28,5 +29,10 @@ const Homepage = ({ getCitiesPollutionData, citiesPollutionData }) => {
 const mapStateToProps = ({ homepage: { citiesPollutionData } }) => ({
   citiesPollutionData
 });
+
+Homepage.propTypes = {
+  getCitiesPollutionData: PropTypes.func,
+  citiesPollutionData: PropTypes.array
+};
 
 export default connect(mapStateToProps, { getCitiesPollutionData })(Homepage);
