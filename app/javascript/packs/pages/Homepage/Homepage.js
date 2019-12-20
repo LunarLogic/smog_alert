@@ -1,9 +1,10 @@
 import React from "react";
-import "./Homepage.scss";
-import CurrentPollutionSection from "../../sections/CurrentPollutionSection/CurrentPollutionSection";
-import MapSection from "../../sections/MapSection/MapSection";
-import Searchbox from "../../components/Searchbox/Searchbox";
+
+import { CurrentPollutionSection, MapSection } from "../../sections";
+import { Searchbox } from "../../components";
 import data from "./data";
+
+import "./Homepage.scss";
 
 const Homepage = () => {
   return (

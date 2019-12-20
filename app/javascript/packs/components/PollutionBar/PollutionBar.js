@@ -1,6 +1,7 @@
 import React from "react";
-import "./PollutionBar.scss";
 import { PropTypes } from "prop-types";
+
+import "./PollutionBar.scss";
 
 const PollutionBar = ({ width, backgroundColor, location, value }) => {
   return (

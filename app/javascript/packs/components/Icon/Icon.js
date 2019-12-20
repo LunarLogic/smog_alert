@@ -1,7 +1,9 @@
 import React from "react";
-import "./Icon.scss";
-import iconContent from "./iconContent";
 import { PropTypes } from "prop-types";
+
+import iconContent from "./iconContent";
+
+import "./Icon.scss";
 
 const Icon = ({ iconId }) => {
   const icon = iconContent[iconId];

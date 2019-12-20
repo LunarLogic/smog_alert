@@ -1,9 +1,11 @@
 import React from "react";
-import "./PollutionComparison.scss";
-import PollutionBar from "../PollutionBar/PollutionBar";
-import { connect } from "react-redux";
-import { getCitiesPollutionData } from "../../redux/map/map.actions";
 import { PropTypes } from "prop-types";
+import { connect } from "react-redux";
+
+import { PollutionBar } from "../";
+import { getCitiesPollutionData } from "../../redux/map/map.actions";
+
+import "./PollutionComparison.scss";
 
 class PollutionComparison extends React.Component {
   componentDidMount() {

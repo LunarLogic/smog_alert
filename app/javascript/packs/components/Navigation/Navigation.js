@@ -1,7 +1,9 @@
 import React from "react";
-import "./Navigation.scss";
+
+import { CustomButton } from "../";
 import navigationContent from "./navigationContent";
-import CustomButton from "../CustomButton/CustomButton";
+
+import "./Navigation.scss";
 
 const Navigation = () => {
   const { links, button, brand } = navigationContent;

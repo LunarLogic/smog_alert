@@ -1,6 +1,7 @@
 import React from "react";
-import "./PollutionIndexData.scss";
 import { PropTypes } from "prop-types";
+
+import "./PollutionIndexData.scss";
 
 const PollutionIndexData = ({ indicator, value, percent, limit }) => {
   return (

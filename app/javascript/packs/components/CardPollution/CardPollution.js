@@ -1,7 +1,8 @@
 import React from "react";
+import { PropTypes } from "prop-types";
+
 import "./CardPollution.scss";
 import { OverviewText, DataSpecific } from "./CardPollution.styles.jsx";
-import { PropTypes } from "prop-types";
 
 const CardPollution = ({ pm10, pm25, color, text }) => {
   return (

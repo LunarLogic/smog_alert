@@ -1,6 +1,7 @@
 import React from "react";
-import "./ContactDetail.scss";
 import { PropTypes } from "prop-types";
+
+import "./ContactDetail.scss";
 
 const ContactDetail = ({ item }) => {
   return (

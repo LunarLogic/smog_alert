@@ -1,8 +1,9 @@
 import React from "react";
-import "./SidePollutionCard.scss";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import DropdownMenu from "../DropdownMenu/DropdownMenu";
-import PollutionIndexData from "../PollutionIndexData/PollutionIndexData";
+
+import { PollutionIndexData, DropdownMenu } from "../";
+
+import "./SidePollutionCard.scss";
 
 const SidePollutionCard = () => {
   const pollutionIndexData = [

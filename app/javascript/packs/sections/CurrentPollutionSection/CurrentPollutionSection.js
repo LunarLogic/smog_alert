@@ -1,12 +1,12 @@
 import React from "react";
-import CardPollution from "../../components/CardPollution/CardPollution";
-import ScalePollution from "../../components/ScalePollution/ScalePollution";
-import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
-import Icon from "../../components/Icon/Icon";
-import Town from "../../../../assets/images/Town.png";
-import "./CurrentPollutionSection.scss";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
+import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
+
+import { CardPollution, ScalePollution, Icon } from "../../components";
+import Town from "../../../../assets/images/Town.png";
+
+import "./CurrentPollutionSection.scss";
 
 const CurrentPollutionSection = ({
   location,

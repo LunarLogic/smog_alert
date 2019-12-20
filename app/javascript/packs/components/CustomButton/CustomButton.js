@@ -1,6 +1,7 @@
 import React from "react";
-import "./CustomButton.scss";
 import { PropTypes } from "prop-types";
+
+import "./CustomButton.scss";
 
 const CustomButton = ({ text }) => {
   return <div className="custom-button">{text}</div>;

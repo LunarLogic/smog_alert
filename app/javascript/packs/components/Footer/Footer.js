@@ -1,7 +1,9 @@
 import React from "react";
-import "./Footer.scss";
+
+import { ContactDetail } from "../";
 import footerContent from "./footerContent";
-import ContactDetail from "../ContactDetail/ContactDetail";
+
+import "./Footer.scss";
 
 const Footer = () => {
   return (

@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
-import "./MapSection.scss";
-import PollutionComparison from "../../components/PollutionComparison/PollutionComparison";
-import Map from "../../components/Map/Map";
-// import SidePollutionCard from "../../components/SidePollutionCard/SidePollutionCard";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
+
+import { PollutionComparison, Map } from "../../components";
+// import {SidePollutionCard} from "../../components";
 import { getCitiesPollutionData } from "../../redux/map/map.actions";
+
+import "./MapSection.scss";
 
 const MapSection = ({ getCitiesPollutionData, citiesPollutionData }) => {
   useEffect(() => {

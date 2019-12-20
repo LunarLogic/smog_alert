@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
-import "./Searchbox.scss";
 import { PropTypes } from "prop-types";
-import { getCityPollutionData } from "../../redux/searchbox/searchbox.actions";
 import { connect } from "react-redux";
+
+import { getCityPollutionData } from "../../redux/searchbox/searchbox.actions";
+
+import "./Searchbox.scss";
 import { Input } from "./Searchbox.styles.jsx";
 import { grey, warning } from "../../styles/_variables";
 

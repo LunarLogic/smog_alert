@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
+import { PropTypes } from "prop-types";
+import { connect } from "react-redux";
+
+import { getCitiesPollutionData } from "../../redux/map/map.actions";
+import { setColor } from "../../helpers";
+
 import "./Map.scss";
 import { MapContainer, MapPath, MapText, MapDot } from "./Map.styles.jsx";
-import { getCitiesPollutionData } from "../../redux/map/map.actions";
-import { connect } from "react-redux";
-import { PropTypes } from "prop-types";
 import mapElements from "./MapElements";
-import { setColor } from "../../helpers";
 
 const Map = ({ citiesPollutionData, getCitiesPollutionData }) => {
   useEffect(() => {
