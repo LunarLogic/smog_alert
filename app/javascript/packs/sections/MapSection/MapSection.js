@@ -1,12 +1,11 @@
 import React from "react";
-import { PropTypes } from "prop-types";
 
 import { PollutionComparison, Map } from "../../components";
 // import {SidePollutionCard} from "../../components";
 
 import "./MapSection.scss";
 
-const MapSection = ({ citiesPollutionData }) => {
+const MapSection = () => {
   return (
     <div className="map-section">
       <div className="map-section__heading">
@@ -17,19 +16,15 @@ const MapSection = ({ citiesPollutionData }) => {
       </div>
       <div className="map-section__content">
         <div className="map-section__content--map">
-          <Map citiesPollutionData={citiesPollutionData} />
+          <Map />
         </div>
         <div className="map-section__content--info">
-          <PollutionComparison citiesPollutionData={citiesPollutionData} />
+          <PollutionComparison />
           {/* <SidePollutionCard /> */}
         </div>
       </div>
     </div>
   );
-};
-
-MapSection.propTypes = {
-  citiesPollutionData: PropTypes.array
 };
 
 export default MapSection;

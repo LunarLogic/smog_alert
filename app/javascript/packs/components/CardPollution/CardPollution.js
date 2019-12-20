@@ -1,20 +1,36 @@
 import React from "react";
 import { PropTypes } from "prop-types";
+import { connect } from "react-redux";
 
 import "./CardPollution.scss";
 import { OverviewText, DataSpecific } from "./CardPollution.styles.jsx";
+import { setColor } from "../../helpers/setColor";
 
-const CardPollution = ({ pm10, pm25, color, text }) => {
-  return (
+const CardPollution = ({ location_name, citiesPollutionData }) => {
+  const data = () => {
+    const chosenCityData = citiesPollutionData.find(
+      item => item.location_name === location_name
+    );
+    let color = setColor(chosenCityData.last_hour_measurement.status);
+    return { chosenCityData, color };
+  };
+
+  let shouldRender = citiesPollutionData.length !== 0;
+
+  return shouldRender ? (
     <div className="card-pollution__current-data-container">
       <div className="card-pollution__current-data-overview">
         <div
           className="card-pollution__current-data-overview-face"
-          style={{ backgroundColor: color }}
+          style={{
+            backgroundColor: data().color
+          }}
         ></div>
-        <OverviewText color={color}>{text}</OverviewText>
+        <OverviewText color={data().color}>
+          {data().chosenCityData.last_hour_measurement.status}
+        </OverviewText>
       </div>
-      <DataSpecific color={color}>
+      <DataSpecific color={data().color}>
         <div className="card-pollution__current-data-specific-container">
           <div className="card-pollution__current-data-specific-primary">
             <div className="card-pollution__current-data-specific-primary-index">
@@ -22,7 +38,7 @@ const CardPollution = ({ pm10, pm25, color, text }) => {
             </div>
             <div className="card-pollution__current-data-specific-primary-value">
               <span className="card-pollution__current-data-specific-primary-value--bold">
-                {pm10}
+                {data().chosenCityData.last_hour_measurement.values.pm10}
               </span>
               μg
             </div>
@@ -33,7 +49,7 @@ const CardPollution = ({ pm10, pm25, color, text }) => {
             </div>
             <div className="card-pollution__current-data-specific-secondary-value">
               <span className="card-pollution__current-data-specific-secondary-value--bold">
-                {pm25}
+                {data().chosenCityData.last_hour_measurement.values.pm25}
               </span>
               μg
             </div>
@@ -41,14 +57,22 @@ const CardPollution = ({ pm10, pm25, color, text }) => {
         </div>
       </DataSpecific>
     </div>
+  ) : (
+    <div></div>
   );
 };
 
+const mapStateToProps = ({
+  homepage: { citiesPollutionData },
+  searchbox: { location_name }
+}) => ({
+  citiesPollutionData,
+  location_name
+});
+
 CardPollution.propTypes = {
-  pm10: PropTypes.number,
-  pm25: PropTypes.number,
-  color: PropTypes.string,
-  text: PropTypes.string
+  citiesPollutionData: PropTypes.array,
+  location_name: PropTypes.string
 };
 
-export default CardPollution;
+export default connect(mapStateToProps)(CardPollution);

@@ -8,33 +8,21 @@ import Town from "../../../../assets/images/Town.png";
 
 import "./CurrentPollutionSection.scss";
 
-const CurrentPollutionSection = ({
-  location,
-  pm10,
-  pm25,
-  color,
-  text,
-  indicator
-}) => {
+const CurrentPollutionSection = ({ location_name }) => {
   const iconData = ["id1", "id2", "id3", "id4"];
 
   return (
     <div className="current-pollution">
       <div className="current-pollution__heading">
         Aktualna jakość powietrza w miejscowości{" "}
-        <span className="current-pollution__heading--bold">{location}</span>
+        <span className="current-pollution__heading--bold">
+          {location_name}
+        </span>
       </div>
       <div className="current-pollution__content">
         <div>
-          <CardPollution
-            location={location}
-            pm10={pm10}
-            pm25={pm25}
-            color={color}
-            text={text}
-            indicator={indicator}
-          />
-          <ScalePollution color={color} indicator={indicator} />
+          <CardPollution location={location_name} />
+          <ScalePollution />
           <div className="current-pollution__content-information">
             <div className="current-pollution__content-information-icon">
               <InfoOutlinedIcon />
@@ -61,24 +49,13 @@ const CurrentPollutionSection = ({
   );
 };
 
-const mapStateToProps = ({
-  searchbox: { location, pm10, pm25, color, text, indicator }
-}) => ({
-  location,
-  pm10,
-  pm25,
-  color,
-  text,
-  indicator
+const mapStateToProps = ({ searchbox: { location_name } }) => ({
+  location_name
 });
 
 CurrentPollutionSection.propTypes = {
-  location: PropTypes.string,
-  pm10: PropTypes.number,
-  pm25: PropTypes.number,
-  color: PropTypes.string,
-  text: PropTypes.string,
-  indicator: PropTypes.number
+  location_name: PropTypes.string,
+  citiesPollutionData: PropTypes.array
 };
 
 export default connect(mapStateToProps)(CurrentPollutionSection);

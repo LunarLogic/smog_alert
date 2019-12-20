@@ -1,5 +1,6 @@
 import React from "react";
 import { PropTypes } from "prop-types";
+import { connect } from "react-redux";
 
 import { setColor } from "../../helpers";
 
@@ -101,4 +102,8 @@ Map.propTypes = {
   citiesPollutionData: PropTypes.array
 };
 
-export default Map;
+const mapStateToProps = ({ homepage: { citiesPollutionData } }) => ({
+  citiesPollutionData
+});
+
+export default connect(mapStateToProps)(Map);
