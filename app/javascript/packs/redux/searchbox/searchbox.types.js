@@ -1,5 +1,5 @@
 const searchboxActionTypes = {
-  GET_CITY_POLLUTION_DATA: "GET_CITY_POLLUTION_DATA"
+  SET_CHOSEN_CITY: "SET_CHOSEN_CITY"
 };
 
 export default searchboxActionTypes;

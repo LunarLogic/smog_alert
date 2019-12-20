@@ -3,13 +3,13 @@ import SearchIcon from "@material-ui/icons/Search";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
 
-import { getCityPollutionData } from "../../redux/searchbox/searchbox.actions";
+import { setChosenCity } from "../../redux/searchbox/searchbox.actions";
 
 import "./Searchbox.scss";
 import { Input } from "./Searchbox.styles.jsx";
 import { grey, warning } from "../../styles/_variables";
 
-const Searchbox = ({ cities, data, getCityPollutionData }) => {
+const Searchbox = ({ cities, setChosenCity }) => {
   const greyColor = grey;
   const warningColor = warning;
   const [location, setLocation] = useState("");
@@ -41,8 +41,9 @@ const Searchbox = ({ cities, data, getCityPollutionData }) => {
   const handleChosenCity = city => {
     setLocation("");
 
-    const chosenCity = data.filter(item => item.location === city)[0];
-    getCityPollutionData(chosenCity);
+    const chosenCity = cities.filter(item => item === city)[0];
+    console.log(chosenCity);
+    setChosenCity(chosenCity);
   };
 
   return (
@@ -78,15 +79,13 @@ const Searchbox = ({ cities, data, getCityPollutionData }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  getCityPollutionData: cityPollutionData =>
-    dispatch(getCityPollutionData(cityPollutionData))
-});
-
 Searchbox.propTypes = {
   cities: PropTypes.array,
-  data: PropTypes.array,
-  getCityPollutionData: PropTypes.func
+  setChosenCity: PropTypes.func
 };
+
+const mapDispatchToProps = dispatch => ({
+  setChosenCity: chosenCity => dispatch(setChosenCity(chosenCity))
+});
 
 export default connect(null, mapDispatchToProps)(Searchbox);

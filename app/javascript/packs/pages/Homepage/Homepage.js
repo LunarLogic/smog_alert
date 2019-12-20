@@ -6,7 +6,6 @@ import { getCitiesPollutionData } from "../../redux/homepage/homepage.actions";
 
 import { CurrentPollutionSection, MapSection } from "../../sections";
 import { Searchbox } from "../../components";
-import data from "./data";
 
 import "./Homepage.scss";
 
@@ -18,7 +17,7 @@ const Homepage = ({ getCitiesPollutionData, citiesPollutionData }) => {
 
   return (
     <div className="homepage">
-      <Searchbox cities={data.map(item => item.location)} data={data} />
+      <Searchbox cities={citiesPollutionData.map(item => item.location_name)} />
       <CurrentPollutionSection />
       <hr className="homepage__horizontal-line" />
       <MapSection citiesPollutionData={citiesPollutionData} />
