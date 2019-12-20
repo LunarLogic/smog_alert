@@ -3,7 +3,7 @@ import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
 
 import { PollutionBar } from "../";
-import { getCitiesPollutionData } from "../../redux/map/map.actions";
+import { getCitiesPollutionData } from "../../redux/homepage/homepage.actions";
 
 import "./PollutionComparison.scss";
 
@@ -53,7 +53,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(getCitiesPollutionData(citiesPollutionData))
 });
 
-const mapStateToProps = ({ map: { citiesPollutionData } }) => ({
+const mapStateToProps = ({ homepage: { citiesPollutionData } }) => ({
   citiesPollutionData
 });
 

@@ -1,18 +1,12 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import React from "react";
 import { PropTypes } from "prop-types";
 
 import { PollutionComparison, Map } from "../../components";
 // import {SidePollutionCard} from "../../components";
-import { getCitiesPollutionData } from "../../redux/map/map.actions";
 
 import "./MapSection.scss";
 
-const MapSection = ({ getCitiesPollutionData, citiesPollutionData }) => {
-  useEffect(() => {
-    getCitiesPollutionData();
-  }, []);
-
+const MapSection = ({ citiesPollutionData }) => {
   return (
     <div className="map-section">
       <div className="map-section__heading">
@@ -26,7 +20,7 @@ const MapSection = ({ getCitiesPollutionData, citiesPollutionData }) => {
           <Map citiesPollutionData={citiesPollutionData} />
         </div>
         <div className="map-section__content--info">
-          <PollutionComparison />
+          <PollutionComparison citiesPollutionData={citiesPollutionData} />
           {/* <SidePollutionCard /> */}
         </div>
       </div>
@@ -34,18 +28,8 @@ const MapSection = ({ getCitiesPollutionData, citiesPollutionData }) => {
   );
 };
 
-const mapStateToProps = ({ map: { citiesPollutionData } }) => ({
-  citiesPollutionData
-});
-
-const mapDispatchToProps = dispatch => ({
-  getCitiesPollutionData: citiesPollutionData =>
-    dispatch(getCitiesPollutionData(citiesPollutionData))
-});
-
 MapSection.propTypes = {
-  getCitiesPollutionData: PropTypes.func,
   citiesPollutionData: PropTypes.array
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MapSection);
+export default MapSection;

@@ -1,4 +1,4 @@
-import mapActionTypes from "./map.types";
+import mapActionTypes from "./homepage.types";
 
 const INITIAL_STATE = {
   citiesPollutionData: [],
@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   pollutionValue: null
 };
 
-const mapReducer = (state = INITIAL_STATE, action) => {
+const homepageReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case mapActionTypes.GET_CITIES_POLLUTION_DATA:
       return {
@@ -18,4 +18,4 @@ const mapReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default mapReducer;
+export default homepageReducer;

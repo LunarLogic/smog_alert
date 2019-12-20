@@ -1,31 +1,18 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { PropTypes } from "prop-types";
-import { connect } from "react-redux";
 
-import { getCitiesPollutionData } from "../../redux/map/map.actions";
 import { setColor } from "../../helpers";
 
 import "./Map.scss";
 import { MapContainer, MapPath, MapText, MapDot } from "./Map.styles.jsx";
 import mapElements from "./MapElements";
 
-const Map = ({ citiesPollutionData, getCitiesPollutionData }) => {
-  useEffect(() => {
-    getCitiesPollutionData();
-  }, []);
-  console.log(citiesPollutionData);
-
+const Map = ({ citiesPollutionData }) => {
   const findColor = city => {
-    let city2 = citiesPollutionData.find(
+    let chosenCity = citiesPollutionData.find(
       cityData => cityData.location_name === city
     );
-    let color;
-    console.log("city" + city2);
-    if (city2 !== undefined) {
-      color = setColor(city2.last_hour_measurement.status);
-    } else {
-      color = "#888888";
-    }
+    let color = setColor(chosenCity.last_hour_measurement.status);
     return color;
   };
 
@@ -110,13 +97,8 @@ const Map = ({ citiesPollutionData, getCitiesPollutionData }) => {
   );
 };
 
-const mapStateToProps = ({ map: { citiesPollutionData } }) => ({
-  citiesPollutionData
-});
-
 Map.propTypes = {
-  getCitiesPollutionData: PropTypes.func,
   citiesPollutionData: PropTypes.array
 };
 
-export default connect(mapStateToProps, { getCitiesPollutionData })(Map);
+export default Map;
