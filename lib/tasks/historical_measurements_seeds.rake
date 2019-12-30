@@ -2,7 +2,7 @@ require 'csv'
 
 old_sensors_for_locations = [
   { location: { city: 'Aleksandrowice', street: nil },
-    ids: [883]
+    id: [883]
   },
   { location: { city: 'Balice', street: 'Radziwiłłów' },
     id: [2274]
@@ -83,7 +83,7 @@ old_sensors_for_locations = [
     id: [615]
   },
   { location: { city: 'Zelków', street: 'Jana Pawła II' },
-  id: [411]
+    id: [411]
   }
 ]
 
@@ -92,8 +92,11 @@ namespace :database do
   task import_old_measurements: :environment do
     csv_text = File.read(Rails.root.join('lib', 'old_db', 'measurements.csv'))
     csv = CSV.parse(csv_text, :headers => true)
-    puts csv
-
-
+    measurements = []
+    csv.each do |row|
+      location_for_id = old_sensors_for_locations.select { |l| l[:id].include?(row[0].to_i) }
+      location = Location.find_by(name: location_for_id[0][:location][:city], street: location_for_id[0][:location][:street])
+      puts location.inspect
+    end
   end
 end
