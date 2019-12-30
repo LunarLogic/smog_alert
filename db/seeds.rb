@@ -159,7 +159,7 @@ cities = [
     name: 'Pisary',
     latitude: 50.124508,
     longitude: 19.701921,
-    id: 10478,
+    id: 10_478,
     street: nil,
     number: nil,
     sponsor: 'Zabierzów',
