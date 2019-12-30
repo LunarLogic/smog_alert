@@ -1,6 +1,6 @@
 require 'csv'
 
-old_sensors_for_locations = [
+old_ids_for_locations = [
   { location: { city: 'Aleksandrowice', street: nil },
     id: [883]
   },
@@ -94,9 +94,21 @@ namespace :database do
     csv = CSV.parse(csv_text, :headers => true)
     measurements = []
     csv.each do |row|
-      location_for_id = old_sensors_for_locations.select { |l| l[:id].include?(row[0].to_i) }
+      location_for_id = old_ids_for_locations.select { |location| location[:id].include?(row[0].to_i) }
       location = Location.find_by(name: location_for_id[0][:location][:city], street: location_for_id[0][:location][:street])
-      puts location.inspect
+      till_date_time = row['tillDateTime0']
+      puts "Create measurement for #{location.name}"
+      puts location.measurements.create(
+        date: Time.find_zone('UTC').parse(till_date_time).to_date,
+        hour: Time.find_zone('UTC').parse(till_date_time).hour,
+        pm10: row['pm10'],
+        pm25: row['pm25'],
+        temperature: row['temperature'],
+        humidity: row['humidity'],
+        pressure: row['pressure'],
+        from_date_time: row['fromDateTime0'],
+        till_date_time: till_date_time,
+      )
     end
   end
 end
