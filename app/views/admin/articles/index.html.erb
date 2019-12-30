@@ -1,0 +1,28 @@
+<%= link_to "Dodaj wpis", new_admin_article_path, class: 'btn btn-primary', id: 'new-article' %>
+
+<h1>Aktualności</h1>
+<table class='table' id='articles'>
+  <thead class='thead-dark'>
+    <tr>
+    <th scope='col'>Id</th>
+    <th scope='col'>Tytuł</th>
+    <th scope='col'>Data wpisu</th>
+    <th scope='col'>Akcje</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr class='article-row'>
+        <th scope='row'><%= article.id %></th>
+        <td>
+          <%= link_to "#{article.title}", admin_article_path(article)%>
+        </td>
+        <td><%= article.created_at %></td>
+        <td>
+        <%= link_to 'Edytuj', edit_admin_article_path(article), class: "btn btn-light btn-sm"%>
+        <%= link_to 'Usuń', admin_article_path(article), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Czy na pewno chcesz usunąć wpis #{article.title}?"} %>
+        </td>
+      </tr>
+    <% end %>  
+  </tbody>
+</table>
