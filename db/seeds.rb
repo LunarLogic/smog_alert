@@ -267,7 +267,7 @@ cities = [
 ]
 
 cities.each do |city|
-  location = Location.find_or_create_by(name: city[:name])
+  location = Location.find_or_create_by(name: city[:name], street: city[:street])
   location.longitude = city[:longitude]
   location.latitude = city[:latitude]
   location.save!
