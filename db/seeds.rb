@@ -93,6 +93,15 @@ cities = [
     sponsor: 'Zabierzów'
   },
   {
+    name: 'Kleszczów',
+    latitude: 50.103592,
+    longitude: 19.740849,
+    id: 7566,
+    street: nil,
+    number: nil,
+    sponsor: 'Zabierzów',
+  },
+  {
     name: 'Kobylany',
     latitude: 50.14645,
     longitude: 19.763271,
@@ -108,15 +117,6 @@ cities = [
     id: 6116,
     street: 'Droga Krajowa 79',
     number: '28',
-    sponsor: 'Zabierzów',
-  },
-  {
-    name: 'Kleszczów',
-    latitude: 50.103592,
-    longitude: 19.740849,
-    id: 7566,
-    street: nil,
-    number: nil,
     sponsor: 'Zabierzów',
   },
   {
@@ -174,21 +174,21 @@ cities = [
     sponsor: 'Zabierzów',
   },
   {
-    name: 'Rząska',
-    latitude: 50.099709,
-    longitude: 19.837011,
-    id: 493,
-    street: 'Krakowska',
-    number: '122',
-    sponsor: 'Zabierzów',
-  },
-  {
     name: 'Rudawa',
     latitude: 50.122887,
     longitude: 19.707764,
     id: 388,
     street: 'Polaczka',
     number: '25',
+    sponsor: 'Zabierzów',
+  },
+  {
+    name: 'Rząska',
+    latitude: 50.099709,
+    longitude: 19.837011,
+    id: 493,
+    street: 'Krakowska',
+    number: '122',
     sponsor: 'Zabierzów',
   },
   {
