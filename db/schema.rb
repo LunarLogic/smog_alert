@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2019_12_30_140508) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "street"
-    t.index ["name"], name: "index_locations_on_name", unique: true
+    t.index ["name"], name: "index_locations_on_name"
   end
 
   create_table "measurements", force: :cascade do |t|
