@@ -1,0 +1,6 @@
+<%= simple_form_for [:admin, @user] do |f| %>
+  <%= f.input :email, label: 'Adres email' %>
+  <%= f.input :password, label: 'Hasło' %>
+  <%= f.input :admin, label: 'Czy użytkownik jest adminem?' %>
+  <%= f.submit button_name, class: 'btn btn-success' %>
+<% end %>
