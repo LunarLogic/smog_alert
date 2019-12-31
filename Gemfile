@@ -32,6 +32,7 @@ gem 'webpacker', '~> 4.0'
 gem 'bootstrap', '~> 4.3.1'
 
 gem 'simple_form'
+gem 'kaminari'
 
 gem 'devise'
 gem 'honeybadger', '~> 4.0'
