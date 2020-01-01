@@ -1,9 +1,9 @@
 <h1>Użytkownicy:</h1>
 
-<p><%= link_to "Dodaj użytkownika", new_admin_user_path, class: 'btn btn-success', id: 'new-user' %></p>
+<p><%= link_to 'Dodaj użytkownika', new_admin_user_path, class: 'btn btn-success', id: 'new-user' %></p>
 
-<table class="table">
-  <thead class="thead-dark">
+<table class='table' id='users'>
+  <thead class='thead-dark'>
     <tr>
       <th>Id</th>
       <th>Adres email</th>
@@ -13,7 +13,7 @@
   </thead>
   <tbody>
     <% @users.each do |user| %>
-      <tr>
+      <tr class='user-row'>
         <td><%= user.id %></td>
         <td><%= user.email %></td>
         <td><%= user.admin ? 'tak' : 'nie' %></td>
