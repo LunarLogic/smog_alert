@@ -17,7 +17,7 @@ const Searchbox = ({ cities, setChosenCity }) => {
   const [filteredCities, setFilteredCities] = useState([]);
 
   const handleSearchboxList = () => {
-    if (!location.length > 0) {
+    if (!location.length) {
       setFilteredCities([]);
       return;
     }
@@ -26,9 +26,7 @@ const Searchbox = ({ cities, setChosenCity }) => {
       city.toLowerCase().includes(location.toLowerCase())
     );
     setFilteredCities(filterCities);
-    filterCities.length > 0
-      ? setTextColor(greyColor)
-      : setTextColor(warningColor);
+    filterCities.length ? setTextColor(greyColor) : setTextColor(warningColor);
   };
 
   useEffect(handleSearchboxList, [location]);
@@ -36,6 +34,9 @@ const Searchbox = ({ cities, setChosenCity }) => {
   const handleChange = event => {
     const { value } = event.target;
     setLocation(value);
+    if (!value.length) {
+      setTextColor(greyColor);
+    }
   };
 
   const handleChosenCity = city => {
@@ -61,7 +62,7 @@ const Searchbox = ({ cities, setChosenCity }) => {
         ></Input>
       </div>
       {filteredCities.length > 0 && (
-        <div className={`searchbox__list`}>
+        <div className="searchbox__list">
           {filteredCities.map(city => (
             <div
               key={`option-${city}`}
@@ -75,6 +76,9 @@ const Searchbox = ({ cities, setChosenCity }) => {
           ))}
         </div>
       )}
+      {textColor === warningColor ? (
+        <div className="searchbox__warning">Brak wybranej miejscowości</div>
+      ) : null}
     </div>
   );
 };

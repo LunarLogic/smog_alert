@@ -58,6 +58,13 @@
       }
     }
   }
+  &__warning {
+    position: absolute;
+    color: $warningColor;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    margin-top: 1rem;
+  }
   .hidden {
     display: none;
   }
