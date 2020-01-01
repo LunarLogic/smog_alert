@@ -1,21 +1,21 @@
 import React from "react";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
 import "./CardPollution.scss";
 import { OverviewText, DataSpecific } from "./CardPollution.styles.jsx";
+
+import { selectChosenCityData } from "../../redux/redux.selectors";
 import { setColor } from "../../helpers/setColor";
 
-const CardPollution = ({ location_name, citiesPollutionData }) => {
-  const data = () => {
-    const chosenCityData = citiesPollutionData.find(
-      item => item.location_name === location_name
-    );
-    let color = setColor(chosenCityData.last_hour_measurement.status);
-    return { chosenCityData, color };
-  };
+const CardPollution = ({ chosenCityData }) => {
+  let color;
+  let shouldRender = chosenCityData;
 
-  let shouldRender = citiesPollutionData.length !== 0;
+  if (shouldRender) {
+    color = setColor(chosenCityData.last_hour_measurement.status);
+  }
 
   return shouldRender ? (
     <div className="card-pollution__current-data-container">
@@ -23,14 +23,14 @@ const CardPollution = ({ location_name, citiesPollutionData }) => {
         <div
           className="card-pollution__current-data-overview-face"
           style={{
-            backgroundColor: data().color
+            backgroundColor: color
           }}
         ></div>
-        <OverviewText color={data().color}>
-          {data().chosenCityData.last_hour_measurement.status}
+        <OverviewText color={color}>
+          {chosenCityData.last_hour_measurement.status}
         </OverviewText>
       </div>
-      <DataSpecific color={data().color}>
+      <DataSpecific color={color}>
         <div className="card-pollution__current-data-specific-container">
           <div className="card-pollution__current-data-specific-primary">
             <div className="card-pollution__current-data-specific-primary-index">
@@ -38,7 +38,7 @@ const CardPollution = ({ location_name, citiesPollutionData }) => {
             </div>
             <div className="card-pollution__current-data-specific-primary-value">
               <span className="card-pollution__current-data-specific-primary-value--bold">
-                {data().chosenCityData.last_hour_measurement.values.pm10}
+                {Math.round(chosenCityData.last_hour_measurement.values.pm10)}
               </span>
               μg
             </div>
@@ -49,7 +49,7 @@ const CardPollution = ({ location_name, citiesPollutionData }) => {
             </div>
             <div className="card-pollution__current-data-specific-secondary-value">
               <span className="card-pollution__current-data-specific-secondary-value--bold">
-                {data().chosenCityData.last_hour_measurement.values.pm25}
+                {Math.round(chosenCityData.last_hour_measurement.values.pm25)}
               </span>
               μg
             </div>
@@ -58,21 +58,16 @@ const CardPollution = ({ location_name, citiesPollutionData }) => {
       </DataSpecific>
     </div>
   ) : (
-    <div></div>
+    <div className="card-pollution__current-data-container"></div>
   );
 };
 
-const mapStateToProps = ({
-  homepage: { citiesPollutionData },
-  searchbox: { location_name }
-}) => ({
-  citiesPollutionData,
-  location_name
+const mapStateToProps = createStructuredSelector({
+  chosenCityData: selectChosenCityData
 });
 
 CardPollution.propTypes = {
-  citiesPollutionData: PropTypes.array,
-  location_name: PropTypes.string
+  chosenCityData: PropTypes.object
 };
 
 export default connect(mapStateToProps)(CardPollution);

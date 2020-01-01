@@ -2,26 +2,26 @@ import React from "react";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
+import { createStructuredSelector } from "reselect";
 
 import { CardPollution, ScalePollution, Icon } from "../../components";
+import { selectLocation } from "../../redux/redux.selectors";
 import Town from "../../../../assets/images/Town.png";
 
 import "./CurrentPollutionSection.scss";
 
-const CurrentPollutionSection = ({ location_name }) => {
+const CurrentPollutionSection = ({ location }) => {
   const iconData = ["id1", "id2", "id3", "id4"];
 
   return (
     <div className="current-pollution">
       <div className="current-pollution__heading">
         Aktualna jakość powietrza w miejscowości{" "}
-        <span className="current-pollution__heading--bold">
-          {location_name}
-        </span>
+        <span className="current-pollution__heading--bold">{location}</span>
       </div>
       <div className="current-pollution__content">
         <div>
-          <CardPollution location={location_name} />
+          <CardPollution location={location} />
           <ScalePollution />
           <div className="current-pollution__content-information">
             <div className="current-pollution__content-information-icon">
@@ -49,13 +49,14 @@ const CurrentPollutionSection = ({ location_name }) => {
   );
 };
 
-const mapStateToProps = ({ searchbox: { location_name } }) => ({
-  location_name
+const mapStateToProps = createStructuredSelector({
+  location: selectLocation
 });
 
 CurrentPollutionSection.propTypes = {
   location_name: PropTypes.string,
-  citiesPollutionData: PropTypes.array
+  citiesPollutionData: PropTypes.array,
+  location: PropTypes.string
 };
 
 export default connect(mapStateToProps)(CurrentPollutionSection);

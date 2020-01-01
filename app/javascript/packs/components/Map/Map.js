@@ -1,8 +1,10 @@
 import React from "react";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
 import { setColor } from "../../helpers";
+import { selectCitiesPollutionData } from "../../redux/redux.selectors";
 
 import "./Map.scss";
 import { MapContainer, MapPath, MapText, MapDot } from "./Map.styles.jsx";
@@ -102,8 +104,8 @@ Map.propTypes = {
   citiesPollutionData: PropTypes.array
 };
 
-const mapStateToProps = ({ homepage: { citiesPollutionData } }) => ({
-  citiesPollutionData
+const mapStateToProps = createStructuredSelector({
+  citiesPollutionData: selectCitiesPollutionData
 });
 
 export default connect(mapStateToProps)(Map);

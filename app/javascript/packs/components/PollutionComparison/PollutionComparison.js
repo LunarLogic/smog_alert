@@ -1,9 +1,11 @@
 import React from "react";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
 import { PollutionBar } from "../";
 import { setColor } from "../../helpers";
+import { selectCitiesPollutionData } from "../../redux/redux.selectors";
 
 import "./PollutionComparison.scss";
 
@@ -47,8 +49,8 @@ PollutionComparison.propTypes = {
   citiesPollutionData: PropTypes.array
 };
 
-const mapStateToProps = ({ homepage: { citiesPollutionData } }) => ({
-  citiesPollutionData
+const mapStateToProps = createStructuredSelector({
+  citiesPollutionData: selectCitiesPollutionData
 });
 
 export default connect(mapStateToProps)(PollutionComparison);

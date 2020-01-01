@@ -41,9 +41,7 @@ const Searchbox = ({ cities, setChosenCity }) => {
 
   const handleChosenCity = city => {
     setLocation("");
-
     const chosenCity = cities.filter(item => item === city)[0];
-    console.log(chosenCity);
     setChosenCity(chosenCity);
   };
 
