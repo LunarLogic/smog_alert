@@ -1,2 +1,7 @@
 <h1>Dodaj użytkownika:</h1>
-<%= render partial: 'admin/users/users_form', locals: { button_name: 'Utwórz użytkownika' } %>
+<%= simple_form_for [:admin, @user] do |f| %>
+  <%= f.input :email, label: 'Adres email' %>
+  <%= f.input :password, label: 'Hasło' %>
+  <%= f.input :admin, label: 'Czy użytkownik jest adminem?' %>
+  <%= f.submit 'Utwórz użytkownika', class: 'btn btn-success' %>
+<% end %>

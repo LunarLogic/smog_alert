@@ -1,2 +1,9 @@
 <h1>Edytuj użytkownika:</h1>
-<%= render partial: 'admin/users/users_form', locals: { button_name: 'Zapisz zmiany' } %>
+<p><br>Email:</br><%= @user.email%></p>
+<p><br>Utworzony:</br><%= format_date(@user.created_at) %></p>
+<%= simple_form_for [:admin, @user] do |f| %>
+  <%= f.input :admin, label: 'Czy użytkownik jest adminem?' %>
+  <%= f.submit 'Zapisz zmiany', class: 'btn btn-success' %>
+<% end %>
+
+<p><%= link_to 'Wróć do listy użytkowników', admin_users_path %></p>
