@@ -1,11 +1,11 @@
 import React from "react";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
-import { PollutionIndexData, DropdownMenu } from "../";
+import { PollutionIndexData, DropdownMenu } from "..";
 
-import "./SidePollutionCard.scss";
+import "./PollutionSideCard.scss";
 
-const SidePollutionCard = () => {
+const PollutionSideCard = () => {
   const pollutionIndexData = [
     {
       indicator: "PM 10",
@@ -69,4 +69,4 @@ const SidePollutionCard = () => {
   );
 };
 
-export default SidePollutionCard;
+export default PollutionSideCard;

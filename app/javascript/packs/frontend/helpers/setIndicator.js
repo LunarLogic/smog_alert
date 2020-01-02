@@ -1,22 +1,31 @@
+import {
+  veryGood,
+  good,
+  moderate,
+  sufficient,
+  bad,
+  veryBad
+} from "./statusConstants.js";
+
 export const setIndicator = status => {
   let indicator;
   switch (status) {
-    case "bardzo dobry":
+    case veryGood:
       indicator = 1;
       break;
-    case "dobry":
+    case good:
       indicator = 2;
       break;
-    case "umiarkowany":
+    case moderate:
       indicator = 3;
       break;
-    case "dostateczny":
+    case sufficient:
       indicator = 4;
       break;
-    case "zły":
+    case bad:
       indicator = 5;
       break;
-    case "bardzo zły":
+    case veryBad:
       indicator = 6;
       break;
   }

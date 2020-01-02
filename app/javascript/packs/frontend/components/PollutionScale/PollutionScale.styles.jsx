@@ -6,6 +6,7 @@ export const Indicator = styled.div`
   border-top: 1.6rem solid ${({ color }) => color};
   border-left: 1.6rem solid transparent;
   border-right: 1.6rem solid transparent;
+  justify-self: center;
   width: 0;
   height: 0;
 `;

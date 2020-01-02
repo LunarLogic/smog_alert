@@ -1,4 +1,4 @@
-import CardPollution from "./CardPollution/CardPollution";
+import PollutionCard from "./PollutionCard/PollutionCard";
 import ContactDetail from "./ContactDetail/ContactDetail";
 import CustomButton from "./CustomButton/CustomButton";
 import DropdownMenu from "./DropdownMenu/DropdownMenu";
@@ -9,12 +9,12 @@ import Navigation from "./Navigation/Navigation";
 import PollutionBar from "./PollutionBar/PollutionBar";
 import PollutionComparison from "./PollutionComparison/PollutionComparison";
 import PollutionIndexData from "./PollutionIndexData/PollutionIndexData";
-import ScalePollution from "./ScalePollution/ScalePollution";
+import PollutionScale from "./PollutionScale/PollutionScale";
 import Searchbox from "./Searchbox/Searchbox";
-import SidePollutionCard from "./SidePollutionCard/SidePollutionCard";
+import PollutionSideCard from "./PollutionSideCard/PollutionSideCard";
 
 export {
-  CardPollution,
+  PollutionCard,
   ContactDetail,
   CustomButton,
   DropdownMenu,
@@ -25,7 +25,7 @@ export {
   PollutionBar,
   PollutionComparison,
   PollutionIndexData,
-  ScalePollution,
+  PollutionScale,
   Searchbox,
-  SidePollutionCard
+  PollutionSideCard
 };

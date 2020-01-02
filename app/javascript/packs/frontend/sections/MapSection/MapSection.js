@@ -1,7 +1,7 @@
 import React from "react";
 
 import { PollutionComparison, Map } from "../../components";
-// import {SidePollutionCard} from "../../components";
+// import {PollutionSideCard} from "../../components";
 
 import "./MapSection.scss";
 
@@ -20,7 +20,7 @@ const MapSection = () => {
         </div>
         <div className="map-section__content--info">
           <PollutionComparison />
-          {/* <SidePollutionCard /> */}
+          {/* <PollutionSideCard /> */}
         </div>
       </div>
     </div>
