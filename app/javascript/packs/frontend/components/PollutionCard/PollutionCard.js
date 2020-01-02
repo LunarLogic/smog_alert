@@ -3,13 +3,13 @@ import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
-import "./CardPollution.scss";
-import { OverviewText, DataSpecific } from "./CardPollution.styles.jsx";
+import "./PollutionCard.scss";
+import { OverviewText, DataSpecific } from "./PollutionCard.styles.jsx";
 
 import { selectChosenCityData } from "../../redux/redux.selectors";
 import { setColor } from "../../helpers/setColor";
 
-const CardPollution = ({ chosenCityData }) => {
+const PollutionCard = ({ chosenCityData }) => {
   let color;
   let shouldRender = chosenCityData;
 
@@ -66,8 +66,8 @@ const mapStateToProps = createStructuredSelector({
   chosenCityData: selectChosenCityData
 });
 
-CardPollution.propTypes = {
+PollutionCard.propTypes = {
   chosenCityData: PropTypes.object
 };
 
-export default connect(mapStateToProps)(CardPollution);
+export default connect(mapStateToProps)(PollutionCard);

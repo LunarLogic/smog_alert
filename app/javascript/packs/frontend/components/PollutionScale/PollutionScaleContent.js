@@ -1,4 +1,4 @@
-const scalePollutionContent = {
+const PollutionScaleContent = {
   colorBox: [
     "good-first",
     "good-second",
@@ -10,4 +10,4 @@ const scalePollutionContent = {
   description: ["Dobra", "Niezdrowa", "Bardzo zła"]
 };
 
-export default scalePollutionContent;
+export default PollutionScaleContent;

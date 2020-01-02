@@ -1,22 +1,31 @@
+import {
+  veryGood,
+  good,
+  moderate,
+  sufficient,
+  bad,
+  veryBad
+} from "./statusConstants.js";
+
 export const setColor = status => {
   let color;
   switch (status) {
-    case "bardzo dobry":
+    case veryGood:
       color = "#97cd2e";
       break;
-    case "dobry":
+    case good:
       color = "#c3d735";
       break;
-    case "umiarkowany":
+    case moderate:
       color = "#fbd42d";
       break;
-    case "dostateczny":
+    case sufficient:
       color = "#ff8f00";
       break;
-    case "zły":
+    case bad:
       color = "#cc571a";
       break;
-    case "bardzo zły":
+    case veryBad:
       color = "#7d0d0f";
       break;
   }
