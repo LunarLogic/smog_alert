@@ -16,6 +16,3 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.appendChild(document.createElement("div"))
   );
 });
-
-require("trix")
-require("@rails/actiontext")
