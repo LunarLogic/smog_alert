@@ -4,7 +4,11 @@ module Calendar
       averages = DailyAverageValues.new.call(location, year)
       result = {}
       averages.each do |day_data|
-        status = Pm10GiosScaleChecker.new(day_data[:pm10]).call
+        if day_data[:number_of_measurements] < 18
+          status = 'zbyt mało danych'
+        else
+          status = Pm10GiosScaleChecker.new(day_data[:pm10]).call
+        end
         if result[status].nil?
           result[status] = [day_data[:day]]
         else
