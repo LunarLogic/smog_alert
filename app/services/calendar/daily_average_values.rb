@@ -7,7 +7,12 @@ module Calendar
       days.each do |day|
         day_measurements = year_measurements.where(date: day)
         day_measurements_with_data = day_measurements.where.not(pm10: 0)
-        daily_measurements << { day: day, pm10: day_measurements_with_data.average(:pm10), pm25: day_measurements_with_data.average(:pm25), number_of_measurements: day_measurements_with_data.count }
+        daily_measurements << {
+          day: day,
+          pm10: day_measurements_with_data.average(:pm10),
+          pm25: day_measurements_with_data.average(:pm25),
+          number_of_measurements: day_measurements_with_data.count
+        }
       end
       daily_measurements
     end
