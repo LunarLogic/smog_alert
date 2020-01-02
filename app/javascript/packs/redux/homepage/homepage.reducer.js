@@ -1,9 +1,7 @@
 import mapActionTypes from "./homepage.types";
 
 const INITIAL_STATE = {
-  citiesPollutionData: [],
-  location: "",
-  pollutionValue: null
+  citiesPollutionData: []
 };
 
 const homepageReducer = (state = INITIAL_STATE, action) => {

@@ -13,7 +13,6 @@ const Homepage = ({ getCitiesPollutionData, citiesPollutionData }) => {
   useEffect(() => {
     getCitiesPollutionData();
   }, []);
-  console.log(citiesPollutionData);
 
   return (
     <div className="homepage">
