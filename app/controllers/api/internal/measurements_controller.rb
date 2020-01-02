@@ -31,6 +31,6 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
   def calendar_params
     params.require(:year)
     params.require(:location_id)
-    params
+    params.permit([:year, :location_id])
   end
 end
