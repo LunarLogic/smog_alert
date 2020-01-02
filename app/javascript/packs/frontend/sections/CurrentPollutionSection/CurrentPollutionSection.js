@@ -4,9 +4,9 @@ import { PropTypes } from "prop-types";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import { createStructuredSelector } from "reselect";
 
-import { CardPollution, ScalePollution, Icon } from "../../components";
+import { PollutionCard, PollutionScale, Icon } from "../../components";
 import { selectLocation } from "../../redux/redux.selectors";
-import Town from "../../../../assets/images/Town.png";
+import Town from "../../assets/Town.png";
 
 import "./CurrentPollutionSection.scss";
 
@@ -21,8 +21,8 @@ const CurrentPollutionSection = ({ location }) => {
       </div>
       <div className="current-pollution__content">
         <div>
-          <CardPollution location={location} />
-          <ScalePollution />
+          <PollutionCard />
+          <PollutionScale />
           <div className="current-pollution__content-information">
             <div className="current-pollution__content-information-icon">
               <InfoOutlinedIcon />
