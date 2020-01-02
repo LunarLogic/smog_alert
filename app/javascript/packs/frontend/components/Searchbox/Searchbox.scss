@@ -1,0 +1,71 @@
+@import "../../styles/variables";
+
+.searchbox {
+  width: 44rem;
+  &__input {
+    position: relative;
+    display: flex;
+    width: inherit;
+    height: 6rem;
+    border: 0.1rem solid $frameColor;
+    border-radius: 0.4rem;
+    overflow: hidden;
+
+    &--icon {
+      height: 6rem;
+      width: 6rem;
+      background-color: $greyLight;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      svg {
+        width: 3.2rem;
+        height: 3.2rem;
+        color: $grey;
+      }
+    }
+    &--text-field {
+      width: 100%;
+      border: none;
+      outline: none;
+      margin-left: 1.2rem;
+      font-size: 1.6rem;
+      color: $grey;
+    }
+  }
+  &__list {
+    position: absolute;
+    width: inherit;
+    max-height: 20rem;
+    background-color: white;
+    z-index: 100;
+    margin-top: -1px;
+    border: 0.1rem solid $frameColor;
+    border-radius: 0.4rem;
+    overflow: hidden;
+
+    &--city {
+      cursor: pointer;
+      display: block;
+      font-size: 1.6rem;
+      line-height: 1.9rem;
+      color: #020221 !important;
+      padding: 2.1rem !important;
+      &:hover {
+        background-color: $greyLighter;
+      }
+    }
+  }
+  &__warning {
+    position: absolute;
+    color: $warningColor;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    margin-top: 1rem;
+  }
+  .hidden {
+    display: none;
+  }
+}
