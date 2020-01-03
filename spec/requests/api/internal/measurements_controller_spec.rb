@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 describe '/api/internal/measurements' do
-  let(:location) { FactoryBot.create(:location) }
-
-  let(:measurement) { location.measurements.create(FactoryBot.attributes_for(:measurement)) }
+  let(:location) { FactoryBot.create(:location_with_measurements) }
+  let(:measurement) { location.measurements.last }
 
   describe 'get /calendar_values' do
     it 'repsonds with json containing the right data' do
@@ -14,7 +13,7 @@ describe '/api/internal/measurements' do
             'day' => measurement.date.to_s,
             'pm10' => measurement.pm10.to_s,
             'pm25' => measurement.pm25.to_s,
-            'number_of_measurements' => 1
+            'number_of_measurements' => 10
           },
         ]
       }
