@@ -18,7 +18,7 @@ const PollutionComparison = ({ citiesPollutionData, getChosenCity }) => {
     getChosenCity(city);
   };
 
-  if (citiesPollutionData.length !== 0) {
+  if (citiesPollutionData.length) {
     sortedPollutionData = citiesPollutionData.sort(
       (a, b) =>
         b.last_hour_measurement.values.pm10 -
@@ -30,7 +30,7 @@ const PollutionComparison = ({ citiesPollutionData, getChosenCity }) => {
 
   return (
     <div className="pollution-comparison">
-      {citiesPollutionData.length !== 0
+      {citiesPollutionData.length
         ? sortedPollutionData.map(cityData => {
             const { location_name, last_hour_measurement } = cityData;
             const width =
