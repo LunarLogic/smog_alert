@@ -13,18 +13,21 @@ import { Indicator } from "./PollutionScale.styles.jsx";
 
 const PollutionScale = ({ chosenCityData }) => {
   const { colorBox, description } = PollutionScaleContent;
-
   let color;
   let indicator;
-  let shouldRender = chosenCityData;
 
-  if (shouldRender) {
-    const status = chosenCityData.last_hour_measurement.status;
-    color = setColor(status);
-    indicator = setIndicator(status);
+  if (chosenCityData) {
+    var { last_hour_measurement } = chosenCityData;
+    if (last_hour_measurement) {
+      color = setColor(last_hour_measurement.status);
+      indicator = setIndicator(last_hour_measurement.status);
+    } else {
+      color = "transparent";
+      indicator = null;
+    }
   }
 
-  return shouldRender ? (
+  return chosenCityData ? (
     <div className="scale__container">
       <Indicator color={color} indicator={indicator} />
       <div className="scale__container-ranges">
