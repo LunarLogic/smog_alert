@@ -1,11 +1,15 @@
 import React from "react";
+import { PropTypes } from "prop-types";
 
 import { PollutionComparison, Map } from "../../components";
-// import {PollutionSideCard} from "../../components";
+import { PollutionSideCard } from "../../components";
 
 import "./MapSection.scss";
+import { createStructuredSelector } from "reselect";
+import { selectMapLocation } from "../../redux/redux.selectors";
+import { connect } from "react-redux";
 
-const MapSection = () => {
+const MapSection = ({ chosenCity }) => {
   return (
     <div className="map-section">
       <div className="map-section__heading">
@@ -19,12 +23,23 @@ const MapSection = () => {
           <Map />
         </div>
         <div className="map-section__content--info">
-          <PollutionComparison />
-          {/* <PollutionSideCard /> */}
+          {chosenCity ? (
+            <PollutionSideCard locationName={chosenCity} />
+          ) : (
+            <PollutionComparison />
+          )}
         </div>
       </div>
     </div>
   );
 };
 
-export default MapSection;
+MapSection.propTypes = {
+  chosenCity: PropTypes.string
+};
+
+const mapStateToProps = createStructuredSelector({
+  chosenCity: selectMapLocation
+});
+
+export default connect(mapStateToProps)(MapSection);

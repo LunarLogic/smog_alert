@@ -7,28 +7,32 @@ import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import data from "../../pages/Homepage/data";
 
 import "./DropdownMenu.scss";
+import { PropTypes } from "prop-types";
 
-const DropdownMenu = () => {
+const DropdownMenu = ({ value }) => {
   const options = data.map(cityData => ({
     value: cityData.location,
     label: cityData.location,
     className: "dropdown__control--menu-option"
   }));
 
-  const defaultOption = options[0];
-
   return (
     <Dropdown
       options={options}
-      value={defaultOption}
+      value={value}
       className="dropdown"
       controlClassName="dropdown__control"
       placeholderClassName="dropdown__control--placeholder"
       menuClassName="dropdown__control--menu"
       arrowClosed={<ExpandMoreIcon />}
       arrowOpen={<ExpandLessIcon />}
+      // onChange={}
     />
   );
+};
+
+DropdownMenu.propTypes = {
+  value: PropTypes.string
 };
 
 export default DropdownMenu;

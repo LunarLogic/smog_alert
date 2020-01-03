@@ -3,9 +3,9 @@ import { PropTypes } from "prop-types";
 
 import "./PollutionBar.scss";
 
-const PollutionBar = ({ width, backgroundColor, location, value }) => {
+const PollutionBar = ({ width, backgroundColor, location, value, onClick }) => {
   return (
-    <div className="pollution-bar">
+    <div className="pollution-bar" onClick={onClick}>
       <div className="pollution-bar__info">
         <div className="pollution-bar__info-location">{location}</div>
         <div className="pollution-bar__info-type">PM10</div>
@@ -23,7 +23,8 @@ PollutionBar.propTypes = {
   width: PropTypes.number,
   backgroundColor: PropTypes.string,
   location: PropTypes.string,
-  value: PropTypes.number
+  value: PropTypes.number,
+  onClick: PropTypes.func
 };
 
 export default PollutionBar;
