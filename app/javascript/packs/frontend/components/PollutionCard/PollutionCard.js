@@ -4,20 +4,26 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
 import "./PollutionCard.scss";
+import { noDataColor } from "../../styles/_variables";
 import { OverviewText, DataSpecific } from "./PollutionCard.styles.jsx";
 
 import { selectChosenCityData } from "../../redux/redux.selectors";
 import { setColor } from "../../helpers/setColor";
 
 const PollutionCard = ({ chosenCityData }) => {
+  const noData = "--";
   let color;
-  let shouldRender = chosenCityData;
 
-  if (shouldRender) {
-    color = setColor(chosenCityData.last_hour_measurement.status);
+  if (chosenCityData) {
+    var { last_hour_measurement } = chosenCityData;
+    if (last_hour_measurement) {
+      color = setColor(last_hour_measurement.status);
+    } else {
+      color = noDataColor;
+    }
   }
 
-  return shouldRender ? (
+  return chosenCityData ? (
     <div className="card-pollution__current-data-container">
       <div className="card-pollution__current-data-overview">
         <div
@@ -27,7 +33,9 @@ const PollutionCard = ({ chosenCityData }) => {
           }}
         ></div>
         <OverviewText color={color}>
-          {chosenCityData.last_hour_measurement.status}
+          {last_hour_measurement
+            ? last_hour_measurement.status
+            : "brak pomiaru"}
         </OverviewText>
       </div>
       <DataSpecific color={color}>
@@ -38,7 +46,9 @@ const PollutionCard = ({ chosenCityData }) => {
             </div>
             <div className="card-pollution__current-data-specific-primary-value">
               <span className="card-pollution__current-data-specific-primary-value--bold">
-                {Math.round(chosenCityData.last_hour_measurement.values.pm10)}
+                {last_hour_measurement
+                  ? Math.round(chosenCityData.last_hour_measurement.values.pm10)
+                  : noData}
               </span>
               μg
             </div>
@@ -49,7 +59,9 @@ const PollutionCard = ({ chosenCityData }) => {
             </div>
             <div className="card-pollution__current-data-specific-secondary-value">
               <span className="card-pollution__current-data-specific-secondary-value--bold">
-                {Math.round(chosenCityData.last_hour_measurement.values.pm25)}
+                {last_hour_measurement
+                  ? Math.round(chosenCityData.last_hour_measurement.values.pm25)
+                  : noData}
               </span>
               μg
             </div>

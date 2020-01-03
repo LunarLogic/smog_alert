@@ -7,26 +7,35 @@ import {
   veryBad
 } from "./statusConstants.js";
 
+import {
+  goodFirst,
+  goodSecond,
+  unhealthyFirst,
+  unhealthySecond,
+  badFirst,
+  badSecond
+} from "../styles/_variables";
+
 export const setColor = status => {
   let color;
   switch (status) {
     case veryGood:
-      color = "#97cd2e";
+      color = goodFirst;
       break;
     case good:
-      color = "#c3d735";
+      color = goodSecond;
       break;
     case moderate:
-      color = "#fbd42d";
+      color = unhealthyFirst;
       break;
     case sufficient:
-      color = "#ff8f00";
+      color = unhealthySecond;
       break;
     case bad:
-      color = "#cc571a";
+      color = badFirst;
       break;
     case veryBad:
-      color = "#7d0d0f";
+      color = badSecond;
       break;
   }
   return color;
