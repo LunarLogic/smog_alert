@@ -15,10 +15,10 @@ import mapElements from "./MapElements";
 
 const Map = ({ citiesPollutionData, chosenCity }) => {
   const findColor = city => {
-    let chosenCity2 = citiesPollutionData.find(
+    let clickedCity = citiesPollutionData.find(
       cityData => cityData.location_name === city
     );
-    let color = setColor(chosenCity2.last_hour_measurement.status);
+    let color = setColor(clickedCity.last_hour_measurement.status);
     return color;
   };
 

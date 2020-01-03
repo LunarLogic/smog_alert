@@ -40,7 +40,7 @@ const PollutionSideCard = ({ chosenCityData, getChosenCity }) => {
             Wybierz miejscowość
           </div>
           <div className="side-pollution-card__content--dropdown-options">
-            <DropdownMenu value={chosenCityData.location_name} />
+            <DropdownMenu />
           </div>
         </div>
         <div className="side-pollution-card__content--air-quality">
