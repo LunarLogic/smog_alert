@@ -11,7 +11,7 @@ module Calendar
           day: day,
           pm10: day_measurements_with_data.average(:pm10),
           pm25: day_measurements_with_data.average(:pm25),
-          number_of_measurements: day_measurements_with_data.count
+          number_of_measurements: day_measurements_with_data.size
         }
       end
       daily_measurements
