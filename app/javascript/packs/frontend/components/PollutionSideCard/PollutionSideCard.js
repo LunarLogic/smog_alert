@@ -25,12 +25,12 @@ const PollutionSideCard = ({ chosenCityData, getChosenCity }) => {
 
   return (
     <div className="side-pollution-card">
-      <div className="side-pollution-card__return-button">
+      <div
+        className="side-pollution-card__return-button"
+        onClick={removeChosenCity}
+      >
         <ArrowBackIcon />
-        <div
-          className="side-pollution-card__return-button--text"
-          onClick={removeChosenCity}
-        >
+        <div className="side-pollution-card__return-button--text">
           Wróć do porównania
         </div>
       </div>
@@ -55,6 +55,7 @@ const PollutionSideCard = ({ chosenCityData, getChosenCity }) => {
               </PollutionOverviewText>
             </div>
             <div className="side-pollution-card__content--air-quality-info-specific">
+              {/* Below solution is temporary - changing it will probably require some changes in the structure of an object recieved from API */}
               <PollutionIndexData
                 indicator="PM 10"
                 value={chosenCityData.last_hour_measurement.values.pm10}
