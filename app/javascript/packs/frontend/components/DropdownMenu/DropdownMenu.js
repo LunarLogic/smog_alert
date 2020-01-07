@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -7,51 +7,66 @@ import { createStructuredSelector } from "reselect";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
 
-import data from "../../pages/Homepage/data";
-
 import "./DropdownMenu.scss";
-import { selectMapLocation } from "../../redux/redux.selectors";
+import {
+  selectMapLocation,
+  selectCitiesPollutionData
+} from "../../redux/redux.selectors";
 import { getChosenCity } from "../../redux/mapSection/mapSection.actions";
 
-const DropdownMenu = ({ chosenCity, getChosenCity }) => {
-  const options = data.map(cityData => ({
-    value: cityData.location,
-    label: cityData.location,
+const DropdownMenu = ({ citiesPollutionData, chosenCity, getChosenCity }) => {
+  const options = citiesPollutionData.map(cityData => ({
+    value: cityData.location_name,
+    label: cityData.location_name,
     className: "dropdown__control--menu-option"
   }));
 
-  // Below function along with onChange attribute on Dropdown will be changed, but it's working, so I left it for now
+  const [showMenu, setShowMenu] = useState(false);
+  const [arrowUp, setArrow] = useState(false);
+
+  const toggleMenu = () => {
+    showMenu === false ? setShowMenu(true) : setShowMenu(false);
+    arrowUp === false ? setArrow(true) : setArrow(false);
+  };
+
   const changeChosenCity = () => {
-    let city = document.querySelector(
-      ".Dropdown-placeholder.dropdown__control--placeholder.is-selected"
-    ).textContent;
+    let city = event.target.textContent;
+    setShowMenu(false);
     getChosenCity(city);
   };
 
   return (
-    <Dropdown
-      options={options}
-      value={chosenCity}
-      className="dropdown"
-      controlClassName="dropdown__control"
-      placeholderClassName="dropdown__control--placeholder"
-      menuClassName="dropdown__control--menu"
-      arrowClosed={<ExpandMoreIcon />}
-      arrowOpen={<ExpandLessIcon />}
-      onChange={() => {
-        setTimeout(changeChosenCity, 10);
-      }}
-    />
+    <div className="dropdown">
+      <div className="dropdown__control" onClick={toggleMenu}>
+        <div className="dropdown__control--placeholder">{chosenCity}</div>
+        {arrowUp ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+      </div>
+      {showMenu ? (
+        <div id="menu" className="dropdown__control--menu">
+          {options.map(city => (
+            <div
+              className={city.className}
+              key={city.value}
+              onClick={changeChosenCity}
+            >
+              {city.value}
+            </div>
+          ))}
+        </div>
+      ) : null}
+    </div>
   );
 };
 
 DropdownMenu.propTypes = {
   chosenCity: PropTypes.string,
-  getChosenCity: PropTypes.func
+  getChosenCity: PropTypes.func,
+  citiesPollutionData: PropTypes.array
 };
 
 const mapStateToProps = createStructuredSelector({
-  chosenCity: selectMapLocation
+  chosenCity: selectMapLocation,
+  citiesPollutionData: selectCitiesPollutionData
 });
 
 const mapDispatchToProps = dispatch => ({

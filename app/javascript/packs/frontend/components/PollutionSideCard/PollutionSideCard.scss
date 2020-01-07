@@ -7,6 +7,7 @@
     border-bottom: 0.1rem solid $frameColor;
     padding: 0 3.5rem;
     color: $secondaryColor;
+    cursor: pointer;
 
     display: flex;
     align-items: center;
@@ -28,6 +29,7 @@
     padding: 2.3rem 3.4rem;
     &--dropdown {
       margin-bottom: 4.1rem;
+      position: relative;
       &-label {
         font-size: 1.6rem;
         line-height: 1.9rem;
