@@ -16,12 +16,14 @@ Rails.application.routes.draw do
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
-  
+
   namespace :api do
     namespace :internal do
       resources :measurements, only: [] do
         collection do
           get :current
+          get :calendar_values
+          get :calendar_status
         end
       end
     end
