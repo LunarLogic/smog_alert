@@ -26,7 +26,7 @@ PollutionIndexData.propTypes = {
   indicator: PropTypes.string,
   value: PropTypes.number,
   percent: PropTypes.number,
-  limit: PropTypes.number
+  limit: PropTypes.string
 };
 
 export default PollutionIndexData;

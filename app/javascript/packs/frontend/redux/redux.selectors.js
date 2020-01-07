@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
 
-export const selectSearchbox = state => state.searchbox;
+const selectSearchbox = state => state.searchbox;
 
 export const selectLocation = createSelector(
   [selectSearchbox],
@@ -16,6 +16,24 @@ export const selectCitiesPollutionData = createSelector(
 
 export const selectChosenCityData = createSelector(
   [selectCitiesPollutionData, selectLocation],
+  (citiesPollutionData, location_name) => {
+    if (citiesPollutionData.length && location_name) {
+      return citiesPollutionData.find(
+        item => item.location_name === location_name
+      );
+    }
+  }
+);
+
+const selectMapSection = state => state.mapSection;
+
+export const selectMapLocation = createSelector(
+  [selectMapSection],
+  mapSection => mapSection.location_name
+);
+
+export const selectMapChosenCityData = createSelector(
+  [selectCitiesPollutionData, selectMapLocation],
   (citiesPollutionData, location_name) => {
     if (citiesPollutionData.length && location_name) {
       return citiesPollutionData.find(

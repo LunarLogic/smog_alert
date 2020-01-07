@@ -4,18 +4,21 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
 import { setColor } from "../../helpers";
-import { selectCitiesPollutionData } from "../../redux/redux.selectors";
+import {
+  selectCitiesPollutionData,
+  selectMapLocation
+} from "../../redux/redux.selectors";
 
 import "./Map.scss";
 import { MapContainer, MapPath, MapText, MapDot } from "./Map.styles.jsx";
 import mapElements from "./MapElements";
 
-const Map = ({ citiesPollutionData }) => {
+const Map = ({ citiesPollutionData, chosenCity }) => {
   const findColor = city => {
-    let chosenCity = citiesPollutionData.find(
+    let clickedCity = citiesPollutionData.find(
       cityData => cityData.location_name === city
     );
-    let color = setColor(chosenCity.last_hour_measurement.status);
+    let color = setColor(clickedCity.last_hour_measurement.status);
     return color;
   };
 
@@ -50,6 +53,14 @@ const Map = ({ citiesPollutionData }) => {
     });
   };
 
+  const findChosenCityColor = city => {
+    if (city === chosenCity) {
+      return findColor(city);
+    } else {
+      return "#e5e6e6";
+    }
+  };
+
   let shouldRender = citiesPollutionData.length !== 0;
   return (
     <div>
@@ -71,6 +82,8 @@ const Map = ({ citiesPollutionData }) => {
                 id={element.location}
                 key={element.location}
                 color={findColor(element.location)}
+                fill={findChosenCityColor(element.location)}
+                opacity={chosenCity === element.location ? "0.5" : "1"}
                 d={element.path}
                 onClick={handleColorChange}
               />
@@ -101,11 +114,13 @@ const Map = ({ citiesPollutionData }) => {
 };
 
 Map.propTypes = {
-  citiesPollutionData: PropTypes.array
+  citiesPollutionData: PropTypes.array,
+  chosenCity: PropTypes.string
 };
 
 const mapStateToProps = createStructuredSelector({
-  citiesPollutionData: selectCitiesPollutionData
+  citiesPollutionData: selectCitiesPollutionData,
+  chosenCity: selectMapLocation
 });
 
 export default connect(mapStateToProps)(Map);

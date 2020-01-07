@@ -6,12 +6,17 @@ import { createStructuredSelector } from "reselect";
 import { PollutionBar } from "../";
 import { setColor } from "../../helpers";
 import { selectCitiesPollutionData } from "../../redux/redux.selectors";
+import { getChosenCity } from "../../redux/mapSection/mapSection.actions";
 
 import "./PollutionComparison.scss";
 
-const PollutionComparison = ({ citiesPollutionData }) => {
+const PollutionComparison = ({ citiesPollutionData, getChosenCity }) => {
   let highestPollutionValue;
   let sortedPollutionData;
+
+  const handleChosenCity = city => {
+    getChosenCity(city);
+  };
 
   if (citiesPollutionData.length) {
     sortedPollutionData = citiesPollutionData.sort(
@@ -37,6 +42,9 @@ const PollutionComparison = ({ citiesPollutionData }) => {
                 backgroundColor={setColor(last_hour_measurement.status)}
                 location={location_name}
                 value={last_hour_measurement.values.pm10}
+                onClick={() => {
+                  handleChosenCity(location_name);
+                }}
               />
             );
           })
@@ -46,11 +54,19 @@ const PollutionComparison = ({ citiesPollutionData }) => {
 };
 
 PollutionComparison.propTypes = {
-  citiesPollutionData: PropTypes.array
+  citiesPollutionData: PropTypes.array,
+  getChosenCity: PropTypes.func
 };
+
+const mapDispatchToProps = dispatch => ({
+  getChosenCity: chosenCity => dispatch(getChosenCity(chosenCity))
+});
 
 const mapStateToProps = createStructuredSelector({
   citiesPollutionData: selectCitiesPollutionData
 });
 
-export default connect(mapStateToProps)(PollutionComparison);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PollutionComparison);
