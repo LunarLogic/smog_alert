@@ -29,20 +29,20 @@ brew services start redis
 - Run below commands
 
 ```
-rake db:setup
-
 bundle install
 yarn install
+
+# setup database
+rake db:setup
+
 bundle exec rails s
 
 # In separate terminal window run:
 bin/webpack-dev-server
 
 # To run migrations in database:
-
 rails db:migrate
 RAILS_ENV=test rails db:migrate
-
 ```
 
 - Run seeds to setup sample records in database (email: admin@example.com, password: `123456`)
