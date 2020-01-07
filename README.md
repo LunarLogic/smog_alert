@@ -1,5 +1,7 @@
 # Smog alert
 
+[![CircleCI](https://circleci.com/gh/LunarLogic/smog_alert.svg?style=svg&circle-token=cca65188e46e468ae17d54c96244c724b568a0cb)](https://circleci.com/gh/LunarLogic/smog_alert)
+
 ## Requirements
 
 - Ruby 2.6.5
