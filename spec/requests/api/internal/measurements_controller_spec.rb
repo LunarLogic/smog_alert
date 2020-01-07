@@ -4,7 +4,7 @@ describe '/api/internal/measurements' do
   let(:location) { FactoryBot.create(:location_with_measurements) }
   let(:measurement) { location.measurements.last }
 
-  describe 'get /calendar_values' do
+  describe 'GET /calendar_values' do
     it 'repsonds with json containing the right data' do
       expected_response = {
         'year' => measurement.date.year,
@@ -25,7 +25,7 @@ describe '/api/internal/measurements' do
     end
   end
 
-  describe '/calendar_status' do
+  describe 'GET /calendar_status' do
     it 'repsonds with json containing the right data' do
       expected_response = {
         '2019' => {
