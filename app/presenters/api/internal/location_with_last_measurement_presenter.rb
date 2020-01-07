@@ -8,6 +8,7 @@ class API::Internal::LocationWithLastMeasurementPresenter
     {
       location_id: @location.id,
       location_name: @location.name,
+      # location_street: @location.street,
       lat: @location.latitude,
       lng: @location.longitude,
       last_hour_measurement: last_hour_measurement_values,
@@ -22,10 +23,10 @@ class API::Internal::LocationWithLastMeasurementPresenter
     {
       from_date_time: @last_hour_measurement.from_date_time,
       till_date_time: @last_hour_measurement.till_date_time,
-      values: {
-        pm10: @last_hour_measurement.pm10,
-        pm25: @last_hour_measurement.pm25,
-      },
+      values: [
+        { name: 'PM 10', value: @last_hour_measurement.pm10 },
+        { name: 'PM 2.5', value: @last_hour_measurement.pm25 },
+      ],
       status: pm10checker.call
     }
   end
