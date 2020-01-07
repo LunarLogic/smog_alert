@@ -122,10 +122,9 @@ namespace :database do
     csv = CSV.parse(csv_text, headers: true)
     csv.each do |row|
       location_for_id = old_ids_for_locations.select { |e| e[:id].include?(row[0].to_i) }
-      #handle when location_for_id is nil
-      if location_for_id.empty?
-        next
-      end
+      # handle when location_for_id is empty
+      next if location_for_id.empty?
+
       location = Location.find_by(
         name: location_for_id[0][:location][:city],
         street: location_for_id[0][:location][:street],
