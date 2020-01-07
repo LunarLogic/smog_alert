@@ -123,7 +123,10 @@ namespace :database do
     csv.each do |row|
       location_for_id = old_ids_for_locations.select { |e| e[:id].include?(row[0].to_i) }
       # handle when location_for_id is empty
-      next if location_for_id.empty?
+      if location_for_id.empty?
+        puts 'Location is not in our db'
+        next
+      end
 
       location = Location.find_by(
         name: location_for_id[0][:location][:city],
