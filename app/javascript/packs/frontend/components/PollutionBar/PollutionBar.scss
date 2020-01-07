@@ -1,0 +1,40 @@
+@import "../../styles/variables";
+
+.pollution-bar {
+  padding: 1.95rem 2.4rem;
+  border-bottom: 1px solid $frameColor;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $greyLighter;
+
+    .pollution-bar__info-location {
+      color: $secondaryColor;
+    }
+  }
+  &__info {
+    display: flex;
+    &-location {
+      font-size: 1.8rem;
+      line-height: 2.1rem;
+      font-weight: bold;
+      color: $textColor;
+      margin-right: 2.2rem;
+    }
+    &-type,
+    &-value {
+      font-size: 1.6rem;
+      line-height: 2.1rem;
+      color: $grey;
+    }
+    &-type {
+      font-weight: bold;
+      margin-right: 0.7rem;
+    }
+  }
+  &__bar {
+    height: 1.8rem;
+    border-radius: 0.9rem;
+    margin-top: 0.9rem;
+  }
+}

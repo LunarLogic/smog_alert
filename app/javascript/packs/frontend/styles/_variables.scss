@@ -1,0 +1,31 @@
+$primaryColor: grey;
+$secondaryColor: #4259ef;
+$secondaryColorContrast: #ffffff;
+$secondaryColorDark: #0030bb;
+$greyLight: #e9e9eb;
+$greyLighter: #f5f5f9;
+$grey: #747485;
+$frameColor: #c8c8cd;
+$textColor: #020221;
+
+$goodFirst: #97cd2e;
+$goodSecond: #c3d735;
+$unhealthyFirst: #fbd42d;
+$unhealthySecond: #ff8f00;
+$badFirst: #cc571a;
+$badSecond: #7d0d0f;
+
+$warningColor: #b71c1c;
+$noDataColor: #a3a3a4;
+
+:export {
+  grey: $grey;
+  warning: $warningColor;
+  noDataColor: $noDataColor;
+  goodFirst: $goodFirst;
+  goodSecond: $goodSecond;
+  unhealthyFirst: $unhealthyFirst;
+  unhealthySecond: $unhealthySecond;
+  badFirst: $badFirst;
+  badSecond: $badSecond;
+}

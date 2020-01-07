@@ -1,16 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import App from "./frontend/App";
 import { Provider } from "react-redux";
-import { store } from "./redux/store";
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "./frontend/redux/store";
 import ErrorBoundary from "@honeybadger-io/react";
-import { honeybadger } from "./honeybadger";
+import { honeybadger } from "./frontend/honeybadger";
 
 document.addEventListener("DOMContentLoaded", () => {
   ReactDOM.render(
     <ErrorBoundary honeybadger={honeybadger}>
       <Provider store={store}>
-        <App />
+        <PersistGate persistor={persistor}>
+          <App />
+        </PersistGate>
       </Provider>
     </ErrorBoundary>,
     document.body.appendChild(document.createElement("div"))
