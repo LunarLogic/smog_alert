@@ -16,7 +16,7 @@ describe 'admin managing users of the application' do
     visit admin_users_path
   end
 
-  scenario 'verify that the teble with users exists' do
+  scenario 'verify that the table with users exists' do
     expect(page).to have_table('users')
   end
 
