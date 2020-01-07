@@ -122,23 +122,34 @@ namespace :database do
     csv = CSV.parse(csv_text, headers: true)
     csv.each do |row|
       location_for_id = old_ids_for_locations.select { |e| e[:id].include?(row[0].to_i) }
+      #handle when location_for_id is nil
+      if location_for_id.empty?
+        next
+      end
       location = Location.find_by(
         name: location_for_id[0][:location][:city],
         street: location_for_id[0][:location][:street],
       )
       till_date_time = row['tillDateTime0']
-      puts "Create measurement for #{location.name}"
-      puts location.measurements.create(
-        date: Time.find_zone('UTC').parse(till_date_time).to_date,
-        hour: Time.find_zone('UTC').parse(till_date_time).hour,
-        pm10: row['pm10'],
-        pm25: row['pm25'],
-        temperature: row['temperature'],
-        humidity: row['humidity'],
-        pressure: row['pressure'],
-        from_date_time: row['fromDateTime0'],
-        till_date_time: till_date_time,
-      )
+      day = Time.find_zone('UTC').parse(till_date_time).to_date
+      hour = Time.find_zone('UTC').parse(till_date_time).hour
+      if location.measurements.find_by(date: day,
+                                       hour: hour.to_i)
+        puts "Skip because measurement for #{location.name} for #{day} at #{hour} already exists"
+      else
+        puts "Create measurement for #{location.name}"
+        puts location.measurements.create(
+          date: day,
+          hour: hour,
+          pm10: row['pm10'],
+          pm25: row['pm25'],
+          temperature: row['temperature'],
+          humidity: row['humidity'],
+          pressure: row['pressure'],
+          from_date_time: row['fromDateTime0'],
+          till_date_time: till_date_time,
+        )
+      end
     end
   end
 end
