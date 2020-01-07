@@ -15,7 +15,7 @@ cities = [
     name: 'Aleksandrowice',
     latitude: 50.081104,
     longitude: 19.764215,
-    installation_id: 883,
+    installation_id: 883, # airly sensor id
     street: nil,
     number: nil,
     sponsor: 'Zabierzów'
