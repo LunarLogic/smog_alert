@@ -54,6 +54,8 @@ RAILS_ENV=test rails db:migrate
 rails db:seed
 ```
 
+- You can see background jobs in Sidekiq web view by visiting http://localhost:3000/sidekiq You must be signed in as admin user.
+
 ### Editor config
 
 - Visual Studio Code
