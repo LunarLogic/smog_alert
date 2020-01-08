@@ -8,11 +8,20 @@ class API::Internal::LocationWithLastMeasurementPresenter
     {
       location_id: @location.id,
       location_name: @location.name,
-      # location_street: @location.street,
+      location_street: @location.street,
+      location_display_name: display_name,
       lat: @location.latitude,
       lng: @location.longitude,
       last_hour_measurement: last_hour_measurement_values,
     }
+  end
+
+  def display_name
+    if @location.street
+      "#{@location.name}, #{@location.street}"
+    else
+      @location.name
+    end
   end
 
   def last_hour_measurement_values
