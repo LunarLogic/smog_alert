@@ -5,6 +5,8 @@ $secondaryColorDark: #0030bb;
 $greyLight: #e9e9eb;
 $greyLighter: #f5f5f9;
 $grey: #747485;
+
+$mapColor: #e5e6e6;
 $frameColor: #c8c8cd;
 $textColor: #020221;
 
@@ -28,4 +30,5 @@ $noDataColor: #a3a3a4;
   unhealthySecond: $unhealthySecond;
   badFirst: $badFirst;
   badSecond: $badSecond;
+  mapColor: $mapColor;
 }
