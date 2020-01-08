@@ -6,6 +6,13 @@
 
 - Ruby 2.6.5
 - Node.js
+
+Ensure you use [NVM](https://github.com/nvm-sh/nvm) (Node Version Manager) and only then install yarn via brew.
+
+```
+brew install yarn
+```
+
 - Install and run PostgreSQL
 
 ```
