@@ -118,4 +118,6 @@ RAILS_ENV=staging /usr/local/rbenv/bin/rbenv exec bundle exec rails console
 
 #### Tests
 
-`bundle exec rspec`
+- Run the test suite: `bundle exec rspec`
+
+- Run tests in Chrome browser in development: `CHROME=true rspec spec/features/homepage_spec.rb`
