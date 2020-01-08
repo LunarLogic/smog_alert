@@ -6,14 +6,17 @@ import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./frontend/redux/store";
 import ErrorBoundary from "@honeybadger-io/react";
 import { honeybadger } from "./frontend/honeybadger";
+import { BrowserRouter } from "react-router-dom";
 
 document.addEventListener("DOMContentLoaded", () => {
   ReactDOM.render(
     <ErrorBoundary honeybadger={honeybadger}>
       <Provider store={store}>
-        <PersistGate persistor={persistor}>
-          <App />
-        </PersistGate>
+        <BrowserRouter>
+          <PersistGate persistor={persistor}>
+            <App />
+          </PersistGate>
+        </BrowserRouter>
       </Provider>
     </ErrorBoundary>,
     document.body.appendChild(document.createElement("div"))
