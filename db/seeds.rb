@@ -66,11 +66,11 @@ cities = [
     sponsor: 'Zabierzów'
   },
   {
-    name: 'Morawica',
+    name: 'Brzoskwinia',
     latitude: 50.096481,
     longitude: 19.718288,
     installation_id: 6095,
-    street: 'Brzoskwinia',
+    street: nil,
     number: '186',
     sponsor: 'Zabierzów'
   },
@@ -273,7 +273,7 @@ cities.each do |city|
   location.save!
 end
 
-if Rails.env.development?
+if Rails.env.development? || Rails.env.test?
   Location.all.each do |location|
     till_date_time = DateTime.now
     location.measurements.build(

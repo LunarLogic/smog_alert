@@ -8,7 +8,7 @@ end
 
 describe 'admin managing users of the application' do
   let!(:user) { FactoryBot.create(:user) }
-  let!(:user_new) { FactoryBot.create(:user) }
+  let!(:user_new) { FactoryBot.build(:user) }
 
   before :each do
     admin = FactoryBot.create(:admin)
