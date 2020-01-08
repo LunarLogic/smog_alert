@@ -273,7 +273,7 @@ cities.each do |city|
   location.save!
 end
 
-if Rails.env.development?
+if Rails.env.development? || Rails.env.test?
   Location.all.each do |location|
     till_date_time = DateTime.now
     location.measurements.build(
