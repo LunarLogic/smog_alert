@@ -1,5 +1,6 @@
 <%= simple_form_for [:admin, @article] do |f| %>
   <%= f.input :title %>
   <%= f.rich_text_area :body %>
+  <br>
   <%= f.button :submit, class: 'btn btn-primary' %>
 <% end %>

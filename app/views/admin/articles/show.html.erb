@@ -4,6 +4,6 @@
 
 <%= link_to 'Edytuj', edit_admin_article_path(@article), class: "btn btn-light btn-sm"%>
 <%= link_to 'Usuń', admin_article_path(@article), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Czy na pewno chcesz usunąć wpis #{@article.title}?"} %>
-<div style="display=block">
+<div style="display:block">
   <%= link_to 'Wszystkie wpisy', admin_articles_path %>
 </div>

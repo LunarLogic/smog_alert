@@ -1,6 +1,6 @@
 class Admin::ArticlesController < Admin::BaseController
   def index
-    @articles = Article.order('created_at DESC').page params[:page]
+    @articles = Article.order('created_at DESC').page(params[:page])
   end
 
   def new
