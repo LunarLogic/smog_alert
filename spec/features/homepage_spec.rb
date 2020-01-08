@@ -1,4 +1,4 @@
-describe 'Homepage' do
+describe 'Homepage', :xchrome do # change :xchrome tag to :chrome to see tests running in Chrome browser
   before do
     visit root_path
   end
