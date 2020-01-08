@@ -29,7 +29,9 @@
       width: 100%;
       box-sizing: border-box;
       border-radius: 0.4rem;
-      border: 0.1rem solid $frameColor;
+      border-left: 0.1rem solid $frameColor;
+      border-right: 0.1rem solid $frameColor;
+      border-bottom: 0.1rem solid $frameColor;
       background-color: white;
       max-height: 40rem !important;
       overflow-y: scroll;

@@ -3,4 +3,13 @@
 .pollution-comparison {
   height: inherit;
   overflow-y: scroll;
+
+  &:first-child {
+    border-top-left-radius: 0.6rem;
+    border-top-right-radius: 0.6rem;
+  }
+  &:last-child {
+    border-bottom-left-radius: 0.6rem;
+    border-bottom-right-radius: 0.6rem;
+  }
 }
