@@ -5,7 +5,7 @@ Capybara.default_driver = :selenium_chrome_headless
 
 RSpec.configure do |config|
   config.before(:each) do |example|
-    Capybara.current_driver = :selenium_chrome if example.metadata[:chrome]
+    Capybara.current_driver = :selenium_chrome if example.metadata[:chrome] || ENV['CHROME']
   end
 
   config.after(:each) do
