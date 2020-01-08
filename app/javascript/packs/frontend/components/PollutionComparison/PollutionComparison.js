@@ -37,7 +37,7 @@ const PollutionComparison = ({ citiesPollutionData, getChosenCity }) => {
               (last_hour_measurement.values.pm10 * 100) / highestPollutionValue;
             return (
               <PollutionBar
-                key={location_name}
+                key={`${location_name}-bar`}
                 width={width}
                 backgroundColor={setColor(last_hour_measurement.status)}
                 location={location_name}

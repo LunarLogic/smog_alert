@@ -6,6 +6,7 @@ import { createStructuredSelector } from "reselect";
 import "./Map.scss";
 import { MapContainer, MapPath, MapText, MapDot } from "./Map.styles.jsx";
 import mapElements from "./MapElements";
+import { mapColor } from "../../styles/_variables.scss";
 
 import { setColor } from "../../helpers";
 import {
@@ -31,7 +32,7 @@ const Map = ({ citiesPollutionData, chosenCity, getChosenCity }) => {
     if (city === chosenCity) {
       return findColor(city);
     } else {
-      return "#e5e6e6";
+      return mapColor;
     }
   };
 
@@ -53,7 +54,7 @@ const Map = ({ citiesPollutionData, chosenCity, getChosenCity }) => {
           >
             {mapElements.map(element => (
               <MapPath
-                key={element.location}
+                key={`${element.location}-path`}
                 color={findColor(element.location)}
                 fill={findChosenCityColor(element.location)}
                 opacity={chosenCity === element.location ? "0.5" : "1"}
@@ -63,7 +64,7 @@ const Map = ({ citiesPollutionData, chosenCity, getChosenCity }) => {
             ))}
             {mapElements.map(element => (
               <MapText
-                key={element.location}
+                key={`${element.location}-text`}
                 transform={element.transform}
                 onClick={() => handleColorChange(element.location)}
               >
@@ -72,7 +73,7 @@ const Map = ({ citiesPollutionData, chosenCity, getChosenCity }) => {
             ))}
             {mapElements.map(element => (
               <MapDot
-                key={element.location}
+                key={`${element.location}-dot`}
                 cx={element.cx}
                 cy={element.cy}
                 color={findColor(element.location)}
