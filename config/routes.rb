@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'dashboard#index'
     resources :locations
+    resources :users
   end
 
   authenticate :user, lambda { |u| u.admin? } do

@@ -1,0 +1,9 @@
+<h1><%= 'Informacje o użytkowniku' %></h1>
+<p><br>Email:</br><%= @user.email%></p>
+<p><br>Admin:</br><%= @user.admin ? 'Tak' : 'Nie' %></p>
+<p><br>Utworzony:</br><%= format_date(@user.created_at) %></p>
+
+<%= link_to 'Edytuj', edit_admin_user_path(@user), class: "btn btn-light btn-sm"%>
+<%= link_to 'Usuń', admin_user_path(@user), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: 'Czy na pewno chcesz usunąć użytkownika #{@user.email}?'} %>
+
+<p><%= link_to 'Wróć do listy użytkowników', admin_users_path %></p>
