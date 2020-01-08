@@ -70,7 +70,7 @@ cities = [
     latitude: 50.096481,
     longitude: 19.718288,
     installation_id: 6095,
-    street: 'Morawica',
+    street: nil,
     number: '186',
     sponsor: 'Zabierzów'
   },
