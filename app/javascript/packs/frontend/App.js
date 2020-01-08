@@ -4,10 +4,9 @@ import { Route, Switch } from "react-router-dom";
 import "./App.scss";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./themes/MyTheme";
-import Navigation from "./components/Navigation/Navigation";
 import { Homepage, Calendar } from "./pages";
 import WebFont from "webfontloader";
-import Footer from "./components/Footer/Footer";
+import { Error404, Footer, Navigation } from "./components";
 
 WebFont.load({
   google: {
@@ -23,6 +22,7 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Homepage} />
           <Route exact path="/calendar" component={Calendar} />
+          <Route component={Error404} />
         </Switch>
       </div>
       <Footer />
