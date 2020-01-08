@@ -3,17 +3,18 @@ import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
+import "./Map.scss";
+import { MapContainer, MapPath, MapText, MapDot } from "./Map.styles.jsx";
+import mapElements from "./MapElements";
+
 import { setColor } from "../../helpers";
 import {
   selectCitiesPollutionData,
   selectMapLocation
 } from "../../redux/redux.selectors";
+import { getChosenCity } from "../../redux/mapSection/mapSection.actions";
 
-import "./Map.scss";
-import { MapContainer, MapPath, MapText, MapDot } from "./Map.styles.jsx";
-import mapElements from "./MapElements";
-
-const Map = ({ citiesPollutionData, chosenCity }) => {
+const Map = ({ citiesPollutionData, chosenCity, getChosenCity }) => {
   const findColor = city => {
     let clickedCity = citiesPollutionData.find(
       cityData => cityData.location_name === city
@@ -22,35 +23,8 @@ const Map = ({ citiesPollutionData, chosenCity }) => {
     return color;
   };
 
-  let previouslyClickedElement;
-
-  const handleColorChange = event => {
-    let clickedElement = event.target;
-    let pathId;
-    switch (clickedElement.tagName) {
-      case "path":
-        pathId = clickedElement.id;
-        break;
-      case "DIV":
-        pathId = clickedElement.id.replace("dot--", "");
-        clickedElement = document.getElementById(pathId);
-        break;
-      case "text":
-        pathId = clickedElement.textContent;
-        clickedElement = document.getElementById(pathId);
-    }
-
-    if (previouslyClickedElement) {
-      previouslyClickedElement.removeAttribute("style");
-    }
-
-    citiesPollutionData.forEach(cityData => {
-      if (cityData.location === pathId) {
-        clickedElement.style.fill = cityData.color;
-        clickedElement.style.opacity = 0.5;
-        previouslyClickedElement = clickedElement;
-      }
-    });
+  const handleColorChange = city => {
+    getChosenCity(city);
   };
 
   const findChosenCityColor = city => {
@@ -79,20 +53,19 @@ const Map = ({ citiesPollutionData, chosenCity }) => {
           >
             {mapElements.map(element => (
               <MapPath
-                id={element.location}
                 key={element.location}
                 color={findColor(element.location)}
                 fill={findChosenCityColor(element.location)}
                 opacity={chosenCity === element.location ? "0.5" : "1"}
                 d={element.path}
-                onClick={handleColorChange}
+                onClick={() => handleColorChange(element.location)}
               />
             ))}
             {mapElements.map(element => (
               <MapText
                 key={element.location}
                 transform={element.transform}
-                onClick={handleColorChange}
+                onClick={() => handleColorChange(element.location)}
               >
                 {element.location}
               </MapText>
@@ -104,6 +77,7 @@ const Map = ({ citiesPollutionData, chosenCity }) => {
                 cy={element.cy}
                 color={findColor(element.location)}
                 r="10.5"
+                onClick={() => handleColorChange(element.location)}
               />
             ))}
           </MapContainer>
@@ -115,7 +89,8 @@ const Map = ({ citiesPollutionData, chosenCity }) => {
 
 Map.propTypes = {
   citiesPollutionData: PropTypes.array,
-  chosenCity: PropTypes.string
+  chosenCity: PropTypes.string,
+  getChosenCity: PropTypes.func
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -123,4 +98,8 @@ const mapStateToProps = createStructuredSelector({
   chosenCity: selectMapLocation
 });
 
-export default connect(mapStateToProps)(Map);
+const mapDispatchToProps = dispatch => ({
+  getChosenCity: chosenCity => dispatch(getChosenCity(chosenCity))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Map);
