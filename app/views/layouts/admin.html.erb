@@ -12,17 +12,17 @@
   <body>
     <%= render 'layouts/admin_navbar'%>
     <div class = "container">
-      <%= if notice %>
+      <% if notice %>
         <p class="notice"><%= notice %></p>
-      <%= end %>
+      <% end %>
 
-      <%= if flash[:success] %>
+      <% if flash[:success] %>
         <p class="success"><%= flash[:success] %></p>
-      <%= end %>
+      <% end %>
 
-      <%= if alert %>
+      <% if alert %>
         <p class="alert"><%= alert %></p>
-      <%= end %>
+      <% end %>
       <%= yield %>
     </div>
   </body>
