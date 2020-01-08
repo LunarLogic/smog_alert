@@ -6,16 +6,31 @@ import { createStructuredSelector } from "reselect";
 import { PollutionBar } from "../";
 import { setColor } from "../../helpers";
 import { selectCitiesPollutionData } from "../../redux/redux.selectors";
-import { getChosenCity } from "../../redux/mapSection/mapSection.actions";
+import {
+  getChosenCity,
+  getHoveredCity
+} from "../../redux/mapSection/mapSection.actions";
 
 import "./PollutionComparison.scss";
 
-const PollutionComparison = ({ citiesPollutionData, getChosenCity }) => {
+const PollutionComparison = ({
+  citiesPollutionData,
+  getChosenCity,
+  getHoveredCity
+}) => {
   let highestPollutionValue;
   let sortedPollutionData;
 
   const handleChosenCity = city => {
     getChosenCity(city);
+  };
+
+  const handleHover = city => {
+    getHoveredCity(city);
+  };
+
+  const removeHover = () => {
+    getHoveredCity("");
   };
 
   if (citiesPollutionData.length) {
@@ -45,6 +60,8 @@ const PollutionComparison = ({ citiesPollutionData, getChosenCity }) => {
                 onClick={() => {
                   handleChosenCity(location_name);
                 }}
+                onMouseOver={() => handleHover(location_name)}
+                onMouseOut={removeHover}
               />
             );
           })
@@ -55,11 +72,13 @@ const PollutionComparison = ({ citiesPollutionData, getChosenCity }) => {
 
 PollutionComparison.propTypes = {
   citiesPollutionData: PropTypes.array,
-  getChosenCity: PropTypes.func
+  getChosenCity: PropTypes.func,
+  getHoveredCity: PropTypes.func
 };
 
 const mapDispatchToProps = dispatch => ({
-  getChosenCity: chosenCity => dispatch(getChosenCity(chosenCity))
+  getChosenCity: chosenCity => dispatch(getChosenCity(chosenCity)),
+  getHoveredCity: hoveredCity => dispatch(getHoveredCity(hoveredCity))
 });
 
 const mapStateToProps = createStructuredSelector({

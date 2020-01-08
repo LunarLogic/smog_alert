@@ -42,3 +42,8 @@ export const selectMapChosenCityData = createSelector(
     }
   }
 );
+
+export const selectMapHoveredCity = createSelector(
+  [selectMapSection],
+  mapSection => mapSection.hovered_city
+);

@@ -12,5 +12,6 @@ export const PollutionOverviewText = styled.div`
   line-height: 2.4rem;
   color: ${({ color }) => color};
   font-weight: bold;
+  text-align: center;
   margin-top: 1.2rem;
 `;
