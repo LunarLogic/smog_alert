@@ -66,11 +66,11 @@ cities = [
     sponsor: 'Zabierzów'
   },
   {
-    name: 'Morawica',
+    name: 'Brzoskwinia',
     latitude: 50.096481,
     longitude: 19.718288,
     installation_id: 6095,
-    street: 'Brzoskwinia',
+    street: 'Morawica',
     number: '186',
     sponsor: 'Zabierzów'
   },
