@@ -23,7 +23,7 @@ class Admin::UsersController < Admin::BaseController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
+    @user.update!(user_params)
     flash[:notice] = 'Zmiany zostały zapisane'
     redirect_to admin_users_path
   end
