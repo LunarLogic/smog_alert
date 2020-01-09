@@ -23,6 +23,7 @@ const PollutionComparison = ({
 
   const handleChosenCity = city => {
     getChosenCity(city);
+    getHoveredCity("");
   };
 
   const handleHover = city => {
@@ -33,30 +34,36 @@ const PollutionComparison = ({
     getHoveredCity("");
   };
 
+  const getPM10 = cityData => {
+    let values = cityData.last_hour_measurement.values;
+    return values.find(value => value.name === "PM 10");
+  };
+
   if (citiesPollutionData.length) {
     sortedPollutionData = citiesPollutionData.sort(
-      (a, b) =>
-        b.last_hour_measurement.values.pm10 -
-        a.last_hour_measurement.values.pm10
+      (a, b) => getPM10(b).value - getPM10(a).value
     );
-    highestPollutionValue =
-      sortedPollutionData[0].last_hour_measurement.values.pm10;
+    highestPollutionValue = getPM10(sortedPollutionData[0]).value;
   }
 
   return (
     <div className="pollution-comparison">
       {citiesPollutionData.length
         ? sortedPollutionData.map(cityData => {
-            const { location_name, last_hour_measurement } = cityData;
+            const {
+              location_name,
+              location_display_name,
+              last_hour_measurement
+            } = cityData;
             const width =
-              (last_hour_measurement.values.pm10 * 100) / highestPollutionValue;
+              (getPM10(cityData).value * 100) / highestPollutionValue;
             return (
               <PollutionBar
-                key={`${location_name}-bar`}
+                key={`${location_display_name}-bar`}
                 width={width}
                 backgroundColor={setColor(last_hour_measurement.status)}
-                location={location_name}
-                value={last_hour_measurement.values.pm10}
+                location={location_display_name}
+                value={getPM10(cityData).value}
                 onClick={() => {
                   handleChosenCity(location_name);
                 }}
