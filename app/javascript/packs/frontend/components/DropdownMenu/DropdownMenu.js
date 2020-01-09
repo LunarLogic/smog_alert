@@ -13,11 +13,21 @@ import {
 import { getChosenCity } from "../../redux/mapSection/mapSection.actions";
 
 const DropdownMenu = ({ citiesPollutionData, chosenCity, getChosenCity }) => {
-  const options = citiesPollutionData.map(cityData => ({
-    value: cityData.location_name,
-    label: cityData.location_name,
-    className: "dropdown__control--menu-option"
-  }));
+  let options = [];
+
+  citiesPollutionData.forEach(city => {
+    if (options.length === 0) {
+      options.push({
+        value: city.location_name,
+        className: "dropdown__control--menu-option"
+      });
+    } else if (!options.find(element => element.value === city.location_name)) {
+      options.push({
+        value: city.location_name,
+        className: "dropdown__control--menu-option"
+      });
+    }
+  });
 
   const [showMenu, setShowMenu] = useState(false);
   const [arrowUp, setArrow] = useState(false);
@@ -29,6 +39,9 @@ const DropdownMenu = ({ citiesPollutionData, chosenCity, getChosenCity }) => {
 
   const changeChosenCity = () => {
     let city = event.target.textContent;
+    // let cities = citiesPollutionData.filter(
+    //   data => data.location_name === city
+    // );
     setShowMenu(false);
     getChosenCity(city);
   };

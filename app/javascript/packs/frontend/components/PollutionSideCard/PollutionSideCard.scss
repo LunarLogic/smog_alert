@@ -2,6 +2,7 @@
 
 .side-pollution-card {
   height: inherit;
+  overflow-y: scroll;
   &__return-button {
     height: 6.6rem;
     border-bottom: 0.1rem solid $frameColor;
@@ -47,11 +48,18 @@
         font-size: 1.6rem;
         line-height: 1.9rem;
         color: $grey;
+        margin-top: 1.7rem;
+
+        &-bold {
+          font-weight: bold;
+        }
       }
       &-info {
         display: flex;
         justify-content: space-between;
         margin-top: 2.7rem;
+        border-bottom: 0.1rem solid $frameColor;
+
         &-overview {
           display: flex;
           flex-direction: column;

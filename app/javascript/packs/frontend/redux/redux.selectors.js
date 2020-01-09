@@ -36,7 +36,7 @@ export const selectMapChosenCityData = createSelector(
   [selectCitiesPollutionData, selectMapLocation],
   (citiesPollutionData, location_name) => {
     if (citiesPollutionData.length && location_name) {
-      return citiesPollutionData.find(
+      return citiesPollutionData.filter(
         item => item.location_name === location_name
       );
     }
