@@ -2,6 +2,7 @@ import PollutionCard from "./PollutionCard/PollutionCard";
 import ContactDetail from "./ContactDetail/ContactDetail";
 import CustomButton from "./CustomButton/CustomButton";
 import DropdownMenu from "./DropdownMenu/DropdownMenu";
+import Error404 from "./Error404/Error404";
 import Footer from "./Footer/Footer";
 import Icon from "./Icon/Icon";
 import Map from "./Map/Map";
@@ -18,6 +19,7 @@ export {
   ContactDetail,
   CustomButton,
   DropdownMenu,
+  Error404,
   Footer,
   Icon,
   Map,

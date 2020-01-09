@@ -29,6 +29,7 @@
       font-size: 1.4rem;
       line-height: 1.6rem;
       font-weight: 700;
+      color: $textColor;
 
       display: flex;
       flex-wrap: wrap;
@@ -53,7 +54,9 @@
       align-items: center;
       justify-content: space-around;
       flex-grow: 1;
-      &:hover {
+      color: $textColor;
+      &:hover,
+      .isActive {
         color: $secondaryColor;
         box-sizing: border-box;
         &::before {

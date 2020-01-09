@@ -7,12 +7,8 @@ export const MapContainer = styled.svg`
 `;
 
 export const MapPath = styled.path`
-  fill: #e5e6e6;
-
-  &:hover {
-    fill: ${({ color }) => color};
-    opacity: 0.5;
-  }
+  fill: ${({ fill }) => fill};
+  opacity: ${({ opacity }) => opacity};
 `;
 
 export const MapText = styled.text`

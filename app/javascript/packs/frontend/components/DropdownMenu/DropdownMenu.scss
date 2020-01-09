@@ -1,8 +1,7 @@
 @import "../../styles/variables";
 
 .dropdown {
-  height: inherit;
-  width: inherit;
+  height: 2.5rem;
   border: none;
   border-radius: 0.4rem;
   &__control {
@@ -27,10 +26,16 @@
       color: $textColor;
     }
     &--menu {
+      width: 100%;
+      box-sizing: border-box;
       border-radius: 0.4rem;
-      border: 0.1rem solid $frameColor;
-      background-color: white !important;
+      border-left: 0.1rem solid $frameColor;
+      border-right: 0.1rem solid $frameColor;
+      border-bottom: 0.1rem solid $frameColor;
+      background-color: white;
       max-height: 40rem !important;
+      overflow-y: scroll;
+      position: absolute;
 
       .is-selected {
         background-color: $greyLight !important;
