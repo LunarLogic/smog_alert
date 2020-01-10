@@ -42,6 +42,18 @@ class Admin::ArticlesController < Admin::BaseController
     redirect_to admin_articles_path
   end
 
+  def publish
+    @article = Article.find(params[:id])
+    @article.make_published
+    if @article.published
+      @article.save
+      flash[:success] = 'Pomyślnie opublikowano wpis'
+    else
+      flash[:failure] = 'Nie udało się opublikować wpisu'
+    end
+    redirect_to admin_articles_path
+  end
+
   private
 
   def article_params
