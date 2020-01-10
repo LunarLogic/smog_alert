@@ -2,6 +2,7 @@ import React from "react";
 import { PropTypes } from "prop-types";
 import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
+import uuid from "uuid";
 
 import PollutionScaleContent from "./PollutionScaleContent";
 import { selectChosenCityData } from "../../redux/redux.selectors";
@@ -32,12 +33,15 @@ const PollutionScale = ({ chosenCityData }) => {
       <Indicator color={color} indicator={indicator} />
       <div className="scale__container-ranges">
         {colorBox.map(box => (
-          <div key={box} className={`scale__color-background--${box}`}></div>
+          <div
+            key={uuid.v4()}
+            className={`scale__color-background--${box}`}
+          ></div>
         ))}
       </div>
       <div className="scale__container-legend">
         {description.map(desc => (
-          <div key={desc} className="scale__container-legend-item">
+          <div key={uuid.v4()} className="scale__container-legend-item">
             {desc}
           </div>
         ))}

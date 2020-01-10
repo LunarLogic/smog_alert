@@ -19,7 +19,7 @@ export const selectChosenCityData = createSelector(
   (citiesPollutionData, location_name) => {
     if (citiesPollutionData.length && location_name) {
       return citiesPollutionData.find(
-        item => item.location_name === location_name
+        item => item.location_display_name === location_name
       );
     }
   }

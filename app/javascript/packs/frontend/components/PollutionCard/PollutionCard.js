@@ -6,6 +6,7 @@ import { createStructuredSelector } from "reselect";
 import "./PollutionCard.scss";
 import { noDataColor } from "../../styles/_variables";
 import { OverviewText, DataSpecific } from "./PollutionCard.styles.jsx";
+// import Awful from "../../assets/Faces/Awful.js";
 
 import { selectChosenCityData } from "../../redux/redux.selectors";
 import { setColor } from "../../helpers/setColor";
@@ -13,6 +14,7 @@ import { setColor } from "../../helpers/setColor";
 const PollutionCard = ({ chosenCityData }) => {
   const noData = "--";
   let color;
+  let findMeasurement;
 
   if (chosenCityData) {
     var { last_hour_measurement } = chosenCityData;
@@ -21,6 +23,11 @@ const PollutionCard = ({ chosenCityData }) => {
     } else {
       color = noDataColor;
     }
+    findMeasurement = indicator => {
+      return chosenCityData.last_hour_measurement.values.find(
+        value => value.name === indicator
+      ).value;
+    };
   }
 
   return chosenCityData ? (
@@ -47,7 +54,7 @@ const PollutionCard = ({ chosenCityData }) => {
             <div className="card-pollution__current-data-specific-primary-value">
               <span className="card-pollution__current-data-specific-primary-value--bold">
                 {last_hour_measurement
-                  ? Math.round(chosenCityData.last_hour_measurement.values.pm10)
+                  ? Math.round(findMeasurement("PM 10"))
                   : noData}
               </span>
               μg
@@ -60,7 +67,7 @@ const PollutionCard = ({ chosenCityData }) => {
             <div className="card-pollution__current-data-specific-secondary-value">
               <span className="card-pollution__current-data-specific-secondary-value--bold">
                 {last_hour_measurement
-                  ? Math.round(chosenCityData.last_hour_measurement.values.pm25)
+                  ? Math.round(findMeasurement("PM 2.5"))
                   : noData}
               </span>
               μg

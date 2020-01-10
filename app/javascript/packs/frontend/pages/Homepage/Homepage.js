@@ -16,7 +16,9 @@ const Homepage = ({ getCitiesPollutionData, citiesPollutionData }) => {
 
   return (
     <div className="homepage">
-      <Searchbox cities={citiesPollutionData.map(item => item.location_name)} />
+      <Searchbox
+        cities={citiesPollutionData.map(item => item.location_display_name)}
+      />
       <CurrentPollutionSection />
       <hr className="homepage__horizontal-line" />
       <MapSection />

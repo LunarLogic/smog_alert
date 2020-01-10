@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import { createStructuredSelector } from "reselect";
+import uuid from "uuid";
 
 import { PollutionCard, PollutionScale, Icon } from "../../components";
 import { selectLocation } from "../../redux/redux.selectors";
@@ -37,7 +38,7 @@ const CurrentPollutionSection = ({ location }) => {
           </div>
           <div className="current-pollution__recommendations-icons">
             {iconData.map(icon => (
-              <Icon key={icon} iconId={icon} />
+              <Icon key={uuid.v4()} iconId={icon} />
             ))}
           </div>
         </div>

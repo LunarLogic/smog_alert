@@ -1,4 +1,5 @@
 import React from "react";
+import uuid from "uuid";
 
 import { ContactDetail } from "../";
 import footerContent from "./footerContent";
@@ -25,7 +26,7 @@ const Footer = () => {
         <div className="footer__contact-heading">Skontaktuj się z nami:</div>
         <div className="footer__contact-details">
           {footerContent.map(detail => (
-            <ContactDetail key={detail} item={detail} />
+            <ContactDetail key={uuid.v4()} item={detail} />
           ))}
         </div>
       </div>

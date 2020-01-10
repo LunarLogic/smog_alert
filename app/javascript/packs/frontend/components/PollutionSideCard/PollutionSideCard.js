@@ -3,6 +3,7 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
 import { createStructuredSelector } from "reselect";
+import uuid from "uuid";
 
 import { PollutionIndexData, DropdownMenu } from "..";
 import { setPercent, setColor, setLimit } from "../../helpers";
@@ -46,7 +47,7 @@ const PollutionSideCard = ({ chosenCityData, getChosenCity }) => {
           return (
             <div
               className="side-pollution-card__content--air-quality"
-              key={data.location_display_name}
+              key={uuid.v4()}
             >
               <div className="side-pollution-card__content--air-quality-label">
                 Aktualna jakość powietrza dla lokalizacji{" "}
@@ -65,7 +66,7 @@ const PollutionSideCard = ({ chosenCityData, getChosenCity }) => {
                   {data.last_hour_measurement.values.map(data => {
                     return (
                       <PollutionIndexData
-                        key={data.name}
+                        key={uuid.v4()}
                         indicator={data.name}
                         value={data.value}
                         percent={setPercent(data.name, data.value)}
@@ -84,7 +85,7 @@ const PollutionSideCard = ({ chosenCityData, getChosenCity }) => {
 };
 
 PollutionSideCard.propTypes = {
-  chosenCityData: PropTypes.object,
+  chosenCityData: PropTypes.array,
   getChosenCity: PropTypes.func
 };
 
