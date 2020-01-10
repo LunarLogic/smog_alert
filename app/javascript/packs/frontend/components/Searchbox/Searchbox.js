@@ -5,10 +5,12 @@ import { connect } from "react-redux";
 import Autosuggest from "react-autosuggest";
 
 import { setChosenCity } from "../../redux/searchbox/searchbox.actions";
+import { selectCitiesPollutionDataList } from "../../redux/redux.selectors";
 
 import "./Searchbox.scss";
 import { Input } from "./Searchbox.styles.jsx";
 import { grey, warning } from "../../styles/_variables";
+import { createStructuredSelector } from "reselect";
 
 const Searchbox = ({ cities, setChosenCity }) => {
   const greyColor = grey;
@@ -21,14 +23,14 @@ const Searchbox = ({ cities, setChosenCity }) => {
     str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
   const getSuggestions = value => {
-    if (!value) {
-      setTextColor(greyColor);
-    }
     const escapedValue = escapeRegexCharacters(value.trim());
     const regex = new RegExp("^" + escapedValue, "i");
     const filteredCities = cities.filter(city => regex.test(city));
+
     if (!filteredCities.length) {
       setTextColor(warningColor);
+    } else {
+      setTextColor(greyColor);
     }
 
     return filteredCities;
@@ -38,6 +40,7 @@ const Searchbox = ({ cities, setChosenCity }) => {
 
   const onSuggestionSelected = (event, { suggestionValue }) => {
     setChosenCity(suggestionValue);
+    setValue("");
   };
 
   const shouldRenderSuggestions = () => true;
@@ -103,8 +106,12 @@ Searchbox.propTypes = {
   setChosenCity: PropTypes.func
 };
 
+const mapStateToProps = createStructuredSelector({
+  cities: selectCitiesPollutionDataList
+});
+
 const mapDispatchToProps = dispatch => ({
   setChosenCity: chosenCity => dispatch(setChosenCity(chosenCity))
 });
 
-export default connect(null, mapDispatchToProps)(Searchbox);
+export default connect(mapStateToProps, mapDispatchToProps)(Searchbox);

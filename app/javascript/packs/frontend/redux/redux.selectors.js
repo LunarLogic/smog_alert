@@ -14,6 +14,12 @@ export const selectCitiesPollutionData = createSelector(
   homepage => homepage.citiesPollutionData
 );
 
+export const selectCitiesPollutionDataList = createSelector(
+  [selectCitiesPollutionData],
+  citiesPollutionData =>
+    citiesPollutionData.map(item => item.location_display_name)
+);
+
 export const selectChosenCityData = createSelector(
   [selectCitiesPollutionData, selectLocation],
   (citiesPollutionData, location_name) => {
