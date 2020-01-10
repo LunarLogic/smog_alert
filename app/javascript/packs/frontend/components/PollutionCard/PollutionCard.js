@@ -6,22 +6,26 @@ import { createStructuredSelector } from "reselect";
 import "./PollutionCard.scss";
 import { noDataColor } from "../../styles/_variables";
 import { OverviewText, DataSpecific } from "./PollutionCard.styles.jsx";
-// import Awful from "../../assets/Faces/Awful.js";
+import { NeutralEmot } from "../Emots";
 
 import { selectChosenCityData } from "../../redux/redux.selectors";
-import { setColor } from "../../helpers/setColor";
+import { setColor } from "../../helpers";
+import { setEmot } from "../../helpers";
 
 const PollutionCard = ({ chosenCityData }) => {
   const noData = "--";
   let color;
+  let emot;
   let findMeasurement;
 
   if (chosenCityData) {
     var { last_hour_measurement } = chosenCityData;
     if (last_hour_measurement) {
       color = setColor(last_hour_measurement.status);
+      emot = setEmot(last_hour_measurement.status);
     } else {
       color = noDataColor;
+      emot = <NeutralEmot />;
     }
     findMeasurement = indicator => {
       return chosenCityData.last_hour_measurement.values.find(
@@ -33,12 +37,7 @@ const PollutionCard = ({ chosenCityData }) => {
   return chosenCityData ? (
     <div className="card-pollution__current-data-container">
       <div className="card-pollution__current-data-overview">
-        <div
-          className="card-pollution__current-data-overview-face"
-          style={{
-            backgroundColor: color
-          }}
-        ></div>
+        <div className="card-pollution__current-data-overview-face">{emot}</div>
         <OverviewText color={color}>
           {last_hour_measurement
             ? last_hour_measurement.status
