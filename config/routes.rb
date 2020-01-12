@@ -10,7 +10,12 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'dashboard#index'
     resources :locations
-    resources :articles
+    resources :articles do
+      member do
+        patch :publish
+        put :publish
+      end
+    end
   end
 
   authenticate :user, ->(u) { u.admin? } do
