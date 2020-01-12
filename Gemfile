@@ -30,6 +30,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'webpacker', '~> 4.0'
 
 gem 'bootstrap', '~> 4.3.1'
+gem 'faker', '~> 2.10'
 
 gem 'simple_form'
 gem 'kaminari'

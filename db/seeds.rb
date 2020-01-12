@@ -8,6 +8,13 @@ unless Rails.env.production?
     user.password_confirmation = password
     user.confirm
   end
+
+  15.times do
+    Article.create([{
+      title: Faker::Lorem.unique.sentence,
+      body: Faker::Lorem.paragraphs
+    }])
+  end
 end
 
 cities = [
