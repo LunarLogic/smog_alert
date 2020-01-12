@@ -41,6 +41,14 @@ describe 'admin interactions with articles' do
     expect(page).to have_content('edited title')
   end
 
+  scenario 'publish an article' do
+    within('.article-row', text: article.title) do
+      click_on('Opublikuj wpis')
+    end
+    expect(page).to have_current_path(admin_articles_path)
+    expect(page).not_to have_content('Opublikuj wpis')
+  end
+
   scenario 'delete an article' do
     within('.article-row', text: article.title) do
       click_on('Usuń')
