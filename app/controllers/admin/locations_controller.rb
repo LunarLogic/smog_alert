@@ -1,6 +1,6 @@
 class Admin::LocationsController < Admin::BaseController
   def index
-    @locations = Location.all
+    @locations = Location.all.order(:name)
   end
 
   def show
