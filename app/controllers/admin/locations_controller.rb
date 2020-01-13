@@ -44,6 +44,6 @@ class Admin::LocationsController < Admin::BaseController
   private
 
   def location_params
-    params.require(:location).permit(:name, :longitude, :latitude)
+    params.require(:location).permit(:name, :street, :longitude, :latitude)
   end
 end
