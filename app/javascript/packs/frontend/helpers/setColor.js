@@ -13,12 +13,17 @@ import {
   unhealthyFirst,
   unhealthySecond,
   badFirst,
-  badSecond
+  badSecond,
+  noDataColor
 } from "../styles/_variables";
 
-export const setColor = status => {
+export const setColor = lastHourMeasurement => {
   let color;
-  switch (status) {
+  if (!lastHourMeasurement) {
+    color = noDataColor;
+    return color;
+  }
+  switch (lastHourMeasurement.status) {
     case veryGood:
       color = goodFirst;
       break;

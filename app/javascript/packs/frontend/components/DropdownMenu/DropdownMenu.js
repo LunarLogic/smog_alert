@@ -4,6 +4,7 @@ import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import { createStructuredSelector } from "reselect";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
+import uuid from "uuid";
 
 import "./DropdownMenu.scss";
 import {
@@ -57,7 +58,7 @@ const DropdownMenu = ({ citiesPollutionData, chosenCity, getChosenCity }) => {
           {options.map(city => (
             <div
               className={city.className}
-              key={city.value}
+              key={uuid.v4()}
               onClick={changeChosenCity}
             >
               {city.value}

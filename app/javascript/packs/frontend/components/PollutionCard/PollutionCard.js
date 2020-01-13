@@ -4,41 +4,40 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
 import "./PollutionCard.scss";
-import { noDataColor } from "../../styles/_variables";
 import { OverviewText, DataSpecific } from "./PollutionCard.styles.jsx";
 
 import { selectChosenCityData } from "../../redux/redux.selectors";
-import { setColor } from "../../helpers/setColor";
+import { setColor, setEmot, setGradient } from "../../helpers";
 
 const PollutionCard = ({ chosenCityData }) => {
   const noData = "--";
-  let color;
+  let color, emot, gradient, findMeasurement;
 
   if (chosenCityData) {
     var { last_hour_measurement } = chosenCityData;
-    if (last_hour_measurement) {
-      color = setColor(last_hour_measurement.status);
-    } else {
-      color = noDataColor;
-    }
+    color = setColor(last_hour_measurement);
+    emot = setEmot(last_hour_measurement);
+    gradient = setGradient(last_hour_measurement);
+    console.log(gradient);
+
+    findMeasurement = indicator => {
+      return last_hour_measurement.values.find(
+        value => value.name === indicator
+      ).value;
+    };
   }
 
   return chosenCityData ? (
     <div className="card-pollution__current-data-container">
       <div className="card-pollution__current-data-overview">
-        <div
-          className="card-pollution__current-data-overview-face"
-          style={{
-            backgroundColor: color
-          }}
-        ></div>
+        <div className="card-pollution__current-data-overview-face">{emot}</div>
         <OverviewText color={color}>
           {last_hour_measurement
             ? last_hour_measurement.status
             : "brak pomiaru"}
         </OverviewText>
       </div>
-      <DataSpecific color={color}>
+      <DataSpecific gradient={gradient}>
         <div className="card-pollution__current-data-specific-container">
           <div className="card-pollution__current-data-specific-primary">
             <div className="card-pollution__current-data-specific-primary-index">
@@ -47,7 +46,7 @@ const PollutionCard = ({ chosenCityData }) => {
             <div className="card-pollution__current-data-specific-primary-value">
               <span className="card-pollution__current-data-specific-primary-value--bold">
                 {last_hour_measurement
-                  ? Math.round(chosenCityData.last_hour_measurement.values.pm10)
+                  ? Math.round(findMeasurement("PM 10"))
                   : noData}
               </span>
               μg
@@ -60,7 +59,7 @@ const PollutionCard = ({ chosenCityData }) => {
             <div className="card-pollution__current-data-specific-secondary-value">
               <span className="card-pollution__current-data-specific-secondary-value--bold">
                 {last_hour_measurement
-                  ? Math.round(chosenCityData.last_hour_measurement.values.pm25)
+                  ? Math.round(findMeasurement("PM 2.5"))
                   : noData}
               </span>
               μg

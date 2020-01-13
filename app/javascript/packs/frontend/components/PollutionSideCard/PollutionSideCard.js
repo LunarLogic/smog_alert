@@ -3,6 +3,7 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
 import { createStructuredSelector } from "reselect";
+import uuid from "uuid";
 
 import { DropdownMenu } from "..";
 import { setColor } from "../../helpers";
@@ -39,10 +40,10 @@ const PollutionSideCard = ({ chosenCityData, getChosenCity }) => {
           </div>
         </div>
         {chosenCityData.map(data => {
-          const color = setColor(data.last_hour_measurement.status);
+          const color = setColor(data.last_hour_measurement);
           return (
             <PollutionSpecificData
-              key={data.location_display_name}
+              key={uuid.v4()}
               display_name={data.location_display_name}
               color={color}
               status={data.last_hour_measurement.status}
@@ -56,7 +57,7 @@ const PollutionSideCard = ({ chosenCityData, getChosenCity }) => {
 };
 
 PollutionSideCard.propTypes = {
-  chosenCityData: PropTypes.object,
+  chosenCityData: PropTypes.array,
   getChosenCity: PropTypes.func
 };
 

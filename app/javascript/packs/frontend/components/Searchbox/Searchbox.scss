@@ -35,27 +35,15 @@
       color: $grey;
     }
   }
-  &__list {
-    position: absolute;
-    width: inherit;
-    max-height: 20rem;
-    background-color: white;
-    z-index: 100;
-    margin-top: -1px;
-    border: 0.1rem solid $frameColor;
-    border-radius: 0.4rem;
-    overflow: hidden;
-
-    &--city {
-      cursor: pointer;
-      display: block;
-      font-size: 1.6rem;
-      line-height: 1.9rem;
-      color: #020221 !important;
-      padding: 2.1rem !important;
-      &:hover {
-        background-color: $greyLighter;
-      }
+  &__list--city {
+    cursor: pointer;
+    display: block;
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+    color: #020221 !important;
+    padding: 2.1rem !important;
+    &:hover {
+      background-color: $greyLighter;
     }
   }
   &__warning {
@@ -67,5 +55,33 @@
   }
   .hidden {
     display: none;
+  }
+
+  .react-autosuggest {
+    &__container {
+      position: relative;
+    }
+    &__suggestions {
+      &-container {
+        &--open {
+          width: 100%;
+          position: absolute;
+          max-height: 18.3rem;
+          background-color: white;
+          z-index: 100;
+          margin-top: -1px;
+          border: 0.1rem solid $frameColor;
+          border-radius: 0.4rem;
+          overflow: hidden;
+          overflow-y: scroll;
+          box-sizing: border-box;
+        }
+      }
+      &-list {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+      }
+    }
   }
 }

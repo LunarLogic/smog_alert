@@ -10,7 +10,11 @@ export const OverviewText = styled.div`
 
 export const DataSpecific = styled.div`
   width: 50%;
-  background: ${({ color }) => color};
+  background: linear-gradient(
+    196.62deg,
+    ${({ gradient }) => gradient.color1} 0%,
+    ${({ gradient }) => gradient.color2} 100%
+  );
   display: flex;
   justify-content: center;
   align-items: center;

@@ -4,7 +4,7 @@ const selectSearchbox = state => state.searchbox;
 
 export const selectLocation = createSelector(
   [selectSearchbox],
-  searchbox => searchbox.location_name
+  searchbox => searchbox.location_display_name
 );
 
 const selectHomepage = state => state.homepage;
@@ -14,12 +14,18 @@ export const selectCitiesPollutionData = createSelector(
   homepage => homepage.citiesPollutionData
 );
 
+export const selectCitiesPollutionDataList = createSelector(
+  [selectCitiesPollutionData],
+  citiesPollutionData =>
+    citiesPollutionData.map(item => item.location_display_name)
+);
+
 export const selectChosenCityData = createSelector(
   [selectCitiesPollutionData, selectLocation],
-  (citiesPollutionData, location_name) => {
-    if (citiesPollutionData.length && location_name) {
+  (citiesPollutionData, location_display_name) => {
+    if (citiesPollutionData.length && location_display_name) {
       return citiesPollutionData.find(
-        item => item.location_name === location_name
+        item => item.location_display_name === location_display_name
       );
     }
   }
