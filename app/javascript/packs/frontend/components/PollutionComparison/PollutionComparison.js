@@ -61,7 +61,7 @@ const PollutionComparison = ({
               <PollutionBar
                 key={`${location_display_name}-bar`}
                 width={width}
-                backgroundColor={setColor(last_hour_measurement.status)}
+                backgroundColor={setColor(last_hour_measurement)}
                 location={location_display_name}
                 value={getPM10(cityData).value}
                 onClick={() => {

@@ -4,7 +4,8 @@ import {
   ModerateEmot,
   SufficientEmot,
   BadEmot,
-  VeryBadEmot
+  VeryBadEmot,
+  NeutralEmot
 } from "../components/Emots";
 
 import {
@@ -16,9 +17,13 @@ import {
   veryBad
 } from "./statusConstants.js";
 
-export const setEmot = status => {
+export const setEmot = lastHourMeasurement => {
   let emot;
-  switch (status) {
+  if (!lastHourMeasurement) {
+    emot = NeutralEmot;
+    return emot();
+  }
+  switch (lastHourMeasurement.status) {
     case veryGood:
       emot = VeryGoodEmot;
       break;

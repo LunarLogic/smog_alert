@@ -43,7 +43,7 @@ const PollutionSideCard = ({ chosenCityData, getChosenCity }) => {
           </div>
         </div>
         {chosenCityData.map(data => {
-          const color = setColor(data.last_hour_measurement.status);
+          const color = setColor(data.last_hour_measurement);
           return (
             <div
               className="side-pollution-card__content--air-quality"

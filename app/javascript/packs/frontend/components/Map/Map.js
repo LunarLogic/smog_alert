@@ -31,7 +31,7 @@ const Map = ({
     let clickedCity = citiesPollutionData.find(
       cityData => cityData.location_name === city
     );
-    let color = setColor(clickedCity.last_hour_measurement.status);
+    let color = setColor(clickedCity.last_hour_measurement);
     return color;
   };
 

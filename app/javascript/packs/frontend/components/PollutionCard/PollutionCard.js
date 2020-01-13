@@ -4,13 +4,10 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
 import "./PollutionCard.scss";
-import { noDataColor } from "../../styles/_variables";
 import { OverviewText, DataSpecific } from "./PollutionCard.styles.jsx";
-import { NeutralEmot } from "../Emots";
 
 import { selectChosenCityData } from "../../redux/redux.selectors";
-import { setColor } from "../../helpers";
-import { setEmot } from "../../helpers";
+import { setColor, setEmot } from "../../helpers";
 
 const PollutionCard = ({ chosenCityData }) => {
   const noData = "--";
@@ -20,15 +17,11 @@ const PollutionCard = ({ chosenCityData }) => {
 
   if (chosenCityData) {
     var { last_hour_measurement } = chosenCityData;
-    if (last_hour_measurement) {
-      color = setColor(last_hour_measurement.status);
-      emot = setEmot(last_hour_measurement.status);
-    } else {
-      color = noDataColor;
-      emot = <NeutralEmot />;
-    }
+    color = setColor(last_hour_measurement);
+    emot = setEmot(last_hour_measurement);
+
     findMeasurement = indicator => {
-      return chosenCityData.last_hour_measurement.values.find(
+      return last_hour_measurement.values.find(
         value => value.name === indicator
       ).value;
     };

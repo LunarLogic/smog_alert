@@ -4,7 +4,7 @@ const selectSearchbox = state => state.searchbox;
 
 export const selectLocation = createSelector(
   [selectSearchbox],
-  searchbox => searchbox.location_name
+  searchbox => searchbox.location_display_name
 );
 
 const selectHomepage = state => state.homepage;
