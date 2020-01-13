@@ -9,14 +9,14 @@ import { Searchbox } from "../../components";
 
 import "./Homepage.scss";
 
-const Homepage = ({ getCitiesPollutionData, citiesPollutionData }) => {
+const Homepage = ({ getCitiesPollutionData }) => {
   useEffect(() => {
     getCitiesPollutionData();
   }, []);
 
   return (
     <div className="homepage">
-      <Searchbox cities={citiesPollutionData.map(item => item.location_name)} />
+      <Searchbox />
       <CurrentPollutionSection />
       <hr className="homepage__horizontal-line" />
       <MapSection />
@@ -24,13 +24,9 @@ const Homepage = ({ getCitiesPollutionData, citiesPollutionData }) => {
   );
 };
 
-const mapStateToProps = ({ homepage: { citiesPollutionData } }) => ({
-  citiesPollutionData
-});
-
 Homepage.propTypes = {
   getCitiesPollutionData: PropTypes.func,
   citiesPollutionData: PropTypes.array
 };
 
-export default connect(mapStateToProps, { getCitiesPollutionData })(Homepage);
+export default connect(null, { getCitiesPollutionData })(Homepage);

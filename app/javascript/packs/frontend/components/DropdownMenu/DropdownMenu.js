@@ -4,6 +4,7 @@ import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import { createStructuredSelector } from "reselect";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
+import uuid from "uuid";
 
 import "./DropdownMenu.scss";
 import {
@@ -13,18 +14,30 @@ import {
 import { getChosenCity } from "../../redux/mapSection/mapSection.actions";
 
 const DropdownMenu = ({ citiesPollutionData, chosenCity, getChosenCity }) => {
-  const options = citiesPollutionData.map(cityData => ({
-    value: cityData.location_name,
-    label: cityData.location_name,
-    className: "dropdown__control--menu-option"
-  }));
+  let options = [];
+
+  citiesPollutionData.forEach(city => {
+    if (options.length === 0) {
+      options.push({
+        value: city.location_name,
+        className: "dropdown__control--menu-option"
+      });
+    } else if (!options.find(element => element.value === city.location_name)) {
+      options.push({
+        value: city.location_name,
+        className: "dropdown__control--menu-option"
+      });
+    }
+  });
+
+  options.sort((a, b) => b.value < a.value);
 
   const [showMenu, setShowMenu] = useState(false);
   const [arrowUp, setArrow] = useState(false);
 
   const toggleMenu = () => {
-    showMenu === false ? setShowMenu(true) : setShowMenu(false);
-    arrowUp === false ? setArrow(true) : setArrow(false);
+    setShowMenu(!showMenu);
+    setArrow(!arrowUp);
   };
 
   const changeChosenCity = () => {
@@ -44,7 +57,7 @@ const DropdownMenu = ({ citiesPollutionData, chosenCity, getChosenCity }) => {
           {options.map(city => (
             <div
               className={city.className}
-              key={city.value}
+              key={uuid.v4()}
               onClick={changeChosenCity}
             >
               {city.value}

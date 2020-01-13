@@ -7,9 +7,13 @@ import {
   veryBad
 } from "./statusConstants.js";
 
-export const setIndicator = status => {
+export const setIndicator = lastHourMeasurement => {
   let indicator;
-  switch (status) {
+  if (!lastHourMeasurement) {
+    indicator = null;
+    return indicator;
+  }
+  switch (lastHourMeasurement.status) {
     case veryGood:
       indicator = 1;
       break;

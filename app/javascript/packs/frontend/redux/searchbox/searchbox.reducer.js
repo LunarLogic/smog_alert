@@ -1,7 +1,7 @@
 import searchboxActionTypes from "./searchbox.types";
 
 const INITIAL_STATE = {
-  location_name: "Zabierzów"
+  location_display_name: "Zabierzów, Kolejowa"
 };
 
 const searchboxReducer = (state = INITIAL_STATE, action) => {
@@ -9,7 +9,7 @@ const searchboxReducer = (state = INITIAL_STATE, action) => {
     case searchboxActionTypes.SET_CHOSEN_CITY:
       return {
         ...state,
-        location_name: action.payload
+        location_display_name: action.payload
       };
     default:
       return state;

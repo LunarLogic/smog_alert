@@ -1,79 +1,99 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
+import Autosuggest from "react-autosuggest";
 
 import { setChosenCity } from "../../redux/searchbox/searchbox.actions";
+import { selectCitiesPollutionDataList } from "../../redux/redux.selectors";
 
 import "./Searchbox.scss";
 import { Input } from "./Searchbox.styles.jsx";
 import { grey, warning } from "../../styles/_variables";
+import { createStructuredSelector } from "reselect";
 
 const Searchbox = ({ cities, setChosenCity }) => {
   const greyColor = grey;
   const warningColor = warning;
-  const [location, setLocation] = useState("");
   const [textColor, setTextColor] = useState(greyColor);
-  const [filteredCities, setFilteredCities] = useState([]);
+  const [suggestions, setSuggestions] = useState([]);
+  const [value, setValue] = useState("");
 
-  const handleSearchboxList = () => {
-    if (!location.length) {
-      setFilteredCities([]);
-      return;
-    }
+  const escapeRegexCharacters = str =>
+    str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-    const filterCities = cities.filter(city =>
-      city.toLowerCase().includes(location.toLowerCase())
-    );
-    setFilteredCities(filterCities);
-    filterCities.length ? setTextColor(greyColor) : setTextColor(warningColor);
-  };
+  const getSuggestions = value => {
+    const escapedValue = escapeRegexCharacters(value.trim());
+    const regex = new RegExp("^" + escapedValue, "i");
+    const filteredCities = cities.filter(city => regex.test(city));
 
-  useEffect(handleSearchboxList, [location]);
-
-  const handleChange = event => {
-    const { value } = event.target;
-    setLocation(value);
-    if (!value.length) {
+    if (!filteredCities.length) {
+      setTextColor(warningColor);
+    } else {
       setTextColor(greyColor);
     }
+
+    return filteredCities;
   };
 
-  const handleChosenCity = city => {
-    setLocation("");
-    const chosenCity = cities.filter(item => item === city)[0];
-    setChosenCity(chosenCity);
+  const getSuggestionValue = suggestion => suggestion;
+
+  const onSuggestionSelected = (event, { suggestionValue }) => {
+    setChosenCity(suggestionValue);
+    setValue("");
   };
+
+  const shouldRenderSuggestions = () => true;
+
+  const renderSuggestion = suggestion => (
+    <div className="searchbox__list--city">{suggestion}</div>
+  );
+
+  const onChange = (event, { newValue }) => {
+    setValue(newValue);
+  };
+
+  const onSuggestionsFetchRequested = ({ value }) => {
+    setSuggestions(getSuggestions(value));
+  };
+
+  const onSuggestionsClearRequested = () => {
+    setSuggestions([]);
+  };
+
+  const inputProps = {
+    placeholder: "Twoja miejscowość, lokalizacja...",
+    value,
+    onChange: onChange
+  };
+
+  const renderInput = inputProps => (
+    <div className="searchbox__input">
+      <div className="searchbox__input--icon">
+        <SearchIcon />
+      </div>
+      <Input
+        placeholder="Twoja miejscowość, lokalizacja..."
+        type="text"
+        textColor={textColor}
+        {...inputProps}
+      ></Input>
+    </div>
+  );
 
   return (
     <div className="searchbox">
-      <div className="searchbox__input">
-        <div className="searchbox__input--icon">
-          <SearchIcon />
-        </div>
-        <Input
-          placeholder="Twoja miejscowość, lokalizacja..."
-          onChange={handleChange}
-          value={location}
-          type="text"
-          textColor={textColor}
-        ></Input>
-      </div>
-      {filteredCities.length > 0 && (
-        <div className="searchbox__list">
-          {filteredCities.map(city => (
-            <div
-              key={`option-${city}`}
-              className="searchbox__list--city"
-              onClick={() => {
-                handleChosenCity(city);
-              }}
-            >
-              {city}
-            </div>
-          ))}
-        </div>
-      )}
+      <Autosuggest
+        suggestions={suggestions}
+        onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+        onSuggestionsClearRequested={onSuggestionsClearRequested}
+        getSuggestionValue={getSuggestionValue}
+        onSuggestionSelected={onSuggestionSelected}
+        shouldRenderSuggestions={shouldRenderSuggestions}
+        renderSuggestion={renderSuggestion}
+        renderInputComponent={renderInput}
+        inputProps={inputProps}
+      />
       {textColor === warningColor ? (
         <div className="searchbox__warning">Brak wybranej miejscowości</div>
       ) : null}
@@ -86,8 +106,12 @@ Searchbox.propTypes = {
   setChosenCity: PropTypes.func
 };
 
+const mapStateToProps = createStructuredSelector({
+  cities: selectCitiesPollutionDataList
+});
+
 const mapDispatchToProps = dispatch => ({
   setChosenCity: chosenCity => dispatch(setChosenCity(chosenCity))
 });
 
-export default connect(null, mapDispatchToProps)(Searchbox);
+export default connect(mapStateToProps, mapDispatchToProps)(Searchbox);
