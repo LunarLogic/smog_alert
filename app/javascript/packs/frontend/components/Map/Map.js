@@ -7,7 +7,7 @@ import uuid from "uuid";
 import "./Map.scss";
 import { MapContainer, MapPath, MapText, MapDot } from "./Map.styles.jsx";
 import mapElements from "./MapElements";
-import { mapColor } from "../../styles/_variables.scss";
+import { mapColor, noDataColor } from "../../styles/_variables.scss";
 
 import { setColor } from "../../helpers";
 import {
@@ -31,8 +31,10 @@ const Map = ({
     let clickedCity = citiesPollutionData.find(
       cityData => cityData.location_name === city
     );
-    let color = setColor(clickedCity.last_hour_measurement);
-    return color;
+
+    return clickedCity
+      ? setColor(clickedCity.last_hour_measurement)
+      : noDataColor;
   };
 
   const handleColorChange = city => {
