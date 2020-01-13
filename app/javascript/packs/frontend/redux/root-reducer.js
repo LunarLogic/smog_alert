@@ -7,7 +7,7 @@ import searchboxReducer from "./searchbox/searchbox.reducer";
 import mapSectionReducer from "./mapSection/mapSection.reducer";
 
 const persistConfig = {
-  key: "root",
+  key: "root-v2",
   storage,
   whitelist: ["searchbox"]
 };

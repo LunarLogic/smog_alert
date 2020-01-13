@@ -18,7 +18,6 @@ const PollutionCard = ({ chosenCityData }) => {
     color = setColor(last_hour_measurement);
     emot = setEmot(last_hour_measurement);
     gradient = setGradient(last_hour_measurement);
-    console.log(gradient);
 
     findMeasurement = indicator => {
       return last_hour_measurement.values.find(

@@ -30,19 +30,18 @@ const DropdownMenu = ({ citiesPollutionData, chosenCity, getChosenCity }) => {
     }
   });
 
+  options.sort((a, b) => b.value < a.value);
+
   const [showMenu, setShowMenu] = useState(false);
   const [arrowUp, setArrow] = useState(false);
 
   const toggleMenu = () => {
-    showMenu === false ? setShowMenu(true) : setShowMenu(false);
-    arrowUp === false ? setArrow(true) : setArrow(false);
+    setShowMenu(!showMenu);
+    setArrow(!arrowUp);
   };
 
   const changeChosenCity = () => {
     let city = event.target.textContent;
-    // let cities = citiesPollutionData.filter(
-    //   data => data.location_name === city
-    // );
     setShowMenu(false);
     getChosenCity(city);
   };
