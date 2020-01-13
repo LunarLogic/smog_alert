@@ -22,10 +22,10 @@ export const selectCitiesPollutionDataList = createSelector(
 
 export const selectChosenCityData = createSelector(
   [selectCitiesPollutionData, selectLocation],
-  (citiesPollutionData, location_name) => {
-    if (citiesPollutionData.length && location_name) {
+  (citiesPollutionData, location_display_name) => {
+    if (citiesPollutionData.length && location_display_name) {
       return citiesPollutionData.find(
-        item => item.location_display_name === location_name
+        item => item.location_display_name === location_display_name
       );
     }
   }

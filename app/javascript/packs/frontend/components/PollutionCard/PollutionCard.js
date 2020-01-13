@@ -7,18 +7,18 @@ import "./PollutionCard.scss";
 import { OverviewText, DataSpecific } from "./PollutionCard.styles.jsx";
 
 import { selectChosenCityData } from "../../redux/redux.selectors";
-import { setColor, setEmot } from "../../helpers";
+import { setColor, setEmot, setGradient } from "../../helpers";
 
 const PollutionCard = ({ chosenCityData }) => {
   const noData = "--";
-  let color;
-  let emot;
-  let findMeasurement;
+  let color, emot, gradient, findMeasurement;
 
   if (chosenCityData) {
     var { last_hour_measurement } = chosenCityData;
     color = setColor(last_hour_measurement);
     emot = setEmot(last_hour_measurement);
+    gradient = setGradient(last_hour_measurement);
+    console.log(gradient);
 
     findMeasurement = indicator => {
       return last_hour_measurement.values.find(
@@ -37,7 +37,7 @@ const PollutionCard = ({ chosenCityData }) => {
             : "brak pomiaru"}
         </OverviewText>
       </div>
-      <DataSpecific color={color}>
+      <DataSpecific gradient={gradient}>
         <div className="card-pollution__current-data-specific-container">
           <div className="card-pollution__current-data-specific-primary">
             <div className="card-pollution__current-data-specific-primary-index">
