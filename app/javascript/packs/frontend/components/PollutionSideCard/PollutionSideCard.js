@@ -4,17 +4,14 @@ import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
 import { createStructuredSelector } from "reselect";
 
-import { PollutionIndexData, DropdownMenu } from "..";
-import { setPercent, setColor, setLimit } from "../../helpers";
+import { DropdownMenu } from "..";
+import { setColor } from "../../helpers";
 
 import "./PollutionSideCard.scss";
-import {
-  PollutionOverviewFace,
-  PollutionOverviewText
-} from "./PollutionSideCard.styles.jsx";
 
 import { getChosenCity } from "../../redux/mapSection/mapSection.actions";
 import { selectMapChosenCityData } from "../../redux/redux.selectors";
+import PollutionSpecificData from "../PollutionSpecificData/PollutionSpecificData";
 
 const PollutionSideCard = ({ chosenCityData, getChosenCity }) => {
   const removeChosenCity = () => {
@@ -44,38 +41,13 @@ const PollutionSideCard = ({ chosenCityData, getChosenCity }) => {
         {chosenCityData.map(data => {
           const color = setColor(data.last_hour_measurement.status);
           return (
-            <div
-              className="side-pollution-card__content--air-quality"
+            <PollutionSpecificData
               key={data.location_display_name}
-            >
-              <div className="side-pollution-card__content--air-quality-label">
-                Aktualna jakość powietrza dla lokalizacji{" "}
-                <span className="side-pollution-card__content--air-quality-label-bold">
-                  {data.location_display_name}
-                </span>
-              </div>
-              <div className="side-pollution-card__content--air-quality-info">
-                <div className="side-pollution-card__content--air-quality-info-overview">
-                  <PollutionOverviewFace color={color} />
-                  <PollutionOverviewText color={color}>
-                    {data.last_hour_measurement.status}
-                  </PollutionOverviewText>
-                </div>
-                <div className="side-pollution-card__content--air-quality-info-specific">
-                  {data.last_hour_measurement.values.map(data => {
-                    return (
-                      <PollutionIndexData
-                        key={data.name}
-                        indicator={data.name}
-                        value={data.value}
-                        percent={setPercent(data.name, data.value)}
-                        limit={setLimit(data.name)}
-                      />
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
+              display_name={data.location_display_name}
+              color={color}
+              status={data.last_hour_measurement.status}
+              data={data.last_hour_measurement.values}
+            />
           );
         })}
       </div>
