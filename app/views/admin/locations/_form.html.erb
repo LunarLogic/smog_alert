@@ -1,5 +1,6 @@
 <%= simple_form_for [:admin, @location] do |f| %>
   <%= f.input :name %>
+  <%= f.input :street %>
   <%= f.input :longitude %>
   <%= f.input :latitude %>
   <%= f.button :submit, class: 'btn btn-primary' %>
