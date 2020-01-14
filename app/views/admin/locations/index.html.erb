@@ -5,6 +5,7 @@
       <th scope="col">Id</th>
       <th scope="col">Miejscowość</th>
       <th scope="col">Ulica</th>
+      <th scope="col">Id Instalacji</th>
       <th scope="col">Długość</th>
       <th scope="col">Szerokość</th>
       <th scope="col">Akcje</th>
@@ -18,6 +19,7 @@
           <%= link_to  "#{location.name}", admin_location_path(location) %>
         </td>
         <td><%= location.street %></td>
+        <td><%= location.installation_id %></td>
         <td><%= location.longitude %></td>
         <td><%= location.latitude %></td>
         <td>
