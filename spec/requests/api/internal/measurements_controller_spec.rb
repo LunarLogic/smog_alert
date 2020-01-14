@@ -41,4 +41,28 @@ describe '/api/internal/measurements' do
       expect(json).to eq(expected_response)
     end
   end
+
+  describe 'GET /hourly_average_for_month' do
+    context 'when database contains data for the given date and location' do
+      let!(:location_a) { FactoryBot.create(:location) }
+      let!(:location_b) { FactoryBot.create(:location) }
+      
+      before do
+        for hour in 0..23 do
+          location_a.measurements << FactoryBot.create(:measurement, till_date_time: "2019-11-27 #{hour}:20:15")
+          location_a.measurements << FactoryBot.create(:measurement, till_date_time: "2019-11-27 #{hour}:50:15", pm10: 5, pm25: 5)
+          location_b.measurements << FactoryBot.create(:measurement, till_date_time: "2019-11-27 #{hour}:20:15", pm10: 5, pm25: 5)
+        end
+        location_id = location_a.id
+        date = "2019-11-01 00:00:00"
+        get hourly_average_for_month_api_internal_measurements_path(location_id: location_id, date: date)
+      end
+
+      it 'returns json with average pollution per hour' do
+        expect(response.body).to have_json_path('data')
+        expect(response.body).to have_json_size(24).at_path('data/average_pollution_by_hour')
+        # expect(response.body).to be_json_eql(3.25).at_path('data/average_pollution_by_hour/0/average_pm10')
+      end
+    end
+  end
 end
