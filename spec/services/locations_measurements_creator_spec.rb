@@ -5,7 +5,7 @@ describe LocationsMeasurementCreator do
     subject { locations_measurement_creator.call }
 
     context 'when there is an installation with a given id' do
-      let(:location) { FactoryBot.create(:location) }
+      let(:location) { FactoryBot.create(:location, installation_id: 6091) }
 
       it 'creates new measurement object' do
         VCR.use_cassette 'services/locations_measurements_creator/measurements_for_installation' do

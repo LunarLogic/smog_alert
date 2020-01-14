@@ -3,7 +3,7 @@ FactoryBot.define do
     sequence(:name) { |n| "Town #{n}" }
     latitude { 50.116436 }
     longitude { 19.801319 }
-    installation_id { 6091 }
+    sequence(:installation_id) { |n| n }
 
     factory :location_with_measurements do
       transient do
@@ -20,5 +20,6 @@ FactoryBot.define do
     name { 'Zabierzow Fake' }
     latitude { 50.116440 }
     longitude { 19.801340 }
+    installation_id { 6092 }
   end
 end

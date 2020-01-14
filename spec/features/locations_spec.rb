@@ -4,6 +4,7 @@ def add_new_location(location)
   fill_in 'Name', with: location.name
   fill_in 'Longitude', with: location.longitude
   fill_in 'Latitude', with: location.latitude
+  fill_in 'Installation Id', with: location.installation_id
   click_on('Create Location')
 end
 
