@@ -28,6 +28,7 @@ describe 'admin interactions with articles' do
     click_on('new-article')
     expect(page).to have_current_path(new_admin_article_path)
     add_new_article(new_article)
+    expect(page).to have_current_path(admin_articles_path)
     expect(page).to have_content(new_article.title)
   end
 
@@ -38,6 +39,7 @@ describe 'admin interactions with articles' do
     expect(page).to have_current_path(edit_admin_article_path(article))
     fill_in 'Title', with: 'edited title'
     click_on('Update Article')
+    expect(page).to have_current_path(admin_articles_path)
     expect(page).to have_content('edited title')
   end
 
