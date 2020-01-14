@@ -4,18 +4,18 @@ describe LocationsMeasurementCreator do
   describe '#call' do
     subject { locations_measurement_creator.call }
 
-    context 'when there is a sensor in a given location' do
+    context 'when there is an installation with a given id' do
       let(:location) { FactoryBot.create(:location) }
 
       it 'creates new measurement object' do
-        VCR.use_cassette 'services/locations_measurements_creator/measurements_for_zabierzow' do
+        VCR.use_cassette 'services/locations_measurements_creator/measurements_for_installation' do
           expect { subject }.to change { Measurement.count }.by(1)
         end
       end
 
       context do
         before do
-          VCR.use_cassette('services/locations_measurements_creator/measurements_for_zabierzow') do
+          VCR.use_cassette('services/locations_measurements_creator/measurements_for_installation') do
             subject
           end
         end
@@ -55,19 +55,20 @@ describe LocationsMeasurementCreator do
       end
     end
 
-    context 'when there is no sensor in selected location' do
-      let(:location) { FactoryBot.create(:location, longitude: 1, latitude: 1) }
+    context 'when there is no installation with a given id' do
+      let(:location) { FactoryBot.create(:location, installation_id: 6092) }
 
       before do
-        VCR.use_cassette('services/locations_measurements_creator/no_sensors') do
+        VCR.use_cassette('services/locations_measurements_creator/no_installation') do
           subject
         end
       end
 
+
       it 'returns error result' do
         expect(subject.success?).to be false
         expect(subject.data).to be nil
-        expect(subject.errors).to match_array(['There are no sensors in this area'])
+        expect(subject.errors).to match_array(['There is no installation with a given id'])
       end
     end
   end
