@@ -6,5 +6,7 @@ export const setPercent = (indicator, value) => {
       return Math.round((value * 100) / limits.PM10);
     case "PM 2.5":
       return Math.round((value * 100) / limits.PM25);
+    default:
+      return "--";
   }
 };

@@ -46,8 +46,19 @@ const PollutionSideCard = ({ chosenCityData, getChosenCity }) => {
               key={uuid.v4()}
               display_name={data.location_display_name}
               color={color}
-              status={data.last_hour_measurement.status}
-              data={data.last_hour_measurement.values}
+              status={
+                data.last_hour_measurement
+                  ? data.last_hour_measurement.status
+                  : "brak pomiaru"
+              }
+              data={
+                data.last_hour_measurement
+                  ? data.last_hour_measurement.values
+                  : [
+                      { name: "PM 10", value: "--" },
+                      { name: "PM 2.5", value: "--" }
+                    ]
+              }
             />
           );
         })}

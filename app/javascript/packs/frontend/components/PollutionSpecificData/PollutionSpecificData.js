@@ -8,6 +8,7 @@ import {
   PollutionOverviewText
 } from "./PollutionSpecificData.styles.jsx";
 import "./PollutionSpecificData.scss";
+import uuid from "uuid";
 
 const PollutionSpecificData = ({ display_name, color, status, data }) => {
   return (
@@ -21,16 +22,20 @@ const PollutionSpecificData = ({ display_name, color, status, data }) => {
       <div className="pollution-specific-data__info">
         <div className="pollution-specific-data__info--overview">
           <PollutionOverviewFace color={color} />
-          <PollutionOverviewText color={color}>{status}</PollutionOverviewText>
+          <PollutionOverviewText color={color}>
+            {status ? status : "brak pomiaru"}
+          </PollutionOverviewText>
         </div>
         <div className="pollution-specific-data__info--specific">
           {data.map(data => {
             return (
               <PollutionIndexData
-                key={data.name}
+                key={uuid.v4()}
                 indicator={data.name}
                 value={data.value}
-                percent={setPercent(data.name, data.value)}
+                percent={
+                  data.value !== "--" ? setPercent(data.name, data.value) : "--"
+                }
                 limit={setLimit(data.name)}
               />
             );
