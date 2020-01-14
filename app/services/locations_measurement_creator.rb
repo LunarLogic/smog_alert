@@ -4,23 +4,19 @@ class LocationsMeasurementCreator
   end
 
   def call
-    airly_data = AirlyAPI::Measurements.new.point(latitude, longitude)
+    airly_data = AirlyAPI::Measurements.new.by_installation_id(installation_id)
     data = AirlyExtractor::MeasurementData.extract(airly_data)
     if data
       measurement = @location.measurements.create(data)
       Result::Success.new(data: measurement)
     else
-      Result::Error.new(errors: ['There are no sensors in this area'])
+      Result::Error.new(errors: ['There is no installation with a given id'])
     end
   end
 
   private
 
-  def longitude
-    @location.longitude
-  end
-
-  def latitude
-    @location.latitude
+  def installation_id
+    @location.installation_id
   end
 end

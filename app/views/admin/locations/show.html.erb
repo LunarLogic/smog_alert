@@ -1,5 +1,8 @@
 <h1><%= @location.name %></h1>
-<p><br>Ulica:</br><%= @location.street%></p>
+<% unless @location.street.nil? || @location.street.empty? %>
+  <p><br>Ulica:</br><%= @location.street%></p>
+<% end %>
+<p><br>Id Instalacji:</br><%= @location.installation_id%></p>
 <p><br>Długość:</br><%= @location.longitude%></p>
 <p><br>Szerokość:</br><%= @location.latitude%></p>
 
