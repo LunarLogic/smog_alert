@@ -46,6 +46,7 @@ const PollutionSideCard = ({ chosenCityData, getChosenCity }) => {
               key={uuid.v4()}
               display_name={data.location_display_name}
               color={color}
+              lastHourMeasurement={data.last_hour_measurement}
               status={
                 data.last_hour_measurement
                   ? data.last_hour_measurement.status
