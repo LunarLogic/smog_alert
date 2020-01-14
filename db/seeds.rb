@@ -16,8 +16,7 @@ cities = [
     latitude: 50.081104,
     longitude: 19.764215,
     installation_id: 883, # airly sensor id
-    street: nil,
-    number: nil,
+    street: '',
     sponsor: 'Zabierzów'
   },
   {
@@ -25,8 +24,7 @@ cities = [
     latitude: 50.086516,
     longitude: 19.791139,
     installation_id: 2274,
-    street: 'Radziwiłłów',
-    number: '1',
+    street: 'Radziwiłłów 1',
     sponsor: 'Zabierzów'
   },
   {
@@ -34,8 +32,7 @@ cities = [
     latitude: 50.13258,
     longitude: 19.784113,
     installation_id: 503,
-    street: 'Zielona',
-    number: '245',
+    street: 'Zielona 245',
     sponsor: 'Anonymous SmogFighter',
   },
   {
@@ -43,8 +40,7 @@ cities = [
     latitude: 50.147556,
     longitude: 19.793444,
     installation_id: 413,
-    street: 'Szkolna',
-    number: '37',
+    street: 'Szkolna 37',
     sponsor: 'Zabierzów',
   },
   {
@@ -52,8 +48,7 @@ cities = [
     latitude: 50.124599,
     longitude: 19.822081,
     installation_id: 397,
-    street: 'Narodowa',
-    number: '37',
+    street: 'Narodowa 37',
     sponsor: 'Zabierzów',
   },
   {
@@ -61,8 +56,7 @@ cities = [
     latitude: 50.137981,
     longitude: 19.738478,
     installation_id: 7458,
-    street: nil,
-    number: nil,
+    street: '',
     sponsor: 'Zabierzów'
   },
   {
@@ -70,8 +64,7 @@ cities = [
     latitude: 50.096481,
     longitude: 19.718288,
     installation_id: 6095,
-    street: nil,
-    number: '186',
+    street: 'Brzoskwinia 186',
     sponsor: 'Zabierzów'
   },
   {
@@ -79,8 +72,7 @@ cities = [
     latitude: 50.096199,
     longitude: 19.769079,
     installation_id: 931,
-    street: nil,
-    number: nil,
+    street: '',
     sponsor: 'Zabierzów'
   },
   {
@@ -88,8 +80,7 @@ cities = [
     latitude: 50.150635,
     longitude: 19.77784,
     installation_id: 514,
-    street: nil,
-    number: nil,
+    street: '',
     sponsor: 'Zabierzów'
   },
   {
@@ -97,8 +88,7 @@ cities = [
     latitude: 50.103592,
     longitude: 19.740849,
     installation_id: 7566,
-    street: nil,
-    number: nil,
+    street: '',
     sponsor: 'Zabierzów',
   },
   {
@@ -106,8 +96,7 @@ cities = [
     latitude: 50.14645,
     longitude: 19.763271,
     installation_id: 9946,
-    street: 'Jana Pawła II',
-    number: '61',
+    street: 'Jana Pawła II 61',
     sponsor: 'Zabierzów'
   },
   {
@@ -115,8 +104,7 @@ cities = [
     latitude: 50.113705,
     longitude: 19.747568,
     installation_id: 6116,
-    street: 'Droga Krajowa 79',
-    number: '28',
+    street: 'Droga Krajowa 79 28',
     sponsor: 'Zabierzów',
   },
   {
@@ -124,8 +112,7 @@ cities = [
     latitude: 50.112839,
     longitude: 19.695131,
     installation_id: 8154,
-    street: nil,
-    number: nil,
+    street: '',
     sponsor: 'Zabierzów'
   },
   {
@@ -133,8 +120,7 @@ cities = [
     latitude: 50.123322,
     longitude: 19.731733,
     installation_id: 6649,
-    street: nil,
-    number: nil,
+    street: '',
     sponsor: 'Zabierzów'
   },
   {
@@ -143,7 +129,6 @@ cities = [
     longitude: 19.700527,
     installation_id: 5707,
     street: 'Długa',
-    number: nil,
     sponsor: 'Zabierzów',
   },
   {
@@ -152,7 +137,6 @@ cities = [
     longitude: 19.70766,
     installation_id: 7413,
     street: 'Józefa Trzaskowskiego',
-    number: nil,
     sponsor: 'Anonymous SmogFighter',
   },
   {
@@ -160,8 +144,7 @@ cities = [
     latitude: 50.124508,
     longitude: 19.701921,
     installation_id: 10_478,
-    street: nil,
-    number: nil,
+    street: '',
     sponsor: 'Zabierzów',
   },
   {
@@ -169,8 +152,7 @@ cities = [
     latitude: 50.148193,
     longitude: 19.709249,
     installation_id: 6093,
-    street: '21 Lipca',
-    number: '56',
+    street: '21 Lipca 56',
     sponsor: 'Zabierzów',
   },
   {
@@ -178,8 +160,7 @@ cities = [
     latitude: 50.122887,
     longitude: 19.707764,
     installation_id: 388,
-    street: 'Polaczka',
-    number: '25',
+    street: 'Polaczka 25',
     sponsor: 'Zabierzów',
   },
   {
@@ -187,8 +168,7 @@ cities = [
     latitude: 50.099709,
     longitude: 19.837011,
     installation_id: 493,
-    street: 'Krakowska',
-    number: '122',
+    street: 'Krakowska 122',
     sponsor: 'Zabierzów',
   },
   {
@@ -196,8 +176,7 @@ cities = [
     latitude: 50.093582,
     longitude: 19.808323,
     installation_id: 491,
-    street: 'Sportowa',
-    number: '38',
+    street: 'Sportowa 38',
     sponsor: 'Zabierzów',
   },
   {
@@ -205,8 +184,7 @@ cities = [
     latitude: 50.137611,
     longitude: 19.818424,
     installation_id: 482,
-    street: 'Świerkowa',
-    number: '80',
+    street: 'Świerkowa 80',
     sponsor: 'Zabierzów',
   },
   {
@@ -214,8 +192,7 @@ cities = [
     latitude: 50.135612,
     longitude: 19.759342,
     installation_id: 2655,
-    street: 'Słoneczna',
-    number: '34',
+    street: 'Słoneczna 34',
     sponsor: 'Zabierzów'
   },
   {
@@ -223,8 +200,7 @@ cities = [
     latitude: 50.120655,
     longitude: 19.78093,
     installation_id: 521,
-    street: 'Przy Torze',
-    number: '63',
+    street: 'Przy Torze 63',
     sponsor: 'Airly Ambassador'
   },
   {
@@ -232,8 +208,7 @@ cities = [
     latitude: 50.116028,
     longitude: 19.800639,
     installation_id: 9996,
-    street: 'Kolejowa',
-    number: '26',
+    street: 'Kolejowa 26',
     sponsor: 'State Environmental Monitoring Station'
   },
   {
@@ -242,7 +217,6 @@ cities = [
     longitude: 19.801319,
     installation_id: 2123,
     street: 'Wapienna',
-    number: nil,
     sponsor: 'Zabierzów'
   },
   {
@@ -250,8 +224,7 @@ cities = [
     latitude: 50.15202,
     longitude: 19.803083,
     installation_id: 615,
-    street: 'Krakowska',
-    number: '225',
+    street: 'Krakowska 225',
     sponsor: 'Anonymous SmogFighter',
   },
   {
@@ -259,8 +232,7 @@ cities = [
     latitude: 50.15869,
     longitude: 19.79455,
     installation_id: 7912,
-    street: 'Jana Pawła II',
-    number: '24',
+    street: 'Jana Pawła II 24',
     sponsor: 'Zabierzów',
   },
 
