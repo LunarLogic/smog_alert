@@ -12,7 +12,7 @@ unless Rails.env.production?
   15.times do
     Article.create([{
       title: Faker::Lorem.unique.sentence,
-      body: Faker::Lorem.paragraphs
+      body: Faker::Lorem.sentence(word_count: 150)
     }])
   end
 end
