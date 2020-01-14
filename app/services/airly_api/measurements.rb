@@ -13,7 +13,11 @@ module AirlyAPI
     private
 
     def airly_response_body(url)
-      response = RestClient.get(url, headers)
+      response = begin
+                   RestClient.get(url, headers)
+                 rescue RestClient::ExceptionWithResponse => e
+                   e.response
+                 end
       JSON.parse(response.body)
     end
   end

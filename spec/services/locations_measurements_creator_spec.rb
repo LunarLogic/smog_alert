@@ -26,31 +26,31 @@ describe LocationsMeasurementCreator do
         end
 
         it 'sets date correctly' do
-          expect(location.measurements.last.date).to eq(Date.parse('Tue, 03 Dec 2019'))
+          expect(location.measurements.last.date).to eq(Date.parse('Tue, 14 Jan 2020'))
         end
         it 'sets hour correctly' do
-          expect(location.measurements.last.hour).to eq(17)
+          expect(location.measurements.last.hour).to eq(16)
         end
         it 'sets PM10 correctly' do
-          expect(location.measurements.last.pm10).to eq(200.11)
+          expect(location.measurements.last.pm10).to eq(62.65)
         end
         it 'sets PM25 correctly' do
-          expect(location.measurements.last.pm25).to eq(110.1)
+          expect(location.measurements.last.pm25).to eq(37.12)
         end
         it 'sets temperature correctly' do
-          expect(location.measurements.last.temperature).to eq(-1.63)
+          expect(location.measurements.last.temperature).to eq(1.68)
         end
         it 'sets humidity correctly' do
-          expect(location.measurements.last.humidity).to eq(85.13)
+          expect(location.measurements.last.humidity).to eq(73.38)
         end
         it 'sets pressure correctly' do
-          expect(location.measurements.last.pressure).to eq(1027.99)
+          expect(location.measurements.last.pressure).to eq(1019.38)
         end
         it 'sets from_date_time correctly' do
-          expect(location.measurements.last.from_date_time).to eq(DateTime.parse('2019-12-03 16:27:23.646000000 +0000'))
+          expect(location.measurements.last.from_date_time).to eq(DateTime.parse('got: 2020-01-14 15:08:36.8820 +0000'))
         end
         it 'sets till_date_time correctly' do
-          expect(location.measurements.last.till_date_time).to eq(DateTime.parse('2019-12-03 17:27:23.646000000 +0000'))
+          expect(location.measurements.last.till_date_time).to eq(DateTime.parse('2020-01-14 16:08:36.8820 +0000'))
         end
       end
     end
@@ -63,7 +63,6 @@ describe LocationsMeasurementCreator do
           subject
         end
       end
-
 
       it 'returns error result' do
         expect(subject.success?).to be false

@@ -3,6 +3,7 @@ FactoryBot.define do
     sequence(:name) { |n| "Town #{n}" }
     latitude { 50.116436 }
     longitude { 19.801319 }
+    installation_id { 6091 }
 
     factory :location_with_measurements do
       transient do

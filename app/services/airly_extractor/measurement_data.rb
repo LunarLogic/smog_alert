@@ -9,7 +9,7 @@ module AirlyExtractor
     end
 
     def extract
-      return if @data['values'].empty?
+      return if @data.nil? || @data['values'].empty?
 
       {
         date: date,
