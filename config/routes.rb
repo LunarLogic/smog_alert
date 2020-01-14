@@ -25,6 +25,7 @@ Rails.application.routes.draw do
           get :current
           get :calendar_values
           get :calendar_status
+          get :hourly_average_for_month
         end
       end
     end

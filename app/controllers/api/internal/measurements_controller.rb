@@ -22,10 +22,28 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
     render json: { year => days_grouped_by_status }
   end
 
+  def hourly_average_for_month
+    location = Location.find(hourly_stats_params[:location_id])
+    date = hourly_stats_params[:date].to_date
+    monthly_measurement = statistics_repository.monthly_measurements(location, date)
+    data = API::Internal::HourlyAveragePollutionPresenter.new(location, date, monthly_measurement).to_hash
+    render json: { data: data }
+  end
+
   private
 
   def location_repository
     LocationsRepository.new
+  end
+
+  def statistics_repository
+    StatisticsRepository.new
+  end
+
+  def hourly_stats_params
+    params.require(:date)
+    params.require(:location_id)
+    params.permit([:date, :location_id])
   end
 
   def calendar_params
