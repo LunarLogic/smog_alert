@@ -1,0 +1,110 @@
+@import "../../styles/variables";
+
+.card-pollution {
+  &__current-data {
+    &-container {
+      width: 53rem;
+      height: 19.5rem;
+      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.15);
+      border: 0.1rem solid $frameColor;
+      border-radius: 0.6rem;
+      overflow: hidden;
+      margin-bottom: 3.1rem;
+
+      display: flex;
+    }
+    &-overview {
+      width: 50%;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      &-face {
+        width: 7.9rem;
+        height: 7.9rem;
+        border-radius: 50%;
+      svg {
+        width: 100%;
+        height: 100%
+      }
+      }
+
+      &-text {
+        font-size: 2.1rem;
+        line-height: 2.4rem;
+        color: $unhealthySecond;
+        font-weight: bold;
+        margin-top: 1.2rem;
+      }
+    }
+    &-specific {
+      width: 50%;
+      background: linear-gradient(
+        196.62deg,
+        $unhealthyFirst 0%,
+        $unhealthySecond 100%
+      );
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+      &-primary {
+        display: flex;
+        align-items: flex-end;
+
+        &-index {
+          font-size: 1.6rem;
+          font-weight: bold;
+          line-height: 1.9rem;
+          color: $textColor;
+          opacity: 0.52;
+          margin: 0 1rem 0.7rem 0;
+        }
+
+        &-value {
+          font-size: 3.7rem;
+          line-height: 4.3rem;
+          color: $secondaryColorContrast;
+          font-family: "Roboto", sans-serif;
+
+          &--bold {
+            font-size: 5.7rem;
+            font-weight: 700;
+          }
+        }
+      }
+      &-secondary {
+        margin-top: 2.5rem;
+        display: flex;
+        align-items: flex-end;
+
+        &-index {
+          font-size: 1.6rem;
+          font-weight: bold;
+          line-height: 1.9rem;
+          color: $textColor;
+          opacity: 0.52;
+          margin: 0 1rem 0 0;
+        }
+        &-value {
+          font-size: 1.6rem;
+          line-height: 1.9rem;
+          color: $secondaryColorContrast;
+          font-family: "Roboto", sans-serif;
+
+          &--bold {
+            font-size: 3.6rem;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}

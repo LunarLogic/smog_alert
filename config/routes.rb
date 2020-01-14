@@ -16,6 +16,7 @@ Rails.application.routes.draw do
         put :publish
       end
     end
+    resources :users
   end
 
   authenticate :user, ->(u) { u.admin? } do
@@ -27,8 +28,12 @@ Rails.application.routes.draw do
       resources :measurements, only: [] do
         collection do
           get :current
+          get :calendar_values
+          get :calendar_status
         end
       end
     end
   end
+
+  get '*path', to: 'frontend#index'
 end

@@ -1,0 +1,36 @@
+@import "../../styles/variables";
+
+.pollution-specific-data {
+  height: inherit;
+  overflow-y: scroll;
+
+  &__label {
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+    color: $grey;
+    margin-top: 1.7rem;
+
+    &--bold {
+      font-weight: bold;
+    }
+  }
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2.7rem;
+    border-bottom: 0.1rem solid $frameColor;
+
+    &--overview {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 1.5rem;
+      width: 30%;
+    }
+    &--specific {
+      width: 73%;
+      overflow-y: scroll;
+      height: 200px;
+    }
+  }
+}

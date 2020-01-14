@@ -1,9 +1,18 @@
 # Smog alert
 
+[![CircleCI](https://circleci.com/gh/LunarLogic/smog_alert.svg?style=svg&circle-token=cca65188e46e468ae17d54c96244c724b568a0cb)](https://circleci.com/gh/LunarLogic/smog_alert)
+
 ## Requirements
 
 - Ruby 2.6.5
 - Node.js
+
+Ensure you use [NVM](https://github.com/nvm-sh/nvm) (Node Version Manager) and only then install yarn via brew.
+
+```
+brew install yarn
+```
+
 - Install and run PostgreSQL
 
 ```
@@ -33,20 +42,23 @@ brew install imagemagick
 - Run below commands
 
 ```
-rake db:setup
-
 bundle install
 yarn install
+
+# setup database
+rake db:setup
+
 bundle exec rails s
 
 # In separate terminal window run:
 bin/webpack-dev-server
 
-# To run migrations in database:
+# In separate terminal window run:
+bundle exec sidekiq
 
+# To run migrations in database:
 rails db:migrate
 RAILS_ENV=test rails db:migrate
-
 ```
 
 - Run seeds to setup sample records in database (email: admin@example.com, password: `123456`)
@@ -54,6 +66,8 @@ RAILS_ENV=test rails db:migrate
 ```
 rails db:seed
 ```
+
+- You can see background jobs in Sidekiq web view by visiting http://localhost:3000/sidekiq You must be signed in as admin user.
 
 ### Editor config
 
@@ -110,4 +124,6 @@ RAILS_ENV=staging /usr/local/rbenv/bin/rbenv exec bundle exec rails console
 
 #### Tests
 
-`bundle exec rspec`
+- Run the test suite: `bundle exec rspec`
+
+- Run tests in Chrome browser in development: `CHROME=true rspec spec/features/homepage_spec.rb`

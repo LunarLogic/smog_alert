@@ -1,0 +1,56 @@
+@import "../../styles/variables";
+
+.dropdown {
+  height: 2.5rem;
+  border: none;
+  border-radius: 0.4rem;
+  &__control {
+    padding: 2.1rem !important;
+    height: inherit;
+    width: inherit;
+    border: 0.1rem solid $frameColor !important;
+    border-radius: 0.4rem !important;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    svg {
+      color: $secondaryColor;
+      width: 4rem;
+      height: 4rem;
+    }
+    &--placeholder {
+      font-size: 1.6rem;
+      line-height: 1.9rem;
+      color: $textColor;
+    }
+    &--menu {
+      width: 100%;
+      box-sizing: border-box;
+      border-radius: 0.4rem;
+      border-left: 0.1rem solid $frameColor;
+      border-right: 0.1rem solid $frameColor;
+      border-bottom: 0.1rem solid $frameColor;
+      background-color: white;
+      max-height: 40rem !important;
+      overflow-y: scroll;
+      position: absolute;
+
+      .is-selected {
+        background-color: $greyLight !important;
+      }
+
+      &-option {
+        font-size: 1.6rem;
+        line-height: 1.9rem;
+        color: $textColor !important;
+        padding: 2.1rem !important;
+
+        &:hover {
+          background-color: $greyLight !important;
+        }
+      }
+    }
+  }
+}
