@@ -26,6 +26,11 @@
       align-items: center;
       margin-right: 1.5rem;
       width: 30%;
+
+      &-face > svg {
+        width: 7.9rem;
+        height: 7.9rem;
+      }
     }
     &--specific {
       width: 73%;

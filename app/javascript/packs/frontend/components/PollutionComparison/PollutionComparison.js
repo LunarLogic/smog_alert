@@ -35,8 +35,12 @@ const PollutionComparison = ({
   };
 
   const getPM10 = cityData => {
-    let values = cityData.last_hour_measurement.values;
-    return values.find(value => value.name === "PM 10");
+    let values = cityData.last_hour_measurement
+      ? cityData.last_hour_measurement.values
+      : null;
+    return values
+      ? values.find(value => value.name === "PM 10")
+      : { value: "--" };
   };
 
   if (citiesPollutionData.length) {
