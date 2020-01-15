@@ -23,7 +23,6 @@ RSpec.describe StatisticsRepository do
       end
     
       it 'returns all measurements from the given month for the given location' do
-        p subject
         expect(subject).to include right_measurement_second
         expect(subject).to include right_measurement_first
         expect(subject).not_to include measurement_from_wrong_location
@@ -31,17 +30,17 @@ RSpec.describe StatisticsRepository do
       end
     end
 
-    # context 'when database doesnt contain any measurement from the given month for the given location' do
-    #   let!(:measurement_from_wrong_location) do
-    #     FactoryBot.create(:measurement, location: location_b, till_date_time: (Time.now.at_end_of_month - 1.hour), till_date_time: (Time.now.at_end_of_month - 1.second))
-    #   end
-    #   let!(:measurement_from_wrong_time) do
-    #     FactoryBot.create(:measurement, location: location_a, till_date_time: (Time.now.at_end_of_month + 1.second))
-    #   end
+    context 'when database does not contain any measurement from the given month for the given location' do
+      let!(:measurement_from_wrong_location) do
+        FactoryBot.create(:measurement, location: location_b, till_date_time: (Time.now.at_end_of_month - 1.hour), till_date_time: (Time.now.at_end_of_month - 1.second))
+      end
+      let!(:measurement_from_wrong_time) do
+        FactoryBot.create(:measurement, location: location_a, till_date_time: (Time.now.at_end_of_month + 1.second))
+      end
 
-    #   it 'returns nil' do
-    #     expect(subject). to eql nil
-    #   end
-    # end
+      it 'returns nil' do
+        expect(subject). to eql nil
+      end
+    end
   end
 end
