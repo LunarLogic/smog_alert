@@ -33,6 +33,7 @@ describe AirlyExtractor::MeasurementData do
           },
         }
       result = {
+        advice: nil,
         date: Date.new(2019, 12, 5),
         hour: 15,
         pm10: 74.01,
