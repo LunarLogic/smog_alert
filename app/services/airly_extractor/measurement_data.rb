@@ -54,10 +54,10 @@ module AirlyExtractor
 
     def advice
       indexes = @data['indexes']
-      unless indexes.nil?
-        indexes[0]['advice']
-      else
+      if indexes.nil?
         nil
+      else
+        indexes[0]['advice']
       end
     end
   end
