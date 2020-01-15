@@ -4,12 +4,16 @@ class HourlyAverageStatisticsCounter
   end
 
   def call
-    hourly_average_array = []
-    for hour in 0..23 do
-      average_for_hour = monthly_average_by_hour(hour)
-      hourly_average_array << { hour => average_for_hour }
+    unless @monthly_measurements.empty?
+      hourly_average_array = []
+      for hour in 0..23 do
+        average_for_hour = monthly_average_by_hour(hour)
+        hourly_average_array << { hour => average_for_hour }
+      end
+      hourly_average_array
+    else
+      nil
     end
-    hourly_average_array
   end
 
   private
@@ -25,6 +29,6 @@ class HourlyAverageStatisticsCounter
         number_of_days +=1
       end
     end
-    { average_pm10: average_pm10/number_of_days, average_pm25: average_pm25/number_of_days }
+    number_of_days == 0 ? nil : { average_pm10: average_pm10/number_of_days, average_pm25: average_pm25/number_of_days }
   end
 end
