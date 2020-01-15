@@ -52,6 +52,9 @@ describe LocationsMeasurementCreator do
         it 'sets till_date_time correctly' do
           expect(location.measurements.last.till_date_time).to eq(DateTime.parse('2020-01-14 16:08:36.8820 +0000'))
         end
+        it 'sets advice correctly' do
+          expect(location.measurements.last.advice).to eq('Watch out - a few signs of smog today.')
+        end
       end
     end
 
