@@ -32,6 +32,7 @@ Rails.application.routes.draw do
           get :calendar_status
         end
       end
+      resources :articles, only: :index
     end
   end
 
