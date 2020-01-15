@@ -15,7 +15,7 @@ import {
   badFirst,
   badSecond,
   noDataColor
-} from "../styles/_variables";
+} from "../styles/_variables.scss";
 
 export const setGradient = lastHourMeasurement => {
   let gradientColors = {};
