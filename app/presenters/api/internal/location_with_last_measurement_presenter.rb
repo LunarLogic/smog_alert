@@ -17,10 +17,10 @@ class API::Internal::LocationWithLastMeasurementPresenter
   end
 
   def display_name
-    if @location.street
-      "#{@location.name}, #{@location.street}"
-    else
+    if @location.street.blank?
       @location.name
+    else
+      "#{@location.name}, #{@location.street}"
     end
   end
 
