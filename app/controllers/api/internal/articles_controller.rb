@@ -2,13 +2,7 @@ class API::Internal::ArticlesController < API::Internal::BaseController
   def index
     articles = Article.where(published: true)
     data = articles.map do |article|
-      { id: article.id,
-        title: article.title,
-        body: article.body.to_s,
-        published: article.published,
-        published_at: article.published_at,
-        updated_at: article.updated_at,
-        created_at: article.created_at }
+      API::Internal::ArticlePresenter.new(article)
     end
 
     render json: { data: data }
