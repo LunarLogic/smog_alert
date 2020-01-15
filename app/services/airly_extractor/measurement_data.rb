@@ -21,6 +21,7 @@ module AirlyExtractor
         pressure: get('PRESSURE'),
         from_date_time: from_date_time,
         till_date_time: till_date_time,
+        advice: advice
       }
     end
 
@@ -49,6 +50,10 @@ module AirlyExtractor
 
     def till_date_time
       @data['tillDateTime']
+    end
+
+    def advice
+      @data['indexes'][0]['advice']
     end
   end
 end
