@@ -15,10 +15,12 @@ RSpec.describe HourlyAverageStatisticsCounter do
 
     context 'when the data for some hours is missing' do
       before do
-        for hour in 0..10 do
+        hours = 0..10
+        hours.each do |hour|
           measurement = FactoryBot.create(:measurement, till_date_time: "2019-11-27 #{hour}:20:15")
           monthly_data << measurement
-          second_measurement = FactoryBot.create(:measurement, till_date_time: "2019-11-27 #{hour}:50:15", pm10: 5, pm25: 5)
+          second_measurement = FactoryBot
+            .create(:measurement, till_date_time: "2019-11-27 #{hour}:50:15", pm10: 5, pm25: 5)
           monthly_data << second_measurement
         end
       end
@@ -33,10 +35,12 @@ RSpec.describe HourlyAverageStatisticsCounter do
 
     context 'when there is data for all 24 hours for a given month' do
       before do
-        for hour in 0..23 do
+        hours = 0..23
+        hours.each do |hour|
           measurement = FactoryBot.create(:measurement, till_date_time: "2019-11-27 #{hour}:20:15")
           monthly_data << measurement
-          second_measurement = FactoryBot.create(:measurement, till_date_time: "2019-11-27 #{hour}:50:15", pm10: 5, pm25: 5)
+          second_measurement = FactoryBot
+            .create(:measurement, till_date_time: "2019-11-27 #{hour}:50:15", pm10: 5, pm25: 5)
           monthly_data << second_measurement
         end
       end

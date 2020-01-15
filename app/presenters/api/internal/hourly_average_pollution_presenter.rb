@@ -6,7 +6,7 @@ class API::Internal::HourlyAveragePollutionPresenter
   end
 
   def to_hash
-    a = {
+    {
       location_id: @location.id,
       location_name: @location.name,
       month: @date.month,
@@ -17,6 +17,7 @@ class API::Internal::HourlyAveragePollutionPresenter
 
   def average_pollution_by_hour
     return nil unless @monthly_measurement
-    average_counter = HourlyAverageStatisticsCounter.new(@monthly_measurement).call
+
+    HourlyAverageStatisticsCounter.new(@monthly_measurement).call
   end
 end

@@ -46,15 +46,18 @@ describe '/api/internal/measurements' do
     context 'when database contains data for the given date and location' do
       let!(:location_a) { FactoryBot.create(:location) }
       let!(:location_b) { FactoryBot.create(:location) }
-      
+
       before do
-        for hour in 0..23 do
-          location_a.measurements << FactoryBot.create(:measurement, till_date_time: "2019-11-27 #{hour}:20:15")
-          location_a.measurements << FactoryBot.create(:measurement, till_date_time: "2019-11-27 #{hour}:50:15", pm10: 5, pm25: 5)
-          location_b.measurements << FactoryBot.create(:measurement, till_date_time: "2019-11-27 #{hour}:20:15", pm10: 5, pm25: 5)
+        hours = 0..23
+        hours.each do |hour|
+          FactoryBot.create(:measurement, location: location_a, till_date_time: "2019-11-27 #{hour}:20:15")
+          FactoryBot
+            .create(:measurement, location: location_a, till_date_time: "2019-11-27 #{hour}:50:15", pm10: 5, pm25: 5)
+          FactoryBot
+            .create(:measurement, location: location_b, till_date_time: "2019-11-27 #{hour}:20:15", pm10: 5, pm25: 5)
         end
         location_id = location_a.id
-        date = "2019-11-01 00:00:00"
+        date = '2019-11-01 00:00:00'
         get hourly_average_for_month_api_internal_measurements_path(location_id: location_id, date: date)
       end
 
