@@ -2,116 +2,116 @@ require 'csv'
 
 old_ids_for_locations = [
   {
-    location: { city: 'Aleksandrowice', street: nil },
-    id: [883]
+    new_id: 883,
+    old_id: [883]
   },
   {
-    location: { city: 'Balice', street: 'Radziwiłłów' },
-    id: [2274]
+    new_id: 2274,
+    old_id: [2274]
   },
   {
-    location: { city: 'Bolechowice', street: 'Zielona' },
-    id: [503]
+    new_id: 503,
+    old_id: [503]
   },
   {
-    location: { city: 'Bolechowice', street: 'Szkolna' },
-    id: [413]
+    new_id: 413,
+    old_id: [413]
   },
   {
-    location: { city: 'Brzezie', street: 'Narodowa' },
-    id: [397]
+    new_id: 397,
+    old_id: [397]
   },
   {
-    location: { city: 'Brzezinka', street: nil },
-    id: [513]
+    new_id: 7458,
+    old_id: [513]
   },
   {
-    location: { city: 'Morawica', street: 'Brzoskwinia' },
-    id: [396, 3313]
+    new_id: 6095,
+    old_id: [396, 3313]
   },
   {
-    location: { city: 'Burów', street: nil },
-    id: [490, 931]
+    new_id: 931,
+    old_id: [490, 931]
   },
   {
-    location: { city: 'Karniowice', street: nil },
-    id: [514]
+    new_id: 514,
+    old_id: [514]
   },
   {
-    location: { city: 'Kleszczów', street: nil },
-    id: [489]
+    new_id: 7566,
+    old_id: [489]
   },
   {
-    location: { city: 'Kobylany', street: 'Jana Pawła II' },
-    id: [412]
+    new_id: 9946,
+    old_id: [412]
   },
   {
-    location: { city: 'Kochanów', street: 'Droga Krajowa 79' },
-    id: [515, 2904]
+    new_id: 6116,
+    old_id: [515, 2904]
   },
   {
-    location: { city: 'Młynka', street: nil },
-    id: [510]
+    new_id: 8154,
+    old_id: [510]
   },
   {
-    location: { city: 'Niegoszowice', street: nil },
-    id: [488, 3755]
+    new_id: 6649,
+    old_id: [488, 3755]
   },
   {
-    location: { city: 'Nielepice', street: 'Długa' },
-    id: [392, 3075]
+    new_id: 5707,
+    old_id: [392, 3075]
   },
   {
-    location: { city: 'Nielepice', street: 'Józefa Trzaskowskiego' },
-    id: [522, 967]
+    new_id: 7413,
+    old_id: [522, 967]
   },
   {
-    location: { city: 'Pisary', street: nil },
-    id: [516]
+    new_id: 10_478,
+    old_id: [516]
   },
   {
-    location: { city: 'Radwanowice', street: '21 Lipca' },
-    id: [486, 3089]
+    new_id: 6093,
+    old_id: [486, 3089]
   },
   {
-    location: { city: 'Rudawa', street: 'Polaczka' },
-    id: [388]
+    new_id: 388,
+    old_id: [388]
   },
   {
-    location: { city: 'Rząska', street: 'Krakowska' },
-    id: [493]
+    new_id: 493,
+    old_id: [493]
   },
   {
-    location: { city: 'Szczyglice', street: 'Sportowa' },
-    id: [491]
+    new_id: 491,
+    old_id: [491]
   },
   {
-    location: { city: 'Ujazd', street: 'Świerkowa' },
-    id: [482]
+    new_id: 482,
+    old_id: [482]
   },
   {
-    location: { city: 'Więckowice', street: 'Słoneczna' },
-    id: [517, 2655]
+    new_id: 2655,
+    old_id: [517, 2655]
   },
   {
-    location: { city: 'Zabierzów', street: 'Przy Torze' },
-    id: [521]
+    new_id: 521,
+    old_id: [521]
   },
   {
-    location: { city: 'Zabierzów', street: 'Kolejowa' },
-    id: []
+    new_id: 9996,
+    old_id: []
   },
   {
-    location: { city: 'Zabierzów', street: 'Wapienna' },
-    id: [408, 2123]
+    new_id: 2123,
+    old_id: [408, 2123]
   },
   {
-    location: { city: 'Zelków', street: 'Krakowska' },
-    id: [615]
+    new_id: 615,
+    old_id: [615]
   },
   {
-    location: { city: 'Zelków', street: 'Jana Pawła II' },
-    id: [411]
+    new_id: 7912,
+    old_id: [411]
   },
 ]
 
@@ -121,7 +121,7 @@ namespace :database do
     csv_text = File.read(Rails.root.join('lib', 'old_db', 'measurements.csv'))
     csv = CSV.parse(csv_text, headers: true)
     csv.each do |row|
-      location_for_id = old_ids_for_locations.select { |e| e[:id].include?(row[0].to_i) }
+      location_for_id = old_ids_for_locations.select { |e| e[:old_id].include?(row[0].to_i) }
       # handle when location_for_id is empty
       if location_for_id.empty?
         puts 'Location is not in our db'
@@ -129,8 +129,7 @@ namespace :database do
       end
 
       location = Location.find_by(
-        name: location_for_id[0][:location][:city],
-        street: location_for_id[0][:location][:street],
+        installation_id: location_for_id[0][:new_id],
       )
       till_date_time = row['tillDateTime0']
       day = Time.find_zone('UTC').parse(till_date_time).to_date
