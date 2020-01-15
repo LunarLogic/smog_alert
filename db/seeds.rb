@@ -266,6 +266,7 @@ if Rails.env.development? || Rails.env.test?
       pressure: rand(900.0..1100.0).round(2),
       from_date_time: till_date_time - 1.hour,
       till_date_time: till_date_time,
+      advice: 'zostań w domu'
     ).save!
   end
 end

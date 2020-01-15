@@ -36,7 +36,8 @@ class API::Internal::LocationWithLastMeasurementPresenter
         { name: 'PM 10', value: @last_hour_measurement.pm10 },
         { name: 'PM 2.5', value: @last_hour_measurement.pm25 },
       ],
-      status: pm10checker.call
+      status: pm10checker.call,
+      advice: @last_hour_measurement.advice
     }
   end
 end
