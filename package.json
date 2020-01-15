@@ -63,5 +63,8 @@
       "last 1 safari version"
     ]
   },
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "devDependencies": {
+    "enzyme-to-json": "^3.4.3"
+  }
 }
