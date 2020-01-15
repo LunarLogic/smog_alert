@@ -1,5 +1,5 @@
 describe LocationCreator do
-  let(:location_creator) { described_class.new(installations[0])}
+  let(:location_creator) { described_class.new(installations[0]) }
 
   let(:installations) do
     VCR.use_cassette('services/location_creator/installations_near_point') do
@@ -14,7 +14,7 @@ describe LocationCreator do
       street: 'Kolejowa 26',
       installation_id: 9996,
       longitude: 19.800639,
-      latitude: 50.116028
+      latitude: 50.116028,
     )
     expect(Location.first.name).to eql(location.name)
     expect(Location.first.installation_id).to eql(location.installation_id)

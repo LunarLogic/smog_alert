@@ -17,7 +17,6 @@ class LocationCreator
         installation_id: installation_id,
       )
     end
-
   end
 
   private
@@ -28,9 +27,8 @@ class LocationCreator
 
   def street
     street = @installation['address']['street']
-    unless @installation['address']['number'].nil?
-      street += " #{@installation['address']['number']}"
-    end
+    street += " #{@installation['address']['number']}" unless @installation['address']['number'].nil?
+    street
   end
 
   def longitude

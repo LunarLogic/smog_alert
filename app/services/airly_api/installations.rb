@@ -1,20 +1,18 @@
 module AirlyAPI
   class Installations < Base
-    def self.nearest(latitude, longitude, maxDistanceKM = nil)
-      new(latitude, longitude, maxDistanceKM).nearest
+    def self.nearest(latitude, longitude, max_distance_km = nil)
+      new(latitude, longitude, max_distance_km).nearest
     end
 
-    def initialize(latitude, longitude, maxDistanceKM)
+    def initialize(latitude, longitude, max_distance_km)
       @latitude = latitude
       @longitude = longitude
-      @maxDistanceKM = maxDistanceKM
+      @max_distance_km = max_distance_km
     end
 
     def nearest
       url = "#{AIRLY_API_URL}installations/nearest?lat=#{@latitude}&lng=#{@longitude}"
-      if @maxDistanceKM
-        url += "&maxDistanceKM=#{@maxDistanceKM}"
-      end
+      url += "&maxDistanceKM=#{@max_distance_km}" if @max_distance_km
       get_json(url)
     end
 
