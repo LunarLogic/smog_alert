@@ -42,7 +42,6 @@ class Admin::LocationsController < Admin::BaseController
   end
 
   def search
-    # @search_params = params['installation_search_form']
     @search = InstallationSearchForm.new(search_params)
     @installations = find_installations
   end
