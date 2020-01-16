@@ -44,6 +44,7 @@ class Admin::LocationsController < Admin::BaseController
   def search
     @search = InstallationSearchForm.new(search_params)
     @installations = find_installations
+    @installations_with_labels = label_if_present_in_db(@installations) if @installations
   end
 
   private
@@ -67,5 +68,9 @@ class Admin::LocationsController < Admin::BaseController
         search_params['max_results'],
       )
     end
+  end
+
+  def label_if_present_in_db(installations)
+    installations.each { |i| i['present_in_db'] = true if Location.find_by(installation_id: i['id']) }
   end
 end

@@ -11,7 +11,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @installations.each do |installation| %>
+    <% @installations_with_labels.each do |installation| %>
       <tr class="installation-row">
         <th scope="row"><%= installation['id']%></th>
         <td>
@@ -22,7 +22,7 @@
         <td><%= installation['location']['longitude'] %></td>
         <td><%= installation['location']['latitude'] %></td>
         <td>
-          <%= link_to 'Dodaj', '#', class: "btn btn-primary btn-sm"%>
+          <%= button_to 'Dodaj', '#', disabled: installation['present_in_db'], class: "btn btn-primary btn-sm"%>
         </td>
       </tr>
     <% end %>
