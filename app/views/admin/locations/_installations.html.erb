@@ -1,0 +1,30 @@
+<table class="table" id="installations">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Id Instalacji</th>
+      <th scope="col">Miejscowość</th>
+      <th scope="col">Ulica</th>
+      <th scope="col">Numer</th>
+      <th scope="col">Długość</th>
+      <th scope="col">Szerokość</th>
+      <th scope="col">Akcje</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @installations.each do |installation| %>
+      <tr class="installation-row">
+        <th scope="row"><%= installation['id']%></th>
+        <td>
+          <%= installation['address']['city'] %>
+        </td>
+        <td><%= installation['address']['street'] %></td>
+        <td><%= installation['address']['number'] %></td>
+        <td><%= installation['location']['longitude'] %></td>
+        <td><%= installation['location']['latitude'] %></td>
+        <td>
+          <%= link_to 'Dodaj', '#', class: "btn btn-primary btn-sm"%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

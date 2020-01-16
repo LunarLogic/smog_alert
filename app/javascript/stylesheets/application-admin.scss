@@ -4,3 +4,33 @@
 body {
   margin-bottom: 50px;
 }
+
+#locations-header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+#locations-index-search-section {
+  display: flex;
+  justify-content: flex-end;
+}
+#search-button {
+  margin-bottom: 15px;
+}
+
+.search-form {
+  padding-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  padding-left: 10%;
+  padding-right: 10%;
+
+  input {
+    width: 200px;
+  }
+}
+
+.installations-list {
+  padding-top: 30px;
+}

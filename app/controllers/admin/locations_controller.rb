@@ -42,11 +42,31 @@ class Admin::LocationsController < Admin::BaseController
   end
 
   def search
+    # @search_params = params['installation_search_form']
+    @search = InstallationSearchForm.new(search_params)
+    @installations = find_installations
   end
 
   private
 
   def location_params
     params.require(:location).permit(:name, :street, :installation_id, :longitude, :latitude)
+  end
+
+  def search_params
+    if params['installation_search_form']
+      params.require(:installation_search_form).permit(:latitude, :longitude, :max_distance_km, :max_results)
+    end
+  end
+
+  def find_installations
+    if search_params
+      AirlyAPI::Installations.nearest(
+        search_params['latitude'],
+        search_params['longitude'],
+        search_params['max_distance_km'],
+        search_params['max_results'],
+      )
+    end
   end
 end
