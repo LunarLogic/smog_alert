@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe HourlyAverageStatisticsCounter do
   describe '#call' do
-    monthly_data = []
+    let(:monthly_data) { [] }
     let(:hourly_average) { HourlyAverageStatisticsCounter.new(monthly_data) }
 
     subject { hourly_average.call }

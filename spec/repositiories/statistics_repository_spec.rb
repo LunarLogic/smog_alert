@@ -43,8 +43,8 @@ RSpec.describe StatisticsRepository do
         FactoryBot.create(:measurement, location: location_a, till_date_time: (Time.current.at_end_of_month + 1.second))
       end
 
-      it 'returns nil' do
-        expect(subject). to eql nil
+      it 'returns an empty array' do
+        expect(subject.empty?). to eql true
       end
     end
   end

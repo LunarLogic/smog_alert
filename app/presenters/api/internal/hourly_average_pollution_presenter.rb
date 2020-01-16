@@ -1,7 +1,7 @@
 class API::Internal::HourlyAveragePollutionPresenter
-  def initialize(location, date, monthly_measurement)
+  def initialize(location, date, monthly_measurements)
     @location = location
-    @monthly_measurement = monthly_measurement
+    @monthly_measurements = monthly_measurements
     @date = date
   end
 
@@ -16,8 +16,8 @@ class API::Internal::HourlyAveragePollutionPresenter
   end
 
   def average_pollution_by_hour
-    return nil unless @monthly_measurement
+    return nil unless @monthly_measurements
 
-    HourlyAverageStatisticsCounter.new(@monthly_measurement).call
+    HourlyAverageStatisticsCounter.new(@monthly_measurements).call
   end
 end
