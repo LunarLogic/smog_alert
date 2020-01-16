@@ -42,6 +42,8 @@ export const setColor = lastHourMeasurement => {
     case veryBad:
       color = badSecond;
       break;
+    default:
+      color = noDataColor;
   }
   return color;
 };
