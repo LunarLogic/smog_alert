@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'dashboard#index'
-    resources :locations
+    resources :locations do
+      get :search, on: :collection
+    end
     resources :articles do
       member do
         patch :publish

@@ -41,6 +41,9 @@ class Admin::LocationsController < Admin::BaseController
     redirect_to admin_locations_path
   end
 
+  def search
+  end
+
   private
 
   def location_params
