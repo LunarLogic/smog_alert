@@ -25,7 +25,7 @@ describe("homepage actions", () => {
     ];
     const store = mockStore({ payload: {} });
     const action = store.getActions();
-    return store.dispatch(getCitiesPollutionData()).then(() => {
+    store.dispatch(getCitiesPollutionData()).then(() => {
       expect(action).toEqual(expectedAction);
     });
   });
