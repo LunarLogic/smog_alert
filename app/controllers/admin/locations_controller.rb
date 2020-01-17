@@ -47,6 +47,11 @@ class Admin::LocationsController < Admin::BaseController
     @installations_with_labels = label_if_present_in_db(@installations) if @installations
   end
 
+  def save
+    @installation = format_installation(installation_params)
+    LocationCreator.new(@installation).call
+  end
+
   private
 
   def location_params
@@ -57,6 +62,25 @@ class Admin::LocationsController < Admin::BaseController
     if params['installation_search_form']
       params.require(:installation_search_form).permit(:latitude, :longitude, :max_distance_km, :max_results)
     end
+  end
+
+  def installation_params
+    params.require(:installation).permit(
+                                          :id,
+                                          :airly,
+                                          :elevation,
+                                          address: [:city, :street, :number, :country, :displayAddress1, :displayAddress2],
+                                          location: [:longitude, :latitude],
+                                          sponsor: [:description, :id, :link, :logo, :name],
+                                        )
+  end
+
+  def format_installation(installation_hash)
+    {
+      'id' => installation_hash[:id],
+      'address' => installation_hash[:address],
+      'location' => installation_hash[:location],
+    }
   end
 
   def find_installations

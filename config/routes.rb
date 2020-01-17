@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     root to: 'dashboard#index'
     resources :locations do
       get :search, on: :collection
+      post :save, on: :collection
     end
     resources :articles do
       member do
