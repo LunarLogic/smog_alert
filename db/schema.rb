@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2020_01_15_121936) do
-=======
 ActiveRecord::Schema.define(version: 2020_01_14_160359) do
->>>>>>> Make changes suggested in comments to PR #68
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,10 +80,7 @@ ActiveRecord::Schema.define(version: 2020_01_14_160359) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "hour", null: false
-<<<<<<< HEAD
     t.string "advice"
-=======
->>>>>>> Make changes suggested in comments to PR #68
     t.index ["date"], name: "index_measurements_on_date"
     t.index ["hour"], name: "index_measurements_on_hour"
     t.index ["location_id"], name: "index_measurements_on_location_id"
