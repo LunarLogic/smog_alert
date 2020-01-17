@@ -1,4 +1,4 @@
-import mapActionTypes from "./homepage.types";
+import homepageActionTypes from "./homepage.types";
 
 const INITIAL_STATE = {
   citiesPollutionData: []
@@ -6,7 +6,7 @@ const INITIAL_STATE = {
 
 const homepageReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case mapActionTypes.GET_CITIES_POLLUTION_DATA:
+    case homepageActionTypes.GET_CITIES_POLLUTION_DATA:
       return {
         ...state,
         citiesPollutionData: action.payload

@@ -32,6 +32,8 @@ export const setIndicator = lastHourMeasurement => {
     case veryBad:
       indicator = 6;
       break;
+    default:
+      indicator = null;
   }
   return indicator;
 };

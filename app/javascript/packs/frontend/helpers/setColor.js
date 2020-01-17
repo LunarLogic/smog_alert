@@ -15,7 +15,7 @@ import {
   badFirst,
   badSecond,
   noDataColor
-} from "../styles/_variables";
+} from "../styles/_variables.scss";
 
 export const setColor = lastHourMeasurement => {
   let color;
@@ -42,6 +42,8 @@ export const setColor = lastHourMeasurement => {
     case veryBad:
       color = badSecond;
       break;
+    default:
+      color = noDataColor;
   }
   return color;
 };

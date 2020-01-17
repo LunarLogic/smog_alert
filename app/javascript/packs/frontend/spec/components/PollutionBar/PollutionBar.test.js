@@ -1,5 +1,7 @@
 import React from "react";
-import { mount } from "enzyme";
+import { mount, shallow } from "enzyme";
+import toJson from "enzyme-to-json";
+
 import PollutionBar from "../../../components/PollutionBar/PollutionBar";
 
 describe("<PollutionBar />", () => {
@@ -26,5 +28,16 @@ describe("<PollutionBar />", () => {
       "backgroundColor",
       "#7d0d0f"
     );
+  });
+  it("expect to render PollutionBar component", () => {
+    const wrapper = shallow(
+      <PollutionBar
+        location="Brzezie"
+        value={25}
+        width={30}
+        backgroundColor="#7d0d0f"
+      />
+    );
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 });

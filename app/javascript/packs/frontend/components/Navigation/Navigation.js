@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import uuid from "uuid";
 
 import { CustomButton } from "../";
 import navigationContent from "./navigationContent";
@@ -26,7 +25,7 @@ const Navigation = () => {
       <div className="navigation__links">
         {links.map(link => (
           <NavLink
-            key={uuid.v4()}
+            key={link.displayName}
             className="navigation__links-item"
             to={link.path}
           >

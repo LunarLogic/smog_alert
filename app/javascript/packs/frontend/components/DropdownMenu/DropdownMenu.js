@@ -4,7 +4,6 @@ import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import { createStructuredSelector } from "reselect";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
-import uuid from "uuid";
 
 import "./DropdownMenu.scss";
 import {
@@ -15,18 +14,16 @@ import { getChosenCity } from "../../redux/mapSection/mapSection.actions";
 
 const DropdownMenu = ({ citiesPollutionData, chosenCity, getChosenCity }) => {
   let options = [];
+  const checkOptions = city => {
+    return (
+      options.length === 0 ||
+      !options.find(element => element === city.location_name)
+    );
+  };
 
   citiesPollutionData.forEach(city => {
-    if (options.length === 0) {
-      options.push({
-        value: city.location_name,
-        className: "dropdown__control--menu-option"
-      });
-    } else if (!options.find(element => element.value === city.location_name)) {
-      options.push({
-        value: city.location_name,
-        className: "dropdown__control--menu-option"
-      });
+    if (checkOptions(city)) {
+      options.push(city.location_name);
     }
   });
 
@@ -56,11 +53,11 @@ const DropdownMenu = ({ citiesPollutionData, chosenCity, getChosenCity }) => {
         <div id="menu" className="dropdown__control--menu">
           {options.map(city => (
             <div
-              className={city.className}
-              key={uuid.v4()}
+              className="dropdown__control--menu-option"
+              key={`${city}-dropdown`}
               onClick={changeChosenCity}
             >
-              {city.value}
+              {city}
             </div>
           ))}
         </div>

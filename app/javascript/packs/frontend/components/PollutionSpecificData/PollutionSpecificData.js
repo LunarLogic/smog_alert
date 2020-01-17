@@ -5,7 +5,6 @@ import { PollutionIndexData } from "..";
 import { setLimit, setPercent, setEmot } from "../../helpers";
 import { PollutionOverviewText } from "./PollutionSpecificData.styles.jsx";
 import "./PollutionSpecificData.scss";
-import uuid from "uuid";
 
 const PollutionSpecificData = ({
   display_name,
@@ -17,7 +16,7 @@ const PollutionSpecificData = ({
   return (
     <div className="pollution-specific-data">
       <div className="pollution-specific-data__label">
-        Aktualna jakość powietrza dla lokalizacji{" "}
+        Aktualna jakość powietrza dla lokalizacji&nbsp;
         <span className="pollution-specific-data__label--bold">
           {display_name}
         </span>
@@ -36,7 +35,7 @@ const PollutionSpecificData = ({
             const percent = setPercent(data.name, data.value);
             return (
               <PollutionIndexData
-                key={uuid.v4()}
+                key={`${display_name}-${data.value}-pollution-index-data`}
                 indicator={data.name}
                 value={data.value}
                 percent={data.value !== "--" ? percent : "--"}
