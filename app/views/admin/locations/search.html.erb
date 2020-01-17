@@ -10,7 +10,7 @@
   </div>
   <div class = 'col-8 installations-list'>
     <% if @installations %>
-        <%= render 'installations'%>
+        <%= render 'installations', locals: { search: @search } %>
     <% else %>
       <h3>Wyszukaj instalacje</h3>
     <% end %>

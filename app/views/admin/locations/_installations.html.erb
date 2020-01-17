@@ -22,7 +22,7 @@
         <td><%= installation['location']['longitude'] %></td>
         <td><%= installation['location']['latitude'] %></td>
         <td>
-          <%= button_to 'Dodaj', {action: 'save'}, remote: true, params: {installation: installation}, disabled: installation['present_in_db'], class: "btn btn-primary btn-sm", id: "save-installation-#{installation['id']}" %>
+          <%= button_to 'Dodaj', {action: 'save'}, remote: true, params: {installation: installation, installation_search_form: @search.to_params}, disabled: installation['present_in_db'], class: "btn btn-primary btn-sm" %>
         </td>
       </tr>
     <% end %>

@@ -50,6 +50,9 @@ class Admin::LocationsController < Admin::BaseController
   def save
     @installation = format_installation(installation_params)
     LocationCreator.new(@installation).call
+    @search = InstallationSearchForm.new(search_params)
+    render 'search', locales: { search: @search}
+    # redirect_to search_admin_locations_path
   end
 
   private
