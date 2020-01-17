@@ -1,10 +1,8 @@
+const SETTINGS = {
+  "PM 10": "50",
+  "PM 2.5": "25"
+};
+
 export const setLimit = name => {
-  switch (name) {
-    case "PM 10":
-      return "50";
-    case "PM 2.5":
-      return "25";
-    default:
-      return "--";
-  }
+  return SETTINGS[name] || "--";
 };

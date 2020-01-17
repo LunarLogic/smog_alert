@@ -2,7 +2,6 @@ import React from "react";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import uuid from "uuid";
 
 import "./Map.scss";
 import { MapContainer, MapPath, MapText, MapDot } from "./Map.styles.jsx";
@@ -77,7 +76,7 @@ const Map = ({
           >
             {mapElements.map(element => (
               <MapPath
-                key={uuid.v4()}
+                key={`${element.location}-map-path`}
                 color={findColor(element.location)}
                 fill={findChosenCityColor(element.location)}
                 opacity={
@@ -94,7 +93,7 @@ const Map = ({
             ))}
             {mapElements.map(element => (
               <MapText
-                key={uuid.v4()}
+                key={`${element.location}-map-text`}
                 transform={element.transform}
                 onClick={() => handleColorChange(element.location)}
                 onMouseOver={() => handleHover(element.location)}
@@ -105,7 +104,7 @@ const Map = ({
             ))}
             {mapElements.map(element => (
               <MapDot
-                key={uuid.v4()}
+                key={`${element.location}-map-dot`}
                 cx={element.cx}
                 cy={element.cy}
                 color={findColor(element.location)}
