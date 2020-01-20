@@ -42,7 +42,9 @@ class Admin::LocationsController < Admin::BaseController
   end
 
   def search
+    @address_search = InstallationSearchByAddressForm.new(address_search_params)
     @search = InstallationSearchForm.new(search_params)
+    byebug
     @installations = find_installations
     @installations_with_labels = label_if_present_in_db(@installations) if @installations
   end
@@ -61,6 +63,12 @@ class Admin::LocationsController < Admin::BaseController
   def search_params
     if params['installation_search_form']
       params.require(:installation_search_form).permit(:latitude, :longitude, :max_distance_km, :max_results)
+    end
+  end
+
+  def address_search_params
+    if params['installationa_search_by_address_form']
+      params.require(:installationa_search_by_address_form).permit(:address, :max_distance_km, :max_results)
     end
   end
 
@@ -98,6 +106,10 @@ class Admin::LocationsController < Admin::BaseController
         search_params['max_distance_km'],
         search_params['max_results'],
       )
+    elsif address_search_params
+      reasult = Geocoder.search(address_search_params['address'])
+      coordinates = result.first.coordinates
+      byebug
     end
   end
 
