@@ -13,6 +13,7 @@ class Admin::UsersController < Admin::BaseController
 
   def create
     @user = User.new(user_params)
+    authorize @user
     if @user.save
       flash[:notice] = 'Użytkownik został dodany'
       redirect_to admin_users_path
@@ -23,6 +24,7 @@ class Admin::UsersController < Admin::BaseController
 
   def update
     @user = User.find(params[:id])
+    authorize @user
     @user.update!(user_params)
     flash[:notice] = 'Zmiany zostały zapisane'
     redirect_to admin_users_path
@@ -34,6 +36,7 @@ class Admin::UsersController < Admin::BaseController
 
   def destroy
     @user = User.find(params[:id])
+    authorize @user
     @user.destroy
     flash[:notice] = 'Użytkownik został usunięty'
     redirect_to admin_users_path

@@ -37,6 +37,7 @@ class Admin::ArticlesController < Admin::BaseController
 
   def destroy
     @article = Article.find(params[:id])
+    authorize @article
     @article.destroy
     flash[:success] = 'Pomyślnie usunięto wpis'
     redirect_to admin_articles_path
@@ -44,6 +45,7 @@ class Admin::ArticlesController < Admin::BaseController
 
   def publish
     @article = Article.find(params[:id])
+    authorize @article
     @article.make_published
     if @article.published
       @article.save
