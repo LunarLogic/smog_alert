@@ -92,7 +92,7 @@ class Admin::LocationsController < Admin::BaseController
 
   def find_installations
     if search_params
-      if !search_params['latitude'].blank? && !search_params['longitude'].blank?
+      if search_params['latitude'].present? && search_params['longitude'].present?
         AirlyAPI::Installations.nearest(
           search_params['latitude'],
           search_params['longitude'],
