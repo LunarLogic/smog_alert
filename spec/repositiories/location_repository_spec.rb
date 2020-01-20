@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe LocationsRepository do
+  let(:location_repository) { LocationsRepository.new }
+
   describe '#last_hour_measurement' do
-    let(:location_repository) { LocationsRepository.new }
     let!(:location) { FactoryBot.create(:location) }
     let!(:other_location) { FactoryBot.create(:location) }
 
@@ -34,6 +35,26 @@ RSpec.describe LocationsRepository do
 
       it 'returns nil' do
         expect(subject).to eql nil
+      end
+    end
+  end
+
+  describe '#last_hour_measurements_by_location_name' do
+    let!(:location_zabierzow_1) { FactoryBot.create(:location, name: 'Zabierzów', street: 'stret 1') }
+    let!(:location_zabierzow_2) { FactoryBot.create(:location, name: 'Zabierzów', street: 'street 2') }
+    let!(:other_location) { FactoryBot.create(:location) }
+    let(:location_name) { 'Zabierzów' }
+
+    subject { location_repository.last_hour_measurements_by_location_name(location_name) }
+
+    context 'when both Zabierzów locations have last hour measurement' do
+      it do
+        measurement_1 = double
+        measurement_2 = double
+        expect(location_repository).to receive(:last_hour_measurement).with(location_zabierzow_1).and_return(measurement_1)
+        expect(location_repository).to receive(:last_hour_measurement).with(location_zabierzow_2).and_return(measurement_2)
+
+        expect(subject).to match_array([measurement_1, measurement_2])
       end
     end
   end
