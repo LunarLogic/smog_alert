@@ -9,7 +9,7 @@ import { OverviewText, DataSpecific } from "./PollutionCard.styles.jsx";
 import { selectChosenCityData } from "../../redux/redux.selectors";
 import { setColor, setEmot, setGradient } from "../../helpers";
 
-const PollutionCard = ({ chosenCityData }) => {
+export const PollutionCard = ({ chosenCityData }) => {
   const noData = "--";
   let color, emot, gradient, findMeasurement;
 

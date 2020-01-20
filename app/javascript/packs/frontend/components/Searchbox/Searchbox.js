@@ -9,10 +9,10 @@ import { selectCitiesPollutionDataList } from "../../redux/redux.selectors";
 
 import "./Searchbox.scss";
 import { Input } from "./Searchbox.styles.jsx";
-import { grey, warning } from "../../styles/_variables";
+import { grey, warning } from "../../styles/_variables.scss";
 import { createStructuredSelector } from "reselect";
 
-const Searchbox = ({ cities, setChosenCity }) => {
+export const Searchbox = ({ cities, setChosenCity }) => {
   const greyColor = grey;
   const warningColor = warning;
   const [textColor, setTextColor] = useState(greyColor);
