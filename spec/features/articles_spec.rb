@@ -11,7 +11,7 @@ describe 'admin interactions with articles' do
   let!(:new_article) { FactoryBot.build(:article) }
 
   before :each do
-    user = FactoryBot.create(:admin)
+    user = FactoryBot.create(:superadmin)
     login_as(user, scope: :user)
     visit admin_articles_path
   end
