@@ -4,6 +4,7 @@ RSpec.describe LocationsRepository do
   describe '#last_hour_measurement' do
     let(:location_repository) { LocationsRepository.new }
     let!(:location) { FactoryBot.create(:location) }
+    let!(:other_location) { FactoryBot.create(:location) }
 
     subject { location_repository.last_hour_measurement(location) }
 
@@ -13,6 +14,9 @@ RSpec.describe LocationsRepository do
       end
       let!(:measurement_newest) do
         FactoryBot.create(:measurement, location: location, till_date_time: (Time.current - 15.minutes))
+      end
+      let!(:measurement_other_location) do
+        FactoryBot.create(:measurement, location: other_location, till_date_time: (Time.current - 10.minutes))
       end
       let!(:measurement_mid) do
         FactoryBot.create(:measurement, location: location, till_date_time: (Time.current - 20.minutes))
