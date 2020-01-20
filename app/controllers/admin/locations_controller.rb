@@ -50,10 +50,6 @@ class Admin::LocationsController < Admin::BaseController
   def save
     @installation = format_installation(installation_params)
     LocationCreator.new(@installation).call
-    # @search = InstallationSearchForm.new(search_params)
-    # @new_installation_id = @installation['id']
-    # render 'search', locales: { search: @search, new_installation_id: @new_installation_id}
-    redirect_to search_admin_locations_path
   end
 
   private
@@ -70,13 +66,20 @@ class Admin::LocationsController < Admin::BaseController
 
   def installation_params
     params.require(:installation).permit(
-                                          :id,
-                                          :airly,
-                                          :elevation,
-                                          address: [:city, :street, :number, :country, :displayAddress1, :displayAddress2],
-                                          location: [:longitude, :latitude],
-                                          sponsor: [:description, :id, :link, :logo, :name],
-                                        )
+      :id,
+      :airly,
+      :elevation,
+      address: [
+        :city,
+        :street,
+        :number,
+        :country,
+        :displayAddress1,
+        :displayAddress2,
+      ],
+      location: [:longitude, :latitude],
+      sponsor: [:description, :id, :link, :logo, :name],
+    )
   end
 
   def format_installation(installation_hash)

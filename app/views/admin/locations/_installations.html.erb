@@ -24,9 +24,10 @@
         <td>
           <%= button_to 'Dodaj', {action: 'save'},
               remote: true,
-              params: {installation: installation, installation_search_form: @search.to_params},
+              params: {installation: installation},
               disabled: installation['present_in_db'],
-              class: "btn btn-primary btn-sm" %>
+              class: "btn btn-primary btn-sm",
+              id: "save-installation-#{installation['id']}" %>
         </td>
       </tr>
     <% end %>
