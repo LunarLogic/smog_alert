@@ -4,5 +4,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
-  enum role: [:superadmin, :editor]
+  enum role: { superadmin: 0, editor: 1 }
 end
