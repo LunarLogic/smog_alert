@@ -1,3 +1,9 @@
+<% if flash[:error] %>
+  <div class="alert alert-danger" role="alert" style="margin-top: 15px">
+    <%= flash[:error] %>
+  </div>
+<% end %>
+
 <div class = 'row'>
   <div class = 'col-sm-4 search-form'>
     <%= simple_form_for(@search, url: search_admin_locations_path, method: :get) do |f| %>
