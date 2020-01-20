@@ -100,12 +100,17 @@ class Admin::LocationsController < Admin::BaseController
 
   def find_installations
     if search_params
-      AirlyAPI::Installations.nearest(
-        search_params['latitude'],
-        search_params['longitude'],
-        search_params['max_distance_km'],
-        search_params['max_results'],
-      )
+      if search_params['latitude'].present? && search_params['longitude'].present?
+        AirlyAPI::Installations.nearest(
+          search_params['latitude'],
+          search_params['longitude'],
+          search_params['max_distance_km'],
+          search_params['max_results'],
+        )
+      else
+        flash.now[:error] = 'Współrzędne są wymagane'
+        nil
+      end
     elsif address_search_params
       reasult = Geocoder.search(address_search_params['address'])
       coordinates = result.first.coordinates

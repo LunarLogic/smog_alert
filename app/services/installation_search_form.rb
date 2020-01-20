@@ -1,6 +1,9 @@
 class InstallationSearchForm
   include ActiveModel::Model
 
+  # validates :longitude, :latitude, presence: true
+  # validates :latitude, presence: true
+
   attr_accessor(
     :longitude,
     :latitude,
