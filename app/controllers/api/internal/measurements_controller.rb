@@ -3,7 +3,8 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
     locations = Location.all
     data = locations.map do |location|
       last_hour_measurement = location_repository.last_hour_measurement(location)
-      API::Internal::LocationWithLastMeasurementPresenter.new(location, last_hour_measurement)
+      last_hour_measurements_by_location_name = location_repository.last_hour_measurements_by_location_name(location.name)
+      API::Internal::LocationWithLastMeasurementPresenter.new(location, last_hour_measurement, last_hour_measurements_by_location_name)
     end
     render json: { data: data }
   end
