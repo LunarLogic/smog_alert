@@ -69,17 +69,6 @@ RSpec.describe LocationsRepository do
       end
     end
 
-    context 'when both Zabierzów locations have no last hour measurement' do
-      it do
-        measurement_1 = nil
-        measurement_2 = nil
-        expect(locations_repository).to receive(:last_hour_measurement).with(location_zabierzow_1).and_return(measurement_1)
-        expect(locations_repository).to receive(:last_hour_measurement).with(location_zabierzow_2).and_return(measurement_2)
-
-        expect(subject).to match_array([])
-      end
-    end
-
     context 'when fake Zabierzów locations' do
       let(:location_name) { 'Fake Zabierzów' }
 
