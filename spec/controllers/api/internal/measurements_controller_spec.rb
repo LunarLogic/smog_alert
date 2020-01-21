@@ -29,7 +29,7 @@ RSpec.describe API::Internal::MeasurementsController, type: :controller do
       end
     end
 
-    context 'when there are two locations with the same location name AND both locations have different last hour measurement for PM 10' do
+    context 'when two locations with the same location name AND both have different last hour measurement for PM 10' do
       let!(:location_a) { FactoryBot.create(:location, name: 'Zabierzów', street: 'street 1') }
       let!(:location_b) { FactoryBot.create(:location, name: 'Zabierzów', street: 'street 2') }
       let!(:location_c) { FactoryBot.create(:location) }

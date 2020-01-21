@@ -15,7 +15,6 @@ class API::Internal::LocationWithLastMeasurementPresenter
       lng: @location.longitude,
       status_of_locations_grouped_by_name: status_of_locations_grouped_by_name,
       last_hour_measurement: last_hour_measurement_values,
-
     }
   end
 
