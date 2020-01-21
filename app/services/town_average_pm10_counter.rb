@@ -22,7 +22,7 @@ class TownAveragePM10Counter
       else
         town_with_average_pm10[town] = pm10_for_location
       end
-      p town_with_average_pm10
     end
+    town_with_average_pm10
   end
 end

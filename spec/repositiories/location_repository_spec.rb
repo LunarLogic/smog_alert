@@ -49,23 +49,27 @@ RSpec.describe LocationsRepository do
 
     context 'when both Zabierzów locations have last hour measurement' do
       it do
-        measurement_1 = double
-        measurement_2 = double
-        expect(locations_repository).to receive(:last_hour_measurement).with(location_zabierzow_1).and_return(measurement_1)
-        expect(locations_repository).to receive(:last_hour_measurement).with(location_zabierzow_2).and_return(measurement_2)
+        measurement1 = double
+        measurement2 = double
+        expect(locations_repository).to receive(:last_hour_measurement).with(location_zabierzow_1)
+          .and_return(measurement1)
+        expect(locations_repository).to receive(:last_hour_measurement).with(location_zabierzow_2)
+          .and_return(measurement2)
 
-        expect(subject).to match_array([measurement_1, measurement_2])
+        expect(subject).to match_array([measurement1, measurement2])
       end
     end
 
     context 'when only one of Zabierzów locations have last hour measurement' do
       it do
-        measurement_1 = double
-        measurement_2 = nil
-        expect(locations_repository).to receive(:last_hour_measurement).with(location_zabierzow_1).and_return(measurement_1)
-        expect(locations_repository).to receive(:last_hour_measurement).with(location_zabierzow_2).and_return(measurement_2)
+        measurement1 = double
+        measurement2 = nil
+        expect(locations_repository).to receive(:last_hour_measurement).with(location_zabierzow_1)
+          .and_return(measurement1)
+        expect(locations_repository).to receive(:last_hour_measurement).with(location_zabierzow_2)
+          .and_return(measurement2)
 
-        expect(subject).to match_array([measurement_1])
+        expect(subject).to match_array([measurement1])
       end
     end
 
