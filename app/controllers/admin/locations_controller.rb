@@ -1,4 +1,6 @@
 class Admin::LocationsController < Admin::BaseController
+  after_action :verify_authorized, except: [:index, :show]
+
   def index
     @locations = Location.all.order(:name, :street)
   end
@@ -9,6 +11,7 @@ class Admin::LocationsController < Admin::BaseController
 
   def new
     @location = Location.new
+    authorize @location
   end
 
   def create
@@ -24,6 +27,7 @@ class Admin::LocationsController < Admin::BaseController
 
   def edit
     @location = Location.find(params[:id])
+    authorize @location
   end
 
   def update

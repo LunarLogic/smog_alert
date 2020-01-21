@@ -1,4 +1,6 @@
 class Admin::UsersController < Admin::BaseController
+  after_action :verify_authorized, except: [:index, :show]
+  
   def index
     @users = User.all
   end
@@ -9,6 +11,7 @@ class Admin::UsersController < Admin::BaseController
 
   def new
     @user = User.new
+    authorize @user
   end
 
   def create
@@ -32,6 +35,7 @@ class Admin::UsersController < Admin::BaseController
 
   def edit
     @user = User.find(params[:id])
+    authorize @user
   end
 
   def destroy

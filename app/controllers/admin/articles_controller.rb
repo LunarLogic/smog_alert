@@ -1,4 +1,6 @@
 class Admin::ArticlesController < Admin::BaseController
+  after_action :verify_authorized, except: [:index, :new, :create, :show, :edit, :update]
+
   def index
     @articles = Article.order('created_at DESC').page(params[:page])
   end
