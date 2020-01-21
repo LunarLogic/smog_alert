@@ -4,6 +4,6 @@ class LocationsRepository
   end
 
   def last_hour_measurements_by_location_name(location_name)
-    # result location_name = [Measure.new, ..]
+    Location.where(name: location_name).map { |location| last_hour_measurement(location) }.compact
   end
 end
