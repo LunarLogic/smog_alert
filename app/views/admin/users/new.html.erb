@@ -3,5 +3,6 @@
   <%= f.input :email, label: 'Adres email' %>
   <%= f.input :password, label: 'Hasło' %>
   <%= f.input :admin, label: 'Czy użytkownik jest adminem?' %>
+  <%= f.input :role, collection: User.roles.keys, as: :radio_buttons, label: 'Wybierz uprawnienia użytkownika' %>
   <%= f.submit 'Utwórz użytkownika', class: 'btn btn-success' %>
 <% end %>
