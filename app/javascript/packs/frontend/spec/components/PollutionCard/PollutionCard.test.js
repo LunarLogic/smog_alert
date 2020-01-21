@@ -1,6 +1,6 @@
 import React from "react";
 import { PollutionCard } from "../../../components/PollutionCard/PollutionCard";
-import { mount, shallow } from "enzyme";
+import { mount } from "enzyme";
 
 describe("Pollution Card component", () => {
   let wrapper1;
@@ -8,25 +8,11 @@ describe("Pollution Card component", () => {
   let wrapper3;
 
   const mockChosenCityData1 = {
-    location_id: 16,
-    location_name: "Nielepice",
-    location_street: "Józefa Trzaskowskiego",
-    location_display_name: "Nielepice, Józefa Trzaskowskiego",
-    lat: 50.10684,
-    lng: 19.70766,
     last_hour_measurement: null
   };
 
   const mockChosenCityData2 = {
-    location_id: 16,
-    location_name: "Nielepice",
-    location_street: "Józefa Trzaskowskiego",
-    location_display_name: "Nielepice, Józefa Trzaskowskiego",
-    lat: 50.10684,
-    lng: 19.70766,
     last_hour_measurement: {
-      from_date_time: "2020-01-20T12:00:06.942Z",
-      till_date_time: "2020-01-20T13:00:06.942Z",
       values: [
         {
           name: "PM 10",
@@ -37,8 +23,7 @@ describe("Pollution Card component", () => {
           value: 13.24
         }
       ],
-      status: "dobry",
-      advice: "Green, green, green!"
+      status: "dobry"
     }
   };
 
@@ -67,7 +52,8 @@ describe("Pollution Card component", () => {
   });
 
   it("Check how component behaves with no data provided at all", () => {
-    console.log(wrapper3.debug());
-    expect(wrapper3.children.length).toEqual(1);
+    expect(
+      wrapper3.find(".card-pollution__current-data-container").children()
+    ).toHaveLength(0);
   });
 });
