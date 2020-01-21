@@ -1,6 +1,6 @@
 class Admin::UsersController < Admin::BaseController
   after_action :verify_authorized, except: [:index, :show]
-  
+
   def index
     @users = User.all
   end

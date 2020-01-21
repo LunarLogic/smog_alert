@@ -6,7 +6,7 @@ class LocationPolicy < ApplicationPolicy
   def edit?
     user.superadmin?
   end
-  
+
   def create?
     user.superadmin?
   end

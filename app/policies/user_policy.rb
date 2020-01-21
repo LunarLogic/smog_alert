@@ -6,7 +6,7 @@ class UserPolicy < ApplicationPolicy
   def edit?
     user.superadmin?
   end
-  
+
   def create?
     user.superadmin?
   end
