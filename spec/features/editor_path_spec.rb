@@ -16,7 +16,7 @@ describe 'editor navigating the admin panel' do
     login_as(editor)
   end
 
-  scenario 'trying to delete a location' do
+  scenario 'editor cannot delete a loaction' do
     visit admin_locations_path
     within('.location-row', text: location.name) do
       click_on('Usuń')
@@ -27,7 +27,7 @@ describe 'editor navigating the admin panel' do
     expect(page).to have_content('Nie masz uprawnień do wykonania tego zadania')
   end
 
-  scenario 'trying to edit a user' do
+  scenario 'editor cannot edit a user' do
     visit admin_users_path
     within('.user-row', text: user.email) do
       click_on('Edytuj')
@@ -36,7 +36,7 @@ describe 'editor navigating the admin panel' do
     expect(page).to have_content('Nie masz uprawnień do wykonania tego zadania')
   end
 
-  scenario 'trying to create an article' do
+  scenario 'editor can create an article' do
     visit admin_articles_path
     click_on('new-article')
     expect(page).to have_current_path(new_admin_article_path)
@@ -45,7 +45,7 @@ describe 'editor navigating the admin panel' do
     expect(page).to have_content(article.title)
   end
 
-  scenario 'trying to publish an article' do
+  scenario 'editor cannot publish an article' do
     visit admin_articles_path
     within('.article-row', text: article.title) do
       click_on 'Opublikuj wpis'
