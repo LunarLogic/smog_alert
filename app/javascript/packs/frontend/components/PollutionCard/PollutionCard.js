@@ -7,23 +7,18 @@ import "./PollutionCard.scss";
 import { OverviewText, DataSpecific } from "./PollutionCard.styles.jsx";
 
 import { selectChosenCityData } from "../../redux/redux.selectors";
-import { setColor, setEmot, setGradient } from "../../helpers";
+import { setColor, setEmot, setGradient, findMeasurement } from "../../helpers";
 
 export const PollutionCard = ({ chosenCityData }) => {
-  const noData = "--";
-  let color, emot, gradient, findMeasurement;
+  let color, emot, gradient, pm10, pm25;
 
   if (chosenCityData) {
     var { last_hour_measurement } = chosenCityData;
     color = setColor(last_hour_measurement);
     emot = setEmot(last_hour_measurement);
     gradient = setGradient(last_hour_measurement);
-
-    findMeasurement = indicator => {
-      return last_hour_measurement.values.find(
-        value => value.name === indicator
-      ).value;
-    };
+    pm10 = findMeasurement(chosenCityData, "PM 10").value;
+    pm25 = findMeasurement(chosenCityData, "PM 2.5").value;
   }
 
   return chosenCityData ? (
@@ -44,9 +39,7 @@ export const PollutionCard = ({ chosenCityData }) => {
             </div>
             <div className="card-pollution__current-data-specific-primary-value">
               <span className="card-pollution__current-data-specific-primary-value--bold">
-                {last_hour_measurement
-                  ? Math.round(findMeasurement("PM 10"))
-                  : noData}
+                {typeof pm10 === "number" ? Math.round(pm10) : pm10}
               </span>
               μg
             </div>
@@ -57,9 +50,7 @@ export const PollutionCard = ({ chosenCityData }) => {
             </div>
             <div className="card-pollution__current-data-specific-secondary-value">
               <span className="card-pollution__current-data-specific-secondary-value--bold">
-                {last_hour_measurement
-                  ? Math.round(findMeasurement("PM 2.5"))
-                  : noData}
+                {typeof pm25 === "number" ? Math.round(pm25) : pm25}
               </span>
               μg
             </div>
