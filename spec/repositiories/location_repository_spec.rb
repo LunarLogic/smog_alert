@@ -1,11 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe LocationsRepository do
-  describe '#last_hour_measurement' do
-    let(:location_repository) { LocationsRepository.new }
-    let!(:location) { FactoryBot.create(:location) }
+  let(:locations_repository) { LocationsRepository.new }
 
-    subject { location_repository.last_hour_measurement(location) }
+  describe '#last_hour_measurement' do
+    let!(:location) { FactoryBot.create(:location) }
+    let!(:other_location) { FactoryBot.create(:location) }
+
+    subject { locations_repository.last_hour_measurement(location) }
 
     context 'when database contains measurement for the given location fom the last hour' do
       let!(:measurement_old) do
@@ -13,6 +15,9 @@ RSpec.describe LocationsRepository do
       end
       let!(:measurement_newest) do
         FactoryBot.create(:measurement, location: location, till_date_time: (Time.current - 15.minutes))
+      end
+      let!(:measurement_other_location) do
+        FactoryBot.create(:measurement, location: other_location, till_date_time: (Time.current - 10.minutes))
       end
       let!(:measurement_mid) do
         FactoryBot.create(:measurement, location: location, till_date_time: (Time.current - 20.minutes))
@@ -30,6 +35,49 @@ RSpec.describe LocationsRepository do
 
       it 'returns nil' do
         expect(subject).to eql nil
+      end
+    end
+  end
+
+  describe '#last_hour_measurements_by_location_name' do
+    let!(:location_zabierzow_1) { FactoryBot.create(:location, name: 'Zabierzów', street: 'stret 1') }
+    let!(:location_zabierzow_2) { FactoryBot.create(:location, name: 'Zabierzów', street: 'street 2') }
+    let!(:other_location) { FactoryBot.create(:location) }
+    let(:location_name) { 'Zabierzów' }
+
+    subject { locations_repository.last_hour_measurements_by_location_name(location_name) }
+
+    context 'when both Zabierzów locations have last hour measurement' do
+      it do
+        measurement1 = double
+        measurement2 = double
+        expect(locations_repository).to receive(:last_hour_measurement).with(location_zabierzow_1)
+          .and_return(measurement1)
+        expect(locations_repository).to receive(:last_hour_measurement).with(location_zabierzow_2)
+          .and_return(measurement2)
+
+        expect(subject).to match_array([measurement1, measurement2])
+      end
+    end
+
+    context 'when only one of Zabierzów locations have last hour measurement' do
+      it do
+        measurement1 = double
+        measurement2 = nil
+        expect(locations_repository).to receive(:last_hour_measurement).with(location_zabierzow_1)
+          .and_return(measurement1)
+        expect(locations_repository).to receive(:last_hour_measurement).with(location_zabierzow_2)
+          .and_return(measurement2)
+
+        expect(subject).to match_array([measurement1])
+      end
+    end
+
+    context 'when fake Zabierzów locations' do
+      let(:location_name) { 'Fake Zabierzów' }
+
+      it do
+        expect(subject).to match_array([])
       end
     end
   end

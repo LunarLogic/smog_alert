@@ -29,6 +29,30 @@ RSpec.describe API::Internal::MeasurementsController, type: :controller do
       end
     end
 
+    context 'when two locations with the same location name AND both have different last hour measurement for PM 10' do
+      let!(:location_a) { FactoryBot.create(:location, name: 'Zabierzów', street: 'street 1') }
+      let!(:location_b) { FactoryBot.create(:location, name: 'Zabierzów', street: 'street 2') }
+      let!(:location_c) { FactoryBot.create(:location) }
+      let!(:measurements_a_new) do
+        FactoryBot.create(:measurement, location: location_a, till_date_time: (Time.current - 20.minutes), pm10: 10)
+      end
+      let!(:measurements_b_new) do
+        FactoryBot.create(:measurement, location: location_b, till_date_time: (Time.current - 20.minutes), pm10: 200)
+      end
+
+      before do
+        get :current
+      end
+
+      it 'returns status of locations grouped by name' do
+        expect(response.body).to be_json_eql('dostateczny'.to_json)
+          .at_path('data/0/status_of_locations_grouped_by_name')
+        expect(response.body).to be_json_eql('dostateczny'.to_json)
+          .at_path('data/1/status_of_locations_grouped_by_name')
+        expect(response.body).to be_json_eql(nil.to_json).at_path('data/2/status_of_locations_grouped_by_name')
+      end
+    end
+
     context 'when there are no measurements for the last hour for any location' do
       let!(:location_a) { FactoryBot.create(:location) }
       let!(:location_b) { FactoryBot.create(:location) }
