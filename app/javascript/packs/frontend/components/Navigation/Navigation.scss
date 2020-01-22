@@ -71,4 +71,7 @@
       }
     }
   }
+  @media only screen and (min-width: $bp-xx-large) {
+    padding: 0 20rem;
+  }
 }

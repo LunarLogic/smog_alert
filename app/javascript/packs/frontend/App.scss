@@ -16,6 +16,9 @@ body {
 
 .container {
   margin: 6.2rem 9.2rem;
+  @media only screen and (min-width: $bp-xx-large) {
+    margin: 6.2rem 20rem;
+  }
 }
 
 a {

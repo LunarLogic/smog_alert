@@ -2,6 +2,11 @@
 
 .current-pollution {
   width: inherit;
+
+  @media only screen and (max-width: $bp-large) {
+    margin: auto;
+  }
+
   &__heading {
     font-size: 4.2rem;
     line-height: 4.9rem;
@@ -11,10 +16,19 @@
     &--bold {
       font-weight: bold;
     }
+    @media only screen and (max-width: $bp-large) {
+      font-size: 3.8rem;
+      text-align: center;
+      margin-top: 3.5rem;
+      margin-bottom: 4rem;
+    }
   }
   &__content {
     display: flex;
     justify-content: space-between;
+    @media only screen and (max-width: $bp-large) {
+      justify-content: center;
+    }
     &-information {
       margin-top: 3rem;
       color: $secondaryColor;
@@ -45,6 +59,11 @@
         width: 56rem;
       }
       margin-right: 4.8rem;
+
+      @media only screen and (max-width: $bp-large) {
+        display: none;
+        width: 0;
+      }
     }
   }
   &__horizontal-line {
