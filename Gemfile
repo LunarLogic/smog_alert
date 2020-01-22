@@ -37,6 +37,7 @@ gem 'kaminari'
 
 gem 'devise'
 gem 'honeybadger', '~> 4.0'
+gem 'pundit'
 
 gem 'rest-client'
 

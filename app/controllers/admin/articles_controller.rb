@@ -1,4 +1,6 @@
 class Admin::ArticlesController < Admin::BaseController
+  after_action :verify_authorized, except: [:index, :new, :create, :show, :edit, :update]
+
   def index
     @articles = Article.order('created_at DESC').page(params[:page])
   end
@@ -37,6 +39,7 @@ class Admin::ArticlesController < Admin::BaseController
 
   def destroy
     @article = Article.find(params[:id])
+    authorize @article
     @article.destroy
     flash[:success] = 'Pomyślnie usunięto wpis'
     redirect_to admin_articles_path
@@ -44,6 +47,7 @@ class Admin::ArticlesController < Admin::BaseController
 
   def publish
     @article = Article.find(params[:id])
+    authorize @article
     @article.make_published
     if @article.published
       @article.save

@@ -1,4 +1,6 @@
 class Admin::LocationsController < Admin::BaseController
+  after_action :verify_authorized, except: [:index, :show]
+
   def index
     @locations = Location.all.order(:name, :street)
   end
@@ -9,10 +11,12 @@ class Admin::LocationsController < Admin::BaseController
 
   def new
     @location = Location.new
+    authorize @location
   end
 
   def create
     @location = Location.new(location_params)
+    authorize @location
     if @location.save
       flash[:success] = 'Pomyślnie utworzono lokalizację'
       redirect_to admin_locations_path
@@ -23,10 +27,12 @@ class Admin::LocationsController < Admin::BaseController
 
   def edit
     @location = Location.find(params[:id])
+    authorize @location
   end
 
   def update
     @location = Location.find(params[:id])
+    authorize @location
     if @location.update(location_params)
       flash[:success] = 'Pomyślnie edytowano lokalizację'
       redirect_to admin_locations_path
@@ -36,7 +42,9 @@ class Admin::LocationsController < Admin::BaseController
   end
 
   def destroy
-    Location.find(params[:id]).destroy
+    @location = Location.find(params[:id])
+    authorize @location
+    @location.destroy
     flash[:success] = 'Pomyślnie usunięto lokalizację'
     redirect_to admin_locations_path
   end
