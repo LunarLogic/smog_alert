@@ -6,7 +6,11 @@ import { createStructuredSelector } from "reselect";
 import "./Map.scss";
 import { MapContainer, MapPath, MapText, MapDot } from "./Map.styles.jsx";
 import mapElements from "./MapElements";
-import { mapColor, noDataColor } from "../../styles/_variables.scss";
+import {
+  mapColor,
+  noDataColor,
+  bpSmallest
+} from "../../styles/_variables.scss";
 
 import { setColor } from "../../helpers";
 import {
@@ -57,6 +61,9 @@ const Map = ({
       return mapColor;
     }
   };
+  const mapStyles = `@media(max-width: ${bpSmallest}) {
+    text {font-size: 2.8rem};
+  }`;
 
   let shouldRender = citiesPollutionData.length !== 0;
   return (
@@ -74,6 +81,7 @@ const Map = ({
             style={{ enableBackground: "new 0 0 725 656" }}
             xmlSpace="preserve"
           >
+            <style>{mapStyles}</style>
             {mapElements.map(element => (
               <MapPath
                 key={`${element.location}-map-path`}

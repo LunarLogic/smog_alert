@@ -18,9 +18,15 @@
     }
     @media only screen and (max-width: $bp-large) {
       font-size: 3.8rem;
+      line-height: 4.2rem;
       text-align: center;
       margin-top: 3.5rem;
       margin-bottom: 4rem;
+    }
+    @media only screen and (max-width: $bp-smallest) {
+      font-size: 3.42rem;
+      line-height: 4rem;
+      text-align: left;
     }
   }
   &__content {
@@ -28,6 +34,12 @@
     justify-content: space-between;
     @media only screen and (max-width: $bp-large) {
       justify-content: center;
+    }
+    @media only screen and (max-width: $bp-smallest) {
+      width: inherit;
+    }
+    &-container {
+      width: 100%;
     }
     &-information {
       margin-top: 3rem;

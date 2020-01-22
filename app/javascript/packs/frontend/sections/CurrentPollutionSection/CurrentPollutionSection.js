@@ -20,7 +20,7 @@ const CurrentPollutionSection = ({ location }) => {
         <span className="current-pollution__heading--bold">{location}</span>
       </div>
       <div className="current-pollution__content">
-        <div>
+        <div className="current-pollution__content-container">
           <PollutionCard />
           <PollutionScale />
           <div className="current-pollution__content-information">

@@ -4,7 +4,7 @@ $bp-x-large: 75em; // 1200px
 $bp-large: 62.5em; // 1000px
 $bp-medium: 50em; // 800px
 $bp-small: 37.5em; // 600px
-$bp-smallest: 25em; // 400px
+$bp-smallest: 26.25em; // 420px
 
 //COLOR VARIABLES
 $primaryColor: grey;
@@ -40,4 +40,5 @@ $noDataColor: #a3a3a4;
   badFirst: $badFirst;
   badSecond: $badSecond;
   mapColor: $mapColor;
+  bpSmallest: $bp-smallest;
 }

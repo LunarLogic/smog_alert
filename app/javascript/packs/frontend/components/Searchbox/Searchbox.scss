@@ -87,4 +87,7 @@
   @media only screen and (max-width: $bp-large) {
     margin: auto;
   }
+  @media only screen and (max-width: $bp-smallest) {
+    width: 100%;
+  }
 }

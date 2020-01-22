@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { bpSmallest } from "../../styles/_variables.scss";
 
 export const OverviewText = styled.div`
   font-size: 2.1rem;
@@ -6,6 +7,11 @@ export const OverviewText = styled.div`
   color: ${({ color }) => color};
   font-weight: bold;
   margin-top: 1.2rem;
+  text-transform: capitalize;
+  @media only screen and (max-width: ${bpSmallest}) {
+    font-size: 3rem;
+    line-height: 3.5rem;
+  }
 `;
 
 export const DataSpecific = styled.div`
@@ -18,4 +24,7 @@ export const DataSpecific = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media only screen and (max-width: ${bpSmallest}) {
+    width: 100%;
+  }
 `;
