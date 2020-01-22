@@ -92,6 +92,7 @@ export const Searchbox = ({ cities, setChosenCity }) => {
         shouldRenderSuggestions={shouldRenderSuggestions}
         renderSuggestion={renderSuggestion}
         renderInputComponent={renderInput}
+        focusInputOnSuggestionClick={false}
         inputProps={inputProps}
       />
       {textColor === warningColor ? (
