@@ -51,6 +51,15 @@ describe 'admin interactions with articles' do
     expect(page).not_to have_content('Opublikuj wpis')
   end
 
+  scenario 'unpublish an article' do
+    within('.article-row', text: article.title) do
+      click_on('Opublikuj wpis')
+      click_on('Cofnij publikację')
+    end
+    expect(page).to have_current_path(admin_articles_path)
+    expect(page).to have_content('Nieopublikowany')
+  end
+
   scenario 'delete an article' do
     within('.article-row', text: article.title) do
       click_on('Usuń')
