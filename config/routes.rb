@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'dashboard#index'
     resources :locations
+    resources :organizations
     resources :articles do
       member do
         patch :publish
