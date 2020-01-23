@@ -12,14 +12,41 @@ import {
 } from "../../redux/redux.selectors";
 import { getChosenCity } from "../../redux/mapSection/mapSection.actions";
 
-const DropdownMenu = ({ citiesPollutionData, chosenCity, getChosenCity }) => {
-  let options = [];
-  const checkOptions = city => {
+export const dropdownMenuHelpers = {
+  options: [],
+  checkOptions: city => {
     return (
-      options.length === 0 ||
-      !options.find(element => element === city.location_name)
+      dropdownMenuHelpers.options.length === 0 ||
+      !dropdownMenuHelpers.options.find(
+        element => element === city.location_name
+      )
     );
-  };
+  },
+  toggleMenu: (setShowMenu, showMenu, setArrow, arrowUp) => {
+    setShowMenu(!showMenu);
+    setArrow(!arrowUp);
+  },
+  changeChosenCity: (city, setShowMenu, getChosenCity) => {
+    setShowMenu(false);
+    getChosenCity(city);
+  },
+  sortOptions: options => {
+    return options.sort((a, b) => b.value < a.value);
+  }
+};
+
+export const DropdownMenu = ({
+  citiesPollutionData,
+  chosenCity,
+  getChosenCity
+}) => {
+  const {
+    options,
+    checkOptions,
+    toggleMenu,
+    changeChosenCity,
+    sortOptions
+  } = dropdownMenuHelpers;
 
   citiesPollutionData.forEach(city => {
     if (checkOptions(city)) {
@@ -27,25 +54,19 @@ const DropdownMenu = ({ citiesPollutionData, chosenCity, getChosenCity }) => {
     }
   });
 
-  options.sort((a, b) => b.value < a.value);
+  sortOptions(options);
 
   const [showMenu, setShowMenu] = useState(false);
   const [arrowUp, setArrow] = useState(false);
 
-  const toggleMenu = () => {
-    setShowMenu(!showMenu);
-    setArrow(!arrowUp);
-  };
-
-  const changeChosenCity = () => {
-    let city = event.target.textContent;
-    setShowMenu(false);
-    getChosenCity(city);
-  };
-
   return (
     <div className="dropdown">
-      <div className="dropdown__control" onClick={toggleMenu}>
+      <div
+        className="dropdown__control"
+        onClick={() => {
+          toggleMenu(setShowMenu, showMenu, setArrow, arrowUp);
+        }}
+      >
         <div className="dropdown__control--placeholder">{chosenCity}</div>
         {arrowUp ? <ExpandLessIcon /> : <ExpandMoreIcon />}
       </div>
@@ -55,7 +76,9 @@ const DropdownMenu = ({ citiesPollutionData, chosenCity, getChosenCity }) => {
             <div
               className="dropdown__control--menu-option"
               key={`${city}-dropdown`}
-              onClick={changeChosenCity}
+              onClick={() => {
+                changeChosenCity(city, setShowMenu, getChosenCity);
+              }}
             >
               {city}
             </div>
