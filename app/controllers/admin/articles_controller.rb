@@ -22,15 +22,12 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def show
-    find_article
   end
 
   def edit
-    find_article
   end
 
   def update
-    find_article
     if @article.update(article_params)
       flash[:success] = 'Pomyslnie edytowano wpis'
       redirect_to admin_articles_path
@@ -40,16 +37,12 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def destroy
-    find_article
-    check_authorization
     @article.destroy
     flash[:success] = 'Pomyślnie usunięto wpis'
     redirect_to admin_articles_path
   end
 
   def publish
-    find_article
-    check_authorization
     if articles_repository.make_published(@article)
       flash[:success] = 'Pomyślnie opublikowano wpis'
     else
@@ -59,8 +52,6 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def unpublish
-    find_article
-    check_authorization
     if articles_repository.make_unpublished(@article)
       flash[:success] = 'Pomyślnie cofnięto publikację wpisu'
     else
