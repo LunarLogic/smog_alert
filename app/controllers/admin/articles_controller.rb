@@ -58,6 +58,19 @@ class Admin::ArticlesController < Admin::BaseController
     redirect_to admin_articles_path
   end
 
+  def unpublish
+    @article = Article.find(params[:id])
+    authorize @article
+    @article.make_unpublished
+    if @article.published
+      flash[:failure] = 'Nie udało się cofnąć publikacji wpisu'
+    else
+      @article.save
+      flash[:success] = 'Pomyślnie cofnięto publikację wpisu'
+    end
+    redirect_to admin_articles_path
+  end
+
   private
 
   def article_params

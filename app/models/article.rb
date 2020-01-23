@@ -8,4 +8,9 @@ class Article < ApplicationRecord
     self.published = true
     self.published_at = Time.current
   end
+
+  def make_unpublished
+    self.published = false
+    self.published_at = nil
+  end
 end
