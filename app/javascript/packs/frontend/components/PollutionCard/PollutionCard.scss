@@ -29,7 +29,7 @@
       @media only screen and (max-width: $bp-smallest) {
         width: 100%;
         flex-direction: row;
-        justify-content: flex-start;
+        justify-content: center;
       }
 
       &-face {
@@ -41,7 +41,7 @@
           height: 100%;
         }
         @media only screen and (max-width: $bp-smallest) {
-          margin: 3rem 4.5rem;
+          margin: 5rem 3.5rem 5rem 0;
         }
       }
 
@@ -70,6 +70,9 @@
         flex-direction: column;
         justify-content: flex-start;
         padding: 4rem;
+        @media only screen and (max-width: $bp-smallest) {
+          padding: 5rem 0;
+        }
       }
       &-primary {
         display: flex;
