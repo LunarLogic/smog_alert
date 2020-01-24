@@ -6,11 +6,14 @@ describe("Searchbox component", () => {
   let wrapper;
   let mockSetChosenCity;
   let input;
+  let location;
 
   const mockCities = ["Nielepice", "Zabierzów", "Brzezie", "Brzezinka"];
 
   beforeEach(() => {
-    mockSetChosenCity = jest.fn();
+    mockSetChosenCity = jest.fn(city => {
+      return (location = city);
+    });
 
     const mockProps = {
       cities: mockCities,
@@ -38,6 +41,7 @@ describe("Searchbox component", () => {
     input.simulate("change", { target: { value: "Nie" } });
     expect(wrapper.find("input").props().value).toEqual("Nie");
     wrapper.find("li").simulate("click");
+    expect(location).toBe("Nielepice"); // checks additionally whether dispatch is called and returns correct value;
     expect(wrapper.find("input").props().value).toEqual("");
   });
 });
