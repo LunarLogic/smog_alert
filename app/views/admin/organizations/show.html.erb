@@ -17,3 +17,5 @@
 <% else %>
   Niezałączona
 <% end %>
+<p><%= link_to 'Edytuj', edit_admin_organization_path(@organization), class: "btn btn-success btn-sm"%>
+<%= link_to 'Usuń', admin_organization_path(@organization), class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: "Czy na pewno chcesz usunąć organizację #{@organization.organization_name}?" } %></p>
