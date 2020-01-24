@@ -47,6 +47,30 @@
         "status": "zły",
         "advice": null
       }
+    },
+    {
+      "location_id": 19,
+      "location_name": "Brzoskwinia",
+      "location_street": "Brzoskwinia 200",
+      "location_display_name": "Brzoskwinia, Brzoskwinia",
+      "lat": 50.096483,
+      "lng": 19.718281,
+      "last_hour_measurement": {
+        "from_date_time": "2020-01-17T08:00:06.653Z",
+        "till_date_time": "2020-01-17T09:00:06.653Z",
+        "values": [
+          {
+            "name": "PM 10",
+            "value": 117.82
+          },
+          {
+            "name": "PM 2.5",
+            "value": 65.71
+          }
+        ],
+        "status": "zły",
+        "advice": null
+      }
     }
   ]
 }

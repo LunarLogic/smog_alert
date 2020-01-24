@@ -26,9 +26,7 @@ describe("Dropdown menu", () => {
 
   it("displays correct amount of cities in dropdown", () => {
     wrapper.find(".dropdown__control").simulate("click");
-    expect(wrapper.find(".dropdown__control--menu-option").length).toEqual(
-      citiesPollutionDataMock.data.length
-    );
+    expect(wrapper.find(".dropdown__control--menu-option").length).toEqual(2);
   });
 
   it("opens and closes dropdown menu", () => {
@@ -40,7 +38,7 @@ describe("Dropdown menu", () => {
     expect(wrapper.find(".dropdown__control--menu-option").length).toEqual(0);
   });
 
-  it("sets chosen city after user checks it from the dropdown", () => {
+  it("sets chosen city after user chooses it from the dropdown", () => {
     const changeChosenCity = jest.spyOn(
       dropdownMenuHelpers,
       "changeChosenCity"
@@ -52,9 +50,18 @@ describe("Dropdown menu", () => {
       .simulate("click");
     expect(wrapper.find(".dropdown__control--menu-option").length).toEqual(0);
     expect(changeChosenCity).toHaveBeenCalledWith(
-      "Brzoskwinia",
+      "Aleksandrowice",
       expect.any(Function),
       expect.any(Function)
     );
+  });
+  it("sorts all the cities in dropdown in alphabetical order", () => {
+    wrapper.find(".dropdown__control").simulate("click");
+    expect(
+      wrapper
+        .find(".dropdown__control--menu-option")
+        .at(0)
+        .text()
+    ).toEqual("Aleksandrowice");
   });
 });

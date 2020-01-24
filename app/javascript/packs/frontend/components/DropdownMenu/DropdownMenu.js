@@ -29,9 +29,6 @@ export const dropdownMenuHelpers = {
   changeChosenCity: (city, setShowMenu, getChosenCity) => {
     setShowMenu(false);
     getChosenCity(city);
-  },
-  sortOptions: options => {
-    return options.sort((a, b) => b.value < a.value);
   }
 };
 
@@ -44,8 +41,7 @@ export const DropdownMenu = ({
     options,
     checkOptions,
     toggleMenu,
-    changeChosenCity,
-    sortOptions
+    changeChosenCity
   } = dropdownMenuHelpers;
 
   citiesPollutionData.forEach(city => {
@@ -54,7 +50,7 @@ export const DropdownMenu = ({
     }
   });
 
-  sortOptions(options);
+  options.sort();
 
   const [showMenu, setShowMenu] = useState(false);
   const [arrowUp, setArrow] = useState(false);
