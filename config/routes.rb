@@ -35,6 +35,11 @@ Rails.application.routes.draw do
         end
       end
       resources :articles, only: :index
+      resources :organizations, only: [] do
+        collection do
+          get :current_data
+        end
+      end
     end
   end
 
