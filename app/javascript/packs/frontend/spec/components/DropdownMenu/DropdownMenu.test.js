@@ -1,19 +1,19 @@
 import React from "react";
-import {
-  DropdownMenu,
-  dropdownMenuHelpers
-} from "../../../components/DropdownMenu/DropdownMenu";
+import { DropdownMenu } from "../../../components/DropdownMenu/DropdownMenu";
 import { mount } from "enzyme";
 import citiesPollutionDataMock from "../../__mocks__/citiesPollutionDataMock.json";
 
 describe("Dropdown menu", () => {
   let wrapper;
+  let chosenCity;
   beforeEach(() => {
     wrapper = mount(
       <DropdownMenu
         citiesPollutionData={citiesPollutionDataMock.data}
-        chosenCity="Nielepice"
-        getChosenCity={jest.fn()}
+        chosenCity={chosenCity ? chosenCity : "Nielepice"}
+        getChosenCity={jest.fn(city => {
+          chosenCity = city;
+        })}
       />
     );
   });
@@ -34,27 +34,11 @@ describe("Dropdown menu", () => {
     expect(
       wrapper.find(".dropdown__control--menu-option").length
     ).toBeGreaterThan(0);
+
     wrapper.find(".dropdown__control").simulate("click");
     expect(wrapper.find(".dropdown__control--menu-option").length).toEqual(0);
   });
 
-  it("sets chosen city after user chooses it from the dropdown", () => {
-    const changeChosenCity = jest.spyOn(
-      dropdownMenuHelpers,
-      "changeChosenCity"
-    );
-    wrapper.find(".dropdown__control").simulate("click");
-    wrapper
-      .find(".dropdown__control--menu-option")
-      .at(0)
-      .simulate("click");
-    expect(wrapper.find(".dropdown__control--menu-option").length).toEqual(0);
-    expect(changeChosenCity).toHaveBeenCalledWith(
-      "Aleksandrowice",
-      expect.any(Function),
-      expect.any(Function)
-    );
-  });
   it("sorts all the cities in dropdown in alphabetical order", () => {
     wrapper.find(".dropdown__control").simulate("click");
     expect(
@@ -63,5 +47,27 @@ describe("Dropdown menu", () => {
         .at(0)
         .text()
     ).toEqual("Aleksandrowice");
+    expect(
+      wrapper
+        .find(".dropdown__control--menu-option")
+        .at(1)
+        .text()
+    ).toEqual("Brzoskwinia");
+  });
+
+  it("sets chosen city after user chooses it from the dropdown", () => {
+    wrapper.find(".dropdown__control").simulate("click");
+    wrapper
+      .find(".dropdown__control--menu-option")
+      .at(0)
+      .simulate("click");
+
+    expect(wrapper.find(".dropdown__control--menu-option").length).toEqual(0);
+
+    expect(chosenCity).toEqual("Aleksandrowice");
+    wrapper.setProps({ chosenCity: chosenCity });
+    expect(wrapper.find(".dropdown__control--placeholder").text()).toEqual(
+      "Aleksandrowice"
+    );
   });
 });

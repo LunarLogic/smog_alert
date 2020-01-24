@@ -12,37 +12,29 @@ import {
 } from "../../redux/redux.selectors";
 import { getChosenCity } from "../../redux/mapSection/mapSection.actions";
 
-export const dropdownMenuHelpers = {
-  options: [],
-  checkOptions: city => {
-    return (
-      dropdownMenuHelpers.options.length === 0 ||
-      !dropdownMenuHelpers.options.find(
-        element => element === city.location_name
-      )
-    );
-  },
-  toggleMenu: (setShowMenu, showMenu, setArrow, arrowUp) => {
-    setShowMenu(!showMenu);
-    setArrow(!arrowUp);
-  },
-  changeChosenCity: (city, setShowMenu, getChosenCity) => {
-    setShowMenu(false);
-    getChosenCity(city);
-  }
-};
-
 export const DropdownMenu = ({
   citiesPollutionData,
   chosenCity,
   getChosenCity
 }) => {
-  const {
-    options,
-    checkOptions,
-    toggleMenu,
-    changeChosenCity
-  } = dropdownMenuHelpers;
+  let options = [];
+
+  const checkOptions = city => {
+    return (
+      options.length === 0 ||
+      !options.find(element => element === city.location_name)
+    );
+  };
+
+  const toggleMenu = () => {
+    setShowMenu(!showMenu);
+    setArrow(!arrowUp);
+  };
+
+  const changeChosenCity = city => {
+    setShowMenu(false);
+    getChosenCity(city);
+  };
 
   citiesPollutionData.forEach(city => {
     if (checkOptions(city)) {
@@ -57,12 +49,7 @@ export const DropdownMenu = ({
 
   return (
     <div className="dropdown">
-      <div
-        className="dropdown__control"
-        onClick={() => {
-          toggleMenu(setShowMenu, showMenu, setArrow, arrowUp);
-        }}
-      >
+      <div className="dropdown__control" onClick={toggleMenu}>
         <div className="dropdown__control--placeholder">{chosenCity}</div>
         {arrowUp ? <ExpandLessIcon /> : <ExpandMoreIcon />}
       </div>
@@ -73,7 +60,7 @@ export const DropdownMenu = ({
               className="dropdown__control--menu-option"
               key={`${city}-dropdown`}
               onClick={() => {
-                changeChosenCity(city, setShowMenu, getChosenCity);
+                changeChosenCity(city);
               }}
             >
               {city}

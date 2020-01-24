@@ -107,6 +107,7 @@ export const Map = ({
             {mapElements.map(element => (
               <MapDot
                 key={`${element.location}-map-dot`}
+                id={`${element.location}-map-dot`}
                 cx={element.cx}
                 cy={element.cy}
                 color={findColor(element.location)}
