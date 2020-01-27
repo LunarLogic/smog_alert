@@ -56,7 +56,7 @@ class Admin::LocationsController < Admin::BaseController
         if coordinates.present?
           @installations = find_installations(coordinates[:latitude], coordinates[:longitude], address_search_params)
         else
-          flash.now[:error] = 'Nie znaleziono współrzędnych'
+          flash.now[:error] = 'Nie znaleziono lokalizacji'
         end
       else
         flash.now[:error] = 'Adres jest wymagany'
