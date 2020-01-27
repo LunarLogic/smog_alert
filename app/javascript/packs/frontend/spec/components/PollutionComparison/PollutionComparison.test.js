@@ -5,7 +5,6 @@ import { mount } from "enzyme";
 
 describe("PollutionComparison", () => {
   let wrapper;
-  let wrapperEmpty;
   let chosenCity;
   let hoveredCity;
 
@@ -13,17 +12,6 @@ describe("PollutionComparison", () => {
     wrapper = mount(
       <PollutionComparison
         citiesPollutionData={citiesPollutionDataMock.data}
-        getChosenCity={jest.fn(city => {
-          chosenCity = city;
-        })}
-        getHoveredCity={jest.fn(city => {
-          hoveredCity = city;
-        })}
-      />
-    );
-    wrapperEmpty = mount(
-      <PollutionComparison
-        citiesPollutionData={[]}
         getChosenCity={jest.fn(city => {
           chosenCity = city;
         })}
@@ -84,8 +72,44 @@ describe("PollutionComparison", () => {
   });
 
   it("displays loader when no data from store is received yet", () => {
+    const wrapperEmpty = mount(
+      <PollutionComparison
+        citiesPollutionData={[]}
+        getChosenCity={jest.fn(city => {
+          chosenCity = city;
+        })}
+        getHoveredCity={jest.fn(city => {
+          hoveredCity = city;
+        })}
+      />
+    );
     expect(wrapperEmpty.find(".pollution-comparison").text()).toEqual(
       "loading"
+    );
+  });
+
+  it("sorts PollutionBars according to the pollution level", () => {
+    expect(
+      wrapper
+        .find("PollutionBar")
+        .at(0)
+        .prop("value")
+    ).toBeGreaterThan(
+      wrapper
+        .find("PollutionBar")
+        .at(1)
+        .prop("value")
+    );
+    expect(
+      wrapper
+        .find("PollutionBar")
+        .at(1)
+        .prop("value")
+    ).toBeGreaterThan(
+      wrapper
+        .find("PollutionBar")
+        .at(2)
+        .prop("value")
     );
   });
 });

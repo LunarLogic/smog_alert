@@ -24,7 +24,7 @@ const PollutionIndexData = ({ indicator, value, percent, limit }) => {
 
 PollutionIndexData.propTypes = {
   indicator: PropTypes.string,
-  value: PropTypes.number,
+  value: PropTypes.string,
   percent: PropTypes.string,
   limit: PropTypes.string
 };

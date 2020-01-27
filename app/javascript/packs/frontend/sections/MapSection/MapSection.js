@@ -9,7 +9,7 @@ import { createStructuredSelector } from "reselect";
 import { selectMapLocation } from "../../redux/redux.selectors";
 import { connect } from "react-redux";
 
-const MapSection = ({ chosenCity }) => {
+export const MapSection = ({ chosenCity }) => {
   return (
     <div className="map-section">
       <div className="map-section__heading">
