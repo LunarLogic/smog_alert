@@ -49,7 +49,7 @@ class Admin::LocationsController < Admin::BaseController
 
   def save
     @installation = format_installation(installation_params)
-    LocationCreator.new(@installation).call
+    LocationFromInstallationCreator.new(@installation).call
   end
 
   private

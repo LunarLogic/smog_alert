@@ -1,4 +1,4 @@
-describe LocationCreator do
+describe LocationFromInstallationCreator do
   let(:location_creator) { described_class.new(installations[0]) }
 
   let(:installations) do

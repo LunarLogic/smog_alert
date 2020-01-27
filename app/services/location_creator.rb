@@ -1,4 +1,4 @@
-class LocationCreator
+class LocationFromInstallationCreator
   attr_reader :installation
 
   def initialize(installation)
