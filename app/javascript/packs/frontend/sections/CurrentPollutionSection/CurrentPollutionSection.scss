@@ -39,7 +39,10 @@
       width: inherit;
     }
     &-container {
-      width: 100%;
+      width: 53rem;
+      @media only screen and (max-width: $bp-medium) {
+        width: 100%;
+      }
     }
     &-information {
       margin-top: 3rem;
@@ -72,7 +75,7 @@
       }
       margin-right: 4.8rem;
 
-      @media only screen and (max-width: $bp-large) {
+      @media only screen and (max-width: $bp-x-large) {
         display: none;
         width: 0;
       }

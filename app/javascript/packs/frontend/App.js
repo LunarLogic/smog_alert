@@ -6,7 +6,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./themes/MyTheme";
 import { Homepage, Calendar } from "./pages";
 import WebFont from "webfontloader";
-import { Error404, Footer, Navigation } from "./components";
+import { Error404, Footer, Navigation, NavigationMobile } from "./components";
 
 WebFont.load({
   google: {
@@ -18,6 +18,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Navigation />
+      <NavigationMobile />
       <div className="container">
         <Switch>
           <Route exact path="/" component={Homepage} />
