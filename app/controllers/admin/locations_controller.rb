@@ -42,13 +42,24 @@ class Admin::LocationsController < Admin::BaseController
   end
 
   def search
-    @address_search = InstallationSearchByAddressForm.new(address_search_params)
     @search = InstallationSearchForm.new(search_params)
+    @address_search = InstallationSearchByAddressForm.new(address_search_params)
     if search_params
       if search_params['latitude'].present? && search_params['longitude'].present?
-        @installations = find_installations
+        @installations = find_installations(search_params['latitude'], search_params['longitude'], search_params)
       else
         flash.now[:error] = 'Współrzędne są wymagane'
+      end
+    elsif address_search_params
+      if address_search_params['address'].present?
+        coordinates = find_coordinates
+        if coordinates.present?
+          @installations = find_installations(coordinates[:latitude], coordinates[:longitude], address_search_params)
+        else
+          flash.now[:error] = 'Nie znaleziono współrzędnych'
+        end
+      else
+        flash.now[:error] = 'Adres jest wymagany'
       end
     end
     @ids_of_installations_in_db = ids_of_installations_in_db
@@ -103,30 +114,27 @@ class Admin::LocationsController < Admin::BaseController
     }
   end
 
-  def find_installations
+  def find_installations(latitude, longitude, params)
     optional_params = {}
-    optional_params[:max_distance_km] = search_params['max_distance_km'] if search_params['max_distance_km'].present?
-    optional_params[:max_results] = search_params['max_results'] if search_params['max_results'].present?
+    optional_params[:max_distance_km] = params['max_distance_km'] if params['max_distance_km'].present?
+    optional_params[:max_results] = params['max_results'] if params['max_results'].present?
     AirlyAPI::Installations.new.nearest(
-      search_params['latitude'],
-      search_params['longitude'],
+      latitude,
+      longitude,
       optional_params,
     )
   end
 
-  def geocoder_search
-    if address_search_params['address'].present?
-      result = Geocoder.search(address_search_params['address'])
+  def find_coordinates
+    result = Geocoder.search(address_search_params['address'])
+    if result.present?
       coordinates = result.first.coordinates
-      AirlyAPI::Installations.nearest(
-        coordinates[0],
-        coordinates[1],
-        address_search_params['max_distance_km'],
-        address_search_params['max_results'],
-      )
+      {
+        latitude: coordinates[0],
+        longitude: coordinates[1],
+      }
     else
-      flash.now[:error] = 'Adres jest wymagany'
-      nil
+      {}
     end
   end
 
