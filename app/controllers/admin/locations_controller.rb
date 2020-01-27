@@ -43,7 +43,13 @@ class Admin::LocationsController < Admin::BaseController
 
   def search
     @search = InstallationSearchForm.new(search_params)
-    @installations = find_installations
+    if search_params
+      if search_params['latitude'].present? && search_params['longitude'].present?
+        @installations = find_installations
+      else
+        flash.now[:error] = 'Współrzędne są wymagane'
+      end
+    end
     @installations_with_labels = label_if_present_in_db(@installations) if @installations
   end
 
@@ -91,19 +97,12 @@ class Admin::LocationsController < Admin::BaseController
   end
 
   def find_installations
-    if search_params
-      if search_params['latitude'].present? && search_params['longitude'].present?
-        AirlyAPI::Installations.nearest(
-          search_params['latitude'],
-          search_params['longitude'],
-          search_params['max_distance_km'],
-          search_params['max_results'],
-        )
-      else
-        flash.now[:error] = 'Współrzędne są wymagane'
-        nil
-      end
-    end
+    AirlyAPI::Installations.new.nearest(
+      search_params['latitude'],
+      search_params['longitude'],
+      search_params['max_distance_km'],
+      search_params['max_results'],
+    )
   end
 
   def label_if_present_in_db(installations)
