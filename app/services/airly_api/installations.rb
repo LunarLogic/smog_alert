@@ -18,16 +18,5 @@ module AirlyAPI
       url += "&maxDistanceKM=#{@max_distance_km}" if @max_distance_km
       get_json(url)
     end
-
-    private
-
-    def get_json(url)
-      response = begin
-                   RestClient.get(url, headers)
-                 rescue RestClient::ExceptionWithResponse => e
-                   e.response
-                 end
-      JSON.parse(response.body)
-    end
   end
 end
