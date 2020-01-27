@@ -97,31 +97,14 @@ class Admin::LocationsController < Admin::BaseController
   end
 
   def find_installations
-    if search_params['max_distance_km'].blank? && search_params['max_results'].blank?
-      AirlyAPI::Installations.new.nearest(
-        search_params['latitude'],
-        search_params['longitude'],
-      )
-    elsif search_params['max_distance_km'].blank?
-      AirlyAPI::Installations.new.nearest(
-        search_params['latitude'],
-        search_params['longitude'],
-        search_params['max_results'],
-      )
-    elsif search_params['max_results'].blank?
-      AirlyAPI::Installations.new.nearest(
-        search_params['latitude'],
-        search_params['longitude'],
-        search_params['max_distance_km'],
-      )
-    else
-      AirlyAPI::Installations.new.nearest(
-        search_params['latitude'],
-        search_params['longitude'],
-        search_params['max_distance_km'],
-        search_params['max_results'],
-      )
-    end
+    optional_params = {}
+    optional_params[:max_distance_km] = search_params['max_distance_km'] if search_params['max_distance_km'].present?
+    optional_params[:max_results] = search_params['max_results'] if search_params['max_results'].present?
+    AirlyAPI::Installations.new.nearest(
+      search_params['latitude'],
+      search_params['longitude'],
+      optional_params,
+    )
   end
 
   def ids_of_installations_in_db
