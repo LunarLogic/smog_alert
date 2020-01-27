@@ -1,6 +1,5 @@
 module AirlyAPI
   class Installations < Base
-
     def nearest(latitude, longitude, max_distance_km = nil, max_results = 5)
       max_distance_km = nil if max_distance_km.blank?
       max_results = 5 if max_results.blank?
