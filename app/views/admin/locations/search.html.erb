@@ -4,8 +4,8 @@
   </div>
 <% end %>
 
-<div class = 'row'>
-  <div class = 'col-sm-4 search-form'>
+<div class='row'>
+  <div class='col-sm-4 search-form'>
     <%= simple_form_for(@search, url: search_admin_locations_path, method: :get) do |f| %>
       <%= f.input :longitude, label:'Długość', required: true %>
       <%= f.input :latitude, label:'Szerokość', required: true %>
@@ -14,7 +14,7 @@
       <%= f.button :submit, 'Szukaj', class: 'btn btn-primary' %>
     <% end %>
   </div>
-  <div class = 'col-sm-8 installations-list'>
+  <div class='col-sm-8 installations-list'>
     <% if @installations %>
         <%= render 'installations', locals: { search: @search } %>
     <% else %>
