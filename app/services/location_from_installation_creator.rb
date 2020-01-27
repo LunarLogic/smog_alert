@@ -1,4 +1,4 @@
-class LocationCreator
+class LocationFromInstallationCreator
   attr_reader :installation
 
   def initialize(installation)
@@ -6,10 +6,10 @@ class LocationCreator
   end
 
   def call
-    if @installation.empty?
+    if @installation.blank?
       Result::Error.new(errors: ['No installation'])
     else
-      Location.create(
+      Location.create!(
         name: name,
         street: street,
         longitude: longitude,

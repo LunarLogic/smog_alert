@@ -44,15 +44,19 @@ class Admin::LocationsController < Admin::BaseController
   def search
     @address_search = InstallationSearchByAddressForm.new(address_search_params)
     @search = InstallationSearchForm.new(search_params)
-    byebug
-    @installations = find_installations
-    byebug
-    @installations_with_labels = label_if_present_in_db(@installations) if @installations
+    if search_params
+      if search_params['latitude'].present? && search_params['longitude'].present?
+        @installations = find_installations
+      else
+        flash.now[:error] = 'Współrzędne są wymagane'
+      end
+    end
+    @ids_of_installations_in_db = ids_of_installations_in_db
   end
 
   def save
     @installation = format_installation(installation_params)
-    LocationCreator.new(@installation).call
+    LocationFromInstallationCreator.new(@installation).call
   end
 
   private
@@ -100,38 +104,37 @@ class Admin::LocationsController < Admin::BaseController
   end
 
   def find_installations
-    if search_params
-      if search_params['latitude'].present? && search_params['longitude'].present?
-        AirlyAPI::Installations.nearest(
-          search_params['latitude'],
-          search_params['longitude'],
-          search_params['max_distance_km'],
-          search_params['max_results'],
-        )
-        byebug
-      else
-        flash.now[:error] = 'Współrzędne są wymagane'
-        nil
-        byebug
-      end
-    elsif address_search_params
-      if address_search_params['address'].present?
-        result = Geocoder.search(address_search_params['address'])
-        coordinates = result.first.coordinates
-        AirlyAPI::Installations.nearest(
-          coordinates[0],
-          coordinates[1],
-          address_search_params['max_distance_km'],
-          address_search_params['max_results'],
-        )
-      else
-        flash.now[:error] = 'Adres jest wymagany'
-        nil
-      end
+    optional_params = {}
+    optional_params[:max_distance_km] = search_params['max_distance_km'] if search_params['max_distance_km'].present?
+    optional_params[:max_results] = search_params['max_results'] if search_params['max_results'].present?
+    AirlyAPI::Installations.new.nearest(
+      search_params['latitude'],
+      search_params['longitude'],
+      optional_params,
+    )
+  end
+
+  def geocoder_search
+    if address_search_params['address'].present?
+      result = Geocoder.search(address_search_params['address'])
+      coordinates = result.first.coordinates
+      AirlyAPI::Installations.nearest(
+        coordinates[0],
+        coordinates[1],
+        address_search_params['max_distance_km'],
+        address_search_params['max_results'],
+      )
+    else
+      flash.now[:error] = 'Adres jest wymagany'
+      nil
     end
   end
 
-  def label_if_present_in_db(installations)
-    installations.each { |i| i['present_in_db'] = true if Location.find_by(installation_id: i['id']) }
+  def ids_of_installations_in_db
+    if @installations
+      Location.pluck(:installation_id) & @installations.map { |i| i['id'] }
+    else
+      []
+    end
   end
 end
