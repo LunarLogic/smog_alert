@@ -9,7 +9,7 @@ class LocationCreator
     if @installation.blank?
       Result::Error.new(errors: ['No installation'])
     else
-      Location.create(
+      Location.create!(
         name: name,
         street: street,
         longitude: longitude,
