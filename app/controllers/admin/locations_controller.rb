@@ -50,7 +50,7 @@ class Admin::LocationsController < Admin::BaseController
         flash.now[:error] = 'Współrzędne są wymagane'
       end
     end
-    @installations_with_labels = label_if_present_in_db(@installations) if @installations
+    @ids_of_installations_in_db = ids_of_installations_in_db
   end
 
   def save
@@ -105,7 +105,11 @@ class Admin::LocationsController < Admin::BaseController
     )
   end
 
-  def label_if_present_in_db(installations)
-    installations.each { |i| i['present_in_db'] = true if Location.find_by(installation_id: i['id']) }
+  def ids_of_installations_in_db
+    if @installations
+      Location.pluck(:installation_id) & @installations.map { |i| i['id'] }
+    else
+      []
+    end
   end
 end

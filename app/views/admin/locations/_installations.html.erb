@@ -11,7 +11,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @installations_with_labels.each do |installation| %>
+    <% @installations.each do |installation| %>
       <tr class="installation-row">
         <th scope="row"><%= installation['id']%></th>
         <td>
@@ -25,7 +25,7 @@
           <%= button_to 'Dodaj', {action: 'save'},
               remote: true,
               params: {installation: installation},
-              disabled: installation['present_in_db'],
+              disabled: @ids_of_installations_in_db.include?(installation['id']),
               class: "btn btn-primary btn-sm",
               id: "save-installation-#{installation['id']}" %>
         </td>
