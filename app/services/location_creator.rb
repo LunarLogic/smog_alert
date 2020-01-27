@@ -6,7 +6,7 @@ class LocationCreator
   end
 
   def call
-    if @installation.empty?
+    if @installation.blank?
       Result::Error.new(errors: ['No installation'])
     else
       Location.create(

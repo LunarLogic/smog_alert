@@ -3,7 +3,7 @@ describe LocationCreator do
 
   let(:installations) do
     VCR.use_cassette('services/location_creator/installations_near_point') do
-      AirlyAPI::Installations.nearest(50.116028, 19.800639)
+      AirlyAPI::Installations.new.nearest(50.116028, 19.800639, "", "")
     end
   end
 
