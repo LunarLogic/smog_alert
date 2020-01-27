@@ -11,7 +11,6 @@
       <%= simple_form_for(@address_search, url: search_admin_locations_path, method: :get) do |f| %>
         <%= f.input :address, label:'Adres', required: true %>
         <%= f.input :max_distance_km, label:'Promień wyszukiwania w kilometrach', required: false %>
-        <%= f.input :max_results, label:'Maksymalna liczba wyników', required: false %>
         <%= f.button :submit, 'Szukaj', class: 'btn btn-primary' %>
       <% end %>
     </div>
@@ -21,7 +20,6 @@
       <%= f.input :longitude, label: 'Długość', required: true %>
       <%= f.input :latitude, label: 'Szerokość', required: true %>
       <%= f.input :max_distance_km, label: 'Promień wyszukiwania w kilometrach', required: false %>
-      <%= f.input :max_results, label: 'Maksymalna liczba wyników', required: false %>
       <%= f.button :submit, 'Szukaj', class: 'btn btn-primary' %>
     <% end %>
     </div>
