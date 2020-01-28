@@ -6,7 +6,7 @@
 
 <div class = 'row'>
   <div class = 'col-4'>
-    <div class = 'row', style='margin-top: 20px'>
+    <div class = 'row address-search-form', style='margin-top: 20px'>
       <h5>Wyszukaj po adresie</h5>
       <%= simple_form_for(@address_search, url: search_admin_locations_path, method: :get) do |f| %>
         <%= f.input :address, label:'Adres', required: true %>
@@ -14,7 +14,7 @@
         <%= f.button :submit, 'Szukaj', class: 'btn btn-primary' %>
       <% end %>
     </div>
-    <div class = 'row', style='margin-top: 20px'>
+    <div class = 'row coordinates-search-form', style='margin-top: 20px'>
       <h5>Wyszukaj po współrzędnych</h5>
       <%= simple_form_for(@search, url: search_admin_locations_path, method: :get) do |f| %>
       <%= f.input :longitude, label: 'Długość', required: true %>
