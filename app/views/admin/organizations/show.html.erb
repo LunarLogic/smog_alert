@@ -1,19 +1,19 @@
 <h1><%= @organization.organization_name %></h1>
 <% if @organization.logo.attached? %>
-  <image src="<%=(url_for(@organization.logo))%>">
+  <img src="<%=(url_for(@organization.logo))%>">
 <% end%>
 <p><br>Opis organizacji:</br><%= @organization.description %></p>
 <p><br>Email:</br><%= @organization.email %></p>
 <p><br>Facebook:</br><%= @organization.facebook %></p>
 <p><br>Ilustracja miejscowości:</br><p>
 <% if @organization.illustration.attached? %>
-  <image src="<%=(url_for(@organization.illustration))%>">
+  <img src="<%=(url_for(@organization.illustration))%>">
 <% else %>
   Niezałączona
 <% end %>
 <p><br>Mapa regionu:</br><p>
 <% if @organization.map.attached? %>
-  <image src="<%=(url_for(@organization.map))%>">
+  <img src="<%=(url_for(@organization.map))%>">
 <% else %>
   Niezałączona
 <% end %>
