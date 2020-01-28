@@ -40,8 +40,10 @@
       flex-direction: column;
     }
     &--map {
-      width: 72.5rem;
-      height: 65.6rem;
+      width: 60rem;
+      height: 62.7rem;
+      display: flex;
+      align-items: center;
       @media only screen and (max-width: $bp-1000) {
         width: 100%;
         max-width: 53rem;
@@ -50,7 +52,7 @@
       }
     }
     &--info {
-      width: 38%;
+      width: 50rem;
       height: 62.7rem;
       border: 0.1rem solid $frameColor;
       box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.15);

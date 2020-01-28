@@ -16,7 +16,7 @@ WebFont.load({
 
 const App = () => {
   return (
-    <ThemeProvider theme={theme}>
+    <div>
       <Navigation />
       <NavigationMobile />
       <div className="container">
@@ -27,7 +27,7 @@ const App = () => {
         </Switch>
       </div>
       <Footer />
-    </ThemeProvider>
+    </div>
   );
 };
 

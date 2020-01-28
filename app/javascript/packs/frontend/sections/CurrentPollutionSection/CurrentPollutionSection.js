@@ -16,7 +16,8 @@ const CurrentPollutionSection = ({ location }) => {
   return (
     <div className="current-pollution">
       <div className="current-pollution__heading">
-        Aktualna jakość powietrza w miejscowości&nbsp;
+        Aktualna jakość powietrza w miejscowości
+        <br />
         <span className="current-pollution__heading--bold">{location}</span>
       </div>
       <div className="current-pollution__content">

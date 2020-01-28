@@ -27,7 +27,7 @@ const DropdownMenu = ({ citiesPollutionData, chosenCity, getChosenCity }) => {
     }
   });
 
-  options.sort((a, b) => b.value < a.value);
+  options.sort((a, b) => a.localeCompare(b));
 
   const [showMenu, setShowMenu] = useState(false);
   const [arrowUp, setArrow] = useState(false);
