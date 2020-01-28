@@ -1,5 +1,6 @@
 class Admin::OrganizationsController < Admin::BaseController
   after_action :verify_authorized, except: [:show]
+  
   def show
     @organization = Organization.find(params[:id])
   end

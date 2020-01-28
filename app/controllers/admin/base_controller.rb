@@ -1,7 +1,11 @@
 class Admin::BaseController < ApplicationController
   layout 'admin'
 
-  before_action :authenticate_user!, :authenticate_admin!
+  before_action :authenticate_user!, :authenticate_admin!, :load_organization
+
+  def load_organization
+    @current_organization = Organization.last
+  end
 
   private
 

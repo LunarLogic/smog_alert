@@ -19,7 +19,7 @@ describe 'superadmin adding organization info' do
   end
 
   scenario 'add new organization' do
-    visit new_admin_organization_path
+    visit admin_root_path
     within('.navbar-nav') do
       click_on('Organizacja')
     end
