@@ -28,7 +28,7 @@
     grid-column: 1 / 7;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    @media only screen and (max-width: $bp-smallest) {
+    @media only screen and (max-width: $bp-420) {
       display: none;
     }
 

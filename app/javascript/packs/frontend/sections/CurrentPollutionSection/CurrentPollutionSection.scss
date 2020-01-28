@@ -3,7 +3,7 @@
 .current-pollution {
   width: inherit;
 
-  @media only screen and (max-width: $bp-large) {
+  @media only screen and (max-width: $bp-1000) {
     margin: auto;
   }
 
@@ -16,14 +16,14 @@
     &--bold {
       font-weight: bold;
     }
-    @media only screen and (max-width: $bp-large) {
+    @media only screen and (max-width: $bp-1000) {
       font-size: 3.8rem;
       line-height: 4.2rem;
       text-align: center;
       margin-top: 3.5rem;
       margin-bottom: 4rem;
     }
-    @media only screen and (max-width: $bp-smallest) {
+    @media only screen and (max-width: $bp-420) {
       font-size: 3.42rem;
       line-height: 4rem;
       text-align: left;
@@ -32,15 +32,15 @@
   &__content {
     display: flex;
     justify-content: space-between;
-    @media only screen and (max-width: $bp-large) {
+    @media only screen and (max-width: $bp-1000) {
       justify-content: center;
     }
-    @media only screen and (max-width: $bp-smallest) {
+    @media only screen and (max-width: $bp-420) {
       width: inherit;
     }
     &-container {
       width: 53rem;
-      @media only screen and (max-width: $bp-medium) {
+      @media only screen and (max-width: $bp-800) {
         width: 100%;
       }
     }
@@ -75,9 +75,8 @@
       }
       margin-right: 4.8rem;
 
-      @media only screen and (max-width: $bp-x-large) {
+      @media only screen and (max-width: $bp-1200) {
         display: none;
-        width: 0;
       }
     }
   }

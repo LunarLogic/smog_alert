@@ -12,7 +12,7 @@
       margin-bottom: 3.1rem;
 
       display: flex;
-      @media only screen and (max-width: $bp-smallest) {
+      @media only screen and (max-width: $bp-420) {
         max-width: 100%;
         display: flex;
         flex-direction: column;
@@ -26,7 +26,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      @media only screen and (max-width: $bp-smallest) {
+      @media only screen and (max-width: $bp-420) {
         width: 100%;
         flex-direction: row;
         justify-content: center;
@@ -40,7 +40,7 @@
           width: 100%;
           height: 100%;
         }
-        @media only screen and (max-width: $bp-smallest) {
+        @media only screen and (max-width: $bp-420) {
           margin: 5rem 3.5rem 5rem 0;
         }
       }
@@ -70,7 +70,7 @@
         flex-direction: column;
         justify-content: flex-start;
         padding: 4rem;
-        @media only screen and (max-width: $bp-smallest) {
+        @media only screen and (max-width: $bp-420) {
           padding: 5rem 0;
         }
       }
@@ -85,7 +85,7 @@
           color: $textColor;
           opacity: 0.52;
           margin: 0 1rem 0.7rem 0;
-          @media only screen and (max-width: $bp-smallest) {
+          @media only screen and (max-width: $bp-420) {
             font-size: 2.3rem;
             line-height: 2.5rem;
           }
@@ -96,7 +96,7 @@
           line-height: 4.3rem;
           color: $secondaryColorContrast;
           font-family: "Roboto", sans-serif;
-          @media only screen and (max-width: $bp-smallest) {
+          @media only screen and (max-width: $bp-420) {
             font-size: 5rem;
             line-height: 6rem;
           }
@@ -104,7 +104,7 @@
           &--bold {
             font-size: 5.7rem;
             font-weight: 700;
-            @media only screen and (max-width: $bp-smallest) {
+            @media only screen and (max-width: $bp-420) {
               font-size: 7rem;
               line-height: 8rem;
             }
@@ -123,7 +123,7 @@
           color: $textColor;
           opacity: 0.52;
           margin: 0 1rem 0 0;
-          @media only screen and (max-width: $bp-smallest) {
+          @media only screen and (max-width: $bp-420) {
             font-size: 2.3rem;
             line-height: 2.5rem;
           }
@@ -133,7 +133,7 @@
           line-height: 1.9rem;
           color: $secondaryColorContrast;
           font-family: "Roboto", sans-serif;
-          @media only screen and (max-width: $bp-smallest) {
+          @media only screen and (max-width: $bp-420) {
             font-size: 3rem;
             line-height: 3.3rem;
           }
@@ -141,7 +141,7 @@
           &--bold {
             font-size: 3.6rem;
             font-weight: bold;
-            @media only screen and (max-width: $bp-smallest) {
+            @media only screen and (max-width: $bp-420) {
               font-size: 5rem;
               line-height: 5.3rem;
             }
