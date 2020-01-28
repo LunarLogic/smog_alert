@@ -5,5 +5,5 @@ class Organization < ApplicationRecord
   validates :organization_name, presence: true
   validates :description, presence: true
   validates :email, presence: true
-  validates :facebook, format: URI::regexp(%w[http https])
+  validates :facebook, format: URI.regexp(%w[http https])
 end

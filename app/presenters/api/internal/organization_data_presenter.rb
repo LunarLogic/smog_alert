@@ -9,25 +9,25 @@ class API::Internal::OrganizationDataPresenter
       description: @organization.description,
       email: @organization.email,
       facebook: @organization.facebook,
-      logo: get_logo_url,
-      illustration: get_illustration_url,
-      map: get_map_url,
+      logo: logo_url,
+      illustration: illustration_url,
+      map: map_url,
     }
   end
 
-  def get_logo_url
+  def logo_url
     if @organization.logo.attached?
       Rails.application.routes.url_helpers.rails_blob_path(@organization.logo, only_path: true)
     end
   end
 
-  def get_illustration_url
+  def illustration_url
     if @organization.illustration.attached?
       Rails.application.routes.url_helpers.rails_blob_path(@organization.illustration, only_path: true)
     end
   end
 
-  def get_map_url
+  def map_url
     if @organization.map.attached?
       Rails.application.routes.url_helpers.rails_blob_path(@organization.map, only_path: true)
     end
