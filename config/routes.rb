@@ -10,8 +10,12 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'dashboard#index'
     resources :locations do
-      get :search, on: :collection
-      post :save, on: :collection
+      collection do
+        get :search
+        get :search_by_address
+        get :search_by_coordinates
+        post :save
+      end
     end
     resources :articles do
       member do

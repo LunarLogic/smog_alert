@@ -44,25 +44,35 @@ class Admin::LocationsController < Admin::BaseController
   def search
     @search = InstallationSearchForm.new(search_params)
     @address_search = InstallationSearchByAddressForm.new(address_search_params)
-    if search_params
-      if search_params['latitude'].present? && search_params['longitude'].present?
-        @installations = find_installations(search_params['latitude'], search_params['longitude'], search_params)
-      else
-        flash.now[:error] = 'Współrzędne są wymagane'
-      end
-    elsif address_search_params
-      if address_search_params['address'].present?
-        coordinates = find_coordinates
-        if coordinates.present?
-          @installations = find_installations(coordinates[:latitude], coordinates[:longitude], address_search_params)
-        else
-          flash.now[:error] = 'Nie znaleziono lokalizacji'
-        end
-      else
-        flash.now[:error] = 'Adres jest wymagany'
-      end
+  end
+
+  def search_by_coordinates
+    @search = InstallationSearchForm.new(search_params)
+    @address_search = InstallationSearchByAddressForm.new(address_search_params)
+    if search_params && search_params['latitude'].present? && search_params['longitude'].present?
+      @installations = find_installations(search_params['latitude'], search_params['longitude'], search_params)
+      @ids_of_installations_in_db = ids_of_installations_in_db
+    else
+      flash.now[:error] = 'Współrzędne są wymagane'
     end
-    @ids_of_installations_in_db = ids_of_installations_in_db
+    render :search
+  end
+
+  def search_by_address
+    @search = InstallationSearchForm.new(search_params)
+    @address_search = InstallationSearchByAddressForm.new(address_search_params)
+    if address_search_params && address_search_params['address'].present?
+      coordinates = find_coordinates
+      if coordinates.present?
+        @installations = find_installations(coordinates[:latitude], coordinates[:longitude], address_search_params)
+      else
+        flash.now[:error] = 'Nie znaleziono lokalizacji'
+      end
+      @ids_of_installations_in_db = ids_of_installations_in_db
+    else
+      flash.now[:error] = 'Adres jest wymagany'
+    end
+    render :search
   end
 
   def save
