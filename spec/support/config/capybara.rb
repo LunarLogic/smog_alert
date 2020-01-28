@@ -2,6 +2,7 @@ require 'capybara/rails'
 require 'capybara/rspec'
 
 Capybara.default_driver = :selenium_chrome_headless
+Capybara.default_wait_time = 10
 
 RSpec.configure do |config|
   config.before(:each) do |example|
