@@ -84,10 +84,10 @@
       }
     }
   }
-  @media only screen and (max-width: $bp-1000) {
+  @media only screen and (max-width: $bp-1200) {
     margin: auto;
   }
-  @media only screen and (max-width: $bp-420) {
+  @media only screen and (max-width: $bp-600) {
     width: 100%;
   }
 }

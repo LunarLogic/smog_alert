@@ -6,11 +6,9 @@
   padding: 9.2rem 0;
   color: $textColor;
 
-  // > div {
-  //   padding-left: 9.2rem;
-  // }
   &-container {
-    width: 115rem;
+    width: 80%;
+    max-width: 115rem;
     display: flex;
     margin: 0 auto;
   }

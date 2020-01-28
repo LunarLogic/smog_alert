@@ -3,7 +3,7 @@
 html {
   font-size: 10px;
   box-sizing: border-box;
-  @media only screen and (max-width: $bp-420) {
+  @media only screen and (max-width: $bp-600) {
     font-size: 7px;
   }
 }
@@ -23,7 +23,7 @@ body {
     margin: 6.2rem auto;
     width: 115rem;
   }
-  @media only screen and (max-width: $bp-420) {
+  @media only screen and (max-width: $bp-600) {
     margin: 3rem 2rem;
   }
 }

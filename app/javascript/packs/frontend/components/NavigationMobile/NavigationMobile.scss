@@ -2,12 +2,17 @@
 
 .hamburger-navigation {
   height: 7.7rem;
-  padding: 0 0.5rem 0 2rem;
   box-shadow: 0 0.1rem 0.6rem 0 rgba(0, 0, 0, 0.12);
   color: $textColor;
 
-  display: flex;
-  flex-direction: column;
+  &-container {
+    height: inherit;
+    width: 80%;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+  }
   &--closed {
     display: flex;
     align-items: center;
@@ -27,6 +32,13 @@
     overflow: hidden;
     max-height: 0;
     background-color: white;
+    box-shadow: 0 0.5rem 0.6rem 0 rgba(0, 0, 0, 0.12);
+
+    .custom-button {
+      @media only screen and (min-width: 601px) {
+        display: none;
+      }
+    }
   }
   &__brand {
     display: flex;
@@ -62,8 +74,17 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+
+    .custom-button {
+      @media only screen and (max-width: $bp-600) {
+        display: none;
+      }
+    }
+
     &-item {
       height: inherit;
+      width: 80%;
+      margin: 0 auto;
       position: relative;
 
       font-size: 1.6rem;
@@ -74,10 +95,14 @@
       justify-content: flex-end;
       padding: 1.5rem 2rem;
       color: $textColor;
-      &:hover,
-      .isActive {
+      &:first-of-type {
+        padding-top: 3rem;
+      }
+      &:last-of-type {
+        padding-bottom: 4.5rem;
+      }
+      &:hover {
         color: $secondaryColor;
-        box-sizing: border-box;
       }
     }
     .custom-button {
@@ -88,7 +113,10 @@
     display: none;
   }
 }
-.isActive {
+.activeNavigation {
   max-height: 500px;
   transition: max-height 0.5s ease-in;
+}
+.activeLink {
+  color: $secondaryColor;
 }
