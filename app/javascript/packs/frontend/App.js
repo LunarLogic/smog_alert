@@ -2,8 +2,6 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 import "./App.scss";
-import { ThemeProvider } from "@material-ui/core/styles";
-import theme from "./themes/MyTheme";
 import { Homepage, Calendar } from "./pages";
 import WebFont from "webfontloader";
 import { Error404, Footer, Navigation, NavigationMobile } from "./components";

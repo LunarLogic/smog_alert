@@ -6,11 +6,7 @@ import { createStructuredSelector } from "reselect";
 import "./Map.scss";
 import { MapContainer, MapPath, MapText, MapDot } from "./Map.styles.jsx";
 import mapElements from "./MapElements";
-import {
-  mapColor,
-  noDataColor,
-  bpSmallest
-} from "../../styles/_variables.scss";
+import { mapColor, noDataColor, bp600 } from "../../styles/_variables.scss";
 
 import { setColor } from "../../helpers";
 import {
@@ -61,7 +57,7 @@ const Map = ({
       return mapColor;
     }
   };
-  const mapStyles = `@media(max-width: ${bpSmallest}) {
+  const mapStyles = `@media(max-width: ${bp600}) {
     text {font-size: 2.8rem};
   }`;
 
