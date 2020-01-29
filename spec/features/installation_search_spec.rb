@@ -20,7 +20,7 @@ describe 'admin search for installations' do
       within('.address-search-form') do
         click_on('Szukaj')
       end
-      assert page.has_selector?('#installations')
+      expect(page.has_selector?('#installations')).to be true
     end
 
     it 'displays installations when radius was insterted' do
@@ -29,7 +29,7 @@ describe 'admin search for installations' do
         fill_in 'Promień wyszukiwania w kilometrach', with: 10
         click_on('Szukaj')
       end
-      assert page.has_selector?('#installations')
+      expect(page.has_selector?('#installations')).to be true
     end
   end
 
@@ -47,7 +47,7 @@ describe 'admin search for installations' do
       within('.coordinates-search-form') do
         click_on('Szukaj')
       end
-      assert page.has_selector?('#installations')
+      expect(page.has_selector?('#installations')).to be true
     end
 
     it 'displays installations when radius was insterted' do
@@ -57,7 +57,7 @@ describe 'admin search for installations' do
         fill_in 'Promień wyszukiwania w kilometrach', with: 10
         click_on('Szukaj')
       end
-      assert page.has_selector?('#installations')
+      expect(page.has_selector?('#installations')).to be true
     end
   end
 end
