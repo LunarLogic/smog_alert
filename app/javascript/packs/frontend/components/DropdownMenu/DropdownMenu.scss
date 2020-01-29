@@ -37,6 +37,10 @@
       overflow-y: scroll;
       position: absolute;
 
+      @media only screen and (max-width: $bp-1200) {
+        max-height: 30rem !important;
+      }
+
       .is-selected {
         background-color: $greyLight !important;
       }
