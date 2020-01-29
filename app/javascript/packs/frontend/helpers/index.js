@@ -5,6 +5,7 @@ import { setLimit } from "./setLimit";
 import { setEmot } from "./setEmot";
 import { setGradient } from "./setGradient";
 import { findMeasurement } from "./findMeasurement";
+import { setAverageColor } from "./setAverageColor";
 
 export {
   setColor,
@@ -13,5 +14,6 @@ export {
   setLimit,
   setEmot,
   setGradient,
-  findMeasurement
+  findMeasurement,
+  setAverageColor
 };
