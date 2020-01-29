@@ -1,4 +1,5 @@
 describe LocationFromInstallationCreator do
+  subject { location_creator.call }
   let(:location_creator) { described_class.new(installations[0]) }
 
   let(:installations) do
@@ -8,7 +9,9 @@ describe LocationFromInstallationCreator do
   end
 
   it 'creates location from selected installation' do
-    expect { location_creator.call }.to change { Location.count }.by(1)
+    expect { subject }.to change { Location.count }.by(1)
+    expect(subject.success?).to be true
+    expect(subject.data).to eq(Location.last!)
     first_location = Location.first!
     expect(first_location.name).to eql('Zabierzów')
     expect(first_location.installation_id).to eql(9996)
