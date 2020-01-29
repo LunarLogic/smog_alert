@@ -27,12 +27,5 @@ const COLORS = {
 };
 
 export const setAverageColor = status => {
-  let color;
-  if (!status) {
-    color = noDataColor;
-    return color;
-  }
-  color = COLORS[status] || noDataColor;
-
-  return color;
+  return COLORS[status] || noDataColor;
 };
