@@ -8,7 +8,7 @@ import { MapContainer, MapPath, MapText, MapDot } from "./Map.styles.jsx";
 import mapElements from "./MapElements";
 import { mapColor, noDataColor } from "../../styles/_variables.scss";
 
-import { setColor } from "../../helpers";
+import { setAverageColor } from "../../helpers";
 import {
   selectCitiesPollutionData,
   selectMapLocation,
@@ -32,7 +32,7 @@ const Map = ({
     );
 
     return clickedCity
-      ? setColor(clickedCity.last_hour_measurement)
+      ? setAverageColor(clickedCity.status_of_locations_grouped_by_name)
       : noDataColor;
   };
 

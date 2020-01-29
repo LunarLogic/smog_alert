@@ -13,8 +13,8 @@ Rails.application.routes.draw do
     resources :organizations
     resources :articles do
       member do
-        patch :publish
-        put :publish
+        patch :publish, :unpublish
+        put :publish, :unpublish
       end
     end
     resources :users
