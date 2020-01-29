@@ -51,7 +51,7 @@ class Admin::LocationsController < Admin::BaseController
     @address_search = InstallationSearchByAddressForm.new(address_search_params)
     if search_params && search_params['latitude'].present? && search_params['longitude'].present?
       @installations = find_installations(search_params['latitude'], search_params['longitude'], search_params)
-      @ids_of_installations_in_db = ids_of_installations_in_db
+      @ids_of_installations_in_db = ids_of_installations_in_db(@installations)
     else
       flash.now[:error] = 'Współrzędne są wymagane'
     end
@@ -65,10 +65,10 @@ class Admin::LocationsController < Admin::BaseController
       coordinates = find_coordinates
       if coordinates.present?
         @installations = find_installations(coordinates[:latitude], coordinates[:longitude], address_search_params)
+        @ids_of_installations_in_db = ids_of_installations_in_db(@installations)
       else
         flash.now[:error] = 'Nie znaleziono lokalizacji'
       end
-      @ids_of_installations_in_db = ids_of_installations_in_db
     else
       flash.now[:error] = 'Adres jest wymagany'
     end
@@ -148,11 +148,8 @@ class Admin::LocationsController < Admin::BaseController
     end
   end
 
-  def ids_of_installations_in_db
-    if @installations
-      Location.pluck(:installation_id) & @installations.map { |i| i['id'] }
-    else
-      []
-    end
+  def ids_of_installations_in_db(installations)
+    return [] if installations.empty?
+    Location.pluck(:installation_id) & installations.map { |i| i['id'] }
   end
 end
