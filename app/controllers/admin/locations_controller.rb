@@ -150,6 +150,7 @@ class Admin::LocationsController < Admin::BaseController
 
   def ids_of_installations_in_db(installations)
     return [] if installations.empty?
+
     Location.pluck(:installation_id) & installations.map { |i| i['id'] }
   end
 end
