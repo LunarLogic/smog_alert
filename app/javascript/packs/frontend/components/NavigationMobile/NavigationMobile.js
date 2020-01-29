@@ -71,10 +71,9 @@ const NavigationMobile = () => {
               {link.displayName}
             </NavLink>
           ))}
-          <CustomButton
-            text={button}
-            className="hamburger-navigation__links-open-button"
-          />
+          <div className="hamburger-navigation__links-button">
+            <CustomButton text={button} />
+          </div>
         </div>
       </div>
     </header>

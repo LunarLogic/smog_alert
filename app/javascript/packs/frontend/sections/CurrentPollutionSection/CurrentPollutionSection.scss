@@ -6,6 +6,9 @@
   @media only screen and (max-width: $bp-1200) {
     margin: auto;
   }
+  @media only screen and (max-width: $bp-600) {
+    max-width: 53rem;
+  }
 
   &__heading {
     font-size: 4.2rem;
@@ -26,6 +29,9 @@
     @media only screen and (max-width: $bp-600) {
       font-size: 3.42rem;
       line-height: 4rem;
+      text-align: center;
+    }
+    @media only screen and (max-width: $bp-420) {
       text-align: left;
     }
   }

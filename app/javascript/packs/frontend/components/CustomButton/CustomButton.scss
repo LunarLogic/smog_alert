@@ -17,6 +17,12 @@
   &:hover {
     background-color: $secondaryColorDark;
   }
+  @media only screen and (max-width: $bp-600) {
+    font-size: 2.3rem;
+    line-height: 2.9rem;
+    height: 5.5rem;
+    width: 18rem;
+  }
 }
 
 button:focus {

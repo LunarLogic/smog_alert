@@ -4,6 +4,10 @@
   height: 7.7rem;
   box-shadow: 0 0.1rem 0.6rem 0 rgba(0, 0, 0, 0.12);
   color: $textColor;
+  @media only screen and (max-width: $bp-420) {
+    padding: 0 3rem;
+    height: 8.7rem;
+  }
 
   &-container {
     height: inherit;
@@ -12,6 +16,14 @@
 
     display: flex;
     flex-direction: column;
+
+    @media only screen and (max-width: $bp-600) {
+      width: 100%;
+      max-width: 53rem;
+    }
+    @media only screen and (max-width: $bp-420) {
+      width: 100%;
+    }
   }
   &--closed {
     display: flex;
@@ -33,6 +45,9 @@
     max-height: 0;
     background-color: white;
     box-shadow: 0 0.5rem 0.6rem 0 rgba(0, 0, 0, 0.12);
+    @media only screen and (min-width: $bp-420) {
+      top: 8.7rem;
+    }
 
     .custom-button {
       @media only screen and (min-width: 601px) {
@@ -47,6 +62,10 @@
       width: 4.3em;
       height: 4.3rem;
       margin-right: 1rem;
+      @media only screen and (max-width: $bp-420) {
+        height: 5.5rem;
+        width: 5.5rem;
+      }
       &-img {
         width: inherit;
         height: inherit;
@@ -62,6 +81,11 @@
 
       display: flex;
       flex-wrap: wrap;
+      @media only screen and (max-width: $bp-420) {
+        width: 23rem;
+        font-size: 2rem;
+        line-height: 2.4rem;
+      }
     }
   }
   &__links {
@@ -95,18 +119,47 @@
       justify-content: flex-end;
       padding: 1.5rem 2rem;
       color: $textColor;
-      &:first-of-type {
-        padding-top: 3rem;
-      }
+
       &:last-of-type {
         padding-bottom: 4.5rem;
+      }
+
+      &:first-of-type {
+        padding-top: 3rem;
       }
       &:hover {
         color: $secondaryColor;
       }
+
+      @media only screen and (max-width: $bp-600) {
+        font-size: 2.5rem;
+        line-height: 3.2rem;
+        width: 100%;
+        max-width: 53rem;
+
+        &:last-of-type {
+          padding-bottom: 1.5rem;
+        }
+      }
+      @media only screen and (max-width: $bp-420) {
+        width: 87%;
+      }
     }
     .custom-button {
       margin-right: 2rem;
+    }
+    &-button {
+      @media only screen and (max-width: $bp-600) {
+        width: 100%;
+        max-width: 53rem;
+        display: flex;
+        justify-content: flex-end;
+        margin: auto;
+        padding: 1rem 0 4.5rem 0;
+      }
+      @media only screen and (max-width: $bp-420) {
+        width: 87%;
+      }
     }
   }
   @media only screen and (min-width: $bp-1200) {
