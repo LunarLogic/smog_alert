@@ -39,4 +39,5 @@ Rails.application.routes.draw do
 
   get '*path', to: 'frontend#index', constraints: lambda { |req|
     req.path.exclude? 'rails/active_storage'
+  }
 end
