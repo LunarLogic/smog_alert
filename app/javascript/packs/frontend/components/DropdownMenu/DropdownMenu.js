@@ -42,7 +42,7 @@ export const DropdownMenu = ({
     }
   });
 
-  options.sort();
+  options.sort((a, b) => a.localeCompare(b));
 
   const [showMenu, setShowMenu] = useState(false);
   const [arrowUp, setArrow] = useState(false);
