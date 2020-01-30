@@ -268,7 +268,7 @@ end
 if Rails.env.development? || Rails.env.test?
   30.times do |day|
     Location.all.each do |location|
-      till_date_time = DateTime.new(2019, 12, day+1, 14, 00)
+      till_date_time = DateTime.new(2019, 12, day + 1, 14)
       location.measurements.build(
         date: till_date_time.to_date,
         hour: till_date_time.hour,
