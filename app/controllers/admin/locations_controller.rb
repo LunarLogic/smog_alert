@@ -50,7 +50,11 @@ class Admin::LocationsController < Admin::BaseController
     @search = InstallationSearchForm.new(search_params)
     @address_search = InstallationSearchByAddressForm.new
     if @search.valid?
-      @installations = find_installations(@search.latitude, @search.longitude, @search.max_distance_km)
+      @installations = find_installations(
+        @search.latitude,
+        @search.longitude,
+        @search.max_distance_km,
+      )
       @ids_of_installations_in_db = ids_of_installations_in_db(@installations)
     end
     render :search
@@ -62,7 +66,11 @@ class Admin::LocationsController < Admin::BaseController
     if @address_search.valid?
       coordinates = find_coordinates
       if coordinates.present?
-        @installations = find_installations(coordinates[:latitude], coordinates[:longitude], @address_search.max_distance_km)
+        @installations = find_installations(
+          coordinates[:latitude],
+          coordinates[:longitude],
+          @address_search.max_distance_km,
+        )
         @ids_of_installations_in_db = ids_of_installations_in_db(@installations)
       else
         flash.now[:error] = 'Nie znaleziono lokalizacji'
