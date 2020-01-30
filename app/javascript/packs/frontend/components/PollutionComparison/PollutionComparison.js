@@ -61,7 +61,7 @@ export const PollutionComparison = ({
                 width={width}
                 backgroundColor={setColor(last_hour_measurement)}
                 location={location_display_name}
-                value={findMeasurement(cityData, "PM 10").value.toString()}
+                value={findMeasurement(cityData, "PM 10").value}
                 onClick={() => {
                   handleChosenCity(location_name);
                 }}
