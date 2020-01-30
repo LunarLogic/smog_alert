@@ -12,13 +12,28 @@ import {
 } from "../../redux/redux.selectors";
 import { getChosenCity } from "../../redux/mapSection/mapSection.actions";
 
-const DropdownMenu = ({ citiesPollutionData, chosenCity, getChosenCity }) => {
+export const DropdownMenu = ({
+  citiesPollutionData,
+  chosenCity,
+  getChosenCity
+}) => {
   let options = [];
+
   const checkOptions = city => {
     return (
       options.length === 0 ||
       !options.find(element => element === city.location_name)
     );
+  };
+
+  const toggleMenu = () => {
+    setShowMenu(!showMenu);
+    setArrow(!arrowUp);
+  };
+
+  const changeChosenCity = city => {
+    setShowMenu(false);
+    getChosenCity(city);
   };
 
   citiesPollutionData.forEach(city => {
@@ -32,17 +47,6 @@ const DropdownMenu = ({ citiesPollutionData, chosenCity, getChosenCity }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [arrowUp, setArrow] = useState(false);
 
-  const toggleMenu = () => {
-    setShowMenu(!showMenu);
-    setArrow(!arrowUp);
-  };
-
-  const changeChosenCity = () => {
-    let city = event.target.textContent;
-    setShowMenu(false);
-    getChosenCity(city);
-  };
-
   return (
     <div className="dropdown">
       <div className="dropdown__control" onClick={toggleMenu}>
@@ -55,7 +59,9 @@ const DropdownMenu = ({ citiesPollutionData, chosenCity, getChosenCity }) => {
             <div
               className="dropdown__control--menu-option"
               key={`${city}-dropdown`}
-              onClick={changeChosenCity}
+              onClick={() => {
+                changeChosenCity(city);
+              }}
             >
               {city}
             </div>

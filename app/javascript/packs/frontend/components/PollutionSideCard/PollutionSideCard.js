@@ -13,7 +13,7 @@ import { getChosenCity } from "../../redux/mapSection/mapSection.actions";
 import { selectMapChosenCityData } from "../../redux/redux.selectors";
 import PollutionSpecificData from "../PollutionSpecificData/PollutionSpecificData";
 
-const PollutionSideCard = ({ chosenCityData, getChosenCity }) => {
+export const PollutionSideCard = ({ chosenCityData, getChosenCity }) => {
   const removeChosenCity = () => {
     getChosenCity("");
   };

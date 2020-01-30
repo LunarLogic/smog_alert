@@ -13,7 +13,7 @@ import {
 
 import "./PollutionComparison.scss";
 
-const PollutionComparison = ({
+export const PollutionComparison = ({
   citiesPollutionData,
   getChosenCity,
   getHoveredCity
@@ -33,15 +33,6 @@ const PollutionComparison = ({
   const removeHover = () => {
     getHoveredCity("");
   };
-
-  // const getPM10 = cityData => {
-  //   let values = cityData.last_hour_measurement
-  //     ? cityData.last_hour_measurement.values
-  //     : null;
-  //   return values
-  //     ? values.find(value => value.name === "PM 10")
-  //     : { value: "--" };
-  // };
 
   if (citiesPollutionData.length) {
     sortedPollutionData = citiesPollutionData.sort(

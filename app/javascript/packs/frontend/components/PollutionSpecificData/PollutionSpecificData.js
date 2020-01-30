@@ -6,7 +6,7 @@ import { setLimit, setPercent, setEmot } from "../../helpers";
 import { PollutionOverviewText } from "./PollutionSpecificData.styles.jsx";
 import "./PollutionSpecificData.scss";
 
-const PollutionSpecificData = ({
+export const PollutionSpecificData = ({
   display_name,
   color,
   lastHourMeasurement,
@@ -37,7 +37,7 @@ const PollutionSpecificData = ({
               <PollutionIndexData
                 key={`${display_name}-${data.value}-pollution-index-data`}
                 indicator={data.name}
-                value={data.value}
+                value={data.value.toString()}
                 percent={data.value !== "--" ? percent : "--"}
                 limit={setLimit(data.name)}
               />

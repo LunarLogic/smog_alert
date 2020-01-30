@@ -17,33 +17,17 @@ import {
   noDataColor
 } from "../styles/_variables.scss";
 
+const SETTINGS = {
+  [veryGood]: goodFirst,
+  [good]: goodSecond,
+  [moderate]: unhealthyFirst,
+  [sufficient]: unhealthySecond,
+  [bad]: badFirst,
+  [veryBad]: badSecond
+};
+
 export const setColor = lastHourMeasurement => {
-  let color;
-  if (!lastHourMeasurement) {
-    color = noDataColor;
-    return color;
-  }
-  switch (lastHourMeasurement.status) {
-    case veryGood:
-      color = goodFirst;
-      break;
-    case good:
-      color = goodSecond;
-      break;
-    case moderate:
-      color = unhealthyFirst;
-      break;
-    case sufficient:
-      color = unhealthySecond;
-      break;
-    case bad:
-      color = badFirst;
-      break;
-    case veryBad:
-      color = badSecond;
-      break;
-    default:
-      color = noDataColor;
-  }
-  return color;
+  return lastHourMeasurement
+    ? SETTINGS[lastHourMeasurement.status] || noDataColor
+    : noDataColor;
 };

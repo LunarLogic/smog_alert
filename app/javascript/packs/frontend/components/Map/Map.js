@@ -19,7 +19,7 @@ import {
   getHoveredCity
 } from "../../redux/mapSection/mapSection.actions";
 
-const Map = ({
+export const Map = ({
   citiesPollutionData,
   chosenCity,
   getChosenCity,
@@ -79,6 +79,7 @@ const Map = ({
         {mapElements.map(element => (
           <MapPath
             key={`${element.location}-map-path`}
+            id={`${element.location}-map-path`}
             color={findColor(element.location)}
             fill={findChosenCityColor(element.location)}
             opacity={
@@ -96,6 +97,7 @@ const Map = ({
         {mapElements.map(element => (
           <MapText
             key={`${element.location}-map-text`}
+            id={`${element.location}-map-text`}
             transform={element.transform}
             onClick={() => handleColorChange(element.location)}
             onMouseOver={() => handleHover(element.location)}
@@ -107,6 +109,7 @@ const Map = ({
         {mapElements.map(element => (
           <MapDot
             key={`${element.location}-map-dot`}
+            id={`${element.location}-map-dot`}
             cx={element.cx}
             cy={element.cy}
             color={findColor(element.location)}

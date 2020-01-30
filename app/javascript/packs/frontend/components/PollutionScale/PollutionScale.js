@@ -12,7 +12,7 @@ import { setIndicator } from "../../helpers/setIndicator";
 import "./PollutionScale.scss";
 import { Indicator } from "./PollutionScale.styles.jsx";
 
-const PollutionScale = ({ chosenCityData }) => {
+export const PollutionScale = ({ chosenCityData }) => {
   const { colorBox, description } = PollutionScaleContent;
   let color;
   let indicator;
