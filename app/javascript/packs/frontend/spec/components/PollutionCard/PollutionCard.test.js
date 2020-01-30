@@ -5,11 +5,11 @@ import { mount } from "enzyme";
 describe("Pollution Card component", () => {
   let wrapper;
 
-  const mockChosenCityData1 = {
+  const mockChosenCityWithoutLastHourMeasurementData = {
     last_hour_measurement: null
   };
 
-  const mockChosenCityData2 = {
+  const mockChosenCityWithLastHourMeasurementData = {
     last_hour_measurement: {
       values: [
         {
@@ -25,10 +25,12 @@ describe("Pollution Card component", () => {
     }
   };
 
-  const mockChosenCityData3 = undefined;
-
   it("Check if component renders correctly even though no data for last_hour_measurement has been provided", () => {
-    wrapper = mount(<PollutionCard chosenCityData={mockChosenCityData1} />);
+    wrapper = mount(
+      <PollutionCard
+        chosenCityData={mockChosenCityWithoutLastHourMeasurementData}
+      />
+    );
     expect(
       wrapper
         .find(".card-pollution__current-data-specific-primary-value--bold")
@@ -37,7 +39,11 @@ describe("Pollution Card component", () => {
   });
 
   it("Check if component renders correctly with last_hour_measurement data provided", () => {
-    wrapper = mount(<PollutionCard chosenCityData={mockChosenCityData2} />);
+    wrapper = mount(
+      <PollutionCard
+        chosenCityData={mockChosenCityWithLastHourMeasurementData}
+      />
+    );
     expect(
       wrapper
         .find(".card-pollution__current-data-specific-primary-value--bold")
@@ -46,7 +52,7 @@ describe("Pollution Card component", () => {
   });
 
   it("Check how component behaves with no data provided at all", () => {
-    wrapper = mount(<PollutionCard chosenCityData={mockChosenCityData3} />);
+    wrapper = mount(<PollutionCard chosenCityData={undefined} />);
     expect(
       wrapper.find(".card-pollution__current-data-container").children()
     ).toHaveLength(0);
