@@ -5,6 +5,7 @@ import DropdownMenu from "./DropdownMenu/DropdownMenu";
 import Error404 from "./Error404/Error404";
 import Footer from "./Footer/Footer";
 import Icon from "./Icon/Icon";
+import IconRecommended from "./IconRecommended/IconRecommended";
 import Map from "./Map/Map";
 import Navigation from "./Navigation/Navigation";
 import PollutionBar from "./PollutionBar/PollutionBar";
@@ -23,6 +24,7 @@ export {
   Error404,
   Footer,
   Icon,
+  IconRecommended,
   Map,
   Navigation,
   NavigationMobile,

@@ -1,0 +1,28 @@
+@import "./../../styles/variables";
+
+.icon-recommended {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  &__content {
+    width: 6.2rem;
+    height: 6.2rem;
+    border-radius: 50%;
+    position: relative;
+    margin-right: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $grey;
+    &--recommended {
+      border: 0.2rem solid $grey;
+    }
+  }
+  &__text {
+    margin-top: 1rem;
+    font-size: 2rem;
+    line-height: 2.4rem;
+    text-align: center;
+    color: $grey;
+  }
+}

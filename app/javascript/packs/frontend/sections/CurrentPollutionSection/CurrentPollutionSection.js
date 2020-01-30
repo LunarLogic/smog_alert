@@ -4,15 +4,17 @@ import { PropTypes } from "prop-types";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import { createStructuredSelector } from "reselect";
 
-import { PollutionCard, PollutionScale, Icon } from "../../components";
-import { selectLocation } from "../../redux/redux.selectors";
+import {
+  PollutionCard,
+  PollutionScale,
+  IconRecommended
+} from "../../components";
+import { selectLocation, selectAdvice } from "../../redux/redux.selectors";
 import Town from "../../assets/Town.png";
 
 import "./CurrentPollutionSection.scss";
 
-const CurrentPollutionSection = ({ location }) => {
-  const iconData = ["id1", "id2", "id3", "id4"];
-
+const CurrentPollutionSection = ({ location, advice }) => {
   return (
     <div className="current-pollution">
       <div className="current-pollution__heading">
@@ -33,13 +35,16 @@ const CurrentPollutionSection = ({ location }) => {
             </div>
           </div>
           <hr className="current-pollution__horizontal-line" />
-          <div className="current-pollution__recommendations-text">
+          {/* <div className="current-pollution__recommendations-text">
             Zalecenia
-          </div>
-          <div className="current-pollution__recommendations-icons">
+          </div> */}
+          {/* <div className="current-pollution__recommendations-icons">
             {iconData.map(icon => (
               <Icon key={icon} iconId={icon} />
             ))}
+          </div> */}
+          <div className="current-pollution__recommendation-single">
+            <IconRecommended text={advice} />
           </div>
         </div>
         <div className="current-pollution__content-image">
@@ -51,13 +56,13 @@ const CurrentPollutionSection = ({ location }) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-  location: selectLocation
+  location: selectLocation,
+  advice: selectAdvice
 });
 
 CurrentPollutionSection.propTypes = {
-  location_name: PropTypes.string,
-  citiesPollutionData: PropTypes.array,
-  location: PropTypes.string
+  location: PropTypes.string,
+  advice: PropTypes.string
 };
 
 export default connect(mapStateToProps)(CurrentPollutionSection);
