@@ -36,7 +36,7 @@ PollutionBar.propTypes = {
   width: PropTypes.number,
   backgroundColor: PropTypes.string,
   location: PropTypes.string,
-  value: PropTypes.number,
+  value: PropTypes.string,
   onClick: PropTypes.func,
   onMouseOver: PropTypes.func,
   onMouseOut: PropTypes.func
