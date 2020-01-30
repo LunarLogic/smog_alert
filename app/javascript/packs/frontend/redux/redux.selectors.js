@@ -53,3 +53,15 @@ export const selectMapHoveredCity = createSelector(
   [selectMapSection],
   mapSection => mapSection.hovered_city
 );
+
+const selectCalendar = state => state.calendar;
+
+export const selectCalendarStatusData = createSelector(
+  [selectCalendar],
+  calendar => calendar.calendarStatusData
+);
+
+export const selectCalendarValuesData = createSelector(
+  [selectCalendar],
+  calendar => calendar.calendarValuesData
+);
