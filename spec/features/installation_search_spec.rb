@@ -38,7 +38,8 @@ describe 'admin search for installations' do
       within('.coordinates-search-form') do
         click_on('Szukaj')
       end
-      expect(page).to have_content('Współrzędne są wymagane')
+      expect(page).to have_content('Szerokość jest wymagana')
+      expect(page).to have_content('Długość jest wymagana')
     end
 
     it "displays installations when radius wasn't insterted" do
