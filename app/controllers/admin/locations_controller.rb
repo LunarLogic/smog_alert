@@ -1,5 +1,5 @@
 class Admin::LocationsController < Admin::BaseController
-  after_action :verify_authorized, except: [:index, :show]
+  after_action :verify_authorized, except: [:index, :show, :search, :search_by_coordinates, :search_by_address]
 
   def index
     @locations = Location.all.order(:name, :street)
