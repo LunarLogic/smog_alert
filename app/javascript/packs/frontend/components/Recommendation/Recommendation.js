@@ -8,10 +8,10 @@ import "./Recommendation.scss";
 const Recommendation = ({ text }) => {
   return (
     <div className="recommendation">
-      <div className={`recommendation__content icon__content--recommended`}>
+      <div className="recommendation__content icon__content--recommended">
         <PriorityHighIcon
           style={{ fontSize: 26 }}
-          color={"inherit"}
+          color="inherit"
         ></PriorityHighIcon>
       </div>
       <div className="recommendation__text">{text}</div>
