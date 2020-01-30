@@ -42,8 +42,8 @@ class Admin::LocationsController < Admin::BaseController
   end
 
   def search
-    @search = InstallationSearchForm.new(search_params)
-    @address_search = InstallationSearchByAddressForm.new(address_search_params)
+    @search = InstallationSearchForm.new
+    @address_search = InstallationSearchByAddressForm.new
   end
 
   def search_by_coordinates
