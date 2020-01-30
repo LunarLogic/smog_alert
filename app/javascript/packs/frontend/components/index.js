@@ -13,6 +13,7 @@ import PollutionIndexData from "./PollutionIndexData/PollutionIndexData";
 import PollutionScale from "./PollutionScale/PollutionScale";
 import Searchbox from "./Searchbox/Searchbox";
 import PollutionSideCard from "./PollutionSideCard/PollutionSideCard";
+import NavigationMobile from "./NavigationMobile/NavigationMobile";
 
 export {
   PollutionCard,
@@ -24,6 +25,7 @@ export {
   Icon,
   Map,
   Navigation,
+  NavigationMobile,
   PollutionBar,
   PollutionComparison,
   PollutionIndexData,

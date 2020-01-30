@@ -2,13 +2,20 @@
 
 .navigation {
   height: 7.7rem;
-  padding: 0 9.2rem;
+  // padding: 0 9.2rem;
   box-shadow: 0 0.1rem 0.6rem 0 rgba(0, 0, 0, 0.12);
   color: $textColor;
+  &-container {
+    height: inherit;
+    margin: 0 auto;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @media only screen and (min-width: $bp-1200) {
+      width: 115rem;
+    }
+  }
   &__brand {
     width: 30%;
 
@@ -70,5 +77,9 @@
         }
       }
     }
+  }
+
+  @media only screen and (max-width: 1199px) {
+    display: none;
   }
 }

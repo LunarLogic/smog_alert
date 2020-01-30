@@ -15,6 +15,13 @@
         <%= link_to  "Użytkownicy", admin_users_path, class: 'nav-link' %>
       </li>
       <li class="nav-item">
+        <% if @current_organization %>
+          <%= link_to "Organizacja", admin_organization_path(@current_organization), class: 'nav-link' %>
+        <% else %>
+          <%= link_to "Organizacja", new_admin_organization_path, class: 'nav-link' %>
+        <% end %>
+      </li>
+      <li class="nav-item">
         <%= link_to  "Strona główna", root_path, class: 'nav-link' %>
       </li>
       <li class="nav-item">

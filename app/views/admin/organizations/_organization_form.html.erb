@@ -1,0 +1,10 @@
+<%= simple_form_for [:admin, @organization] do |f| %>
+  <%= f.input :organization_name, label: 'Nazwa organizacji' %>
+  <%= f.input :logo, label: 'Załącz logo' %>
+  <%= f.input :description, label: 'Krótki opis organizacji' %>
+  <%= f.input :email, label: 'Email kontaktowy' %>
+  <%= f.input :facebook, label: 'Adres strony na Facebooku' %>
+  <%= f.input :illustration, label: 'Załącz ilustrację' %>
+  <%= f.input :map, label: 'Załącz mapę regionu' %>
+  <%= f.submit 'Zapisz dane organizacji', class: 'btn btn-success' %>
+<% end %>

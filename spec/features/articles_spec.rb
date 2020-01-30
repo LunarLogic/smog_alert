@@ -11,7 +11,7 @@ describe 'admin interactions with articles' do
   let!(:new_article) { FactoryBot.build(:article) }
 
   before :each do
-    user = FactoryBot.create(:admin)
+    user = FactoryBot.create(:superadmin)
     login_as(user, scope: :user)
     visit admin_articles_path
   end
@@ -49,6 +49,15 @@ describe 'admin interactions with articles' do
     end
     expect(page).to have_current_path(admin_articles_path)
     expect(page).not_to have_content('Opublikuj wpis')
+  end
+
+  scenario 'unpublish an article' do
+    within('.article-row', text: article.title) do
+      click_on('Opublikuj wpis')
+      click_on('Cofnij publikację')
+    end
+    expect(page).to have_current_path(admin_articles_path)
+    expect(page).to have_content('Nieopublikowany')
   end
 
   scenario 'delete an article' do

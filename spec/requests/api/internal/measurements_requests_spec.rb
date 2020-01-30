@@ -23,6 +23,13 @@ describe '/api/internal/measurements' do
       json = JSON.parse(response.body)
       expect(json).to eq(expected_response)
     end
+
+    it 'responds with 422 status when missing params' do
+      location_id = location.id
+      get calendar_values_api_internal_measurements_path(location_id: location_id)
+      expect(response.status).to eq(422)
+      expect(response.body).to be_json_eql({ 'errors' => [{ 'year' => ['parameter is required'] }] }.to_json)
+    end
   end
 
   describe 'GET /calendar_status' do

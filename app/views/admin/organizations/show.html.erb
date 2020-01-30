@@ -1,0 +1,21 @@
+<h1><%= @organization.organization_name %></h1>
+<% if @organization.logo.attached? %>
+  <img src="<%=(url_for(@organization.logo))%>">
+<% end%>
+<p><br>Opis organizacji:</br><%= @organization.description %></p>
+<p><br>Email:</br><%= @organization.email %></p>
+<p><br>Facebook:</br><%= @organization.facebook %></p>
+<p><br>Ilustracja miejscowości:</br><p>
+<% if @organization.illustration.attached? %>
+  <img src="<%=(url_for(@organization.illustration))%>">
+<% else %>
+  Niezałączona
+<% end %>
+<p><br>Mapa regionu:</br><p>
+<% if @organization.map.attached? %>
+  <img src="<%=(url_for(@organization.map))%>">
+<% else %>
+  Niezałączona
+<% end %>
+<p><%= link_to 'Edytuj', edit_admin_organization_path(@organization), class: "btn btn-success btn-sm"%>
+<%= link_to 'Usuń', admin_organization_path(@organization), class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: "Czy na pewno chcesz usunąć organizację #{@organization.organization_name}?" } %></p>

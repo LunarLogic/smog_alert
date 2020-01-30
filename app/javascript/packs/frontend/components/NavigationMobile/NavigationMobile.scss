@@ -1,0 +1,175 @@
+@import "../../styles/variables";
+
+.hamburger-navigation {
+  height: 7.7rem;
+  box-shadow: 0 0.1rem 0.6rem 0 rgba(0, 0, 0, 0.12);
+  color: $textColor;
+  @media only screen and (max-width: $bp-420) {
+    padding: 0 3rem;
+    height: 8.7rem;
+  }
+
+  &-container {
+    height: inherit;
+    width: 80%;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+
+    @media only screen and (max-width: $bp-600) {
+      width: 100%;
+      max-width: 53rem;
+    }
+    @media only screen and (max-width: $bp-420) {
+      width: 100%;
+    }
+  }
+  &--closed {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: inherit;
+    width: 100%;
+  }
+  &--open {
+    position: absolute;
+    top: 7.7rem;
+    left: 0px;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    transition: max-height 0.5s ease-out;
+    z-index: 2;
+    overflow: hidden;
+    max-height: 0;
+    background-color: white;
+    box-shadow: 0 0.5rem 0.6rem 0 rgba(0, 0, 0, 0.12);
+    @media only screen and (min-width: $bp-420) {
+      top: 8.7rem;
+    }
+
+    .custom-button {
+      @media only screen and (min-width: 601px) {
+        display: none;
+      }
+    }
+  }
+  &__brand {
+    display: flex;
+    align-items: center;
+    &-logo {
+      width: 4.3em;
+      height: 4.3rem;
+      margin-right: 1rem;
+      @media only screen and (max-width: $bp-420) {
+        height: 5.5rem;
+        width: 5.5rem;
+      }
+      &-img {
+        width: inherit;
+        height: inherit;
+      }
+    }
+    &-name {
+      width: 13.5rem;
+      text-transform: uppercase;
+      font-size: 1.4rem;
+      line-height: 1.6rem;
+      font-weight: 700;
+      color: $textColor;
+
+      display: flex;
+      flex-wrap: wrap;
+      @media only screen and (max-width: $bp-420) {
+        width: 23rem;
+        font-size: 2rem;
+        line-height: 2.4rem;
+      }
+    }
+  }
+  &__links {
+    height: 100%;
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+    font-weight: 500;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .custom-button {
+      @media only screen and (max-width: $bp-600) {
+        display: none;
+      }
+    }
+
+    &-item {
+      height: inherit;
+      width: 80%;
+      margin: 0 auto;
+      position: relative;
+
+      font-size: 1.6rem;
+      line-height: 1.9rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 1.5rem 2rem;
+      color: $textColor;
+
+      &:last-of-type {
+        padding-bottom: 4.5rem;
+      }
+
+      &:first-of-type {
+        padding-top: 3rem;
+      }
+      &:hover {
+        color: $secondaryColor;
+      }
+
+      @media only screen and (max-width: $bp-600) {
+        font-size: 2.5rem;
+        line-height: 3.2rem;
+        width: 100%;
+        max-width: 53rem;
+
+        &:last-of-type {
+          padding-bottom: 1.5rem;
+        }
+      }
+      @media only screen and (max-width: $bp-420) {
+        width: 87%;
+      }
+    }
+    .custom-button {
+      margin-right: 2rem;
+    }
+    &-button {
+      @media only screen and (max-width: $bp-600) {
+        width: 100%;
+        max-width: 53rem;
+        display: flex;
+        justify-content: flex-end;
+        margin: auto;
+        padding: 1rem 0 4.5rem 0;
+      }
+      @media only screen and (max-width: $bp-420) {
+        width: 87%;
+      }
+    }
+  }
+  @media only screen and (min-width: $bp-1200) {
+    display: none;
+  }
+}
+.activeNavigation {
+  max-height: 500px;
+  transition: max-height 0.5s ease-in;
+}
+.activeLink {
+  color: $secondaryColor;
+}

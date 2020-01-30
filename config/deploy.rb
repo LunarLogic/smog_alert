@@ -1,9 +1,9 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.11.2"
+lock '~> 3.11.2'
 
-set :application, "smogalert"
-set :repo_url, "git@github.com:LunarLogic/smog_alert.git"
-set :user, "smogalert"
+set :application, 'smogalert'
+set :repo_url, 'git@github.com:LunarLogic/smog_alert.git'
+set :user, 'smogalert'
 
 set :deploy_to, '/home/smogalert/application/'
 
@@ -11,14 +11,15 @@ set :rbenv_type, :system
 
 set :rbenv_ruby, '2.6.5'
 
-set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
+set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
 
 append :linked_dirs,
        'public/assets',
        'log',
        'tmp/pids',
        'tmp/cache',
-       'tmp/sockets'
+       'tmp/sockets',
+       'storage'
 
 append :linked_files, 'config/database.yml'
 

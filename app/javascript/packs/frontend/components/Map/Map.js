@@ -79,6 +79,7 @@ export const Map = ({
         {mapElements.map(element => (
           <MapPath
             key={`${element.location}-map-path`}
+            id={`${element.location}-map-path`}
             color={findColor(element.location)}
             fill={findChosenCityColor(element.location)}
             opacity={
@@ -96,57 +97,29 @@ export const Map = ({
         {mapElements.map(element => (
           <MapText
             key={`${element.location}-map-text`}
+            id={`${element.location}-map-text`}
             transform={element.transform}
             onClick={() => handleColorChange(element.location)}
             onMouseOver={() => handleHover(element.location)}
             onMouseOut={removeHover}
           >
-            {mapElements.map(element => (
-              <MapPath
-                key={`${element.location}-map-path`}
-                id={`${element.location}-map-path`}
-                color={findColor(element.location)}
-                fill={findChosenCityColor(element.location)}
-                opacity={
-                  chosenCity === element.location ||
-                  hoveredCity === element.location
-                    ? "0.5"
-                    : "1"
-                }
-                d={element.path}
-                onClick={() => handleColorChange(element.location)}
-                onMouseOver={() => handleHover(element.location)}
-                onMouseOut={removeHover}
-              />
-            ))}
-            {mapElements.map(element => (
-              <MapText
-                key={`${element.location}-map-text`}
-                id={`${element.location}-map-text`}
-                transform={element.transform}
-                onClick={() => handleColorChange(element.location)}
-                onMouseOver={() => handleHover(element.location)}
-                onMouseOut={removeHover}
-              >
-                {element.location}
-              </MapText>
-            ))}
-            {mapElements.map(element => (
-              <MapDot
-                key={`${element.location}-map-dot`}
-                id={`${element.location}-map-dot`}
-                cx={element.cx}
-                cy={element.cy}
-                color={findColor(element.location)}
-                r="10.5"
-                onClick={() => handleColorChange(element.location)}
-                onMouseOver={() => handleHover(element.location)}
-                onMouseOut={removeHover}
-              />
-            ))}
-          </MapContainer>
-        </div>
-      )}
+            {element.location}
+          </MapText>
+        ))}
+        {mapElements.map(element => (
+          <MapDot
+            key={`${element.location}-map-dot`}
+            id={`${element.location}-map-dot`}
+            cx={element.cx}
+            cy={element.cy}
+            color={findColor(element.location)}
+            r="10.5"
+            onClick={() => handleColorChange(element.location)}
+            onMouseOver={() => handleHover(element.location)}
+            onMouseOut={removeHover}
+          />
+        ))}
+      </MapContainer>
     </div>
   ) : null;
 };
