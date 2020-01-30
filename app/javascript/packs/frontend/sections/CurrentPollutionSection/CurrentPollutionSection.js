@@ -7,10 +7,10 @@ import { createStructuredSelector } from "reselect";
 import {
   PollutionCard,
   PollutionScale,
-  IconRecommended
+  Recommendation
 } from "../../components";
 import { selectLocation, selectAdvice } from "../../redux/redux.selectors";
-import Town from "../../assets/Town.png";
+import ZabierzowCity from "../../assets/ZabierzowCity.svg";
 
 import "./CurrentPollutionSection.scss";
 
@@ -35,20 +35,12 @@ const CurrentPollutionSection = ({ location, advice }) => {
             </div>
           </div>
           <hr className="current-pollution__horizontal-line" />
-          {/* <div className="current-pollution__recommendations-text">
-            Zalecenia
-          </div> */}
-          {/* <div className="current-pollution__recommendations-icons">
-            {iconData.map(icon => (
-              <Icon key={icon} iconId={icon} />
-            ))}
-          </div> */}
           <div className="current-pollution__recommendation-single">
-            <IconRecommended text={advice} />
+            <Recommendation text={advice ? advice : "Brak rekomendacji"} />
           </div>
         </div>
         <div className="current-pollution__content-image">
-          <img src={Town} alt="town view" />
+          <img src={ZabierzowCity} alt="town view" />
         </div>
       </div>
     </div>

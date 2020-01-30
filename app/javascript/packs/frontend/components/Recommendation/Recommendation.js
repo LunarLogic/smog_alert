@@ -3,24 +3,24 @@ import { PropTypes } from "prop-types";
 
 import PriorityHighIcon from "@material-ui/icons/PriorityHigh";
 
-import "./IconRecommended.scss";
+import "./Recommendation.scss";
 
-const IconRecommended = ({ text }) => {
+const Recommendation = ({ text }) => {
   return (
-    <div className="icon-recommended">
-      <div className={`icon-recommended__content icon__content--recommended`}>
+    <div className="recommendation">
+      <div className={`recommendation__content icon__content--recommended`}>
         <PriorityHighIcon
           style={{ fontSize: 26 }}
           color={"inherit"}
         ></PriorityHighIcon>
       </div>
-      <div className="icon-recommended__text">{text}</div>
+      <div className="recommendation__text">{text}</div>
     </div>
   );
 };
 
-IconRecommended.propTypes = {
+Recommendation.propTypes = {
   text: PropTypes.string
 };
 
-export default IconRecommended;
+export default Recommendation;
