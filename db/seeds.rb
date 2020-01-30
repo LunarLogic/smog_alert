@@ -282,7 +282,7 @@ if Rails.env.development? || Rails.env.test?
     ).save!
   end
 
-  #data for calendar
+  # data for calendar
   30.times do |day|
     Location.all.each do |location|
       till_date_time = DateTime.new(2019, 12, day + 1, 14)
