@@ -1,0 +1,28 @@
+@import "./../../styles/variables";
+
+.recommendation {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  &__content {
+    flex: 0 0 auto;
+    width: 6.2rem;
+    height: 6.2rem;
+    border-radius: 50%;
+    position: relative;
+    margin-right: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $grey;
+    &--recommended {
+      border: 0.2rem solid $grey;
+    }
+  }
+  &__text {
+    font-size: 1.8rem;
+    line-height: 2.7rem;
+    text-align: left;
+    color: $grey;
+  }
+}
