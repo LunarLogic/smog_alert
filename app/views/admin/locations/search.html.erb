@@ -33,7 +33,7 @@
           Nie znaleziono instalacji w okolicy
         </div>
       <% else %>
-        <%= render 'installations', locals: { search: @search } %>
+        <%= render 'installations', installations: @installations, ids_of_installations_in_db: @ids_of_installations_in_db %>
       <% end %>
     <% else %>
       <p>Wpisz adres lub współrzędne, aby wyszukać czujniki Airly znajdujące się w pobliżu</p>
