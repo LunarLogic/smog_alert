@@ -52,8 +52,6 @@ class Admin::LocationsController < Admin::BaseController
     if @search.valid?
       @installations = find_installations(@search.latitude, @search.longitude, @search.max_distance_km)
       @ids_of_installations_in_db = ids_of_installations_in_db(@installations)
-    else
-      flash.now[:error] = 'Współrzędne są wymagane'
     end
     render :search
   end
@@ -69,8 +67,6 @@ class Admin::LocationsController < Admin::BaseController
       else
         flash.now[:error] = 'Nie znaleziono lokalizacji'
       end
-    else
-      flash.now[:error] = 'Adres jest wymagany'
     end
     render :search
   end

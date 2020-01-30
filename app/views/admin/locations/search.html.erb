@@ -11,17 +11,17 @@
     <div class="row address-search-form", style="margin-top: 20px">
       <h5>Wyszukaj po adresie</h5>
       <%= simple_form_for(@address_search, url: search_by_address_admin_locations_path, method: :get) do |f| %>
-        <%= f.input :address, label:'Adres', required: true %>
-        <%= f.input :max_distance_km, label:'Promień wyszukiwania w kilometrach', required: false %>
+        <%= f.input :address, label:'Adres', placeholder: 'np. al. Słowackiego, Kraków', required: true, error: 'Adres jest wymagany' %>
+        <%= f.input :max_distance_km, label:'Promień wyszukiwania w kilometrach', placeholder: 'Opcjonalne', required: false %>
         <%= f.button :submit, 'Szukaj', class: 'btn btn-primary' %>
       <% end %>
     </div>
     <div class="row coordinates-search-form", style="margin-top: 20px">
       <h5>Wyszukaj po współrzędnych</h5>
       <%= simple_form_for(@search, url: search_by_coordinates_admin_locations_path, method: :get) do |f| %>
-      <%= f.input :longitude, label: 'Długość', required: true %>
-      <%= f.input :latitude, label: 'Szerokość', required: true %>
-      <%= f.input :max_distance_km, label: 'Promień wyszukiwania w kilometrach', required: false %>
+      <%= f.input :longitude, label: 'Długość', required: true, error: 'Długość jest wymagana' %>
+      <%= f.input :latitude, label: 'Szerokość', required: true, error: 'Szerokość jest wymagana' %>
+      <%= f.input :max_distance_km, label: 'Promień wyszukiwania w kilometrach', placeholder: 'Opcjonalne', required: false %>
       <%= f.button :submit, 'Szukaj', class: 'btn btn-primary' %>
     <% end %>
     </div>
