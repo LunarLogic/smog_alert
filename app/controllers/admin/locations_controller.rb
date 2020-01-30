@@ -48,9 +48,9 @@ class Admin::LocationsController < Admin::BaseController
 
   def search_by_coordinates
     @search = InstallationSearchForm.new(search_params)
-    @address_search = InstallationSearchByAddressForm.new(address_search_params)
-    if search_params && search_params['latitude'].present? && search_params['longitude'].present?
-      @installations = find_installations(search_params['latitude'], search_params['longitude'], search_params)
+    @address_search = InstallationSearchByAddressForm.new
+    if @search.valid?
+      @installations = find_installations(@search.latitude, @search.longitude, @search.max_distance_km)
       @ids_of_installations_in_db = ids_of_installations_in_db(@installations)
     else
       flash.now[:error] = 'Współrzędne są wymagane'
@@ -59,12 +59,12 @@ class Admin::LocationsController < Admin::BaseController
   end
 
   def search_by_address
-    @search = InstallationSearchForm.new(search_params)
+    @search = InstallationSearchForm.new
     @address_search = InstallationSearchByAddressForm.new(address_search_params)
-    if address_search_params && address_search_params['address'].present?
+    if @address_search.valid?
       coordinates = find_coordinates
       if coordinates.present?
-        @installations = find_installations(coordinates[:latitude], coordinates[:longitude], address_search_params)
+        @installations = find_installations(@address_search.latitude, @address_search.longitude, @address_search.max_distance_km)
         @ids_of_installations_in_db = ids_of_installations_in_db(@installations)
       else
         flash.now[:error] = 'Nie znaleziono lokalizacji'
@@ -124,10 +124,9 @@ class Admin::LocationsController < Admin::BaseController
     }
   end
 
-  def find_installations(latitude, longitude, params)
+  def find_installations(latitude, longitude, max_distance_km)
     optional_params = {}
-    optional_params[:max_distance_km] = params['max_distance_km'] if params['max_distance_km'].present?
-    optional_params[:max_results] = params['max_results'] if params['max_results'].present?
+    optional_params[:max_distance_km] = max_distance_km if max_distance_km
     AirlyAPI::Installations.new.nearest(
       latitude,
       longitude,
