@@ -62,7 +62,7 @@ class Admin::LocationsController < Admin::BaseController
     if @address_search.valid?
       coordinates = find_coordinates
       if coordinates.present?
-        @installations = find_installations(@address_search.latitude, @address_search.longitude, @address_search.max_distance_km)
+        @installations = find_installations(coordinates[:latitude], coordinates[:longitude], @address_search.max_distance_km)
         @ids_of_installations_in_db = ids_of_installations_in_db(@installations)
       else
         flash.now[:error] = 'Nie znaleziono lokalizacji'
