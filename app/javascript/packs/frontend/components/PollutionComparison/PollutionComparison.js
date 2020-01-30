@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
 import { PollutionBar } from "../";
-import { setColor } from "../../helpers";
+import { setColor, findMeasurement } from "../../helpers";
 import { selectCitiesPollutionData } from "../../redux/redux.selectors";
 import {
   getChosenCity,
@@ -13,7 +13,7 @@ import {
 
 import "./PollutionComparison.scss";
 
-const PollutionComparison = ({
+export const PollutionComparison = ({
   citiesPollutionData,
   getChosenCity,
   getHoveredCity
@@ -34,20 +34,13 @@ const PollutionComparison = ({
     getHoveredCity("");
   };
 
-  const getPM10 = cityData => {
-    let values = cityData.last_hour_measurement
-      ? cityData.last_hour_measurement.values
-      : null;
-    return values
-      ? values.find(value => value.name === "PM 10")
-      : { value: "--" };
-  };
-
   if (citiesPollutionData.length) {
     sortedPollutionData = citiesPollutionData.sort(
-      (a, b) => getPM10(b).value - getPM10(a).value
+      (a, b) =>
+        findMeasurement(b, "PM 10").value - findMeasurement(a, "PM 10").value
     );
-    highestPollutionValue = getPM10(sortedPollutionData[0]).value;
+    highestPollutionValue = findMeasurement(sortedPollutionData[0], "PM 10")
+      .value;
   }
 
   return (
@@ -60,14 +53,15 @@ const PollutionComparison = ({
               last_hour_measurement
             } = cityData;
             const width =
-              (getPM10(cityData).value * 100) / highestPollutionValue;
+              (findMeasurement(cityData, "PM 10").value * 100) /
+              highestPollutionValue;
             return (
               <PollutionBar
                 key={`${location_display_name}-bar`}
                 width={width}
                 backgroundColor={setColor(last_hour_measurement)}
                 location={location_display_name}
-                value={getPM10(cityData).value}
+                value={findMeasurement(cityData, "PM 10").value}
                 onClick={() => {
                   handleChosenCity(location_name);
                 }}

@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PollutionBar /> expect to render PollutionBar component 1`] = `
+<div
+  className="pollution-bar"
+>
+  <div
+    className="pollution-bar__info"
+  >
+    <div
+      className="pollution-bar__info-location"
+    >
+      Brzezie
+    </div>
+    <div
+      className="pollution-bar__info-type"
+    >
+      PM10
+    </div>
+    <div
+      className="pollution-bar__info-value"
+    >
+      25
+       μg/m³
+    </div>
+  </div>
+  <div
+    className="pollution-bar__bar"
+    style={
+      Object {
+        "backgroundColor": "#7d0d0f",
+        "width": "30%",
+      }
+    }
+  />
+</div>
+`;

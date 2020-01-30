@@ -17,10 +17,11 @@ Rails.application.routes.draw do
         post :save
       end
     end
+    resources :organizations
     resources :articles do
       member do
-        patch :publish
-        put :publish
+        patch :publish, :unpublish
+        put :publish, :unpublish
       end
     end
     resources :users
@@ -37,10 +38,19 @@ Rails.application.routes.draw do
           get :current
           get :calendar_values
           get :calendar_status
+          get :hourly_average_for_month
+        end
+      end
+      resources :articles, only: :index
+      resources :organizations, only: [] do
+        collection do
+          get :current_data
         end
       end
     end
   end
 
-  get '*path', to: 'frontend#index'
+  get '*path', to: 'frontend#index', constraints: lambda { |req|
+    req.path.exclude? 'rails/active_storage'
+  }
 end

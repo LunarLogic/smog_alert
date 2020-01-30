@@ -3,6 +3,10 @@
 html {
   font-size: 10px;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  @media only screen and (max-width: $bp-600) {
+    font-size: 7px;
+  }
 }
 
 body {
@@ -16,6 +20,13 @@ body {
 
 .container {
   margin: 6.2rem 9.2rem;
+  @media only screen and (min-width: $bp-1200) {
+    margin: 6.2rem auto;
+    width: 115rem;
+  }
+  @media only screen and (max-width: $bp-600) {
+    margin: 3rem 2rem;
+  }
 }
 
 a {

@@ -12,7 +12,7 @@ import { setIndicator } from "../../helpers/setIndicator";
 import "./PollutionScale.scss";
 import { Indicator } from "./PollutionScale.styles.jsx";
 
-const PollutionScale = ({ chosenCityData }) => {
+export const PollutionScale = ({ chosenCityData }) => {
   const { colorBox, description } = PollutionScaleContent;
   let color;
   let indicator;
@@ -32,10 +32,7 @@ const PollutionScale = ({ chosenCityData }) => {
       <Indicator color={color} indicator={indicator} opacity={opacity} />
       <div className="scale__container-ranges">
         {colorBox.map(box => (
-          <div
-            key={uuid.v4()}
-            className={`scale__color-background--${box}`}
-          ></div>
+          <div key={box} className={`scale__color-background--${box}`}></div>
         ))}
       </div>
       <div className="scale__container-legend">

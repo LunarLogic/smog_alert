@@ -6,7 +6,7 @@
     <tr>
     <th scope='col'>Id</th>
     <th scope='col'>Tytuł</th>
-    <th scope='col'>Data wpisu</th>
+    <th scope='col'>Data utworzenia</th>
     <th scope='col'>Data publikacji</th>
     <th scope='col'>Akcje</th>
     </tr>
@@ -20,13 +20,15 @@
         </td>
         <td><%= article.created_at %></td>
         <td>
-          <% if article.published_at.nil? %>
-            <%= link_to 'Opublikuj wpis', publish_admin_article_path(article), method: :put, class: "btn btn-info btn-sm" %>
-          <% else %>
-            <%= article.published_at %>
-          <% end %>
+          <%= article.published? ? article.published_at : 'Nieopublikowany' %>
         </td>
         <td>
+        <% if article.published? %>
+          <%= link_to 'Cofnij publikację', unpublish_admin_article_path(article), method: :put, class: "btn btn-warning btn-sm" %>
+        <% else %>
+          <%= link_to 'Opublikuj wpis', publish_admin_article_path(article), method: :put, class: "btn btn-info btn-sm" %>
+        <% end %>
+
         <%= link_to 'Edytuj', edit_admin_article_path(article), class: "btn btn-light btn-sm"%>
         <%= link_to 'Usuń', admin_article_path(article), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Czy na pewno chcesz usunąć wpis #{article.title}?"} %>
         </td>

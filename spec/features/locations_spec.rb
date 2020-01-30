@@ -12,7 +12,7 @@ describe 'admin interactions with locations' do
   let!(:location) { FactoryBot.create(:location) }
 
   before :each do
-    user = FactoryBot.create(:admin)
+    user = FactoryBot.create(:superadmin)
     login_as(user, scope: :user)
     visit admin_locations_path
   end

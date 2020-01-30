@@ -4,7 +4,6 @@ import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import { createStructuredSelector } from "reselect";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
-import uuid from "uuid";
 
 import "./DropdownMenu.scss";
 import {
@@ -13,38 +12,40 @@ import {
 } from "../../redux/redux.selectors";
 import { getChosenCity } from "../../redux/mapSection/mapSection.actions";
 
-const DropdownMenu = ({ citiesPollutionData, chosenCity, getChosenCity }) => {
+export const DropdownMenu = ({
+  citiesPollutionData,
+  chosenCity,
+  getChosenCity
+}) => {
   let options = [];
 
-  citiesPollutionData.forEach(city => {
-    if (options.length === 0) {
-      options.push({
-        value: city.location_name,
-        className: "dropdown__control--menu-option"
-      });
-    } else if (!options.find(element => element.value === city.location_name)) {
-      options.push({
-        value: city.location_name,
-        className: "dropdown__control--menu-option"
-      });
-    }
-  });
-
-  options.sort((a, b) => b.value < a.value);
-
-  const [showMenu, setShowMenu] = useState(false);
-  const [arrowUp, setArrow] = useState(false);
+  const checkOptions = city => {
+    return (
+      options.length === 0 ||
+      !options.find(element => element === city.location_name)
+    );
+  };
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
     setArrow(!arrowUp);
   };
 
-  const changeChosenCity = () => {
-    let city = event.target.textContent;
+  const changeChosenCity = city => {
     setShowMenu(false);
     getChosenCity(city);
   };
+
+  citiesPollutionData.forEach(city => {
+    if (checkOptions(city)) {
+      options.push(city.location_name);
+    }
+  });
+
+  options.sort((a, b) => a.localeCompare(b));
+
+  const [showMenu, setShowMenu] = useState(false);
+  const [arrowUp, setArrow] = useState(false);
 
   return (
     <div className="dropdown">
@@ -56,11 +57,13 @@ const DropdownMenu = ({ citiesPollutionData, chosenCity, getChosenCity }) => {
         <div id="menu" className="dropdown__control--menu">
           {options.map(city => (
             <div
-              className={city.className}
-              key={uuid.v4()}
-              onClick={changeChosenCity}
+              className="dropdown__control--menu-option"
+              key={`${city}-dropdown`}
+              onClick={() => {
+                changeChosenCity(city);
+              }}
             >
-              {city.value}
+              {city}
             </div>
           ))}
         </div>

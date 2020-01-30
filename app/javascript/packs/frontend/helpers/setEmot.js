@@ -17,31 +17,21 @@ import {
   veryBad
 } from "./statusConstants.js";
 
+const EMOTS = {
+  [veryGood]: VeryGoodEmot,
+  [good]: GoodEmot,
+  [moderate]: ModerateEmot,
+  [sufficient]: SufficientEmot,
+  [bad]: BadEmot,
+  [veryBad]: VeryBadEmot
+};
+
 export const setEmot = lastHourMeasurement => {
   let emot;
   if (!lastHourMeasurement) {
     emot = NeutralEmot;
     return emot();
   }
-  switch (lastHourMeasurement.status) {
-    case veryGood:
-      emot = VeryGoodEmot;
-      break;
-    case good:
-      emot = GoodEmot;
-      break;
-    case moderate:
-      emot = ModerateEmot;
-      break;
-    case sufficient:
-      emot = SufficientEmot;
-      break;
-    case bad:
-      emot = BadEmot;
-      break;
-    case veryBad:
-      emot = VeryBadEmot;
-      break;
-  }
+  emot = EMOTS[lastHourMeasurement.status] || NeutralEmot;
   return emot();
 };

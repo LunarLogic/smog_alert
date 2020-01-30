@@ -9,7 +9,7 @@ import { Searchbox } from "../../components";
 
 import "./Homepage.scss";
 
-const Homepage = ({ getCitiesPollutionData }) => {
+export const Homepage = ({ getCitiesPollutionData }) => {
   useEffect(() => {
     getCitiesPollutionData();
   }, []);

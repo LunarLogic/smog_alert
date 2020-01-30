@@ -3,3 +3,7 @@
 /config
 babel.config.js
 package.json
+**/*.rb
+**/*.json
+**/*.yml
+

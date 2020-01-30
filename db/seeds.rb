@@ -6,7 +6,19 @@ unless Rails.env.production?
     password = '123456'
     user.password = password
     user.password_confirmation = password
+    user.superadmin!
     user.confirm
+  end
+
+  editor = User.find_or_create_by(email: 'editor@example.com')
+
+  unless editor.confirmed?
+    editor.admin = true
+    password = '123456'
+    editor.password = password
+    editor.password_confirmation = password
+    editor.editor!
+    editor.confirm
   end
 
   15.times do
@@ -254,19 +266,21 @@ cities.each do |city|
 end
 
 if Rails.env.development? || Rails.env.test?
-  Location.all.each do |location|
-    till_date_time = DateTime.now
-    location.measurements.build(
-      date: till_date_time.to_date,
-      hour: till_date_time.hour,
-      pm10: rand(10.0..80.0).round(2),
-      pm25: rand(10.0..80.0).round(2),
-      temperature: rand(-10..10),
-      humidity: rand(60.0..90.0).round(2),
-      pressure: rand(900.0..1100.0).round(2),
-      from_date_time: till_date_time - 1.hour,
-      till_date_time: till_date_time,
-      advice: 'zostań w domu',
-    ).save!
+  30.times do |day|
+    Location.all.each do |location|
+      till_date_time = DateTime.new(2019, 12, day + 1, 14)
+      location.measurements.build(
+        date: till_date_time.to_date,
+        hour: till_date_time.hour,
+        pm10: rand(10.0..80.0).round(2),
+        pm25: rand(10.0..80.0).round(2),
+        temperature: rand(-10..10),
+        humidity: rand(60.0..90.0).round(2),
+        pressure: rand(900.0..1100.0).round(2),
+        from_date_time: till_date_time - 1.hour,
+        till_date_time: till_date_time,
+        advice: 'zostań w domu',
+      ).save!
+    end
   end
 end

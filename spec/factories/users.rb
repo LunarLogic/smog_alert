@@ -7,6 +7,14 @@ FactoryBot.define do
     factory :admin do
       sequence(:email) { |n| "admin#{n}@gmail.com" }
       admin { true }
+
+      factory :superadmin do
+        role { :superadmin }
+      end
+
+      factory :editor do
+        role { :editor }
+      end
     end
   end
 end

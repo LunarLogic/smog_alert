@@ -11,7 +11,7 @@ describe 'admin managing users of the application' do
   let!(:user_new) { FactoryBot.build(:user) }
 
   before :each do
-    admin = FactoryBot.create(:admin)
+    admin = FactoryBot.create(:superadmin)
     login_as(admin)
     visit admin_users_path
   end

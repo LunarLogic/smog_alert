@@ -75,10 +75,9 @@ jobs:
           name: run RuboCop
           command: bundle exec rubocop
 
-      # TO FIX
-      # - run:
-      #    name: run ESLint
-      #    command: ./node_modules/eslint/bin/eslint.js .
+      - run:
+          name: run ESLint
+          command: ./node_modules/eslint/bin/eslint.js
 
       # Deploy
       - deploy:

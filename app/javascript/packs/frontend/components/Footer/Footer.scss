@@ -5,14 +5,35 @@
   background-color: $greyLight;
   padding: 9.2rem 0;
   color: $textColor;
-
-  display: flex;
-
-  > div {
-    padding-left: 9.2rem;
+  @media only screen and (max-width: $bp-420) {
+    padding: 5rem 0;
   }
+
+  &-container {
+    width: 80%;
+    max-width: 115rem;
+    display: flex;
+    margin: 0 auto;
+    @media only screen and (max-width: $bp-600) {
+      width: 100%;
+      max-width: 53rem;
+    }
+    @media only screen and (max-width: $bp-420) {
+      flex-direction: column;
+      align-items: center;
+      width: 80%;
+      text-align: center;
+    }
+  }
+
   &__info {
     width: 100%;
+    @media only screen and (max-width: $bp-420) {
+      width: auto;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
 
     &-logo {
       width: 4.3rem;
@@ -32,10 +53,10 @@
       font-weight: 300;
       line-height: 1.7rem;
       margin-top: 2rem;
-      width: 50%;
+      width: 70%;
     }
     &-credentials {
-      width: 50%;
+      width: 70%;
       font-size: 1.2rem;
       font-weight: 300;
       line-height: 1.5;
@@ -43,11 +64,16 @@
     }
   }
   &__contact {
-    width: 100%;
+    width: 75%;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    @media only screen and (max-width: $bp-420) {
+      margin-top: 5rem;
+      align-items: center;
+    }
     &-heading {
       font-size: 1.4rem;
       line-height: 1.7rem;

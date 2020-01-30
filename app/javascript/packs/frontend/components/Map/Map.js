@@ -2,14 +2,13 @@ import React from "react";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import uuid from "uuid";
 
 import "./Map.scss";
 import { MapContainer, MapPath, MapText, MapDot } from "./Map.styles.jsx";
 import mapElements from "./MapElements";
-import { mapColor, noDataColor } from "../../styles/_variables.scss";
+import { mapColor, noDataColor, bp600 } from "../../styles/_variables.scss";
 
-import { setColor } from "../../helpers";
+import { setAverageColor } from "../../helpers";
 import {
   selectCitiesPollutionData,
   selectMapLocation,
@@ -20,7 +19,7 @@ import {
   getHoveredCity
 } from "../../redux/mapSection/mapSection.actions";
 
-const Map = ({
+export const Map = ({
   citiesPollutionData,
   chosenCity,
   getChosenCity,
@@ -33,7 +32,7 @@ const Map = ({
     );
 
     return clickedCity
-      ? setColor(clickedCity.last_hour_measurement)
+      ? setAverageColor(clickedCity.status_of_locations_grouped_by_name)
       : noDataColor;
   };
 
@@ -58,68 +57,71 @@ const Map = ({
       return mapColor;
     }
   };
+  const mapStyles = `@media(max-width: ${bp600}) {
+    text {font-size: 2.8rem};
+  }`;
 
   let shouldRender = citiesPollutionData.length !== 0;
-  return (
-    <div>
-      {shouldRender && (
-        <div className="map">
-          <MapContainer
-            version="1.1"
-            id="Layer_1"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlnsXlink="http://www.w3.org/1999/xlink"
-            x="0px"
-            y="0px"
-            viewBox="0 0 725 656"
-            style={{ enableBackground: "new 0 0 725 656" }}
-            xmlSpace="preserve"
+  return shouldRender ? (
+    <div className="map">
+      <MapContainer
+        version="1.1"
+        id="Layer_1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlnsXlink="http://www.w3.org/1999/xlink"
+        x="0px"
+        y="0px"
+        viewBox="0 0 725 656"
+        style={{ enableBackground: "new 0 0 725 656" }}
+        xmlSpace="preserve"
+      >
+        <style>{mapStyles}</style>
+        {mapElements.map(element => (
+          <MapPath
+            key={`${element.location}-map-path`}
+            id={`${element.location}-map-path`}
+            color={findColor(element.location)}
+            fill={findChosenCityColor(element.location)}
+            opacity={
+              chosenCity === element.location ||
+              hoveredCity === element.location
+                ? "0.5"
+                : "1"
+            }
+            d={element.path}
+            onClick={() => handleColorChange(element.location)}
+            onMouseOver={() => handleHover(element.location)}
+            onMouseOut={removeHover}
+          />
+        ))}
+        {mapElements.map(element => (
+          <MapText
+            key={`${element.location}-map-text`}
+            id={`${element.location}-map-text`}
+            transform={element.transform}
+            onClick={() => handleColorChange(element.location)}
+            onMouseOver={() => handleHover(element.location)}
+            onMouseOut={removeHover}
           >
-            {mapElements.map(element => (
-              <MapPath
-                key={uuid.v4()}
-                color={findColor(element.location)}
-                fill={findChosenCityColor(element.location)}
-                opacity={
-                  chosenCity === element.location ||
-                  hoveredCity === element.location
-                    ? "0.5"
-                    : "1"
-                }
-                d={element.path}
-                onClick={() => handleColorChange(element.location)}
-                onMouseOver={() => handleHover(element.location)}
-                onMouseOut={removeHover}
-              />
-            ))}
-            {mapElements.map(element => (
-              <MapText
-                key={uuid.v4()}
-                transform={element.transform}
-                onClick={() => handleColorChange(element.location)}
-                onMouseOver={() => handleHover(element.location)}
-                onMouseOut={removeHover}
-              >
-                {element.location}
-              </MapText>
-            ))}
-            {mapElements.map(element => (
-              <MapDot
-                key={uuid.v4()}
-                cx={element.cx}
-                cy={element.cy}
-                color={findColor(element.location)}
-                r="10.5"
-                onClick={() => handleColorChange(element.location)}
-                onMouseOver={() => handleHover(element.location)}
-                onMouseOut={removeHover}
-              />
-            ))}
-          </MapContainer>
-        </div>
-      )}
+            {element.location}
+          </MapText>
+        ))}
+        {mapElements.map(element => (
+          <MapDot
+            key={`${element.location}-map-dot`}
+            id={`${element.location}-map-dot`}
+            cx={element.cx}
+            cy={element.cy}
+            color={findColor(element.location)}
+            r="10.5"
+            onClick={() => handleColorChange(element.location)}
+            onMouseOver={() => handleHover(element.location)}
+            onMouseOut={removeHover}
+          />
+        ))}
+      </MapContainer>
     </div>
-  );
+  ) : null;
 };
 
 Map.propTypes = {

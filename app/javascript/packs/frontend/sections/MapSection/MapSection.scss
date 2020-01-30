@@ -5,6 +5,8 @@
 
   display: flex;
   flex-direction: column;
+  @media only screen and (max-width: $bp-1200) {
+  }
 
   &__heading {
     margin: auto;
@@ -13,6 +15,11 @@
     font-weight: bold;
     color: $textColor;
     margin-bottom: 1.8rem;
+    text-align: center;
+    @media only screen and (max-width: $bp-1200) {
+      width: 100%;
+      max-width: 53rem;
+    }
   }
   &__subheading {
     width: 38rem;
@@ -28,17 +35,35 @@
 
     display: flex;
     justify-content: space-between;
+
+    @media only screen and (max-width: $bp-1200) {
+      flex-direction: column;
+    }
     &--map {
-      width: 72.5rem;
-      height: 65.6rem;
+      width: 60rem;
+      height: 62.7rem;
+      display: flex;
+      align-items: center;
+      @media only screen and (max-width: $bp-1200) {
+        width: 100%;
+        max-width: 53rem;
+        height: auto;
+        margin: auto;
+      }
     }
     &--info {
-      width: 38%;
+      width: 50rem;
       height: 62.7rem;
       border: 0.1rem solid $frameColor;
       box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.15);
       border-radius: 0.6rem;
       overflow: hidden;
+      @media only screen and (max-width: $bp-1200) {
+        margin: 3.5rem auto 0 auto;
+        height: 52rem;
+        width: 100%;
+        max-width: 53rem;
+      }
     }
   }
 }

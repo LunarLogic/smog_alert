@@ -3,7 +3,7 @@
 .card-pollution {
   &__current-data {
     &-container {
-      width: 53rem;
+      width: 100%;
       height: 19.5rem;
       box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.15);
       border: 0.1rem solid $frameColor;
@@ -12,6 +12,12 @@
       margin-bottom: 3.1rem;
 
       display: flex;
+      @media only screen and (max-width: $bp-600) {
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+      }
     }
     &-overview {
       width: 50%;
@@ -20,15 +26,23 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      @media only screen and (max-width: $bp-600) {
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+      }
 
       &-face {
         width: 7.9rem;
         height: 7.9rem;
         border-radius: 50%;
-      svg {
-        width: 100%;
-        height: 100%
-      }
+        svg {
+          width: 100%;
+          height: 100%;
+        }
+        @media only screen and (max-width: $bp-600) {
+          margin: 5rem 3.5rem 5rem 0;
+        }
       }
 
       &-text {
@@ -50,10 +64,15 @@
       display: flex;
       justify-content: center;
       align-items: center;
+
       &-container {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
+        padding: 4rem;
+        @media only screen and (max-width: $bp-600) {
+          padding: 5rem 0;
+        }
       }
       &-primary {
         display: flex;
@@ -66,6 +85,10 @@
           color: $textColor;
           opacity: 0.52;
           margin: 0 1rem 0.7rem 0;
+          @media only screen and (max-width: $bp-600) {
+            font-size: 2.3rem;
+            line-height: 2.5rem;
+          }
         }
 
         &-value {
@@ -73,10 +96,18 @@
           line-height: 4.3rem;
           color: $secondaryColorContrast;
           font-family: "Roboto", sans-serif;
+          @media only screen and (max-width: $bp-600) {
+            font-size: 5rem;
+            line-height: 6rem;
+          }
 
           &--bold {
             font-size: 5.7rem;
             font-weight: 700;
+            @media only screen and (max-width: $bp-600) {
+              font-size: 7rem;
+              line-height: 8rem;
+            }
           }
         }
       }
@@ -92,16 +123,28 @@
           color: $textColor;
           opacity: 0.52;
           margin: 0 1rem 0 0;
+          @media only screen and (max-width: $bp-600) {
+            font-size: 2.3rem;
+            line-height: 2.5rem;
+          }
         }
         &-value {
           font-size: 1.6rem;
           line-height: 1.9rem;
           color: $secondaryColorContrast;
           font-family: "Roboto", sans-serif;
+          @media only screen and (max-width: $bp-600) {
+            font-size: 3rem;
+            line-height: 3.3rem;
+          }
 
           &--bold {
             font-size: 3.6rem;
             font-weight: bold;
+            @media only screen and (max-width: $bp-600) {
+              font-size: 5rem;
+              line-height: 5.3rem;
+            }
           }
         }
       }

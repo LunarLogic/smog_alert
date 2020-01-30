@@ -1,0 +1,76 @@
+{
+  "data": [
+    {
+      "location_id": 16,
+      "location_name": "Brzoskwinia",
+      "location_street": "Brzoskwinia 186",
+      "location_display_name": "Brzoskwinia, Brzoskwinia 186",
+      "lat": 50.096481,
+      "lng": 19.718288,
+      "last_hour_measurement": {
+        "from_date_time": "2020-01-17T08:00:06.653Z",
+        "till_date_time": "2020-01-17T09:00:06.653Z",
+        "values": [
+          {
+            "name": "PM 10",
+            "value": 116.92
+          },
+          {
+            "name": "PM 2.5",
+            "value": 68.61
+          }
+        ],
+        "status": "zły",
+        "advice": null
+      }
+    },
+    {
+      "location_id": 23,
+      "location_name": "Aleksandrowice",
+      "location_street": "",
+      "location_display_name": "Aleksandrowice",
+      "lat": 50.081104,
+      "lng": 19.764215,
+      "last_hour_measurement": {
+        "from_date_time": "2020-01-17T08:00:06.667Z",
+        "till_date_time": "2020-01-17T09:00:06.667Z",
+        "values": [
+          {
+            "name": "PM 10",
+            "value": 112.82
+          },
+          {
+            "name": "PM 2.5",
+            "value": 68.69
+          }
+        ],
+        "status": "zły",
+        "advice": null
+      }
+    },
+    {
+      "location_id": 19,
+      "location_name": "Brzoskwinia",
+      "location_street": "Brzoskwinia 200",
+      "location_display_name": "Brzoskwinia, Brzoskwinia",
+      "lat": 50.096483,
+      "lng": 19.718281,
+      "last_hour_measurement": {
+        "from_date_time": "2020-01-17T08:00:06.653Z",
+        "till_date_time": "2020-01-17T09:00:06.653Z",
+        "values": [
+          {
+            "name": "PM 10",
+            "value": 117.82
+          },
+          {
+            "name": "PM 2.5",
+            "value": 65.71
+          }
+        ],
+        "status": "zły",
+        "advice": null
+      }
+    }
+  ]
+}

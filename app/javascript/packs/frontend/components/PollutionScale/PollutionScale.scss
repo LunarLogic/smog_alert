@@ -1,4 +1,4 @@
-@import "../../styles/variables";
+@import "../../styles/_variables";
 
 .scale__container {
   width: 100%;
@@ -28,6 +28,9 @@
     grid-column: 1 / 7;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    @media only screen and (max-width: $bp-600) {
+      display: none;
+    }
 
     &-item {
       font-size: 1.4rem;

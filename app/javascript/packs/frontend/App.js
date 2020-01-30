@@ -2,11 +2,9 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 import "./App.scss";
-import { ThemeProvider } from "@material-ui/core/styles";
-import theme from "./themes/MyTheme";
 import { Homepage, Calendar } from "./pages";
 import WebFont from "webfontloader";
-import { Error404, Footer, Navigation } from "./components";
+import { Error404, Footer, Navigation, NavigationMobile } from "./components";
 
 WebFont.load({
   google: {
@@ -16,8 +14,9 @@ WebFont.load({
 
 const App = () => {
   return (
-    <ThemeProvider theme={theme}>
+    <div>
       <Navigation />
+      <NavigationMobile />
       <div className="container">
         <Switch>
           <Route exact path="/" component={Homepage} />
@@ -26,7 +25,7 @@ const App = () => {
         </Switch>
       </div>
       <Footer />
-    </ThemeProvider>
+    </div>
   );
 };
 
