@@ -15,6 +15,7 @@ import PollutionScale from "./PollutionScale/PollutionScale";
 import Searchbox from "./Searchbox/Searchbox";
 import PollutionSideCard from "./PollutionSideCard/PollutionSideCard";
 import NavigationMobile from "./NavigationMobile/NavigationMobile";
+import TownImage from "./TownImage/TownImage";
 
 export {
   PollutionCard,
@@ -33,5 +34,6 @@ export {
   PollutionIndexData,
   PollutionScale,
   Searchbox,
-  PollutionSideCard
+  PollutionSideCard,
+  TownImage
 };

@@ -7,15 +7,20 @@ import { createStructuredSelector } from "reselect";
 import {
   PollutionCard,
   PollutionScale,
-  Recommendation
+  Recommendation,
+  TownImage
 } from "../../components";
-import { selectLocation, selectAdvice } from "../../redux/redux.selectors";
-import ZabierzowCity from "../../assets/ZabierzowCity.svg";
+import {
+  selectLocation,
+  selectAdvice,
+  selectChosenCityData
+} from "../../redux/redux.selectors";
 
 import "./CurrentPollutionSection.scss";
+import { setCloudColor } from "../../helpers";
 
-const CurrentPollutionSection = ({ location, advice }) => {
-  return (
+const CurrentPollutionSection = ({ location, advice, chosenCityData }) => {
+  return chosenCityData ? (
     <div className="current-pollution">
       <div className="current-pollution__heading">
         Aktualna jakość powietrza w miejscowości
@@ -40,21 +45,27 @@ const CurrentPollutionSection = ({ location, advice }) => {
           </div>
         </div>
         <div className="current-pollution__content-image">
-          <img src={ZabierzowCity} alt="town view" />
+          <TownImage
+            color={setCloudColor(chosenCityData.last_hour_measurement.status)}
+          />
         </div>
       </div>
     </div>
+  ) : (
+    "loading"
   );
 };
 
 const mapStateToProps = createStructuredSelector({
   location: selectLocation,
-  advice: selectAdvice
+  advice: selectAdvice,
+  chosenCityData: selectChosenCityData
 });
 
 CurrentPollutionSection.propTypes = {
   location: PropTypes.string,
-  advice: PropTypes.string
+  advice: PropTypes.string,
+  chosenCityData: PropTypes.object
 };
 
 export default connect(mapStateToProps)(CurrentPollutionSection);

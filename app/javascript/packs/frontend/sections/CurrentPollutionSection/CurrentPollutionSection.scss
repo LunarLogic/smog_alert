@@ -79,8 +79,9 @@
       display: none;
       @media only screen and (min-width: $bp-1200) {
         display: block;
-        img {
-          width: 56rem;
+        width: 50%;
+        svg {
+          width: 100%;
         }
       }
     }
