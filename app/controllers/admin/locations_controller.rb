@@ -1,5 +1,5 @@
 class Admin::LocationsController < Admin::BaseController
-  after_action :verify_authorized, except: [:index, :show, :search, :search_by_coordinates, :search_by_address]
+  after_action :verify_authorized, except: [:index, :show, :search, :search_by_coordinates, :search_by_address, :save]
 
   def index
     @locations = Location.all.order(:name, :street)
@@ -58,7 +58,7 @@ class Admin::LocationsController < Admin::BaseController
     @search = InstallationSearchForm.new(search_params)
     @address_search = InstallationSearchByAddressForm.new
     if @search.valid?
-      @installations = find_installations(
+      @installations = airly_installations_api.nearest(
         @search.latitude,
         @search.longitude,
         @search.max_distance_km,
@@ -72,16 +72,15 @@ class Admin::LocationsController < Admin::BaseController
     @search = InstallationSearchForm.new
     @address_search = InstallationSearchByAddressForm.new(address_search_params)
     if @address_search.valid?
-      coordinates = find_coordinates
-      if coordinates.present?
-        @installations = find_installations(
-          coordinates[:latitude],
-          coordinates[:longitude],
-          @address_search.max_distance_km,
-        )
+      installations_list = installations_by_address_finder.call(
+        @address_search.address,
+        @address_search.max_distance_km,
+      )
+      if installations_list.success?
+        @installations = installations_list.data
         @ids_of_installations_in_db = ids_of_installations_in_db(@installations)
       else
-        flash.now[:error] = 'Nie znaleziono lokalizacji'
+        flash.now[:error] = installations_list.errors
       end
     end
     render :search
@@ -136,32 +135,35 @@ class Admin::LocationsController < Admin::BaseController
     }
   end
 
-  def find_installations(latitude, longitude, max_distance_km)
-    optional_params = {}
-    optional_params[:max_distance_km] = max_distance_km if max_distance_km
-    AirlyAPI::Installations.new.nearest(
-      latitude,
-      longitude,
-      optional_params,
-    )
+  def airly_installations_api
+    AirlyAPI::Installations.new
   end
 
-  def find_coordinates
-    result = Geocoder.search(address_search_params['address'])
-    if result.present?
-      coordinates = result.first.coordinates
-      {
-        latitude: coordinates[0],
-        longitude: coordinates[1],
-      }
-    else
-      {}
-    end
+  def installations_by_address_finder
+    InstallationsByAddressFinder.new
+  end
+
+  # def find_coordinates
+  #   result = Geocoder.search(address_search_params['address'])
+  #   if result.present?
+  #     coordinates = result.first.coordinates
+  #     {
+  #       latitude: coordinates[0],
+  #       longitude: coordinates[1],
+  #     }
+  #   else
+  #     {}
+  #   end
+  # end
+
+  def installations_ids(installations)
+    return [] if installations.empty?
+
+    installations.map { |i| i['id'] }
   end
 
   def ids_of_installations_in_db(installations)
-    return [] if installations.empty?
-
-    Location.pluck(:installation_id) & installations.map { |i| i['id'] }
+    locations_repository = LocationsRepository.new
+    locations_repository.ids_of_installations_in_db(installations_ids(installations))
   end
 end
