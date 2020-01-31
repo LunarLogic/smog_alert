@@ -17,6 +17,7 @@ import {
 } from "../../redux/redux.selectors";
 
 import "./CurrentPollutionSection.scss";
+import { neutralColor } from "../../styles/_variables.scss";
 import { setCloudColor } from "../../helpers";
 
 const CurrentPollutionSection = ({ location, advice, chosenCityData }) => {
@@ -46,7 +47,11 @@ const CurrentPollutionSection = ({ location, advice, chosenCityData }) => {
         </div>
         <div className="current-pollution__content-image">
           <TownImage
-            color={setCloudColor(chosenCityData.last_hour_measurement.status)}
+            color={
+              chosenCityData.last_hour_measurement
+                ? setCloudColor(chosenCityData.last_hour_measurement.status)
+                : neutralColor
+            }
           />
         </div>
       </div>
