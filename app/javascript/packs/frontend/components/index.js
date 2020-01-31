@@ -1,4 +1,4 @@
-import PollutionCard from "./PollutionCard/PollutionCard";
+import Calendar from "./Calendar/Calendar";
 import ContactDetail from "./ContactDetail/ContactDetail";
 import CustomButton from "./CustomButton/CustomButton";
 import DropdownMenu from "./DropdownMenu/DropdownMenu";
@@ -7,16 +7,17 @@ import Footer from "./Footer/Footer";
 import Icon from "./Icon/Icon";
 import Map from "./Map/Map";
 import Navigation from "./Navigation/Navigation";
+import NavigationMobile from "./NavigationMobile/NavigationMobile";
 import PollutionBar from "./PollutionBar/PollutionBar";
+import PollutionCard from "./PollutionCard/PollutionCard";
 import PollutionComparison from "./PollutionComparison/PollutionComparison";
 import PollutionIndexData from "./PollutionIndexData/PollutionIndexData";
 import PollutionScale from "./PollutionScale/PollutionScale";
-import Searchbox from "./Searchbox/Searchbox";
 import PollutionSideCard from "./PollutionSideCard/PollutionSideCard";
-import NavigationMobile from "./NavigationMobile/NavigationMobile";
+import Searchbox from "./Searchbox/Searchbox";
 
 export {
-  PollutionCard,
+  Calendar,
   ContactDetail,
   CustomButton,
   DropdownMenu,
@@ -27,9 +28,10 @@ export {
   Navigation,
   NavigationMobile,
   PollutionBar,
+  PollutionCard,
   PollutionComparison,
   PollutionIndexData,
   PollutionScale,
-  Searchbox,
-  PollutionSideCard
+  PollutionSideCard,
+  Searchbox
 };
