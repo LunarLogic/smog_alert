@@ -10,7 +10,7 @@ const Recommendation = ({ text }) => {
     <div className="recommendation">
       <div className="recommendation__content icon__content--recommended">
         <PriorityHighIcon
-          style={{ fontSize: 26 }}
+          style={{ fontSize: 20 }}
           color="inherit"
         ></PriorityHighIcon>
       </div>
