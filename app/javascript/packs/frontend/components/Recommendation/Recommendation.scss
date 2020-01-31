@@ -6,15 +6,16 @@
   align-items: center;
   &__content {
     flex: 0 0 auto;
-    width: 6.2rem;
-    height: 6.2rem;
+    width: 4.2rem;
+    height: 4.2rem;
     border-radius: 50%;
     position: relative;
-    margin-right: 3rem;
+    margin-right: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
     color: $grey;
+    background-color: $greyLight;
     &--recommended {
       border: 0.2rem solid $grey;
     }
