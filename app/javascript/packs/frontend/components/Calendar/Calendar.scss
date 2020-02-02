@@ -1,5 +1,9 @@
 @import "../../styles/variables";
 
+.calendar {
+  overflow-x: scroll;
+}
+
 table.calendar {
   border-collapse: collapse;
 }
@@ -21,12 +25,12 @@ table.calendar thead th.bolder {
 }
 
 table.calendar tbody {
-  font-size: 0.8em;
+  font-size: 1.2em;
 }
 
 table.calendar td {
   text-align: center;
-  padding: 8px;
+  padding: 0.6rem;
   cursor: pointer;
   border: 1px solid rgba(185, 185, 185, 0.13);
   background-color: white;

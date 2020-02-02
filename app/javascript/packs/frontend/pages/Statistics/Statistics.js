@@ -17,7 +17,7 @@ const Statistics = ({ citiesPollutionData, getCitiesPollutionData }) => {
   }, []);
   const cities = citiesPollutionData;
   return cities ? (
-    <div>
+    <div className="statistics">
       {/* <DropdownMenu /> */}
       <Calendar />
     </div>
@@ -29,7 +29,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 Statistics.propTypes = {
-  citiesPollutionData: PropTypes.func
+  citiesPollutionData: PropTypes.array
 };
 
 export default withRouter(

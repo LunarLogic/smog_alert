@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { PropTypes } from "prop-types";
@@ -16,6 +16,7 @@ import {
   selectCalendarValuesData
 } from "../../redux/redux.selectors";
 
+import mockData from "./CalendarMockData.json";
 import "./Calendar.scss";
 import { DropdownMenu } from "../DropdownMenu/DropdownMenu";
 
@@ -26,15 +27,44 @@ const Calendar = ({
   calendarValuesData
 }) => {
   useEffect(() => {
-    getCalendarStatusData(2019, 19);
+    getCalendarStatusData(chosenYear, 19);
+    getCalendarValuesData(chosenYear, 19);
   }, []);
 
-  const data = calendarStatusData["2019"];
+  const [chosenYear, setChosenYear] = useState(2019);
+  const [pickedDay, setPickedDay] = useState(undefined);
+
+  // const data = calendarStatusData;
+  const data = mockData[chosenYear];
+  let values;
+  console.log(values);
+
+  const onDatePicked = date => {
+    setPickedDay(date.format("YYYY-MM-DD"));
+    const obj = calendarValuesData;
+    values = obj["daily_average_measurements"].find(
+      item => item.day === pickedDay
+    );
+    console.log(values);
+  };
 
   return (
     <div className="calendar">
-      <CalendarControls year={2019} />
-      <CalendarYearly year={2019} customClasses={data} firstDayOfWeek={1} />
+      <CalendarControls
+        year={chosenYear}
+        onPrevYear={() => {
+          setChosenYear(chosenYear - 1);
+        }}
+        onNextYear={() => {
+          setChosenYear(chosenYear + 1);
+        }}
+      />
+      <CalendarYearly
+        year={chosenYear}
+        customClasses={data}
+        firstDayOfWeek={1}
+        onPickDate={onDatePicked}
+      />
     </div>
   );
 };
