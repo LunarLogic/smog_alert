@@ -46,7 +46,7 @@ class Admin::LocationsController < Admin::BaseController
     authorize @location
     @location.destroy
     flash[:success] = 'Pomyślnie usunięto lokalizację'
-    redirect_to admin_locations_path
+    redirect_to request.referer || admin_locations_path
   end
 
   def search

@@ -1,1 +1,4 @@
 $('#save-installation-<%= @installation['id']%>').attr("disabled", true);
+<% location = Location.last %>
+$('#delete-link').append("<div class='alert alert-info' role='alert'>Zapisano instalację <%= location.name %> <%= location.street %>. <%= escape_javascript(link_to 'Usuń', admin_location_path(location), method: :delete, class: 'alert-link') %></div>");
+$('#delete-link').children().delay(3000).fadeOut()
