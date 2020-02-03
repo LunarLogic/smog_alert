@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'admin search for installations' do
   before :each do
-    user = FactoryBot.create(:admin)
+    user = FactoryBot.create(:superadmin)
     login_as(user, scope: :user)
     visit search_admin_locations_path
   end
@@ -78,6 +78,12 @@ describe 'admin search for installations' do
         click_on 'Dodaj'
         expect(find('form')).to have_selector("input[value='Dodaj']:disabled")
         expect(Location.last!.street).to eq('Kolejowa 26')
+      end
+      expect(page).to have_content('Zapisano instalację Zabierzów Kolejowa 26.')
+      within('#delete-flash') do
+        click_on 'Cofnij'
+        expect(page).not_to have_content('Zapisano instalację Zabierzów Kolejowa 26.')
+        expect(Location.count).to eq(0)
       end
     end
   end

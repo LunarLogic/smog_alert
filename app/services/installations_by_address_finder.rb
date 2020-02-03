@@ -13,7 +13,7 @@ class InstallationsByAddressFinder
       )
       Result::Success.new(data: installations)
     else
-      Result::Error.new(errors: 'Nie znaleziono lokalizacji')
+      Result::Error.new(errors: 'Nie znaleziono lokalizacji. Spróbuj później.')
     end
   end
 

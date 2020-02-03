@@ -45,8 +45,13 @@ class Admin::LocationsController < Admin::BaseController
     @location = Location.find(params[:id])
     authorize @location
     @location.destroy
-    flash[:success] = 'Pomyślnie usunięto lokalizację'
-    redirect_to request.referer || admin_locations_path
+    respond_to do |format|
+      format.html do
+        flash[:success] = 'Pomyślnie usunięto lokalizację'
+        redirect_to request.referer || admin_locations_path
+      end
+      format.js { head :ok }
+    end
   end
 
   def search
@@ -88,7 +93,7 @@ class Admin::LocationsController < Admin::BaseController
 
   def save
     @installation = format_installation(installation_params)
-    LocationFromInstallationCreator.new(@installation).call
+    @location = LocationFromInstallationCreator.new(@installation).call.data
   end
 
   private
