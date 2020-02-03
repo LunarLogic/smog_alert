@@ -1,0 +1,123 @@
+svg {
+  overflow: visible;
+}
+.cls-1,
+.cls-22,
+.cls-23,
+.cls-24 {
+  opacity: 0.52;
+}
+.cls-22,
+.cls-23,
+.cls-24 {
+  animation: move-front-clouds 30s ease-in-out infinite;
+}
+.cls-1 {
+  fill: url(#linear-gradient);
+  animation: move-background-cloud 30s ease-in-out infinite;
+}
+.cls-2 {
+  fill: #4ba16d;
+}
+.cls-3 {
+  fill: #3e9460;
+}
+.cls-4 {
+  fill: #32784d;
+}
+.cls-5 {
+  fill: #6f7ff0;
+}
+.cls-6 {
+  fill: #e3e4fb;
+}
+.cls-7 {
+  fill: #b6b8e3;
+}
+.cls-8 {
+  fill: #f1f1fb;
+}
+.cls-9 {
+  fill: #8290f0;
+}
+.cls-10 {
+  fill: #303769;
+}
+.cls-11 {
+  fill: #465196;
+}
+.cls-12,
+.cls-19 {
+  fill: none;
+}
+.cls-12,
+.cls-15 {
+  stroke: #231f20;
+}
+.cls-12 {
+  stroke-linecap: round;
+  stroke-width: 3px;
+}
+.cls-12,
+.cls-15,
+.cls-19 {
+  stroke-miterlimit: 10;
+}
+.cls-13 {
+  fill: #6ce49c;
+}
+.cls-14 {
+  fill: #5662b5;
+}
+.cls-15,
+.cls-18 {
+  fill: #fff;
+}
+.cls-16 {
+  fill: #adb5f0;
+}
+.cls-17 {
+  fill: #7686ff;
+}
+.cls-19 {
+  stroke: #fff;
+}
+.cls-20 {
+  fill: #5bc285;
+}
+.cls-21 {
+  fill: #6072f0;
+}
+.cls-22 {
+  fill: url(#linear-gradient-2);
+}
+.cls-23 {
+  fill: url(#linear-gradient-3);
+}
+.cls-24 {
+  fill: url(#linear-gradient-4);
+}
+
+@keyframes move-background-cloud {
+  0% {
+    transform: translate(3rem, 0);
+  }
+  50% {
+    transform: translate(-3rem, 0);
+  }
+  100% {
+    transform: translate(3rem, 0);
+  }
+}
+
+@keyframes move-front-clouds {
+  0% {
+    transform: translate(-3rem, 0);
+  }
+  50% {
+    transform: translate(3rem, 0);
+  }
+  100% {
+    transform: translate(-3rem, 0);
+  }
+}

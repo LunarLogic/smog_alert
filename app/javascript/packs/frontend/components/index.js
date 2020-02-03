@@ -5,6 +5,7 @@ import DropdownMenu from "./DropdownMenu/DropdownMenu";
 import Error404 from "./Error404/Error404";
 import Footer from "./Footer/Footer";
 import Icon from "./Icon/Icon";
+import Recommendation from "./Recommendation/Recommendation";
 import Map from "./Map/Map";
 import Navigation from "./Navigation/Navigation";
 import NavigationMobile from "./NavigationMobile/NavigationMobile";
@@ -15,6 +16,7 @@ import PollutionIndexData from "./PollutionIndexData/PollutionIndexData";
 import PollutionScale from "./PollutionScale/PollutionScale";
 import PollutionSideCard from "./PollutionSideCard/PollutionSideCard";
 import Searchbox from "./Searchbox/Searchbox";
+import TownImage from "./TownImage/TownImage";
 
 export {
   Calendar,
@@ -24,6 +26,7 @@ export {
   Error404,
   Footer,
   Icon,
+  Recommendation,
   Map,
   Navigation,
   NavigationMobile,
@@ -32,6 +35,7 @@ export {
   PollutionComparison,
   PollutionIndexData,
   PollutionScale,
+  Searchbox,
   PollutionSideCard,
-  Searchbox
+  TownImage
 };

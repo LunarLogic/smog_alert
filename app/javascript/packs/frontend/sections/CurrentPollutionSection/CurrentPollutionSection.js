@@ -4,16 +4,24 @@ import { PropTypes } from "prop-types";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import { createStructuredSelector } from "reselect";
 
-import { PollutionCard, PollutionScale, Icon } from "../../components";
-import { selectLocation } from "../../redux/redux.selectors";
-import Town from "../../assets/Town.png";
+import {
+  PollutionCard,
+  PollutionScale,
+  Recommendation,
+  TownImage
+} from "../../components";
+import {
+  selectLocation,
+  selectAdvice,
+  selectChosenCityData
+} from "../../redux/redux.selectors";
 
 import "./CurrentPollutionSection.scss";
+import { neutralColor } from "../../styles/_variables.scss";
+import { setCloudColor } from "../../helpers";
 
-const CurrentPollutionSection = ({ location }) => {
-  const iconData = ["id1", "id2", "id3", "id4"];
-
-  return (
+const CurrentPollutionSection = ({ location, advice, chosenCityData }) => {
+  return chosenCityData ? (
     <div className="current-pollution">
       <div className="current-pollution__heading">
         Aktualna jakość powietrza w miejscowości
@@ -33,31 +41,36 @@ const CurrentPollutionSection = ({ location }) => {
             </div>
           </div>
           <hr className="current-pollution__horizontal-line" />
-          <div className="current-pollution__recommendations-text">
-            Zalecenia
-          </div>
-          <div className="current-pollution__recommendations-icons">
-            {iconData.map(icon => (
-              <Icon key={icon} iconId={icon} />
-            ))}
+          <div className="current-pollution__recommendation-single">
+            <Recommendation text={advice ? advice : "Brak rekomendacji"} />
           </div>
         </div>
         <div className="current-pollution__content-image">
-          <img src={Town} alt="town view" />
+          <TownImage
+            color={
+              chosenCityData.last_hour_measurement
+                ? setCloudColor(chosenCityData.last_hour_measurement.status)
+                : neutralColor
+            }
+          />
         </div>
       </div>
     </div>
+  ) : (
+    "loading"
   );
 };
 
 const mapStateToProps = createStructuredSelector({
-  location: selectLocation
+  location: selectLocation,
+  advice: selectAdvice,
+  chosenCityData: selectChosenCityData
 });
 
 CurrentPollutionSection.propTypes = {
-  location_name: PropTypes.string,
-  citiesPollutionData: PropTypes.array,
-  location: PropTypes.string
+  location: PropTypes.string,
+  advice: PropTypes.string,
+  chosenCityData: PropTypes.object
 };
 
 export default connect(mapStateToProps)(CurrentPollutionSection);

@@ -34,13 +34,15 @@ describe '/api/internal/measurements' do
 
   describe 'GET /calendar_status' do
     it 'repsonds with json containing the right data' do
-      expected_response = {
-        '2019' => {
-          'zbyt mało danych' => [
-            measurement.date.to_s,
+      expected_response = { 'data' =>
+        {
+          '2019' => [
+            {
+              'days' => ['2019-11-27'],
+              'status' => 'zbyt mało danych',
+            },
           ]
-        }
-      }
+        } }
       location_id = location.id
       year = location.measurements.last.date.year
       get calendar_status_api_internal_measurements_path(location_id: location_id, year: year)

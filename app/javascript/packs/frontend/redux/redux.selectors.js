@@ -31,6 +31,15 @@ export const selectChosenCityData = createSelector(
   }
 );
 
+export const selectAdvice = createSelector(
+  [selectChosenCityData],
+  chosenCityData => {
+    if (chosenCityData && chosenCityData.last_hour_measurement) {
+      return chosenCityData.last_hour_measurement.advice;
+    }
+  }
+);
+
 const selectMapSection = state => state.mapSection;
 
 export const selectMapLocation = createSelector(

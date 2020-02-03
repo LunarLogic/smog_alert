@@ -22,8 +22,8 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
   def calendar_status
     location = Location.find(calendar_params[:location_id])
     year = calendar_params[:year].to_i
-    days_grouped_by_status = Calendar::StatusDaysCollector.new.call(location, year)
-    render json: { year => days_grouped_by_status }
+    data = API::Internal::DaysWithPollutionStatusPresenter.new(location, year).to_hash
+    render json: { data: data }
   end
 
   def hourly_average_for_month

@@ -8,6 +8,7 @@ module AirlyAPI
       {
         'Accept' => 'application/json',
         'apikey' => Rails.application.credentials.airly_api_key,
+        'Accept-Language' => 'pl',
       }
     end
   end
