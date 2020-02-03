@@ -148,19 +148,6 @@ class Admin::LocationsController < Admin::BaseController
     InstallationsByAddressFinder.new
   end
 
-  # def find_coordinates
-  #   result = Geocoder.search(address_search_params['address'])
-  #   if result.present?
-  #     coordinates = result.first.coordinates
-  #     {
-  #       latitude: coordinates[0],
-  #       longitude: coordinates[1],
-  #     }
-  #   else
-  #     {}
-  #   end
-  # end
-
   def installations_ids(installations)
     return [] if installations.empty?
 
