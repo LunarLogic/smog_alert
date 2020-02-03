@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { Link as ScrollLink } from "react-scroll";
 
 import { CustomButton } from "../";
 import navigationContent from "../Navigation/navigationContent";
@@ -71,6 +72,15 @@ const NavigationMobile = () => {
               {link.displayName}
             </NavLink>
           ))}
+          <ScrollLink
+            className="hamburger-navigation__links-item"
+            to="map-section"
+            smooth={true}
+            duration={500}
+            offset={-50}
+          >
+            Mapa
+          </ScrollLink>
           <div className="hamburger-navigation__links-button">
             <CustomButton text={button} />
           </div>
