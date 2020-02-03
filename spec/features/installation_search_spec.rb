@@ -73,11 +73,12 @@ describe 'admin search for installations' do
         click_on('Szukaj')
       end
       expect(find('tr.installation-row', text: 'Kolejowa')).to have_button('Dodaj')
-      within(find('tr.installation-row', text: 'Kolejowa') do
-        expect(find('form input')).to have_attribute('disabled: true')
+      within(find('tr.installation-row', text: 'Kolejowa')) do
+        expect(find('form')).to have_no_selector("input[value='Dodaj']:disabled")
+        click_on 'Dodaj'
+        expect(find('form')).to have_selector("input[value='Dodaj']:disabled")
+        expect(Location.last!.street).to eq('Kolejowa 26')
       end
     end
   end
-
-
 end
