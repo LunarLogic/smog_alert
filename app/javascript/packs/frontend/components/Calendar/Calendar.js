@@ -19,6 +19,7 @@ import {
 import mockData from "./CalendarMockData.json";
 import "./Calendar.scss";
 import { DropdownMenu } from "../DropdownMenu/DropdownMenu";
+import { setClassName } from "../../helpers";
 
 const Calendar = ({
   getCalendarStatusData,
@@ -26,23 +27,30 @@ const Calendar = ({
   calendarStatusData,
   calendarValuesData
 }) => {
+  const [chosenYear, setChosenYear] = useState(new Date().getFullYear());
+  const [pickedDay, setPickedDay] = useState(undefined);
+
   useEffect(() => {
     getCalendarStatusData(chosenYear, 19);
     getCalendarValuesData(chosenYear, 19);
-  }, []);
+  }, [chosenYear]);
 
-  const [chosenYear, setChosenYear] = useState(2019);
-  const [pickedDay, setPickedDay] = useState(undefined);
+  // Get status data and convert it to the object used by Calendar to set custom css classes
 
-  // const data = calendarStatusData;
-  const data = mockData[chosenYear];
+  const statusData = calendarStatusData[chosenYear];
+  let customClassesData = {};
+  if (statusData) {
+    statusData.forEach(
+      item => (customClassesData[setClassName(item.status)] = item.days)
+    );
+  }
+
   let values;
-  console.log(values);
 
   const onDatePicked = date => {
     setPickedDay(date.format("YYYY-MM-DD"));
-    const obj = calendarValuesData;
-    values = obj["daily_average_measurements"].find(
+    const valuesData = calendarValuesData;
+    values = valuesData["daily_average_measurements"].find(
       item => item.day === pickedDay
     );
     console.log(values);
@@ -61,7 +69,7 @@ const Calendar = ({
       />
       <CalendarYearly
         year={chosenYear}
-        customClasses={data}
+        customClasses={customClassesData}
         firstDayOfWeek={1}
         onPickDate={onDatePicked}
       />

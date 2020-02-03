@@ -2,6 +2,45 @@
 
 .calendar {
   overflow-x: scroll;
+
+  div#root {
+    display: table;
+    margin: 50px auto;
+  }
+
+  h2,
+  h3,
+  h4,
+  h5 {
+    text-align: center;
+    color: #404040;
+  }
+
+  h1 {
+    text-align: center;
+    color: #b10909;
+  }
+
+  a {
+    color: #b10909;
+    font-weight: bolder;
+    text-decoration: none;
+  }
+
+  a.demoLink {
+    text-decoration: underline;
+  }
+
+  div.options {
+    border: 1px solid #b9b9b9;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin-top: 30px;
+  }
+
+  div.options select {
+    margin-left: 10px;
+  }
 }
 
 table.calendar {
@@ -53,7 +92,7 @@ table.calendar td.next-month {
   color: transparent;
   cursor: default;
   pointer-events: none;
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAAXNSR0IArs4c6QAAABZJREFUCB1jYEADmzdv/o8iRA0BoIEAKngPeSAlnXcAAAAASUVORK5CYII=");
+  background-color: $greyLight;
 }
 
 table.calendar td.week-separator {
@@ -61,7 +100,7 @@ table.calendar td.week-separator {
   padding: 0;
   width: 8px;
   min-width: 0;
-  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAAXNSR0IArs4c6QAAABZJREFUCB1jYEADmzdv/o8iRA0BoIEAKngPeSAlnXcAAAAASUVORK5CYII=");
+  background-color: $greyLight;
 }
 
 table.calendar td.bolder {
@@ -142,67 +181,28 @@ div#calendar {
   user-select: none;
 }
 
-div#root {
-  display: table;
-  margin: 50px auto;
-}
-
-h2,
-h3,
-h4,
-h5 {
-  text-align: center;
-  color: #404040;
-}
-
-h1 {
-  text-align: center;
-  color: #b10909;
-}
-
-a {
-  color: #b10909;
-  font-weight: bolder;
-  text-decoration: none;
-}
-
-a.demoLink {
-  text-decoration: underline;
-}
-
-div.options {
-  border: 1px solid #b9b9b9;
-  border-radius: 5px;
-  padding: 10px 15px;
-  margin-top: 30px;
-}
-
-div.options select {
-  margin-left: 10px;
-}
-
-table.calendar td.bardzo-dobry {
+table.calendar td.very-good {
   background-color: $goodFirst;
 }
 
-table.calendar td.dobry {
+table.calendar td.good {
   background-color: $goodSecond;
 }
 
-table.calendar td.umiarkowany {
+table.calendar td.moderate {
   background-color: $unhealthyFirst;
 }
-table.calendar td.dostateczny {
+table.calendar td.sufficient {
   background-color: $unhealthySecond;
 }
 
-table.calendar td.zły {
+table.calendar td.bad {
   background-color: $badFirst;
 }
 
-table.calendar td.bardzo-zły {
+table.calendar td.very-bad {
   background-color: $badSecond;
 }
-table.calendar td.zbyt-malo-danych {
+table.calendar td.no-sufficient-data {
   background-color: grey;
 }

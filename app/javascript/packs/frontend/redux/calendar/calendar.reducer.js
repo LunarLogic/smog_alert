@@ -10,7 +10,7 @@ const calendarReducer = (state = INITIAL_STATE, action) => {
     case calendarActionTypes.GET_CALENDAR_STATUS_DATA:
       return {
         ...state,
-        calendarStatusData: action.payload
+        calendarStatusData: action.payload.data
       };
     case calendarActionTypes.GET_CALENDAR_VALUES_DATA:
       return {

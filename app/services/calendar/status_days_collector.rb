@@ -9,7 +9,6 @@ module Calendar
                  else
                    Pm10GiosScaleChecker.new(day_data[:pm10]).call
                  end
-                 status = status.parameterize
         if result[status].nil?
           result[status] = [day_data[:day]]
         else

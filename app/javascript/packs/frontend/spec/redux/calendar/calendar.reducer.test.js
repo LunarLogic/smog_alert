@@ -10,7 +10,16 @@ describe("calendar reducer", () => {
     expect(calendarReducer(undefined, {})).toEqual(initialState);
   });
   it("should handle getCalendarStatusData action", () => {
-    const statusData = { 2019: { umiarkowany: ["2019-12-06", "2019-12-04"] } };
+    const statusData = {
+      data: {
+        2019: [
+          {
+            status: "umiarkowany",
+            days: ["2019-12-22", "2019-12-20", "2019-12-23", "2019-12-25"]
+          }
+        ]
+      }
+    };
     expect(
       calendarReducer(initialState, {
         type: calendarActionTypes.GET_CALENDAR_STATUS_DATA,
@@ -18,7 +27,12 @@ describe("calendar reducer", () => {
       })
     ).toEqual({
       calendarStatusData: {
-        2019: { umiarkowany: ["2019-12-06", "2019-12-04"] }
+        2019: [
+          {
+            status: "umiarkowany",
+            days: ["2019-12-22", "2019-12-20", "2019-12-23", "2019-12-25"]
+          }
+        ]
       },
       calendarValuesData: {}
     });
