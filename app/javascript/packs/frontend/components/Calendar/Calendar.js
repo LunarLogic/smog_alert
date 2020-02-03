@@ -53,7 +53,6 @@ const Calendar = ({
     values = valuesData["daily_average_measurements"].find(
       item => item.day === pickedDay
     );
-    console.log(values);
   };
 
   return (
