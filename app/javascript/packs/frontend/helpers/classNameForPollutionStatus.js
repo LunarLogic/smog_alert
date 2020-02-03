@@ -1,4 +1,4 @@
-export const setClassName = status => {
+export const classNameForPollutionStatus = status => {
   let cssClassName;
   switch (status) {
     case "bardzo dobry":

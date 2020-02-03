@@ -19,7 +19,7 @@ import {
 import mockData from "./CalendarMockData.json";
 import "./Calendar.scss";
 import { DropdownMenu } from "../DropdownMenu/DropdownMenu";
-import { setClassName } from "../../helpers";
+import { classNameForPollutionStatus } from "../../helpers";
 
 const Calendar = ({
   getCalendarStatusData,
@@ -41,7 +41,9 @@ const Calendar = ({
   let customClassesData = {};
   if (statusData) {
     statusData.forEach(
-      item => (customClassesData[setClassName(item.status)] = item.days)
+      item =>
+        (customClassesData[classNameForPollutionStatus(item.status)] =
+          item.days)
     );
   }
 
