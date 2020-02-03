@@ -43,8 +43,8 @@ describe 'admin search for installations' do
     end
 
     it "displays installations when radius wasn't insterted" do
-      fill_in 'Długość', with: 19.800639
-      fill_in 'Szerokość', with: 50.062006
+      fill_in 'Długość', with: 19.801340
+      fill_in 'Szerokość', with: 50.116440
       within('.coordinates-search-form') do
         click_on('Szukaj')
       end
@@ -52,8 +52,8 @@ describe 'admin search for installations' do
     end
 
     it 'displays installations when radius was insterted' do
-      fill_in 'Długość', with: 19.800639
-      fill_in 'Szerokość', with: 50.062006
+      fill_in 'Długość', with: 19.801340
+      fill_in 'Szerokość', with: 50.116440
       within('.coordinates-search-form') do
         fill_in 'Promień wyszukiwania w kilometrach', with: 10
         click_on('Szukaj')
@@ -61,4 +61,23 @@ describe 'admin search for installations' do
       expect(page.has_selector?('#installations')).to be true
     end
   end
+
+  context 'Add installation' do
+    it 'add installation to locations db' do
+      fill_in 'Długość', with: 19.801340
+      fill_in 'Szerokość', with: 50.116440
+      within('.coordinates-search-form') do
+        click_on('Szukaj')
+      end
+      within('.coordinates-search-form') do
+        click_on('Szukaj')
+      end
+      expect(find('tr.installation-row', text: 'Kolejowa')).to have_button('Dodaj')
+      within(find('tr.installation-row', text: 'Kolejowa') do
+        expect(find('form input')).to have_attribute('disabled: true')
+      end
+    end
+  end
+
+
 end
