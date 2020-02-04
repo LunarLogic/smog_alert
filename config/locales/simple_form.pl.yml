@@ -1,0 +1,39 @@
+pl:
+  simple_form:
+    "yes": 'Tak'
+    "no": 'Nie'
+    required:
+      text: 'Wymagane'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "Proszę sprawdzić poniższą listę błędów:"
+    # Examples
+    labels:
+      defaults:
+        password: 'Hasło'
+        password_confirmation: 'Potwierdź hasło'
+        remember_me: 'Zapamiętaj mnie'
+      user:
+        new:
+          email: 'E-mail'
+        edit:
+          email: 'E-mail'
+      location:
+        name: 'Miejscowość'
+        street: 'Ulica'
+        latitude: 'Szerokość'
+        longitude: 'Długość'
+        installation_id: 'Id instalacji Airly'
+    hints:
+      defaults:
+        username: 'Nazwa użytkownika'
+        # password: 'Proszę nie podawać znaków specjalnych'
+    # include_blanks:
+    #   defaults:
+    #     age: 'Rather not say'
+    # prompts:
+    #   defaults:
+    #     age: 'Select your age'
