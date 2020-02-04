@@ -1,0 +1,75 @@
+@import "./../../styles/variables";
+
+.popup {
+  width: 50rem;
+  height: 39rem;
+  background-color: white;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.15);
+  border: 0.1rem solid $frameColor;
+  border-radius: 0.6rem;
+  margin-top: -2rem;
+  margin-left: -0.5rem;
+  padding: 3rem;
+  overflow-y: scroll;
+
+  position: absolute;
+  z-index: 1;
+
+  @media only screen and (max-width: $bp-800) {
+    width: 102%;
+    box-sizing: border-box;
+    left: 50%;
+    margin-left: -51%;
+  }
+
+  @media only screen and (max-width: $bp-600) {
+    margin-top: 0;
+    height: 52rem;
+  }
+
+  &__heading {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    &--title {
+      font-size: 3rem;
+      line-height: 2rem;
+      font-weight: bold;
+      color: $grey;
+      @media only screen and (max-width: $bp-600) {
+        font-size: 3.4rem;
+        line-height: 3.4rem;
+      }
+    }
+    &--exit {
+      svg {
+        height: 3rem;
+        width: 3rem;
+        fill: $secondaryColor;
+        cursor: pointer;
+      }
+    }
+  }
+  &__text {
+    color: $grey;
+    margin-bottom: 1.5rem;
+    &--heading {
+      font-size: 2rem;
+      line-height: 2.4rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+      @media only screen and (max-width: $bp-600) {
+        font-size: 2.4rem;
+        line-height: 3rem;
+      }
+    }
+    &--caption {
+      font-size: 1.6rem;
+      line-height: 2.2rem;
+      @media only screen and (max-width: $bp-600) {
+        font-size: 2rem;
+        line-height: 2.6rem;
+      }
+    }
+  }
+}
