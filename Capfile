@@ -40,3 +40,6 @@ Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
 
 require 'capistrano/honeybadger'
 require 'whenever/capistrano'
+
+# https://github.com/capistrano/copy-files
+require 'capistrano/copy_files'

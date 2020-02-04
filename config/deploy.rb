@@ -13,6 +13,8 @@ set :rbenv_ruby, '2.6.5'
 
 set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
 
+set :copy_files, ['node_modules']
+
 append :linked_dirs,
        'public/assets',
        'log',
