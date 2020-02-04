@@ -5,36 +5,28 @@ body {
   margin-bottom: 50px;
 }
 
-#locations-header {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  text-align: center;
-}
-
-#locations-index-search-section {
-  display: flex;
-  justify-content: flex-end;
-}
-#search-button {
-  margin-bottom: 15px;
-}
-
-#search-header {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  text-align: center;
-}
-
-.search-form {
-  padding-top: 20px;
-  display: flex;
-  justify-content: flex-end;
-  padding-left: 10%;
-  padding-right: 10%;
-
-  input {
-    width: 200px;
+.header{
+   h1 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
   }
+  .header-button {
+    display: flex;
+    justify-content: flex-end;
+
+    #new-location {
+      margin-left: 5px;
+    }
+  }
+  a {
+    margin-bottom: 15px;
+  }
+}
+
+.address-search-form {
+  margin-top: 20px;
+  margin-bottom: 40px;
 }
 
 .installations-list {

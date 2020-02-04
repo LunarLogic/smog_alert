@@ -1,8 +1,8 @@
 <%= simple_form_for [:admin, @location] do |f| %>
-  <%= f.input :name %>
-  <%= f.input :street %>
-  <%= f.input :installation_id, label: 'Installation Id' %>
-  <%= f.input :longitude %>
-  <%= f.input :latitude %>
-  <%= f.button :submit, class: 'btn btn-primary' %>
+  <%= f.input :name, label: 'Miejscowość' %>
+  <%= f.input :street, label: 'Ulica' %>
+  <%= f.input :installation_id, label: 'Id installacji Airly' %>
+  <%= f.input :longitude, label: 'Długość' %>
+  <%= f.input :latitude, label: 'Szerokość' %>
+  <%= f.button :submit, 'Dodaj', class: 'btn btn-primary' %>
 <% end %>
