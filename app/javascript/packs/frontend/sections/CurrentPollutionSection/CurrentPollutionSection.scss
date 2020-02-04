@@ -2,6 +2,7 @@
 
 .current-pollution {
   width: inherit;
+  // position: relative;
 
   @media only screen and (max-width: $bp-1200) {
     margin: auto;
@@ -48,6 +49,7 @@
       width: 53rem;
       @media only screen and (max-width: $bp-800) {
         width: 100%;
+        position: relative;
       }
     }
     &-information {
@@ -68,11 +70,20 @@
         svg {
           height: 2rem;
           width: 2rem;
+
+          @media only screen and (max-width: $bp-600) {
+            height: 2.7rem;
+            width: 2.7rem;
+          }
         }
       }
       &-question {
         font-size: 1.6rem;
         line-height: 1.9rem;
+        @media only screen and (max-width: $bp-600) {
+          font-size: 2.5rem;
+          line-height: 2.8rem;
+        }
       }
     }
     &-image {

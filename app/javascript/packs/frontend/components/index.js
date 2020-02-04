@@ -16,6 +16,7 @@ import Searchbox from "./Searchbox/Searchbox";
 import PollutionSideCard from "./PollutionSideCard/PollutionSideCard";
 import NavigationMobile from "./NavigationMobile/NavigationMobile";
 import TownImage from "./TownImage/TownImage";
+import PopUp from "./PopUp/PopUp";
 
 export {
   PollutionCard,
@@ -35,5 +36,6 @@ export {
   PollutionScale,
   Searchbox,
   PollutionSideCard,
-  TownImage
+  TownImage,
+  PopUp
 };
