@@ -2,12 +2,11 @@ require 'rails_helper'
 
 RSpec.feature 'user logs in' do
   scenario 'user signs up with google account' do
-    # stub_omniauth
+    stub_omniauth
     visit admin_root_path
-    expect(page).to have_link('Sign in with Google')
     click_on('Sign in with Google')
-    expect(page).to have_content('Continue to Smog Alert')
-  #  expect(page).to have_current_path(user_google_oauth2_omniauth_authorize_path)
+    expect(page).to have_content('Successfully authenticated from Google account')
+    expect(page).to have_current_path(user_google_oauth2_omniauth_authorize_path)
     # expect(page).to have_content('Anna Nowak')
     # expect(page).to have_link('Logout')
   end
