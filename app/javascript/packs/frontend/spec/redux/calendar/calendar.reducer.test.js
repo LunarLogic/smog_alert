@@ -4,7 +4,8 @@ import calendarActionTypes from "../../../redux/calendar/calendar.types";
 describe("calendar reducer", () => {
   const initialState = {
     calendarStatusData: {},
-    calendarValuesData: {}
+    calendarValuesData: {},
+    calendarChosenYear: new Date().getFullYear()
   };
   it("should return initial state", () => {
     expect(calendarReducer(undefined, {})).toEqual(initialState);
@@ -34,7 +35,8 @@ describe("calendar reducer", () => {
           }
         ]
       },
-      calendarValuesData: {}
+      calendarValuesData: {},
+      calendarChosenYear: new Date().getFullYear()
     });
   });
   it("should handle getCalendarValuesData action", () => {
@@ -66,7 +68,8 @@ describe("calendar reducer", () => {
             number_of_measurements: 2
           }
         ]
-      }
+      },
+      calendarChosenYear: new Date().getFullYear()
     });
   });
 });
