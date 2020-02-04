@@ -65,6 +65,11 @@ export const selectMapHoveredCity = createSelector(
 
 const selectCalendar = state => state.calendar;
 
+export const selectCalendarChosenYear = createSelector(
+  [selectCalendar],
+  calendar => calendar.calendarChosenYear
+);
+
 export const selectCalendarStatusData = createSelector(
   [selectCalendar],
   calendar => calendar.calendarStatusData

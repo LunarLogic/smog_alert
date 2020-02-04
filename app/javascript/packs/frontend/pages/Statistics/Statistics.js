@@ -7,19 +7,22 @@ import { createStructuredSelector } from "reselect";
 import { getCitiesPollutionData } from "../../redux/homepage/homepage.actions";
 import { selectCitiesPollutionData } from "../../redux/redux.selectors";
 
-import "./Statistics.scss";
-import { Calendar } from "../../components";
+import { CalendarSection } from "../../sections";
 import { DropdownMenu } from "../../components/DropdownMenu/DropdownMenu";
+
+import "./Statistics.scss";
 
 const Statistics = ({ citiesPollutionData, getCitiesPollutionData }) => {
   useEffect(() => {
     getCitiesPollutionData();
   }, []);
+
   const cities = citiesPollutionData;
+
   return cities ? (
     <div className="statistics">
       {/* <DropdownMenu /> */}
-      <Calendar />
+      <CalendarSection />
     </div>
   ) : null;
 };
@@ -29,6 +32,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 Statistics.propTypes = {
+  getCitiesPollutionData: PropTypes.func,
   citiesPollutionData: PropTypes.array
 };
 

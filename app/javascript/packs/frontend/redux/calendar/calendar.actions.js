@@ -30,3 +30,8 @@ export const getCalendarValuesData = (year, location_id) => {
       });
   };
 };
+
+export const setCalendarChosenYear = chosenYear => ({
+  type: calendarActionTypes.SET_CALENDAR_CHOSEN_YEAR,
+  payload: chosenYear
+});
