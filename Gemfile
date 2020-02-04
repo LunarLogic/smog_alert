@@ -36,6 +36,7 @@ gem 'simple_form'
 gem 'kaminari'
 
 gem 'devise'
+gem 'omniauth-google-oauth2'
 gem 'honeybadger', '~> 4.0'
 gem 'pundit'
 
