@@ -93,7 +93,7 @@ CurrentPollutionSection.propTypes = {
   location: PropTypes.string,
   advice: PropTypes.string,
   chosenCityData: PropTypes.object,
-  popUpOpen: PropTypes.boolean,
+  popUpOpen: PropTypes.bool,
   setPopUpStatus: PropTypes.func
 };
 
