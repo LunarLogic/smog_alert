@@ -27,6 +27,9 @@ pl:
         latitude: 'Szerokość'
         longitude: 'Długość'
         installation_id: 'Id instalacji Airly'
+      article:
+        title: 'Tytuł'
+        body: 'Treść'
     hints:
       defaults:
         username: 'Nazwa użytkownika'
