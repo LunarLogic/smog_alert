@@ -9,6 +9,11 @@ export const selectLocation = createSelector(
 
 const selectHomepage = state => state.homepage;
 
+export const selectPopUpStatus = createSelector(
+  [selectHomepage],
+  homepage => homepage.popUpOpen
+);
+
 export const selectCitiesPollutionData = createSelector(
   [selectHomepage],
   homepage => homepage.citiesPollutionData

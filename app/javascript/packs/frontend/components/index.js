@@ -17,6 +17,7 @@ import PollutionScale from "./PollutionScale/PollutionScale";
 import PollutionSideCard from "./PollutionSideCard/PollutionSideCard";
 import Searchbox from "./Searchbox/Searchbox";
 import TownImage from "./TownImage/TownImage";
+import PopUp from "./PopUp/PopUp";
 
 export {
   Calendar,
@@ -37,5 +38,6 @@ export {
   PollutionScale,
   Searchbox,
   PollutionSideCard,
-  TownImage
+  TownImage,
+  PopUp
 };

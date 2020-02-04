@@ -11,3 +11,8 @@ export const getCitiesPollutionData = () => {
     });
   };
 };
+
+export const setPopUpStatus = popUpOpen => ({
+  type: homepageActionTypes.SET_POPUP_STATUS,
+  payload: popUpOpen
+});
