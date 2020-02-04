@@ -20,5 +20,9 @@ module SmogAlert
 
     # Include the authenticity token in remote forms
     config.action_view.embed_authenticity_token_in_remote_forms = true
+
+
+    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
+    config.i18n.default_locale = :pl
   end
 end

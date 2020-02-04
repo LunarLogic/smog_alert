@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 def add_new_article(article)
-  fill_in 'Title', with: article.title
+  fill_in 'Tytuł', with: article.title
   find('#article_body').click.set article.body
-  click_on('Create Article')
+  click_on('Dodaj')
 end
 
 describe 'editor navigating the admin panel' do

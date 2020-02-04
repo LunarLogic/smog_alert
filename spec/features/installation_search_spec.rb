@@ -83,6 +83,7 @@ describe 'admin search for installations' do
       within('#delete-flash') do
         click_on 'Cofnij'
         expect(page).not_to have_content('Zapisano instalację Zabierzów Kolejowa 26.')
+        sleep 1 # to wait for request to finnish
         expect(Location.count).to eq(0)
       end
       within(find('tr.installation-row', text: 'Kolejowa')) do
