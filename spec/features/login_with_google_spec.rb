@@ -28,6 +28,7 @@ RSpec.feature 'user logs in' do
       stub_omniauth(nil)
       click_on('Sign in with Google')
       expect(page).to have_current_path(new_user_registration_path)
+      expect(page).to have_content('Rejestracja nie powiodła się, zarejestruj się za pomocą emaila')
     end
   end
 
