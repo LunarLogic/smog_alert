@@ -85,6 +85,9 @@ describe 'admin search for installations' do
         expect(page).not_to have_content('Zapisano instalację Zabierzów Kolejowa 26.')
         expect(Location.count).to eq(0)
       end
+      within(find('tr.installation-row', text: 'Kolejowa')) do
+        expect(find('form')).to have_no_selector("input[value='Dodaj']:disabled")
+      end
     end
   end
 end
