@@ -5,7 +5,7 @@ RSpec.feature 'user logs in' do
     scenario 'redirects to registration form' do
       visit admin_root_path
       stub_omniauth('annanowak@example.com')
-      click_on('Sign in with Google')
+      click_on('Zaloguj się z Google')
       expect(page).to have_content('Skontaktuj się z adminem strony w celu uzyskania dostępu do panelu')
       expect(page).to have_current_path(new_user_registration_path)
     end
@@ -17,7 +17,7 @@ RSpec.feature 'user logs in' do
     scenario 'redirects to the admin panel' do
       visit admin_root_path
       stub_omniauth('annanowak@example.com')
-      click_on('Sign in with Google')
+      click_on('Zaloguj się z Google')
       expect(page).to have_current_path(admin_root_path)
     end
   end
@@ -26,7 +26,7 @@ RSpec.feature 'user logs in' do
     scenario 'redirects to registration form' do
       visit admin_root_path
       stub_omniauth(nil)
-      click_on('Sign in with Google')
+      click_on('Zaloguj się z Google')
       expect(page).to have_current_path(new_user_registration_path)
       expect(page).to have_content('Rejestracja nie powiodła się, zarejestruj się za pomocą emaila')
     end
