@@ -21,7 +21,7 @@ body {
 .container {
   margin: 6.2rem 9.2rem;
   @media only screen and (min-width: $bp-1200) {
-    margin: 6.2rem auto;
+    margin: 6.2rem auto 2rem auto;
     width: 115rem;
   }
   @media only screen and (max-width: $bp-600) {
@@ -31,4 +31,22 @@ body {
 
 a {
   text-decoration: none;
+}
+
+.scroll-to-top {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 6.2rem;
+  svg {
+    fill: $secondaryColor;
+    height: 3.5rem;
+    width: 3.5rem;
+  }
+
+  &__text {
+    font-size: 1.7rem;
+    line-height: 3.5rem;
+    margin-right: 0.5rem;
+    color: $grey;
+  }
 }
