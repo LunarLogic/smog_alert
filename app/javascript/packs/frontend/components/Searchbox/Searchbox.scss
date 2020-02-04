@@ -11,6 +11,13 @@
     border-radius: 0.4rem;
     overflow: hidden;
 
+    @media only screen and (max-width: $bp-600) {
+      height: 8rem;
+      input {
+        font-size: 2.2rem;
+      }
+    }
+
     &--icon {
       height: 6rem;
       width: 6rem;
@@ -20,10 +27,19 @@
       justify-content: center;
       align-items: center;
 
+      @media only screen and (max-width: $bp-600) {
+        height: 8rem;
+        width: 8rem;
+      }
+
       svg {
         width: 3.2rem;
         height: 3.2rem;
         color: $grey;
+        @media only screen and (max-width: $bp-600) {
+          height: 4.2rem;
+          width: 4.2rem;
+        }
       }
     }
     &--text-field {
@@ -33,6 +49,9 @@
       margin-left: 1.2rem;
       font-size: 1.6rem;
       color: $grey;
+      @media only screen and (max-width: $bp-600) {
+        font-size: 3rem;
+      }
     }
   }
   &__list--city {
