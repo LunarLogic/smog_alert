@@ -22,7 +22,7 @@ describe 'admin interactions with locations' do
   end
 
   scenario 'verify there is a link to add new location' do
-    expect(page).to have_link('Dodaj lokalizację')
+    expect(page).to have_link('Dodaj czujnik')
   end
 
   let(:new_location) { FactoryBot.build(:fake_zabierzow) }
