@@ -2,7 +2,8 @@ import calendarActionTypes from "./calendar.types";
 
 const INITIAL_STATE = {
   calendarStatusData: {},
-  calendarValuesData: {}
+  calendarValuesData: {},
+  calendarChosenYear: new Date().getFullYear()
 };
 
 const calendarReducer = (state = INITIAL_STATE, action) => {
@@ -16,6 +17,11 @@ const calendarReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         calendarValuesData: action.payload
+      };
+    case calendarActionTypes.SET_CALENDAR_CHOSEN_YEAR:
+      return {
+        ...state,
+        calendarChosenYear: action.payload
       };
     default:
       return state;

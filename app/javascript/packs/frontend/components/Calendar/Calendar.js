@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { PropTypes } from "prop-types";
@@ -8,37 +8,30 @@ import {
 } from "react-yearly-calendar";
 
 import {
-  getCalendarStatusData,
-  getCalendarValuesData
-} from "../../redux/calendar/calendar.actions";
-import {
   selectCalendarStatusData,
-  selectCalendarValuesData
+  selectCalendarValuesData,
+  selectCalendarChosenYear
 } from "../../redux/redux.selectors";
+import { setCalendarChosenYear } from "../../redux/calendar/calendar.actions";
+
+import { classNameForPollutionStatus } from "../../helpers";
 
 import mockData from "./CalendarMockData.json";
 import "./Calendar.scss";
-import { DropdownMenu } from "../DropdownMenu/DropdownMenu";
-import { classNameForPollutionStatus } from "../../helpers";
 
 const Calendar = ({
-  getCalendarStatusData,
-  getCalendarValuesData,
+  setCalendarChosenYear,
   calendarStatusData,
-  calendarValuesData
+  calendarValuesData,
+  calendarChosenYear
 }) => {
-  const [chosenYear, setChosenYear] = useState(new Date().getFullYear());
   const [pickedDay, setPickedDay] = useState(undefined);
-
-  useEffect(() => {
-    getCalendarStatusData(chosenYear, 19);
-    getCalendarValuesData(chosenYear, 19);
-  }, [chosenYear]);
 
   // Get status data and convert it to the object used by Calendar to set custom css classes
 
-  const statusData = calendarStatusData[chosenYear];
+  const statusData = calendarStatusData[calendarChosenYear];
   let customClassesData = {};
+
   if (statusData) {
     statusData.forEach(
       item =>
@@ -47,8 +40,9 @@ const Calendar = ({
     );
   }
 
-  let values;
+  // Get additional data regarding chosen day on click
 
+  let values;
   const onDatePicked = date => {
     setPickedDay(date.format("YYYY-MM-DD"));
     const valuesData = calendarValuesData;
@@ -60,19 +54,18 @@ const Calendar = ({
   return (
     <div className="calendar">
       <CalendarControls
-        year={chosenYear}
+        year={calendarChosenYear}
         onPrevYear={() => {
-          setChosenYear(chosenYear - 1);
+          setCalendarChosenYear(calendarChosenYear - 1);
         }}
         onNextYear={() => {
-          setChosenYear(chosenYear + 1);
+          setCalendarChosenYear(calendarChosenYear + 1);
         }}
       />
       <CalendarYearly
-        year={chosenYear}
+        year={calendarChosenYear}
         customClasses={customClassesData}
         firstDayOfWeek={1}
-        onPickDate={onDatePicked}
       />
     </div>
   );
@@ -80,17 +73,15 @@ const Calendar = ({
 
 const mapStateToProps = createStructuredSelector({
   calendarStatusData: selectCalendarStatusData,
-  calendarValuesData: selectCalendarValuesData
+  calendarValuesData: selectCalendarValuesData,
+  calendarChosenYear: selectCalendarChosenYear
 });
 
 Calendar.propTypes = {
-  getCalendarStatusData: PropTypes.func,
-  getCalendarValuesData: PropTypes.func,
+  setCalendarChosenYear: PropTypes.func,
+  calendarChosenYear: PropTypes.number,
   calendarStatusData: PropTypes.object,
   calendarValuesData: PropTypes.object
 };
 
-export default connect(mapStateToProps, {
-  getCalendarStatusData,
-  getCalendarValuesData
-})(Calendar);
+export default connect(mapStateToProps, { setCalendarChosenYear })(Calendar);

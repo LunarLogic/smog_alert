@@ -1,4 +1,5 @@
 import Calendar from "./Calendar/Calendar";
+import CalendarLegendBox from "./CalendarLegendBox/CalendarLegendBox";
 import ContactDetail from "./ContactDetail/ContactDetail";
 import CustomButton from "./CustomButton/CustomButton";
 import DropdownMenu from "./DropdownMenu/DropdownMenu";
@@ -21,6 +22,7 @@ import PopUp from "./PopUp/PopUp";
 
 export {
   Calendar,
+  CalendarLegendBox,
   ContactDetail,
   CustomButton,
   DropdownMenu,
