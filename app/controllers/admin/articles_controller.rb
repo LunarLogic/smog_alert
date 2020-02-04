@@ -46,7 +46,7 @@ class Admin::ArticlesController < Admin::BaseController
     if articles_repository.make_published(@article)
       flash[:success] = 'Pomyślnie opublikowano wpis'
     else
-      flash[:failure] = 'Nie udało się opublikować wpisu'
+      flash[:error] = 'Nie udało się opublikować wpisu'
     end
     redirect_to admin_articles_path
   end
@@ -55,7 +55,7 @@ class Admin::ArticlesController < Admin::BaseController
     if articles_repository.make_unpublished(@article)
       flash[:success] = 'Pomyślnie cofnięto publikację wpisu'
     else
-      flash[:failure] = 'Nie udało się cofnąć publikacji wpisu'
+      flash[:error] = 'Nie udało się cofnąć publikacji wpisu'
     end
     redirect_to admin_articles_path
   end
