@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 def add_new_location(location)
-  fill_in 'Name', with: location.name
-  fill_in 'Longitude', with: location.longitude
-  fill_in 'Latitude', with: location.latitude
-  fill_in 'Installation Id', with: location.installation_id
-  click_on('Create Location')
+  fill_in 'Miejscowość', with: location.name
+  fill_in 'Długość', with: location.longitude
+  fill_in 'Szerokość', with: location.latitude
+  fill_in 'Id instalacji Airly', with: location.installation_id
+  click_on('Dodaj')
 end
 
 describe 'admin interactions with locations' do
@@ -48,8 +48,8 @@ describe 'admin interactions with locations' do
       click_on('Edytuj')
     end
     expect(page).to have_current_path(edit_admin_location_path(location))
-    fill_in 'Name', with: 'new name'
-    click_on('Update Location')
+    fill_in 'Miejscowość', with: 'new name'
+    click_on('Edytuj')
     expect(page).to have_content('new name')
   end
 end
