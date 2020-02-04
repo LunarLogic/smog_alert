@@ -32,7 +32,7 @@ Devise.setup do |config|
   # available as additional gems.
   require 'devise/orm/active_record'
 
-  config.omniauth :google_oauth2, Rails.application.credentials.GOOGLE_CLIENT_ID, Rails.application.credentials.GOOGLE_CLIENT_SECRET, scope: 'email'
+  config.omniauth :google_oauth2, Rails.application.credentials.oogle_client_id, Rails.application.credentials.google_client_secret, scope: 'email'
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
