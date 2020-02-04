@@ -50,7 +50,7 @@ class Admin::LocationsController < Admin::BaseController
         flash[:success] = 'Pomyślnie usunięto lokalizację'
         redirect_to request.referer || admin_locations_path
       end
-      format.js { }
+      format.js
     end
   end
 
