@@ -1,5 +1,7 @@
 import React from "react";
 import { PropTypes } from "prop-types";
+import { connect } from "react-redux";
+import { Element } from "react-scroll";
 
 import { PollutionComparison, Map } from "../../components";
 import { PollutionSideCard } from "../../components";
@@ -7,11 +9,10 @@ import { PollutionSideCard } from "../../components";
 import "./MapSection.scss";
 import { createStructuredSelector } from "reselect";
 import { selectMapLocation } from "../../redux/redux.selectors";
-import { connect } from "react-redux";
 
 export const MapSection = ({ chosenCity }) => {
   return (
-    <div className="map-section">
+    <Element className="map-section" name="map-section">
       <div className="map-section__heading">
         Jakość powietrza w gminie Zabierzów
       </div>
@@ -22,15 +23,18 @@ export const MapSection = ({ chosenCity }) => {
         <div className="map-section__content--map">
           <Map />
         </div>
-        <div className="map-section__content--info">
+        <Element
+          className="map-section__content--info"
+          name="map-section__content--info"
+        >
           {chosenCity ? (
             <PollutionSideCard locationName={chosenCity} />
           ) : (
             <PollutionComparison />
           )}
-        </div>
+        </Element>
       </div>
-    </div>
+    </Element>
   );
 };
 
