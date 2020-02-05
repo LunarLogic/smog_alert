@@ -1,4 +1,7 @@
-import { getCitiesPollutionData } from "../../../redux/homepage/homepage.actions";
+import {
+  getCitiesPollutionData,
+  setPopUpStatus
+} from "../../../redux/homepage/homepage.actions";
 import thunkMiddleware from "redux-thunk";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
@@ -28,5 +31,13 @@ describe("homepage actions", () => {
     store.dispatch(getCitiesPollutionData()).then(() => {
       expect(action).toEqual(expectedAction);
     });
+  });
+  it("handles an action for homepage to set popUpOpen variable", () => {
+    const popUpOpen = true;
+    const expectedAction = {
+      type: homepageActionTypes.SET_POPUP_STATUS,
+      payload: popUpOpen
+    };
+    expect(setPopUpStatus(popUpOpen)).toEqual(expectedAction);
   });
 });

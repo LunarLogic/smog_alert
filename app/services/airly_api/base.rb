@@ -4,6 +4,15 @@ module AirlyAPI
 
     private
 
+    def get_json(url)
+      response = begin
+                   RestClient.get(url, headers)
+                 rescue RestClient::ExceptionWithResponse => e
+                   e.response
+                 end
+      JSON.parse(response.body)
+    end
+
     def headers
       {
         'Accept' => 'application/json',

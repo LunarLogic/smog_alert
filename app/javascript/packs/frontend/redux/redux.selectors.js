@@ -9,6 +9,11 @@ export const selectLocation = createSelector(
 
 const selectHomepage = state => state.homepage;
 
+export const selectPopUpStatus = createSelector(
+  [selectHomepage],
+  homepage => homepage.popUpOpen
+);
+
 export const selectCitiesPollutionData = createSelector(
   [selectHomepage],
   homepage => homepage.citiesPollutionData
@@ -61,4 +66,21 @@ export const selectMapChosenCityData = createSelector(
 export const selectMapHoveredCity = createSelector(
   [selectMapSection],
   mapSection => mapSection.hovered_city
+);
+
+const selectCalendar = state => state.calendar;
+
+export const selectCalendarChosenYear = createSelector(
+  [selectCalendar],
+  calendar => calendar.calendarChosenYear
+);
+
+export const selectCalendarStatusData = createSelector(
+  [selectCalendar],
+  calendar => calendar.calendarStatusData
+);
+
+export const selectCalendarValuesData = createSelector(
+  [selectCalendar],
+  calendar => calendar.calendarValuesData
 );

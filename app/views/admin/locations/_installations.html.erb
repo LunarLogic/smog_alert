@@ -1,0 +1,36 @@
+<div id="delete-flash"></div>
+<table class="table table-hover table-responsive" id="installations">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Id Instalacji</th>
+      <th scope="col">Miejscowość</th>
+      <th scope="col">Ulica</th>
+      <th scope="col">Numer</th>
+      <th scope="col">Długość</th>
+      <th scope="col">Szerokość</th>
+      <th scope="col">Akcje</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% installations.each do |installation| %>
+      <tr class="installation-row">
+        <th scope="row"><%= installation['id']%></th>
+        <td>
+          <%= installation['address']['city'] %>
+        </td>
+        <td><%= installation['address']['street'] %></td>
+        <td><%= installation['address']['number'] %></td>
+        <td><%= installation['location']['longitude'] %></td>
+        <td><%= installation['location']['latitude'] %></td>
+        <td>
+          <%= button_to 'Dodaj', {action: 'save'},
+              remote: true,
+              params: {installation: installation},
+              disabled: ids_of_installations_in_db.include?(installation['id']),
+              class: "btn btn-primary btn-sm",
+              id: "save-installation-#{installation['id']}" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

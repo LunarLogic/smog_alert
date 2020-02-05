@@ -3,7 +3,8 @@ import homepageActionTypes from "../../../redux/homepage/homepage.types";
 
 describe("homepage reducer", () => {
   const initialState = {
-    citiesPollutionData: []
+    citiesPollutionData: [],
+    popUpOpen: false
   };
   it("should return initial state", () => {
     expect(homepageReducer(undefined, {})).toEqual(initialState);
@@ -14,6 +15,17 @@ describe("homepage reducer", () => {
         type: homepageActionTypes.GET_CITIES_POLLUTION_DATA,
         payload: [{ location: "Nielepice" }]
       })
-    ).toEqual({ citiesPollutionData: [{ location: "Nielepice" }] });
+    ).toEqual({
+      citiesPollutionData: [{ location: "Nielepice" }],
+      popUpOpen: false
+    });
+  });
+  it("should handle setPopUpStatus action", () => {
+    expect(
+      homepageReducer(initialState, {
+        type: homepageActionTypes.SET_POPUP_STATUS,
+        payload: true
+      })
+    ).toEqual({ citiesPollutionData: [], popUpOpen: true });
   });
 });

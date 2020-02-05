@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   private
 
   def user_not_authorized
-    flash[:notice] = 'Nie masz uprawnień do wykonania tego zadania'
+    flash[:error] = 'Nie masz uprawnień do wykonania tego zadania'
     redirect_to(request.referer || admin_root_path)
   end
 

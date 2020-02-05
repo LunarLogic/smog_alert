@@ -1,4 +1,6 @@
-<h1><%= @location.name %></h1>
+<div class="header">
+  <h1><%= @location.name %></h1>
+</div>
 <% unless @location.street.nil? || @location.street.empty? %>
   <p><br>Ulica:</br><%= @location.street%></p>
 <% end %>

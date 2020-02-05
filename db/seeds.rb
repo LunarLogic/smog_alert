@@ -6,9 +6,11 @@ unless Rails.env.production?
     password = '123456'
     user.password = password
     user.password_confirmation = password
-    user.superadmin!
+    user.skip_confirmation!
     user.confirm
   end
+
+  user.superadmin!
 
   editor = User.find_or_create_by(email: 'editor@example.com')
 
@@ -18,6 +20,7 @@ unless Rails.env.production?
     editor.password = password
     editor.password_confirmation = password
     editor.editor!
+    editor.skip_confirmation!
     editor.confirm
   end
 

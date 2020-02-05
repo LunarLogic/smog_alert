@@ -7,8 +7,10 @@ import { setGradient } from "./setGradient";
 import { findMeasurement } from "./findMeasurement";
 import { setAverageColor } from "./setAverageColor";
 import { setCloudColor } from "./setCloudColor";
+import { classNameForPollutionStatus } from "./classNameForPollutionStatus";
 
 export {
+  classNameForPollutionStatus,
   setColor,
   setIndicator,
   setPercent,

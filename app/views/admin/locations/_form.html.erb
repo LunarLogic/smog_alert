@@ -1,8 +1,8 @@
 <%= simple_form_for [:admin, @location] do |f| %>
   <%= f.input :name %>
   <%= f.input :street %>
-  <%= f.input :installation_id, label: 'Installation Id' %>
+  <%= f.input :installation_id %>
   <%= f.input :longitude %>
   <%= f.input :latitude %>
-  <%= f.button :submit, class: 'btn btn-primary' %>
+  <%= f.button :submit, button_label, class: 'btn btn-primary' %>
 <% end %>

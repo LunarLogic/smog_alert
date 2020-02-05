@@ -1,0 +1,27 @@
+@import "../../styles/variables";
+
+.calendar-section {
+  &__legend {
+    width: 100%;
+    margin-top: 2rem;
+
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    grid-row-gap: 0.5rem;
+    grid-column-gap: 1.5rem;
+
+    @media only screen and (max-width: $bp-1200) {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+    }
+    @media only screen and (max-width: $bp-1000) {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+    }
+    @media only screen and (max-width: $bp-420) {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+    }
+  }
+}

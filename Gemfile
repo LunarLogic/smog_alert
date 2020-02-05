@@ -36,6 +36,7 @@ gem 'simple_form'
 gem 'kaminari'
 
 gem 'devise'
+gem 'omniauth-google-oauth2'
 gem 'honeybadger', '~> 4.0'
 gem 'pundit'
 
@@ -43,6 +44,8 @@ gem 'rest-client'
 
 gem 'sidekiq'
 gem 'whenever', require: false
+
+gem 'geocoder', '~> 1.6'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

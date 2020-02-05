@@ -1,9 +1,11 @@
-<h1>Użytkownicy:</h1>
-
-<p><%= link_to 'Dodaj użytkownika', new_admin_user_path, class: 'btn btn-success', id: 'new-user' %></p>
-
-<table class='table' id='users'>
-  <thead class='thead-dark'>
+<div class="header">
+  <h1>Użytkownicy</h1>
+  <div class="header-button">
+    <%= link_to 'Dodaj użytkownika', new_admin_user_path, class: 'btn btn-primary', id: 'new-user' %>
+  </div>
+</div>
+<table class='table table-hover' id='users'>
+  <thead class='thead-light'>
     <tr>
       <th>Id</th>
       <th>Adres email</th>

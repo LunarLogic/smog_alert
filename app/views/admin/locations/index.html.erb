@@ -1,6 +1,12 @@
-<h1>Lokalizacje:</h1>
-<table class="table" id="locations">
-  <thead class="thead-dark">
+<div class="header">
+  <h1>Czujniki</h1>
+  <div class = "header-button">
+    <%= link_to "Znajdź więcej czujników", search_admin_locations_path, class: 'btn btn-primary' %>
+    <%= link_to "Dodaj czujnik", new_admin_location_path, class: 'btn btn-primary', id: 'new-location' %>
+  </div>
+</div>
+<table class="table table-hover" id="locations">
+  <thead class="thead-light">
     <tr>
       <th scope="col">Id</th>
       <th scope="col">Miejscowość</th>
@@ -16,7 +22,7 @@
       <tr class="location-row">
         <th scope="row"><%= location.id%></th>
         <td>
-          <%= link_to  "#{location.name}", admin_location_path(location) %>
+          <%= link_to "#{location.name}", admin_location_path(location) %>
         </td>
         <td><%= location.street %></td>
         <td><%= location.installation_id %></td>
@@ -30,5 +36,3 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to "Dodaj lokalizację", new_admin_location_path, class: 'btn btn-primary', id: 'new-location' %>
