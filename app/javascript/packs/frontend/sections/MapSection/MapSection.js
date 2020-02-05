@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
 import { Element } from "react-scroll";
@@ -9,8 +9,13 @@ import { PollutionSideCard } from "../../components";
 import "./MapSection.scss";
 import { createStructuredSelector } from "reselect";
 import { selectMapLocation } from "../../redux/redux.selectors";
+import { getChosenCity } from "../../redux/mapSection/mapSection.actions";
 
-export const MapSection = ({ chosenCity }) => {
+export const MapSection = ({ chosenCity, getChosenCity }) => {
+  useEffect(() => {
+    getChosenCity("");
+  }, []);
+
   return (
     <Element className="map-section" name="map-section">
       <div className="map-section__heading">
@@ -39,11 +44,16 @@ export const MapSection = ({ chosenCity }) => {
 };
 
 MapSection.propTypes = {
-  chosenCity: PropTypes.string
+  chosenCity: PropTypes.string,
+  getChosenCity: PropTypes.func
 };
 
 const mapStateToProps = createStructuredSelector({
   chosenCity: selectMapLocation
 });
 
-export default connect(mapStateToProps)(MapSection);
+const mapDispatchToProps = dispatch => ({
+  getChosenCity: chosenCity => dispatch(getChosenCity(chosenCity))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MapSection);
