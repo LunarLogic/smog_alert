@@ -1,22 +1,22 @@
 import React from "react";
 import { PropTypes } from "prop-types";
 
-import "./CalendarLegendBox.scss";
+import { CalendarLegendBoxDiv } from "./CalendarLegendBox.styles.jsx";
 
-const CalendarLegendBox = ({ customClassName, status, numberOfDays }) => {
+const CalendarLegendBox = ({ backgroundColor, status, numberOfDays }) => {
   return (
-    <div className={`calendar-legend-box ${customClassName}`}>
+    <CalendarLegendBoxDiv backgroundColor={backgroundColor}>
       <span>
         {`${status}:`}
         <br />
         {`${numberOfDays} dni`}
       </span>
-    </div>
+    </CalendarLegendBoxDiv>
   );
 };
 
 CalendarLegendBox.propTypes = {
-  customClassName: PropTypes.string,
+  backgroundColor: PropTypes.string,
   status: PropTypes.string,
   numberOfDays: PropTypes.number
 };

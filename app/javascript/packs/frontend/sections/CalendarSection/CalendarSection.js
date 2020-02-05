@@ -13,10 +13,10 @@ import {
 } from "../../redux/redux.selectors";
 
 import { Calendar, CalendarLegendBox } from "../../components";
-import { classNameForPollutionStatus } from "../../helpers";
+import { setColor } from "../../helpers";
 
 import "./CalendarSection.scss";
-import mockData from "../../components/Calendar/CalendarMockData.json";
+import { calendarLegendContent } from "./calendarLegendContent";
 
 const CalendarSection = ({
   getCalendarStatusData,
@@ -27,25 +27,32 @@ const CalendarSection = ({
     getCalendarStatusData(calendarChosenYear, 19);
   }, [calendarChosenYear]);
 
-  const statusData = calendarStatusData[calendarChosenYear];
-  const renderScale = data =>
-    data.map(item => (
-      <CalendarLegendBox
-        key={item.status}
-        status={item.status}
-        numberOfDays={item.days.length}
-        customClassName={`calendar-legend-${classNameForPollutionStatus(
-          item.status
-        )}`}
-      />
-    ));
+  const daysGroupedByStatus = calendarStatusData[calendarChosenYear];
+
+  const renderCalendarLegend = () =>
+    calendarLegendContent.map(item => {
+      let calendarLegendItem;
+      if (daysGroupedByStatus) {
+        calendarLegendItem = daysGroupedByStatus.find(
+          element => element.status === item.status
+        );
+      }
+      return (
+        <CalendarLegendBox
+          key={item.status}
+          status={item.status}
+          numberOfDays={
+            calendarLegendItem ? calendarLegendItem.days.length : "--"
+          }
+          backgroundColor={setColor(item)}
+        />
+      );
+    });
 
   return (
     <div className="calendar-section">
       <Calendar />
-      <div className="calendar-section__legend">
-        {statusData && renderScale(statusData)}
-      </div>
+      <div className="calendar-section__legend">{renderCalendarLegend()}</div>
     </div>
   );
 };
