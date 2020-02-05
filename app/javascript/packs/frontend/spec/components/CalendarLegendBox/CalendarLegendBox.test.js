@@ -3,7 +3,7 @@ import { mount } from "enzyme";
 import CalendarLegendBox from "../../../components/CalendarLegendBox/CalendarLegendBox";
 
 describe("<CalendarLegendBox/>", () => {
-  it("renders component with correct", () => {
+  it("renders component with correct parameters", () => {
     const wrapperWithParameters = mount(
       <CalendarLegendBox
         backgroundColor={"blue"}
