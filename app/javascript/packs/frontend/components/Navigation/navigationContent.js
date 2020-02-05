@@ -3,8 +3,8 @@ const navigationContent = {
     { displayName: "Aktualności", path: "/aktualnosci" },
     { displayName: "Czym oddycham", path: "/czym-oddycham" },
     { displayName: "Rozwiązania", path: "/rozwiazania" },
-    { displayName: "Statystyki", path: "/statistics" },
-    { displayName: "Mapa", path: "/map" }
+    { displayName: "Statystyki", path: "/statistics" }
+    // { displayName: "Mapa", path: "/map" }
   ],
   button: "Zmień Piec",
   brand: "Zabierzowski Alarm Smogowy"

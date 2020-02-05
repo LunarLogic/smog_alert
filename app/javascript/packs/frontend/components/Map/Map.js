@@ -27,8 +27,6 @@ export const Map = ({
   hoveredCity,
   getHoveredCity
 }) => {
-  getChosenCity("");
-
   const findColor = city => {
     let clickedCity = citiesPollutionData.find(
       cityData => cityData.location_name === city
