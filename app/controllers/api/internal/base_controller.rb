@@ -11,8 +11,7 @@ module API
       end
 
       rescue_from ActiveRecord::RecordNotFound do |exception|
-        error = 'Record not found. Check if parameters are correct.'
-        response = { error: error }
+        response = { error: exception }
         render json: response, status: :unprocessable_entity
       end
     end
