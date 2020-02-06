@@ -51,6 +51,26 @@ describe '/api/internal/measurements' do
     end
   end
 
+  describe 'GET /calendar_daily_values' do
+    it 'repsonds with json containing the right data' do
+      expected_response =
+        {
+          'date' => '2019-11-27',
+          'average_measurements' => {
+            'day' => measurement.date.to_s,
+            'pm10' => measurement.pm10.to_s,
+            'pm25' => measurement.pm25.to_s,
+            'number_of_measurements' => 10,
+          }
+        }
+      location_id = location.id
+      date = measurement.date
+      get calendar_daily_values_api_internal_measurements_path(location_id: location_id, date: date)
+      json = JSON.parse(response.body)
+      expect(json).to eq(expected_response)
+    end
+  end
+
   describe 'GET /hourly_average_for_month' do
     context 'when database contains data for the given date and location' do
       let!(:location_a) { FactoryBot.create(:location) }
