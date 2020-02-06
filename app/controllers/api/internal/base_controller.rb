@@ -9,6 +9,12 @@ module API
         response = { errors: [error] }
         render json: response, status: :unprocessable_entity
       end
+
+      rescue_from ActiveRecord::RecordNotFound do |exception|
+        error = 'Record not found. Check if parameters are correct.'
+        response = { error: error }
+        render json: response, status: :unprocessable_entity
+      end
     end
   end
 end
