@@ -7,6 +7,15 @@ import {
   selectCalendarChosenDay
 } from "../../redux/redux.selectors";
 
+import {
+  CalendarDailyInfoNoData,
+  CalendarDailyInfoMeasurementName,
+  CalendarDailyInfoMeasurementValue,
+  CalendarDailyInfoMeasurement,
+  CalendarDailyInfoDisclaimer
+} from "./CalendarDailyInfo.styles.jsx";
+import "./CalendarDailyInfo.scss";
+
 const CalendarDailyInfo = ({ calendarChosenDay, calendarValues }) => {
   const calendarYearlyValues = calendarValues["daily_average_measurements"];
   let calendarDailyValues;
@@ -22,15 +31,56 @@ const CalendarDailyInfo = ({ calendarChosenDay, calendarValues }) => {
   }
 
   return (
-    <div>
-      <div>
-        Uśrednione dane z dnia: {day ? day : "[ Kliknij na wybrany dzień ]"}
+    <div className="calendar-daily-info">
+      <div className="calendar-daily-info__box">
+        <CalendarDailyInfoMeasurement>
+          <CalendarDailyInfoMeasurementName>
+            DZIEŃ:
+          </CalendarDailyInfoMeasurementName>
+          {day ? (
+            <CalendarDailyInfoMeasurementValue>
+              {day}
+            </CalendarDailyInfoMeasurementValue>
+          ) : (
+            <CalendarDailyInfoNoData>
+              [ Kliknij na wybrany dzień ]
+            </CalendarDailyInfoNoData>
+          )}
+        </CalendarDailyInfoMeasurement>
       </div>
-      <div>PM 10: {pm10 ? pm10 : "--"}</div>
-      <div>PM 2.5: {pm25 ? pm25 : "--"}</div>
+      <div className="calendar-daily-info__box">
+        <CalendarDailyInfoMeasurement>
+          <CalendarDailyInfoMeasurementName>
+            PM 10:
+          </CalendarDailyInfoMeasurementName>
+          <CalendarDailyInfoMeasurementValue>
+            {pm10 ? Math.round(pm10) : "--"}μg
+          </CalendarDailyInfoMeasurementValue>
+        </CalendarDailyInfoMeasurement>
+        <CalendarDailyInfoMeasurement>
+          <CalendarDailyInfoMeasurementName>
+            PM 2.5:
+          </CalendarDailyInfoMeasurementName>
+          <CalendarDailyInfoMeasurementValue>
+            {pm25 ? Math.round(pm25) : "--"}μg
+          </CalendarDailyInfoMeasurementValue>
+        </CalendarDailyInfoMeasurement>
+        <CalendarDailyInfoMeasurement>
+          <CalendarDailyInfoMeasurementName>
+            LICZBA POMIAROW:
+          </CalendarDailyInfoMeasurementName>
+          <CalendarDailyInfoMeasurementValue>
+            {number_of_measurements ? number_of_measurements : "--"}
+          </CalendarDailyInfoMeasurementValue>
+        </CalendarDailyInfoMeasurement>
+      </div>
       <div>
-        Liczba pomiarów:
-        {number_of_measurements ? number_of_measurements : "---"}
+        <CalendarDailyInfoDisclaimer>
+          * Średnia wartość na podstawie co najmniej 18 pomiarów
+        </CalendarDailyInfoDisclaimer>
+        <CalendarDailyInfoDisclaimer>
+          ** Pomiar wykonywany jest raz na godzinę.
+        </CalendarDailyInfoDisclaimer>
       </div>
     </div>
   );

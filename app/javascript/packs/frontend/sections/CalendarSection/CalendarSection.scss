@@ -1,6 +1,12 @@
 @import "../../styles/variables";
 
 .calendar-section {
+  &__location-and-data {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 2.5rem;
+  }
   &__legend {
     width: 100%;
     margin-top: 2rem;

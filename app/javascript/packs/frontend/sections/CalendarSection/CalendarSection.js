@@ -57,7 +57,9 @@ const CalendarSection = ({
 
   return (
     <div className="calendar-section">
-      <CalendarDailyInfo />
+      <div className="calendar-section__location-and-data">
+        <CalendarDailyInfo />
+      </div>
       <Calendar />
       <div className="calendar-section__legend">{renderCalendarLegend()}</div>
     </div>
