@@ -8,7 +8,7 @@ class API::Internal::ArticlesController < API::Internal::BaseController
     render json: { data: data }
   end
 
-  def aricle_overview
+  def article_overview
     articles = Article.where(published: true)
     data = articles.map do |article|
       API::Internal::ArticleOverviewPresenter.new(article)
