@@ -10,8 +10,14 @@ module Calendar
       daily_measurements
     end
 
-    def average_values_for_day(year_measurements, day)
-      day_measurements = year_measurements.where(date: day)
+    def for_day(location, day)
+      average_values_for_day(location.measurements, day)
+    end
+
+    private
+
+    def average_values_for_day(measurements, day)
+      day_measurements = measurements.where(date: day)
       day_measurements_with_data = day_measurements.where.not(pm10: 0)
       {
         day: day,

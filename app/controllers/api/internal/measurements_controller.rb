@@ -15,8 +15,8 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
   def calendar_daily_values
     location = Location.find(calendar_day_params[:location_id])
     date = calendar_day_params[:date]
-    daily_measurements = Calendar::DailyAverageValues.new.call(location, year)
-    render json: { year: year, daily_average_measurements: daily_measurements }
+    average_measurements = Calendar::DailyAverageValues.new.for_day(location, date)
+    render json: { date: date, average_measurements: average_measurements }
   end
 
   def calendar_values
