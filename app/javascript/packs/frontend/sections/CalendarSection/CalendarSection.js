@@ -12,7 +12,11 @@ import {
   selectCalendarStatusData
 } from "../../redux/redux.selectors";
 
-import { Calendar, CalendarLegendBox } from "../../components";
+import {
+  Calendar,
+  CalendarDailyInfo,
+  CalendarLegendBox
+} from "../../components";
 import { setColor } from "../../helpers";
 
 import "./CalendarSection.scss";
@@ -20,11 +24,13 @@ import { calendarLegendContent } from "./calendarLegendContent";
 
 const CalendarSection = ({
   getCalendarStatusData,
+  getCalendarValuesData,
   calendarStatusData,
   calendarChosenYear
 }) => {
   useEffect(() => {
     getCalendarStatusData(calendarChosenYear, 19);
+    getCalendarValuesData(calendarChosenYear, 19);
   }, [calendarChosenYear]);
 
   const daysGroupedByStatus = calendarStatusData[calendarChosenYear];
@@ -51,6 +57,7 @@ const CalendarSection = ({
 
   return (
     <div className="calendar-section">
+      <CalendarDailyInfo />
       <Calendar />
       <div className="calendar-section__legend">{renderCalendarLegend()}</div>
     </div>
@@ -59,6 +66,7 @@ const CalendarSection = ({
 
 CalendarSection.propTypes = {
   getCalendarStatusData: PropTypes.func,
+  getCalendarValuesData: PropTypes.func,
   calendarStatusData: PropTypes.object,
   calendarChosenYear: PropTypes.number
 };

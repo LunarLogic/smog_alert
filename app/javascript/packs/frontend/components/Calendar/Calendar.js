@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { PropTypes } from "prop-types";
@@ -9,24 +9,23 @@ import {
 
 import {
   selectCalendarStatusData,
-  selectCalendarValuesData,
   selectCalendarChosenYear
 } from "../../redux/redux.selectors";
-import { setCalendarChosenYear } from "../../redux/calendar/calendar.actions";
+import {
+  setCalendarChosenYear,
+  setCalendarChosenDay
+} from "../../redux/calendar/calendar.actions";
 
 import { classNameForPollutionStatus } from "../../helpers";
 
-import mockData from "./CalendarMockData.json";
 import "./Calendar.scss";
 
 const Calendar = ({
   setCalendarChosenYear,
+  setCalendarChosenDay,
   calendarStatusData,
-  calendarValuesData,
   calendarChosenYear
 }) => {
-  const [pickedDay, setPickedDay] = useState(undefined);
-
   // Get status data and convert it to the object used by Calendar to set custom css classes
 
   const statusData = calendarStatusData[calendarChosenYear];
@@ -40,15 +39,8 @@ const Calendar = ({
     );
   }
 
-  // Get additional data regarding chosen day on click
-
-  let values;
   const onDatePicked = date => {
-    setPickedDay(date.format("YYYY-MM-DD"));
-    const valuesData = calendarValuesData;
-    values = valuesData["daily_average_measurements"].find(
-      item => item.day === pickedDay
-    );
+    setCalendarChosenDay(date.format("YYYY-MM-DD"));
   };
 
   return (
@@ -66,6 +58,7 @@ const Calendar = ({
         year={calendarChosenYear}
         customClasses={customClassesData}
         firstDayOfWeek={1}
+        onPickDate={onDatePicked}
       />
     </div>
   );
@@ -73,15 +66,17 @@ const Calendar = ({
 
 const mapStateToProps = createStructuredSelector({
   calendarStatusData: selectCalendarStatusData,
-  calendarValuesData: selectCalendarValuesData,
   calendarChosenYear: selectCalendarChosenYear
 });
 
 Calendar.propTypes = {
   setCalendarChosenYear: PropTypes.func,
+  setCalendarChosenDay: PropTypes.func,
   calendarChosenYear: PropTypes.number,
-  calendarStatusData: PropTypes.object,
-  calendarValuesData: PropTypes.object
+  calendarStatusData: PropTypes.object
 };
 
-export default connect(mapStateToProps, { setCalendarChosenYear })(Calendar);
+export default connect(mapStateToProps, {
+  setCalendarChosenYear,
+  setCalendarChosenDay
+})(Calendar);
