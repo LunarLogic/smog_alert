@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import { getArticles } from "../../redux/news/news.actions";
 import { createStructuredSelector } from "reselect";
 import { selectArticles } from "../../redux/redux.selectors";
-import ReactHtmlParser from "react-html-parser";
+import { PropTypes } from "prop-types";
+
+import { ArticleOverview } from "../../components";
 
 import "./News.scss";
 
@@ -11,14 +13,33 @@ const News = ({ getArticles, articles }) => {
   useEffect(() => {
     getArticles();
   }, []);
-
+  let sortedArticles;
+  if (articles.length) {
+    sortedArticles = articles.sort((a, b) => b.updated_at > a.updated_at);
+  }
   return articles.length ? (
-    <div>
+    <div className="news">
       <div className="news__heading">Aktualności</div>
-      <div>{articles[0].title}</div>
-      <div>{ReactHtmlParser(articles[0].body)}</div>
+      {sortedArticles.map(article => {
+        return (
+          <ArticleOverview
+            key={article.id}
+            title={article.title}
+            body={article.body}
+            publishingDate={article.published_at}
+            updatingDate={article.updated_at}
+          />
+        );
+      })}
     </div>
-  ) : null;
+  ) : (
+    "loading"
+  );
+};
+
+News.propTypes = {
+  getArticles: PropTypes.func,
+  articles: PropTypes.array
 };
 
 const mapStateToProps = createStructuredSelector({

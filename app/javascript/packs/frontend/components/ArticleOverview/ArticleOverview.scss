@@ -1,0 +1,50 @@
+@import "../../styles/variables";
+
+.article-overview {
+  border: 0.1rem solid $frameColor;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.15);
+  border-radius: 0.6rem;
+  padding: 3.5rem;
+  margin: 2rem 0 2rem 0;
+  &__title {
+    font-size: 2.4rem;
+    line-height: 2.8rem;
+    font-weight: bold;
+  }
+  &__date {
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    color: $grey;
+    margin: 1rem 0;
+    display: flex;
+    &-published {
+      margin-right: 1rem;
+    }
+    &-updated {
+      padding-left: 1rem;
+      border-left: 0.1rem solid $grey;
+    }
+  }
+  &__body {
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+  }
+  &__button {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    &--text {
+      font-size: 1.6rem;
+      line-height: 2.5rem;
+      padding-right: 0.5rem;
+      color: $secondaryColor;
+      cursor: pointer;
+    }
+    svg {
+      height: 2.5rem;
+      width: 2.5rem;
+      fill: $secondaryColor;
+      cursor: pointer;
+    }
+  }
+}
