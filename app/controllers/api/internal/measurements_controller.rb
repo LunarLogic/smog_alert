@@ -16,7 +16,8 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
     location = Location.find(calendar_day_params[:location_id])
     date = calendar_day_params[:date]
     average_measurements = Calendar::DailyAverageValues.new.for_day(location, date)
-    render json: { date: date, average_measurements: average_measurements }
+    data = API::Internal::DailyPollutionValuesPresenter.new(average_measurements).to_hash
+    render json: { average_measurements: data }
   end
 
   def calendar_values

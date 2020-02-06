@@ -55,13 +55,31 @@ describe '/api/internal/measurements' do
     it 'repsonds with json containing the right data' do
       expected_response =
         {
-          'date' => '2019-11-27',
-          'average_measurements' => {
-            'day' => measurement.date.to_s,
-            'pm10' => measurement.pm10.to_s,
-            'pm25' => measurement.pm25.to_s,
-            'number_of_measurements' => 10,
-          }
+          # 'date' => '2019-11-27',
+          'average_measurements' => [
+            {
+              'name' => 'day',
+              'value' => measurement.date.to_s,
+            },
+            {
+              'name' => 'pm10',
+              'value' => measurement.pm10.to_s,
+            },
+            {
+              'name' => 'pm25',
+              'value' => measurement.pm25.to_s,
+            },
+            {
+              'name' => 'number_of_measurements',
+              'value' => 10,
+            },
+          ]
+          # {
+            # 'day' => measurement.date.to_s,
+            # 'pm10' => measurement.pm10.to_s,
+            # 'pm25' => measurement.pm25.to_s,
+            # 'number_of_measurements' => 10,
+          # }
         }
       location_id = location.id
       date = measurement.date
