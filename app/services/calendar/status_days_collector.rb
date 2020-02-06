@@ -1,7 +1,11 @@
 module Calendar
   class StatusDaysCollector
+    def initialize
+      @daily_average_values = DailyAverageValues.new
+    end
+
     def call(location, year)
-      averages = DailyAverageValues.new.call(location, year)
+      averages = @daily_average_values.for_year(location, year)
       result = {}
       averages.each do |day_data|
         status = if day_data[:number_of_measurements] < 18
