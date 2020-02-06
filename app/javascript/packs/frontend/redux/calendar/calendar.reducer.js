@@ -1,9 +1,11 @@
 import calendarActionTypes from "./calendar.types";
+import { currentDayFormatted } from "../../helpers/currentDateFormatted";
 
 const INITIAL_STATE = {
   calendarStatusData: {},
   calendarValuesData: {},
-  calendarChosenYear: new Date().getFullYear()
+  calendarChosenYear: new Date().getFullYear(),
+  calendarChosenDay: currentDayFormatted()
 };
 
 const calendarReducer = (state = INITIAL_STATE, action) => {
@@ -22,6 +24,11 @@ const calendarReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         calendarChosenYear: action.payload
+      };
+    case calendarActionTypes.SET_CALENDAR_CHOSEN_DAY:
+      return {
+        ...state,
+        calendarChosenDay: action.payload
       };
     default:
       return state;
