@@ -7,6 +7,7 @@ import { store, persistor } from "./frontend/redux/store";
 import ErrorBoundary from "@honeybadger-io/react";
 import { honeybadger } from "./frontend/honeybadger";
 import { BrowserRouter } from "react-router-dom";
+import "../stylesheets/actiontext.scss";
 
 document.addEventListener("DOMContentLoaded", () => {
   ReactDOM.render(

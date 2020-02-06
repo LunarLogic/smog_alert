@@ -6,6 +6,7 @@ import homepageReducer from "./homepage/homepage.reducer";
 import searchboxReducer from "./searchbox/searchbox.reducer";
 import mapSectionReducer from "./mapSection/mapSection.reducer";
 import calendarReducer from "./calendar/calendar.reducer";
+import newsReducer from "./news/news.reducer";
 
 const persistConfig = {
   key: "root-v2",
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   homepage: homepageReducer,
   searchbox: searchboxReducer,
   mapSection: mapSectionReducer,
-  calendar: calendarReducer
+  calendar: calendarReducer,
+  news: newsReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);

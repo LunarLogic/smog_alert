@@ -4,7 +4,7 @@ import { animateScroll } from "react-scroll";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 
 import "./App.scss";
-import { Homepage, Statistics } from "./pages";
+import { Homepage, Statistics, News } from "./pages";
 import WebFont from "webfontloader";
 import { Error404, Footer, Navigation, NavigationMobile } from "./components";
 
@@ -23,6 +23,7 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Homepage} />
           <Route exact path="/statistics" component={Statistics} />
+          <Route exact path="/aktualnosci" component={News} />
           <Route component={Error404} />
         </Switch>
         <div className="scroll-to-top" onClick={animateScroll.scrollToTop}>
