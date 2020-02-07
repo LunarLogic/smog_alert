@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       end
     end
     resources :users
+    get 'tags/new'
   end
 
   authenticate :user, ->(u) { u.admin? } do
