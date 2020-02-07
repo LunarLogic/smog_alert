@@ -7,6 +7,7 @@ import "./App.scss";
 import { Homepage, Statistics, News } from "./pages";
 import WebFont from "webfontloader";
 import { Error404, Footer, Navigation, NavigationMobile } from "./components";
+import { Article } from "./pages";
 
 WebFont.load({
   google: {
@@ -24,10 +25,11 @@ const App = () => {
           <Route exact path="/" component={Homepage} />
           <Route exact path="/statistics" component={Statistics} />
           <Route exact path="/aktualnosci" component={News} />
+          <Route exact path="/aktualnosci/:articleId" component={Article} />
           <Route component={Error404} />
         </Switch>
         <div className="scroll-to-top" onClick={animateScroll.scrollToTop}>
-          <div className="scroll-to-top__text">Wróć na górę strony </div>
+          <div className="scroll-to-top__text">Powrót na górę strony </div>
           <ArrowUpwardIcon />
         </div>
       </div>

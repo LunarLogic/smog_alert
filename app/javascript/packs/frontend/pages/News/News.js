@@ -15,7 +15,9 @@ const News = ({ getArticles, articles }) => {
   }, []);
   let sortedArticles;
   if (articles.length) {
-    sortedArticles = articles.sort((a, b) => b.updated_at > a.updated_at);
+    sortedArticles = articles.sort((a, b) =>
+      b.updated_at > a.updated_at ? 1 : -1
+    );
   }
   return articles.length ? (
     <div className="news">
@@ -28,6 +30,7 @@ const News = ({ getArticles, articles }) => {
             body={article.body}
             publishingDate={article.published_at}
             updatingDate={article.updated_at}
+            id={article.id}
           />
         );
       })}

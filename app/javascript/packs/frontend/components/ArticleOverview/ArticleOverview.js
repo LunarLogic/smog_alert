@@ -7,7 +7,7 @@ import { getDate } from "../../helpers";
 
 import "./ArticleOverview.scss";
 
-const ArticleOverview = ({ title, body, publishingDate, updatingDate }) => {
+const ArticleOverview = ({ title, body, publishingDate, updatingDate, id }) => {
   return (
     <div className="article-overview">
       <div className="article-overview__title">{title}</div>
@@ -20,8 +20,8 @@ const ArticleOverview = ({ title, body, publishingDate, updatingDate }) => {
         </div>
       </div>
       <div className="article-overview__body">{ReactHtmlParser(body)}</div>
-      <a className="article-overview__button">
-        <div className="article-overview__button--text">Czytaj więcej </div>
+      <a className="article-overview__button" href={`/aktualnosci/${id}`}>
+        <div className="article-overview__button--text">Czytaj więcej</div>
         <ArrowForwardIcon />
       </a>
     </div>
@@ -32,7 +32,8 @@ ArticleOverview.propTypes = {
   title: PropTypes.string,
   body: PropTypes.string,
   publishingDate: PropTypes.string,
-  updatingDate: PropTypes.string
+  updatingDate: PropTypes.string,
+  id: PropTypes.string
 };
 
 export default ArticleOverview;

@@ -28,16 +28,23 @@
   &__body {
     font-size: 1.6rem;
     line-height: 1.9rem;
+    margin-top: 2rem;
   }
   &__button {
     display: flex;
     justify-content: flex-end;
     margin-top: 2rem;
+    color: $secondaryColor;
+    &:hover {
+      color: $secondaryColorDark;
+      svg {
+        fill: $secondaryColorDark;
+      }
+    }
     &--text {
       font-size: 1.6rem;
       line-height: 2.5rem;
       padding-right: 0.5rem;
-      color: $secondaryColor;
       cursor: pointer;
     }
     svg {
