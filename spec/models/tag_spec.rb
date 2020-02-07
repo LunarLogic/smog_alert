@@ -1,5 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Tag, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'validations' do
+    subject { FactoryBot.create(:tag) }
+    it { should validate_presence_of(:name) }
+  end
 end
