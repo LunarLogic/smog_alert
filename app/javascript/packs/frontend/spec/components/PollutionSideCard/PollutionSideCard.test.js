@@ -31,6 +31,8 @@ describe("Pollution Side Card", () => {
           getChosenCity={jest.fn(data => {
             chosenCity = data;
           })}
+          chosenCity={chosenCity}
+          citiesPollutionData={citiesPollutionDataMock.data}
         />
       </Provider>
     );
@@ -54,6 +56,8 @@ describe("Pollution Side Card", () => {
           getChosenCity={jest.fn(data => {
             chosenCity = data;
           })}
+          chosenCity={chosenCity}
+          citiesPollutionData={citiesPollutionDataMock.data}
         />
       </Provider>
     );
