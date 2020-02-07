@@ -1,5 +1,8 @@
-<h1>Lokalizacje:</h1>
-<table class="table" id="locations">
+<h1 id='locations-header'>Lokalizacje</h1>
+<div id='locations-index-search-section'>
+  <%= link_to "Znajdź więcej lokalizacji", search_admin_locations_path, class: 'btn btn-primary', id: 'search-button' %>
+</div>
+<table class="table table-hover" id="locations">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Id</th>
@@ -16,7 +19,7 @@
       <tr class="location-row">
         <th scope="row"><%= location.id%></th>
         <td>
-          <%= link_to  "#{location.name}", admin_location_path(location) %>
+          <%= link_to "#{location.name}", admin_location_path(location) %>
         </td>
         <td><%= location.street %></td>
         <td><%= location.installation_id %></td>

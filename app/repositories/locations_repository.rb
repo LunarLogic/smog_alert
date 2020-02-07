@@ -6,4 +6,8 @@ class LocationsRepository
   def last_hour_measurements_by_location_name(location_name)
     Location.where(name: location_name).map { |location| last_hour_measurement(location) }.compact
   end
+
+  def ids_of_installations_in_db(ids)
+    Location.pluck(:installation_id) & ids
+  end
 end
