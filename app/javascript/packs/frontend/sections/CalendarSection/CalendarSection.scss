@@ -3,9 +3,13 @@
 .calendar-section {
   &__location-and-data {
     display: flex;
-    align-items: center;
-    justify-content: flex-end;
+    align-items: flex-start;
+    justify-content: space-between;
     margin-bottom: 2.5rem;
+    &-dropdown {
+      width: 40%;
+      position: relative;
+    }
   }
   &__legend {
     width: 100%;

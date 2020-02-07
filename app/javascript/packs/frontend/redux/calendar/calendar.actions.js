@@ -40,3 +40,8 @@ export const setCalendarChosenDay = chosenDay => ({
   type: calendarActionTypes.SET_CALENDAR_CHOSEN_DAY,
   payload: chosenDay
 });
+
+export const setCalendarChosenCity = chosenCity => ({
+  type: calendarActionTypes.SET_CALENDAR_CHOSEN_CITY,
+  payload: chosenCity
+});

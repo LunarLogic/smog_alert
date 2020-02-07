@@ -16,7 +16,7 @@ import {
 } from "./CalendarDailyInfo.styles.jsx";
 import "./CalendarDailyInfo.scss";
 
-const CalendarDailyInfo = ({ calendarChosenDay, calendarValues }) => {
+export const CalendarDailyInfo = ({ calendarChosenDay, calendarValues }) => {
   const calendarYearlyValues = calendarValues["daily_average_measurements"];
   let calendarDailyValues;
 
@@ -35,7 +35,7 @@ const CalendarDailyInfo = ({ calendarChosenDay, calendarValues }) => {
       <div className="calendar-daily-info__box">
         <CalendarDailyInfoMeasurement>
           <CalendarDailyInfoMeasurementName>
-            DZIEŃ:
+            Dzień:
           </CalendarDailyInfoMeasurementName>
           {day ? (
             <CalendarDailyInfoMeasurementValue>
@@ -51,7 +51,7 @@ const CalendarDailyInfo = ({ calendarChosenDay, calendarValues }) => {
       <div className="calendar-daily-info__box">
         <CalendarDailyInfoMeasurement>
           <CalendarDailyInfoMeasurementName>
-            PM 10:
+            pm 10:
           </CalendarDailyInfoMeasurementName>
           <CalendarDailyInfoMeasurementValue>
             {pm10 ? Math.round(pm10) : "--"}μg
@@ -59,7 +59,7 @@ const CalendarDailyInfo = ({ calendarChosenDay, calendarValues }) => {
         </CalendarDailyInfoMeasurement>
         <CalendarDailyInfoMeasurement>
           <CalendarDailyInfoMeasurementName>
-            PM 2.5:
+            pm 2.5:
           </CalendarDailyInfoMeasurementName>
           <CalendarDailyInfoMeasurementValue>
             {pm25 ? Math.round(pm25) : "--"}μg
@@ -67,7 +67,7 @@ const CalendarDailyInfo = ({ calendarChosenDay, calendarValues }) => {
         </CalendarDailyInfoMeasurement>
         <CalendarDailyInfoMeasurement>
           <CalendarDailyInfoMeasurementName>
-            LICZBA POMIAROW:
+            liczba pomiarów:
           </CalendarDailyInfoMeasurementName>
           <CalendarDailyInfoMeasurementValue>
             {number_of_measurements ? number_of_measurements : "--"}

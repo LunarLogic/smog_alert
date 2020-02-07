@@ -8,7 +8,6 @@ import { getCitiesPollutionData } from "../../redux/homepage/homepage.actions";
 import { selectCitiesPollutionData } from "../../redux/redux.selectors";
 
 import { CalendarSection } from "../../sections";
-import { DropdownMenu } from "../../components/DropdownMenu/DropdownMenu";
 
 import "./Statistics.scss";
 
@@ -19,9 +18,8 @@ const Statistics = ({ citiesPollutionData, getCitiesPollutionData }) => {
 
   const cities = citiesPollutionData;
 
-  return cities ? (
+  return cities.length ? (
     <div className="statistics">
-      {/* <DropdownMenu /> */}
       <CalendarSection />
     </div>
   ) : null;

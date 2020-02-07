@@ -5,7 +5,8 @@ const INITIAL_STATE = {
   calendarStatusData: {},
   calendarValuesData: {},
   calendarChosenYear: new Date().getFullYear(),
-  calendarChosenDay: yesterdayDateFormatted()
+  calendarChosenDay: yesterdayDateFormatted(),
+  calendarChosenCity: "Zabierzów, Wapienna"
 };
 
 const calendarReducer = (state = INITIAL_STATE, action) => {
@@ -29,6 +30,11 @@ const calendarReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         calendarChosenDay: action.payload
+      };
+    case calendarActionTypes.SET_CALENDAR_CHOSEN_CITY:
+      return {
+        ...state,
+        calendarChosenCity: action.payload
       };
     default:
       return state;

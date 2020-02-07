@@ -80,6 +80,11 @@ export const selectCalendarChosenDay = createSelector(
   calendar => calendar.calendarChosenDay
 );
 
+export const selectCalendarChosenCity = createSelector(
+  [selectCalendar],
+  calendar => calendar.calendarChosenCity
+);
+
 export const selectCalendarValuesData = createSelector(
   [selectCalendar],
   calendar => calendar.calendarValuesData

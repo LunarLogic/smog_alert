@@ -12,6 +12,7 @@ export const CalendarDailyInfoMeasurement = styled.div`
   margin-bottom: 0.5rem;
 `;
 export const CalendarDailyInfoMeasurementName = styled.span`
+  text-transform: uppercase;
   margin-right: 1rem;
   font-weight: 500;
 `;

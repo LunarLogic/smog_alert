@@ -5,28 +5,35 @@ import { PropTypes } from "prop-types";
 
 import {
   getCalendarStatusData,
-  getCalendarValuesData
+  getCalendarValuesData,
+  setCalendarChosenCity
 } from "../../redux/calendar/calendar.actions";
 import {
   selectCalendarChosenYear,
-  selectCalendarStatusData
+  selectCalendarStatusData,
+  selectCitiesPollutionDataList,
+  selectCalendarChosenCity
 } from "../../redux/redux.selectors";
 
 import {
   Calendar,
   CalendarDailyInfo,
-  CalendarLegendBox
+  CalendarLegendBox,
+  DropdownMenu
 } from "../../components";
 import { setColor } from "../../helpers";
+import { calendarLegendContent } from "./calendarLegendContent";
 
 import "./CalendarSection.scss";
-import { calendarLegendContent } from "./calendarLegendContent";
 
 const CalendarSection = ({
   getCalendarStatusData,
   getCalendarValuesData,
+  setCalendarChosenCity,
   calendarStatusData,
-  calendarChosenYear
+  calendarChosenYear,
+  calendarChosenCity,
+  citiesList
 }) => {
   useEffect(() => {
     getCalendarStatusData(calendarChosenYear, 19);
@@ -34,6 +41,8 @@ const CalendarSection = ({
   }, [calendarChosenYear]);
 
   const daysGroupedByStatus = calendarStatusData[calendarChosenYear];
+
+  // Calendar Legend
 
   const renderCalendarLegend = () =>
     calendarLegendContent.map(item => {
@@ -58,6 +67,13 @@ const CalendarSection = ({
   return (
     <div className="calendar-section">
       <div className="calendar-section__location-and-data">
+        <div className="calendar-section__location-and-data-dropdown">
+          <DropdownMenu
+            optionsList={citiesList}
+            chosenCityToBeDisplayed={calendarChosenCity}
+            handleChosenCity={setCalendarChosenCity}
+          />
+        </div>
         <CalendarDailyInfo />
       </div>
       <Calendar />
@@ -69,16 +85,21 @@ const CalendarSection = ({
 CalendarSection.propTypes = {
   getCalendarStatusData: PropTypes.func,
   getCalendarValuesData: PropTypes.func,
+  setCalendarChosenCity: PropTypes.func,
   calendarStatusData: PropTypes.object,
-  calendarChosenYear: PropTypes.number
+  calendarChosenYear: PropTypes.number,
+  citiesList: PropTypes.array
 };
 
 const mapStateToProps = createStructuredSelector({
   calendarChosenYear: selectCalendarChosenYear,
-  calendarStatusData: selectCalendarStatusData
+  calendarStatusData: selectCalendarStatusData,
+  calendarChosenCity: selectCalendarChosenCity,
+  citiesList: selectCitiesPollutionDataList
 });
 
 export default connect(mapStateToProps, {
   getCalendarStatusData,
-  getCalendarValuesData
+  getCalendarValuesData,
+  setCalendarChosenCity
 })(CalendarSection);
