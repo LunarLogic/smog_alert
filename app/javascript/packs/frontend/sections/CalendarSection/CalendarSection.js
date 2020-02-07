@@ -12,7 +12,8 @@ import {
   selectCalendarChosenYear,
   selectCalendarStatusData,
   selectCitiesPollutionDataList,
-  selectCalendarChosenCity
+  selectCalendarChosenCity,
+  selectCalendarChosenCityIndex
 } from "../../redux/redux.selectors";
 
 import {
@@ -33,12 +34,13 @@ const CalendarSection = ({
   calendarStatusData,
   calendarChosenYear,
   calendarChosenCity,
+  calendarChosenCityIndex,
   citiesList
 }) => {
   useEffect(() => {
-    getCalendarStatusData(calendarChosenYear, 19);
-    getCalendarValuesData(calendarChosenYear, 19);
-  }, [calendarChosenYear]);
+    getCalendarStatusData(calendarChosenYear, calendarChosenCityIndex);
+    getCalendarValuesData(calendarChosenYear, calendarChosenCityIndex);
+  }, [calendarChosenYear, calendarChosenCityIndex]);
 
   const daysGroupedByStatus = calendarStatusData[calendarChosenYear];
 
@@ -68,6 +70,9 @@ const CalendarSection = ({
     <div className="calendar-section">
       <div className="calendar-section__location-and-data">
         <div className="calendar-section__location-and-data-dropdown">
+          <div className="calendar-section__location-and-data-dropdown__label">
+            Wybierz miejscowość
+          </div>
           <DropdownMenu
             optionsList={citiesList}
             chosenCityToBeDisplayed={calendarChosenCity}
@@ -88,13 +93,16 @@ CalendarSection.propTypes = {
   setCalendarChosenCity: PropTypes.func,
   calendarStatusData: PropTypes.object,
   calendarChosenYear: PropTypes.number,
+  calendarChosenCity: PropTypes.string,
+  calendarChosenCityIndex: PropTypes.number,
   citiesList: PropTypes.array
 };
 
 const mapStateToProps = createStructuredSelector({
+  calendarChosenCity: selectCalendarChosenCity,
+  calendarChosenCityIndex: selectCalendarChosenCityIndex,
   calendarChosenYear: selectCalendarChosenYear,
   calendarStatusData: selectCalendarStatusData,
-  calendarChosenCity: selectCalendarChosenCity,
   citiesList: selectCitiesPollutionDataList
 });
 

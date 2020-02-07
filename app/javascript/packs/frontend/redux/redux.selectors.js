@@ -89,3 +89,14 @@ export const selectCalendarValuesData = createSelector(
   [selectCalendar],
   calendar => calendar.calendarValuesData
 );
+
+export const selectCalendarChosenCityIndex = createSelector(
+  [selectCitiesPollutionData, selectCalendarChosenCity],
+  (citiesPollutionData, location_display_name) => {
+    if (citiesPollutionData.length && location_display_name) {
+      return citiesPollutionData.find(
+        item => item.location_display_name === location_display_name
+      ).location_id;
+    }
+  }
+);

@@ -9,6 +9,13 @@
     &-dropdown {
       width: 40%;
       position: relative;
+      &__label {
+        font-size: 1.6rem;
+        line-height: 1.9rem;
+        font-weight: 700;
+        color: #747485;
+        margin-bottom: 0.8rem;
+      }
     }
   }
   &__legend {

@@ -41,6 +41,7 @@ export const DropdownMenu = ({
               key={`${city}-dropdown`}
               onClick={() => {
                 changeChosenCity(city);
+                toggleMenu();
               }}
             >
               {city}
