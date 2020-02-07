@@ -8,10 +8,11 @@ class API::Internal::ArticlePresenter
       id: @article.id,
       title: @article.title,
       body: @article.body.to_s,
-      published: @article.published,
+      # published: @article.published,
       published_at: @article.published_at,
       updated_at: @article.updated_at,
       # created_at: @article.created_at
+      # TODO: add author
     }
   end
 end

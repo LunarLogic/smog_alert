@@ -15,6 +15,7 @@ class API::Internal::ArticleOverviewPresenter
       # overview: @article.overview,
       published_at: @article.published_at,
       updated_at: @article.updated_at
+      # TODO: add author
     }
   end
 end
