@@ -7,10 +7,8 @@
     </div>
   <% end %>
   <br>
-  <%= f.input :all_tags, placeholder: "Tagi oddzielone przecinkami" %>
-
-  <div id='new-tag'>
-    <%= link_to 'Dodaj tag', '#', remote: true, class: 'btn btn-primary' %>
-  </div>
+  <%= f.fields_for :tags do |ff| %>
+    <%= ff.input :name, label: false, placeholder: 'Dodaj tag' %>
+  <% end %>
   <%= f.button :submit, class: 'btn btn-primary' %>
 <% end %>

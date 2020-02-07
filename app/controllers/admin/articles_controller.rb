@@ -9,10 +9,14 @@ class Admin::ArticlesController < Admin::BaseController
 
   def new
     @article = Article.new
+    @article.tags.new
+    @article.tags.new
+    @article.tags.new
   end
 
   def create
     @article = Article.new(article_params)
+
     if @article.save
       flash[:success] = 'Pomyślnie dodano wpis'
       redirect_to admin_articles_path
@@ -75,6 +79,6 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def article_params
-    params.require(:article).permit(:title, :body, :all_tags)
+    params.require(:article).permit(:title, :body, tags_attributes: [:name])
   end
 end

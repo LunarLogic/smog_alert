@@ -3,6 +3,9 @@
 <div>
   <h6>Tagi:</h6>
   <p class="tag"><%= @article.all_tags %></p>
+  <% @article.tags.each do |tag| %>
+    <p><%= tag.name %></p>
+  <% end %>
 </div>
 <p><br>Data wpisu:</br><%= @article.created_at%></p>
 
