@@ -3,4 +3,5 @@ class Article < ApplicationRecord
   paginates_per 5
   validates :title, presence: true
   validates :body, presence: true
+  validates :overview, presence: true
 end
