@@ -11,7 +11,7 @@ class API::Internal::ArticlePresenter
       published: @article.published,
       published_at: @article.published_at,
       updated_at: @article.updated_at,
-      created_at: @article.created_at
+      # created_at: @article.created_at
     }
   end
 end
