@@ -5,7 +5,7 @@ class Article < ApplicationRecord
 
   paginates_per 5
 
-  accepts_nested_attributes_for :tags
+  accepts_nested_attributes_for :tags, allow_destroy: true, reject_if: lambda { |attributes| attributes[:name].blank? }
 
   validates :title, presence: true
   validates :body, presence: true

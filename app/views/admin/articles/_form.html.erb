@@ -8,7 +8,7 @@
   <% end %>
   <br>
   <%= f.fields_for :tags do |ff| %>
-    <%= ff.input :name, label: false, placeholder: 'Dodaj tag' %>
+    <%= render 'tag_fields', f: ff %>
   <% end %>
   <%= f.button :submit, button_label, class: 'btn btn-primary' %>
 <% end %>
