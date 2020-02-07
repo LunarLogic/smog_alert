@@ -10,5 +10,5 @@
   <%= f.fields_for :tags do |ff| %>
     <%= ff.input :name, label: false, placeholder: 'Dodaj tag' %>
   <% end %>
-  <%= f.button :submit, class: 'btn btn-primary' %>
+  <%= f.button :submit, button_label, class: 'btn btn-primary' %>
 <% end %>

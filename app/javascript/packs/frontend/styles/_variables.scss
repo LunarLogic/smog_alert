@@ -29,11 +29,13 @@ $badSecond: #7d0d0f;
 
 $warningColor: #b71c1c;
 $noDataColor: #a3a3a4;
+$neutralColor: #e3e4fb;
 
 :export {
   grey: $grey;
   warning: $warningColor;
   noDataColor: $noDataColor;
+  neutralColor: $neutralColor;
   goodFirst: $goodFirst;
   goodSecond: $goodSecond;
   unhealthyFirst: $unhealthyFirst;

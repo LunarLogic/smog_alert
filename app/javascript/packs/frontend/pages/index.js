@@ -1,4 +1,4 @@
 import Homepage from "./Homepage/Homepage";
-import Calendar from "./Calendar/Calendar";
+import Statistics from "./Statistics/Statistics";
 
-export { Homepage, Calendar };
+export { Homepage, Statistics };

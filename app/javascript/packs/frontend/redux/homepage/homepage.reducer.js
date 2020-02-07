@@ -1,7 +1,8 @@
 import homepageActionTypes from "./homepage.types";
 
 const INITIAL_STATE = {
-  citiesPollutionData: []
+  citiesPollutionData: [],
+  popUpOpen: false
 };
 
 const homepageReducer = (state = INITIAL_STATE, action) => {
@@ -10,6 +11,11 @@ const homepageReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         citiesPollutionData: action.payload
+      };
+    case homepageActionTypes.SET_POPUP_STATUS:
+      return {
+        ...state,
+        popUpOpen: action.payload
       };
     default:
       return state;

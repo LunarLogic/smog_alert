@@ -62,6 +62,10 @@
       justify-content: space-around;
       flex-grow: 1;
       color: $textColor;
+
+      a:visited {
+        color: $textColor;
+      }
       &:hover,
       .isActive {
         color: $secondaryColor;
