@@ -33,12 +33,16 @@ module Calendar
             value: day_measurements_with_data.average(:pm25),
           },
         ],
-        status: if day_measurements_with_data.size < 18
-                  'zbyt mało danych'
-                else
-                  Pm10GiosScaleChecker.new(pm10_average).call
-                end
+        status: determine_status(day_measurements_with_data.size, pm10_average)
       }
+    end
+
+    def determine_status(number_of_measurements, pm10_average)
+      if number_of_measurements < 18
+        'zbyt mało danych'
+      else
+        Pm10GiosScaleChecker.new(pm10_average).call
+      end
     end
   end
 end
