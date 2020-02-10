@@ -10,15 +10,18 @@ import { selectArticles } from "../../redux/redux.selectors";
 import { getDate } from "../../helpers/getDate";
 
 import "./Article.scss";
+import { setCurrentPath } from "../../redux/application/application.actions";
 
-const Article = ({ match, getArticles, articles }) => {
+const Article = ({ match, getArticles, articles, setCurrentPath }) => {
   const articleId = match.params.articleId;
   let chosenArticle;
   let body;
   useEffect(() => {
+    setCurrentPath(match.path);
     getArticles();
   }, []);
 
+  //Temporary solution, waiting for changes in the API
   if (articles.length) {
     chosenArticle = articles.find(item => item.id === Number(articleId));
     body = chosenArticle.body;
@@ -48,7 +51,8 @@ const Article = ({ match, getArticles, articles }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  getArticles: () => dispatch(getArticles())
+  getArticles: () => dispatch(getArticles()),
+  setCurrentPath: path => dispatch(setCurrentPath(path))
 });
 
 const mapStateToProps = createStructuredSelector({
@@ -58,7 +62,8 @@ const mapStateToProps = createStructuredSelector({
 Article.propTypes = {
   match: PropTypes.object,
   getArticles: PropTypes.func,
-  articles: PropTypes.array
+  articles: PropTypes.array,
+  setCurrentPath: PropTypes.func
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Article);

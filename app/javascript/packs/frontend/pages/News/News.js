@@ -8,9 +8,11 @@ import { PropTypes } from "prop-types";
 import { ArticleOverview } from "../../components";
 
 import "./News.scss";
+import { setCurrentPath } from "../../redux/application/application.actions";
 
-const News = ({ getArticles, articles }) => {
+const News = ({ match, getArticles, articles, setCurrentPath }) => {
   useEffect(() => {
+    setCurrentPath(match.path);
     getArticles();
   }, []);
   let sortedArticles;
@@ -42,11 +44,18 @@ const News = ({ getArticles, articles }) => {
 
 News.propTypes = {
   getArticles: PropTypes.func,
-  articles: PropTypes.array
+  articles: PropTypes.array,
+  setCurrentPath: PropTypes.func,
+  match: PropTypes.object
 };
+
+const mapDispatchToProps = dispatch => ({
+  getArticles: () => dispatch(getArticles()),
+  setCurrentPath: path => dispatch(setCurrentPath(path))
+});
 
 const mapStateToProps = createStructuredSelector({
   articles: selectArticles
 });
 
-export default connect(mapStateToProps, { getArticles })(News);
+export default connect(mapStateToProps, mapDispatchToProps)(News);

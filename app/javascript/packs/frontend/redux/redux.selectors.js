@@ -91,3 +91,10 @@ export const selectArticles = createSelector(
   [selectNews],
   news => news.articles
 );
+
+const selectApplication = state => state.application;
+
+export const selectPath = createSelector(
+  [selectApplication],
+  application => application.path
+);
