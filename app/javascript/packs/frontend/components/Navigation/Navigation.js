@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import { Link as ScrollLink } from "react-scroll";
 
 import { CustomButton } from "../";
 import navigationContent from "./navigationContent";
@@ -37,6 +38,15 @@ const Navigation = () => {
               {link.displayName}
             </NavLink>
           ))}
+          <ScrollLink
+            className="navigation__links-item"
+            to="map-section"
+            smooth={true}
+            duration={500}
+            offset={-50}
+          >
+            Mapa
+          </ScrollLink>
           <CustomButton text={button} />
         </div>
       </div>

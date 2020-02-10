@@ -88,28 +88,58 @@ describe("PollutionComparison", () => {
     );
   });
 
-  it("sorts PollutionBars according to the pollution level", () => {
+  const citiesPollutionDataPartiallyEmpty = [
+    {
+      location_id: 12,
+      location_name: "Nielepice",
+      location_street: "Józefa Trzaskowskiego",
+      location_display_name: "Nielepice, Józefa Trzaskowskiego",
+      lat: 50.096483,
+      lng: 19.718281,
+      last_hour_measurement: null
+    },
+    ...citiesPollutionDataMock.data
+  ];
+
+  const wrapperPartiallyEmpty = mount(
+    <PollutionComparison
+      citiesPollutionData={citiesPollutionDataPartiallyEmpty}
+      getChosenCity={jest.fn(city => {
+        chosenCity = city;
+      })}
+      getHoveredCity={jest.fn(city => {
+        hoveredCity = city;
+      })}
+    />
+  );
+  it("sorts PollutionBars according to the pollution level, leaving ones with no measurement at the end", () => {
     expect(
-      wrapper
+      wrapperPartiallyEmpty
         .find("PollutionBar")
         .at(0)
         .prop("value")
     ).toBeGreaterThan(
-      wrapper
+      wrapperPartiallyEmpty
         .find("PollutionBar")
         .at(1)
         .prop("value")
     );
     expect(
-      wrapper
+      wrapperPartiallyEmpty
         .find("PollutionBar")
         .at(1)
         .prop("value")
     ).toBeGreaterThan(
-      wrapper
+      wrapperPartiallyEmpty
         .find("PollutionBar")
         .at(2)
         .prop("value")
     );
+    expect(
+      wrapperPartiallyEmpty
+        .find("PollutionBar")
+        .at(3)
+        .prop("location")
+    ).toEqual("Nielepice, Józefa Trzaskowskiego");
   });
 });

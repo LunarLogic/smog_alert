@@ -20,6 +20,10 @@
       font-weight: bold;
       color: $textColor;
       margin-right: 2.2rem;
+
+      @media only screen and (min-width: $bp-1200) {
+        max-width: 28rem;
+      }
     }
     &-type,
     &-value {

@@ -35,17 +35,28 @@ export const PollutionComparison = ({
   };
 
   if (citiesPollutionData.length) {
-    sortedPollutionData = citiesPollutionData.sort(
-      (a, b) =>
-        findMeasurement(b, "PM 10").value - findMeasurement(a, "PM 10").value
+    const pollutionDataNoMeasurement = citiesPollutionData.filter(
+      city => city.last_hour_measurement === null
     );
+    sortedPollutionData = citiesPollutionData.filter(
+      city => city.last_hour_measurement !== null
+    );
+    if (sortedPollutionData.length) {
+      sortedPollutionData = sortedPollutionData.sort(
+        (a, b) =>
+          findMeasurement(b, "PM 10").value - findMeasurement(a, "PM 10").value
+      );
+    }
     highestPollutionValue = findMeasurement(sortedPollutionData[0], "PM 10")
       .value;
+    sortedPollutionData = sortedPollutionData.concat(
+      pollutionDataNoMeasurement
+    );
   }
 
   return (
     <div className="pollution-comparison">
-      {citiesPollutionData.length
+      {citiesPollutionData.length || sortedPollutionData
         ? sortedPollutionData.map(cityData => {
             const {
               location_name,

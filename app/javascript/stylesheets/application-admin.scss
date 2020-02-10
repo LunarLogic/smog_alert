@@ -4,3 +4,35 @@
 body {
   margin-bottom: 50px;
 }
+
+.flash-section {
+  margin-top: 10px;;
+}
+
+.header {
+   h1 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+  }
+  .header-button {
+    display: flex;
+    justify-content: flex-end;
+
+    #new-location {
+      margin-left: 5px;
+    }
+  }
+  a {
+    margin-bottom: 15px;
+  }
+}
+
+.address-search-form {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.installations-list {
+  padding-top: 30px;
+}

@@ -9,16 +9,5 @@ module AirlyAPI
       url = "#{AIRLY_API_URL}measurements/installation?installationId=#{id}"
       get_json(url)
     end
-
-    private
-
-    def get_json(url)
-      response = begin
-                   RestClient.get(url, headers)
-                 rescue RestClient::ExceptionWithResponse => e
-                   e.response
-                 end
-      JSON.parse(response.body)
-    end
   end
 end
