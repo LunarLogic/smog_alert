@@ -4,6 +4,7 @@ import { yesterdayDateFormatted } from "../../helpers";
 const INITIAL_STATE = {
   calendarStatusData: {},
   calendarValuesData: {},
+  calendarDailyValuesData: {},
   calendarChosenYear: new Date().getFullYear(),
   calendarChosenDay: yesterdayDateFormatted(),
   calendarChosenCity: "Zabierzów, Wapienna"
@@ -20,6 +21,11 @@ const calendarReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         calendarValuesData: action.payload
+      };
+    case calendarActionTypes.GET_CALENDAR_DAILY_VALUES_DATA:
+      return {
+        ...state,
+        calendarDailyValuesData: action.payload
       };
     case calendarActionTypes.SET_CALENDAR_CHOSEN_YEAR:
       return {
