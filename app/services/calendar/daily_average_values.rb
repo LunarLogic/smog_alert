@@ -19,11 +19,25 @@ module Calendar
     def average_values_for_day(measurements, day)
       day_measurements = measurements.where(date: day)
       day_measurements_with_data = day_measurements.where.not(pm10: 0)
+      pm10_average = day_measurements_with_data.average(:pm10)
       {
-        day: day,
-        pm10: day_measurements_with_data.average(:pm10),
-        pm25: day_measurements_with_data.average(:pm25),
-        number_of_measurements: day_measurements_with_data.size
+        date: day,
+        number_of_measurements: day_measurements_with_data.size,
+        average_values: [
+          {
+            name: 'pm10',
+            value: pm10_average,
+          },
+          {
+            name: 'pm25',
+            value: day_measurements_with_data.average(:pm25),
+          },
+        ],
+        status: if day_measurements_with_data.size < 18
+                  'zbyt mało danych'
+                else
+                  Pm10GiosScaleChecker.new(pm10_average).call
+                end
       }
     end
   end
