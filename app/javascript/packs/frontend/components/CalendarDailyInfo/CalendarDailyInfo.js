@@ -1,34 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+
+import { getCalendarDailyValuesData } from "../../redux/calendar/calendar.actions";
 import {
-  selectCalendarValuesData,
-  selectCalendarChosenDay
-} from "../../redux/redux.selectors";
+  selectCalendarDailyValuesData,
+  selectCalendarChosenDay,
+  selectCalendarChosenCityIndex
+} from "../../redux/calendar/calendar.selectors";
 
 import {
-  CalendarDailyInfoNoData,
   CalendarDailyInfoMeasurementName,
   CalendarDailyInfoMeasurementValue,
   CalendarDailyInfoMeasurement,
   CalendarDailyInfoDisclaimer
 } from "./CalendarDailyInfo.styles.jsx";
+
 import "./CalendarDailyInfo.scss";
 
-export const CalendarDailyInfo = ({ calendarChosenDay, calendarValues }) => {
-  const calendarYearlyValues = calendarValues["daily_average_measurements"];
-  let calendarDailyValues;
+export const CalendarDailyInfo = ({
+  getCalendarDailyValuesData,
+  calendarChosenDay,
+  calendarChosenCityIndex,
+  calendarDailyValuesData
+}) => {
+  useEffect(() => {
+    getCalendarDailyValuesData(calendarChosenDay, calendarChosenCityIndex);
+  }, [calendarChosenDay, calendarChosenCityIndex]);
 
-  if (calendarYearlyValues) {
-    calendarDailyValues = calendarYearlyValues.find(
-      item => item.day === calendarChosenDay
-    );
-  }
+  const calendarDailyValues = calendarDailyValuesData;
 
-  if (calendarDailyValues) {
-    var { day, pm10, pm25, number_of_measurements } = calendarDailyValues;
-  }
+  const { date, average_values, number_of_measurements } = calendarDailyValues;
 
   return (
     <div className="calendar-daily-info">
@@ -37,42 +40,31 @@ export const CalendarDailyInfo = ({ calendarChosenDay, calendarValues }) => {
           <CalendarDailyInfoMeasurementName>
             Dzień:
           </CalendarDailyInfoMeasurementName>
-          {day ? (
-            <CalendarDailyInfoMeasurementValue>
-              {day}
-            </CalendarDailyInfoMeasurementValue>
-          ) : (
-            <CalendarDailyInfoNoData>
-              [ Kliknij na wybrany dzień ]
-            </CalendarDailyInfoNoData>
-          )}
+          <CalendarDailyInfoMeasurementValue>
+            {date}
+          </CalendarDailyInfoMeasurementValue>
         </CalendarDailyInfoMeasurement>
       </div>
       <div className="calendar-daily-info__box">
         <CalendarDailyInfoMeasurement>
           <CalendarDailyInfoMeasurementName>
-            pm 10:
-          </CalendarDailyInfoMeasurementName>
-          <CalendarDailyInfoMeasurementValue>
-            {pm10 ? Math.round(pm10) : "--"}μg
-          </CalendarDailyInfoMeasurementValue>
-        </CalendarDailyInfoMeasurement>
-        <CalendarDailyInfoMeasurement>
-          <CalendarDailyInfoMeasurementName>
-            pm 2.5:
-          </CalendarDailyInfoMeasurementName>
-          <CalendarDailyInfoMeasurementValue>
-            {pm25 ? Math.round(pm25) : "--"}μg
-          </CalendarDailyInfoMeasurementValue>
-        </CalendarDailyInfoMeasurement>
-        <CalendarDailyInfoMeasurement>
-          <CalendarDailyInfoMeasurementName>
             liczba pomiarów:
           </CalendarDailyInfoMeasurementName>
           <CalendarDailyInfoMeasurementValue>
-            {number_of_measurements ? number_of_measurements : "--"}
+            {number_of_measurements}
           </CalendarDailyInfoMeasurementValue>
         </CalendarDailyInfoMeasurement>
+        {average_values &&
+          average_values.map(measurement => (
+            <CalendarDailyInfoMeasurement key={measurement.name}>
+              <CalendarDailyInfoMeasurementName>
+                {measurement.name}:
+              </CalendarDailyInfoMeasurementName>
+              <CalendarDailyInfoMeasurementValue>
+                {measurement.value ? Math.round(measurement.value) : "--"}μg
+              </CalendarDailyInfoMeasurementValue>
+            </CalendarDailyInfoMeasurement>
+          ))}
       </div>
       <div>
         <CalendarDailyInfoDisclaimer>
@@ -88,12 +80,17 @@ export const CalendarDailyInfo = ({ calendarChosenDay, calendarValues }) => {
 
 const mapStateToProps = createStructuredSelector({
   calendarChosenDay: selectCalendarChosenDay,
-  calendarValues: selectCalendarValuesData
+  calendarChosenCityIndex: selectCalendarChosenCityIndex,
+  calendarDailyValuesData: selectCalendarDailyValuesData
 });
 
 CalendarDailyInfo.propTypes = {
+  getCalendarDailyValuesData: PropTypes.func,
   calendarChosenDay: PropTypes.string,
-  calendarValues: PropTypes.object
+  calendarDailyValuesData: PropTypes.object,
+  calendarChosenCityIndex: PropTypes.number
 };
 
-export default connect(mapStateToProps)(CalendarDailyInfo);
+export default connect(mapStateToProps, { getCalendarDailyValuesData })(
+  CalendarDailyInfo
+);

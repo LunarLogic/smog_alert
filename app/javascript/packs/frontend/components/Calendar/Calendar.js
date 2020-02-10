@@ -10,7 +10,7 @@ import {
 import {
   selectCalendarStatusData,
   selectCalendarChosenYear
-} from "../../redux/redux.selectors";
+} from "../../redux/calendar/calendar.selectors";
 import {
   setCalendarChosenYear,
   setCalendarChosenDay

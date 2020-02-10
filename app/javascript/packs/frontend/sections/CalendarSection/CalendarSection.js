@@ -5,16 +5,16 @@ import { PropTypes } from "prop-types";
 
 import {
   getCalendarStatusData,
-  getCalendarValuesData,
   setCalendarChosenCity
 } from "../../redux/calendar/calendar.actions";
+import { selectCitiesPollutionDataList } from "../../redux/redux.selectors";
+
 import {
   selectCalendarChosenYear,
   selectCalendarStatusData,
-  selectCitiesPollutionDataList,
   selectCalendarChosenCity,
   selectCalendarChosenCityIndex
-} from "../../redux/redux.selectors";
+} from "../../redux/calendar/calendar.selectors";
 
 import {
   Calendar,
@@ -29,7 +29,6 @@ import "./CalendarSection.scss";
 
 const CalendarSection = ({
   getCalendarStatusData,
-  getCalendarValuesData,
   setCalendarChosenCity,
   calendarStatusData,
   calendarChosenYear,
@@ -39,7 +38,6 @@ const CalendarSection = ({
 }) => {
   useEffect(() => {
     getCalendarStatusData(calendarChosenYear, calendarChosenCityIndex);
-    getCalendarValuesData(calendarChosenYear, calendarChosenCityIndex);
   }, [calendarChosenYear, calendarChosenCityIndex]);
 
   const daysGroupedByStatus = calendarStatusData[calendarChosenYear];
@@ -89,7 +87,6 @@ const CalendarSection = ({
 
 CalendarSection.propTypes = {
   getCalendarStatusData: PropTypes.func,
-  getCalendarValuesData: PropTypes.func,
   setCalendarChosenCity: PropTypes.func,
   calendarStatusData: PropTypes.object,
   calendarChosenYear: PropTypes.number,
@@ -108,6 +105,5 @@ const mapStateToProps = createStructuredSelector({
 
 export default connect(mapStateToProps, {
   getCalendarStatusData,
-  getCalendarValuesData,
   setCalendarChosenCity
 })(CalendarSection);
