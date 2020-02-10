@@ -7,7 +7,7 @@ class API::Internal::ArticlesController < API::Internal::BaseController
     render json: { data: data }
   end
 
-  def show_article
+  def show
     article = published_articles.find(params[:id])
     data = API::Internal::ArticlePresenter.new(article)
 

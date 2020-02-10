@@ -44,7 +44,7 @@ Rails.application.routes.draw do
       resources :articles, only: [] do
         collection do
           get :index
-          get :show_article
+          get :show
         end
       end
 

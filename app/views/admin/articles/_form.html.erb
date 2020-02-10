@@ -1,6 +1,6 @@
 <%= simple_form_for [:admin, article] do |f| %>
   <%= f.input :title %>
-  <%= f.input :overview %>
+  <%= f.input :overview, as: :text %>
   <%= f.rich_text_area :body %>
   <% unless article.errors[:body].empty? %>
     <div class="invalid-feedback" style="display: block">
