@@ -20,15 +20,19 @@ const addZeros = integer => {
 };
 
 export const getDate = date => {
-  const parsedDate = new Date(Date.parse(date));
+  if (date) {
+    const parsedDate = new Date(Date.parse(date));
 
-  const day = parsedDate.getDate();
-  const month = parsedDate.getMonth();
-  const year = parsedDate.getFullYear();
+    const day = parsedDate.getDate();
+    const month = parsedDate.getMonth();
+    const year = parsedDate.getFullYear();
 
-  const hour = addZeros(parsedDate.getHours());
-  const minutes = addZeros(parsedDate.getMinutes());
+    const hour = addZeros(parsedDate.getHours());
+    const minutes = addZeros(parsedDate.getMinutes());
 
-  const fullDate = `${day} ${months[month]} ${year}r., ${hour}:${minutes}`;
-  return fullDate;
+    const fullDate = `${day} ${months[month]} ${year}r., ${hour}:${minutes}`;
+    return fullDate;
+  } else {
+    return "--";
+  }
 };
