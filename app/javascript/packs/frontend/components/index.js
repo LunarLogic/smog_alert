@@ -1,4 +1,5 @@
 import Calendar from "./Calendar/Calendar";
+import CalendarDailyInfo from "./CalendarDailyInfo/CalendarDailyInfo";
 import CalendarLegendBox from "./CalendarLegendBox/CalendarLegendBox";
 import ContactDetail from "./ContactDetail/ContactDetail";
 import CustomButton from "./CustomButton/CustomButton";
@@ -24,6 +25,7 @@ import Loader from "./Loader/Loader";
 
 export {
   Calendar,
+  CalendarDailyInfo,
   CalendarLegendBox,
   ContactDetail,
   CustomButton,

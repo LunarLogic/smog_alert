@@ -1,6 +1,30 @@
 @import "../../styles/variables";
 
 .calendar-section {
+  &__location-and-data {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+    @media only screen and (max-width: $bp-1200) {
+      flex-direction: column;
+    }
+    &-dropdown {
+      width: 40%;
+      position: relative;
+      @media only screen and (max-width: $bp-1200) {
+        min-height: 12rem;
+        width: 35.1rem;
+      }
+      &__label {
+        font-size: 1.6rem;
+        line-height: 1.9rem;
+        font-weight: 700;
+        color: #747485;
+        margin-bottom: 0.8rem;
+      }
+    }
+  }
   &__legend {
     width: 100%;
     margin-top: 2rem;

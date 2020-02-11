@@ -18,7 +18,7 @@ const CalendarLegendBox = ({ backgroundColor, status, numberOfDays }) => {
 CalendarLegendBox.propTypes = {
   backgroundColor: PropTypes.string,
   status: PropTypes.string,
-  numberOfDays: PropTypes.number
+  numberOfDays: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 
 export default CalendarLegendBox;

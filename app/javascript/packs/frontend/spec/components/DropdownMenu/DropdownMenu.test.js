@@ -1,17 +1,23 @@
 import React from "react";
 import { DropdownMenu } from "../../../components/DropdownMenu/DropdownMenu";
 import { mount } from "enzyme";
-import citiesPollutionDataMock from "../../__mocks__/citiesPollutionDataMock.json";
 
 describe("Dropdown menu", () => {
   let wrapper;
   let chosenCity;
+  let cityListMockData = [
+    "Aleksandrowice",
+    "Brzoskwinia",
+    "Nielepice",
+    "Zabierzów",
+    "Zelków"
+  ];
   beforeEach(() => {
     wrapper = mount(
       <DropdownMenu
-        citiesPollutionData={citiesPollutionDataMock.data}
-        chosenCity={chosenCity ? chosenCity : "Nielepice"}
-        getChosenCity={jest.fn(city => {
+        optionsList={cityListMockData}
+        chosenCityToBeDisplayed={chosenCity ? chosenCity : "Nielepice"}
+        handleChosenCity={jest.fn(city => {
           chosenCity = city;
         })}
       />
@@ -26,7 +32,7 @@ describe("Dropdown menu", () => {
 
   it("displays correct amount of cities in dropdown", () => {
     wrapper.find(".dropdown__control").simulate("click");
-    expect(wrapper.find(".dropdown__control--menu-option").length).toEqual(2);
+    expect(wrapper.find(".dropdown__control--menu-option").length).toEqual(5);
   });
 
   it("opens and closes dropdown menu", () => {
@@ -65,7 +71,7 @@ describe("Dropdown menu", () => {
     expect(wrapper.find(".dropdown__control--menu-option").length).toEqual(0);
 
     expect(chosenCity).toEqual("Aleksandrowice");
-    wrapper.setProps({ chosenCity: chosenCity });
+    wrapper.setProps({ chosenCityToBeDisplayed: chosenCity });
     expect(wrapper.find(".dropdown__control--placeholder").text()).toEqual(
       "Aleksandrowice"
     );
