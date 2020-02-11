@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 
 import { CalendarSection } from "../../../sections/CalendarSection/CalendarSection";
-import calendarStatusDataMock from "../../__mocks__/calendarStatusDataMock";
+import mockCalendarStatusData from "../../__mocks__/calendarStatusDataMock.json";
 
 describe("<CalendarSection/>", () => {
   let mockCalendarChosenYear = 2019;
@@ -15,7 +15,7 @@ describe("<CalendarSection/>", () => {
       setCalendarChosenCity={jest.fn(
         chosenCity => (mockCalendarChosenCity = chosenCity)
       )}
-      calendarStatusData={calendarStatusDataMock}
+      calendarStatusData={mockCalendarStatusData}
       calendarChosenYear={mockCalendarChosenYear}
       calendarChosenCity={mockCalendarChosenCity}
       calendarChosenCityIndex={19}

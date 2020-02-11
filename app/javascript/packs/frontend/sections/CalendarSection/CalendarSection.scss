@@ -12,6 +12,10 @@
     &-dropdown {
       width: 40%;
       position: relative;
+      @media only screen and (max-width: $bp-1200) {
+        min-height: 12rem;
+        width: 35.1rem;
+      }
       &__label {
         font-size: 1.6rem;
         line-height: 1.9rem;

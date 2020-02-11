@@ -16,6 +16,7 @@ import {
   CalendarDailyInfoMeasurement,
   CalendarDailyInfoDisclaimer
 } from "./CalendarDailyInfo.styles.jsx";
+import { setEmot } from "../../helpers";
 
 import "./CalendarDailyInfo.scss";
 
@@ -44,25 +45,30 @@ export const CalendarDailyInfo = ({
         </CalendarDailyInfoMeasurement>
       </div>
       <div className="calendar-daily-info__box">
-        <CalendarDailyInfoMeasurement>
-          <CalendarDailyInfoMeasurementName>
-            liczba pomiarów:
-          </CalendarDailyInfoMeasurementName>
-          <CalendarDailyInfoMeasurementValue>
-            {number_of_measurements}
-          </CalendarDailyInfoMeasurementValue>
-        </CalendarDailyInfoMeasurement>
-        {average_values &&
-          average_values.map(measurement => (
-            <CalendarDailyInfoMeasurement key={measurement.name}>
-              <CalendarDailyInfoMeasurementName>
-                {measurement.name}:
-              </CalendarDailyInfoMeasurementName>
-              <CalendarDailyInfoMeasurementValue>
-                {measurement.value ? Math.round(measurement.value) : "--"}μg
-              </CalendarDailyInfoMeasurementValue>
-            </CalendarDailyInfoMeasurement>
-          ))}
+        <div className="calendar-daily-info__box-measurements">
+          <CalendarDailyInfoMeasurement>
+            <CalendarDailyInfoMeasurementName>
+              liczba pomiarów:
+            </CalendarDailyInfoMeasurementName>
+            <CalendarDailyInfoMeasurementValue>
+              {number_of_measurements}
+            </CalendarDailyInfoMeasurementValue>
+          </CalendarDailyInfoMeasurement>
+          {average_values &&
+            average_values.map(measurement => (
+              <CalendarDailyInfoMeasurement key={measurement.name}>
+                <CalendarDailyInfoMeasurementName>
+                  {measurement.name}:
+                </CalendarDailyInfoMeasurementName>
+                <CalendarDailyInfoMeasurementValue>
+                  {measurement.value ? Math.round(measurement.value) : "--"}μg
+                </CalendarDailyInfoMeasurementValue>
+              </CalendarDailyInfoMeasurement>
+            ))}
+        </div>
+        <div className="calendar-daily-info__box-emot">
+          {setEmot(calendarDailyValues)}
+        </div>
       </div>
       <div>
         <CalendarDailyInfoDisclaimer>
