@@ -1,4 +1,8 @@
 @import "../../styles/variables";
 
 .statistics {
+  &__loader {
+    display: flex;
+    justify-content: center;
+  }
 }
