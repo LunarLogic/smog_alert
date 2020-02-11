@@ -4,10 +4,13 @@ import { getArticles } from "../../redux/news/news.actions";
 import { createStructuredSelector } from "reselect";
 import { selectArticles } from "../../redux/redux.selectors";
 import { PropTypes } from "prop-types";
+import { DisappearedLoading } from "react-loadingg";
 
 import { ArticleOverview } from "../../components";
 
 import "./News.scss";
+import { grey } from "../../styles/_variables.scss";
+
 import { setCurrentPath } from "../../redux/application/application.actions";
 
 const News = ({ match, getArticles, articles, setCurrentPath }) => {
@@ -21,6 +24,11 @@ const News = ({ match, getArticles, articles, setCurrentPath }) => {
       b.updated_at > a.updated_at ? 1 : -1
     );
   }
+
+  const loaderStyles = {
+    height: "75vh"
+  };
+
   return articles.length ? (
     <div className="news">
       <div className="news__heading">Aktualności</div>
@@ -38,7 +46,9 @@ const News = ({ match, getArticles, articles, setCurrentPath }) => {
       })}
     </div>
   ) : (
-    "loading"
+    <div className="news__loader">
+      <DisappearedLoading color={grey} style={loaderStyles} />
+    </div>
   );
 };
 
