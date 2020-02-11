@@ -13,7 +13,7 @@ class Article < ApplicationRecord
 
   def tags_attributes=(tags)
     names = tags.map { |_, tag| tag[:name].strip }.reject(&:blank?).uniq!
-    self.tags = names.map { |name| Tag.where(name: name).first_or_create! }
+    self.tags = names.map { |name| Tag.where(name: name).first_or_create! } if names.present?
   end
 
   def all_tags
