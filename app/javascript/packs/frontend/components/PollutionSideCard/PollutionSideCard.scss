@@ -44,4 +44,8 @@
       }
     }
   }
+  &__loader {
+    display: flex;
+    justify-content: center;
+  }
 }

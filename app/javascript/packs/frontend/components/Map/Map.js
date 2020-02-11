@@ -3,11 +3,17 @@ import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { Link as ScrollLink } from "react-scroll";
+import { DisappearedLoading } from "react-loadingg";
 
 import "./Map.scss";
 import { MapContainer, MapPath, MapText, MapDot } from "./Map.styles.jsx";
 import mapElements from "./MapElements";
-import { mapColor, noDataColor, bp600 } from "../../styles/_variables.scss";
+import {
+  mapColor,
+  noDataColor,
+  bp600,
+  grey
+} from "../../styles/_variables.scss";
 
 import { setAverageColor } from "../../helpers";
 import {
@@ -61,6 +67,9 @@ export const Map = ({
   const mapStyles = `@media(max-width: ${bp600}) {
     text {font-size: 2.8rem};
   }`;
+  const loaderStyles = {
+    height: "53rem"
+  };
 
   let shouldRender = citiesPollutionData.length !== 0;
   return shouldRender ? (
@@ -129,7 +138,11 @@ export const Map = ({
         </MapContainer>
       </ScrollLink>
     </div>
-  ) : null;
+  ) : (
+    <div className="map__loader">
+      <DisappearedLoading color={grey} style={loaderStyles} />
+    </div>
+  );
 };
 
 Map.propTypes = {

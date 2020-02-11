@@ -2,6 +2,7 @@ import React from "react";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+import { DisappearedLoading } from "react-loadingg";
 
 import { PollutionBar } from "../";
 import { setColor, findMeasurement } from "../../helpers";
@@ -12,6 +13,7 @@ import {
 } from "../../redux/mapSection/mapSection.actions";
 
 import "./PollutionComparison.scss";
+import { grey } from "../../styles/_variables.scss";
 
 export const PollutionComparison = ({
   citiesPollutionData,
@@ -54,34 +56,42 @@ export const PollutionComparison = ({
     );
   }
 
+  const loaderStyles = {
+    height: "62.7rem"
+  };
+
   return (
     <div className="pollution-comparison">
-      {citiesPollutionData.length || sortedPollutionData
-        ? sortedPollutionData.map(cityData => {
-            const {
-              location_name,
-              location_display_name,
-              last_hour_measurement
-            } = cityData;
-            const width =
-              (findMeasurement(cityData, "PM 10").value * 100) /
-              highestPollutionValue;
-            return (
-              <PollutionBar
-                key={`${location_display_name}-bar`}
-                width={width}
-                backgroundColor={setColor(last_hour_measurement)}
-                location={location_display_name}
-                value={findMeasurement(cityData, "PM 10").value}
-                onClick={() => {
-                  handleChosenCity(location_name);
-                }}
-                onMouseOver={() => handleHover(location_name)}
-                onMouseOut={removeHover}
-              />
-            );
-          })
-        : "loading"}
+      {citiesPollutionData.length && sortedPollutionData ? (
+        sortedPollutionData.map(cityData => {
+          const {
+            location_name,
+            location_display_name,
+            last_hour_measurement
+          } = cityData;
+          const width =
+            (findMeasurement(cityData, "PM 10").value * 100) /
+            highestPollutionValue;
+          return (
+            <PollutionBar
+              key={`${location_display_name}-bar`}
+              width={width}
+              backgroundColor={setColor(last_hour_measurement)}
+              location={location_display_name}
+              value={findMeasurement(cityData, "PM 10").value}
+              onClick={() => {
+                handleChosenCity(location_name);
+              }}
+              onMouseOver={() => handleHover(location_name)}
+              onMouseOut={removeHover}
+            />
+          );
+        })
+      ) : (
+        <div className="pollution-comparison__loader">
+          <DisappearedLoading color={grey} style={loaderStyles} />
+        </div>
+      )}
     </div>
   );
 };

@@ -5,7 +5,6 @@ import { PropTypes } from "prop-types";
 import { getCitiesPollutionData } from "../../redux/homepage/homepage.actions";
 
 import { CurrentPollutionSection, MapSection } from "../../sections";
-import { Searchbox } from "../../components";
 
 import "./Homepage.scss";
 
@@ -16,7 +15,6 @@ export const Homepage = ({ getCitiesPollutionData }) => {
 
   return (
     <div className="homepage">
-      <Searchbox />
       <CurrentPollutionSection />
       <hr className="homepage__horizontal-line" />
       <MapSection />
