@@ -8,6 +8,7 @@ import { findMeasurement } from "./findMeasurement";
 import { setAverageColor } from "./setAverageColor";
 import { setCloudColor } from "./setCloudColor";
 import { classNameForPollutionStatus } from "./classNameForPollutionStatus";
+import { getDate } from "./getDate";
 
 export {
   classNameForPollutionStatus,
@@ -19,5 +20,6 @@ export {
   setGradient,
   findMeasurement,
   setAverageColor,
-  setCloudColor
+  setCloudColor,
+  getDate
 };
