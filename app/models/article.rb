@@ -12,10 +12,8 @@ class Article < ApplicationRecord
   validates_associated :tags
 
   def tags_attributes=(tags)
-    self.tags = tags.map do |_, tag|
-      Tag.where(name: tag[:name]).first_or_create!
-    end
-    # super
+    names = tags.map { |_, tag| tag[:name].strip }.reject(&:blank?).uniq!
+    self.tags = names.map { |name| Tag.where(name: name).first_or_create! }
   end
 
   def all_tags
