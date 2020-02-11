@@ -3,16 +3,17 @@ import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
 
 import { getCitiesPollutionData } from "../../redux/homepage/homepage.actions";
+import { setCurrentPath } from "../../redux/application/application.actions";
 
 import { CurrentPollutionSection, MapSection } from "../../sections";
 
 import "./Homepage.scss";
 
-export const Homepage = ({ getCitiesPollutionData }) => {
+export const Homepage = ({ match, getCitiesPollutionData, setCurrentPath }) => {
   useEffect(() => {
+    setCurrentPath(match.path);
     getCitiesPollutionData();
   }, []);
-
   return (
     <div className="homepage">
       <CurrentPollutionSection />
@@ -22,9 +23,15 @@ export const Homepage = ({ getCitiesPollutionData }) => {
   );
 };
 
+const mapDispatchToProps = dispatch => ({
+  getCitiesPollutionData: () => dispatch(getCitiesPollutionData()),
+  setCurrentPath: path => dispatch(setCurrentPath(path))
+});
+
 Homepage.propTypes = {
   getCitiesPollutionData: PropTypes.func,
-  citiesPollutionData: PropTypes.array
+  match: PropTypes.object,
+  setCurrentPath: PropTypes.func
 };
 
-export default connect(null, { getCitiesPollutionData })(Homepage);
+export default connect(null, mapDispatchToProps)(Homepage);
