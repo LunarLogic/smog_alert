@@ -5,17 +5,18 @@ class Article < ApplicationRecord
 
   paginates_per 5
 
-  accepts_nested_attributes_for :tags, allow_destroy: true, reject_if: lambda { |attributes| attributes[:name].blank? }
+  accepts_nested_attributes_for :tags, allow_destroy: true, reject_if: proc { |attributes| attributes[:name].blank? }
 
   validates :title, presence: true
   validates :body, presence: true
   validates_associated :tags
 
-  # def all_tags=(names)
-  #   self.tags = names.split(',').map do |name|
-  #     Tag.where(name: name.strip).first_or_create!
-  #   end
-  # end
+  def tags_attributes=(tags)
+    self.tags = tags.map do |_, tag|
+      Tag.where(name: tag[:name]).first_or_create!
+    end
+    # super
+  end
 
   def all_tags
     tags.map(&:name).join(', ')
