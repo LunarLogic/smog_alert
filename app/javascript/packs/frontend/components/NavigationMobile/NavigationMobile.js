@@ -3,18 +3,22 @@ import { Link, NavLink } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+import { PropTypes } from "prop-types";
 
 import { CustomButton } from "../";
 import navigationContent from "../Navigation/navigationContent";
-import Logo from "../../assets/logo.jpg";
 
 import "./NavigationMobile.scss";
 import "./Hamburger.scss";
 
-import { selectPath } from "../../redux/redux.selectors";
+import {
+  selectPath,
+  selectOrganizationDetails
+} from "../../redux/application/application.selectors";
 
-const NavigationMobile = path => {
-  const { links, button, brand } = navigationContent;
+const NavigationMobile = ({ path, organizationDetails }) => {
+  const { links, button } = navigationContent;
+  const { name, logo } = organizationDetails;
 
   const [hamburgerActive, setHamburgerActive] = useState(false);
 
@@ -30,15 +34,18 @@ const NavigationMobile = path => {
               }}
             >
               <div className="hamburger-navigation__brand-logo">
-                <img
-                  className="hamburger-navigation__brand-logo-img"
-                  src={Logo}
-                  alt="logo"
-                />
+                {logo ? (
+                  <img
+                    className="hamburger-navigation__brand-logo-img"
+                    src={logo}
+                  />
+                ) : (
+                  <div className="hamburger-navigation__brand-logo-img"></div>
+                )}
               </div>
             </Link>
             <Link to="/">
-              <div className="hamburger-navigation__brand-name">{brand}</div>
+              <div className="hamburger-navigation__brand-name">{name}</div>
             </Link>
           </div>
           <div className="hamburger-navigation__links">
@@ -107,7 +114,13 @@ const NavigationMobile = path => {
 };
 
 const mapStateToProps = createStructuredSelector({
-  path: selectPath
+  path: selectPath,
+  organizationDetails: selectOrganizationDetails
 });
+
+NavigationMobile.propTypes = {
+  path: PropTypes.string,
+  organizationDetails: PropTypes.object
+};
 
 export default connect(mapStateToProps)(NavigationMobile);

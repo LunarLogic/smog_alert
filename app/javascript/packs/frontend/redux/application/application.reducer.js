@@ -1,7 +1,8 @@
 import applicationActionTypes from "./application.types";
 
 const INITIAL_STATE = {
-  path: ""
+  path: "",
+  organizationDetails: {}
 };
 
 const applicationReducer = (state = INITIAL_STATE, action) => {
@@ -10,6 +11,11 @@ const applicationReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         path: action.payload
+      };
+    case applicationActionTypes.GET_ORGANIZATION_DETAILS:
+      return {
+        ...state,
+        organizationDetails: action.payload
       };
     default:
       return state;
