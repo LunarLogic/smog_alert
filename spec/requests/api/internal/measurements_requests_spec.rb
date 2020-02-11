@@ -14,11 +14,11 @@ describe '/api/internal/measurements' do
             'number_of_measurements' => 10,
             'average_values' => [
               {
-                'name' => 'pm10',
+                'name' => 'PM 10',
                 'value' => measurement.pm10.to_s,
               },
               {
-                'name' => 'pm25',
+                'name' => 'PM 2.5',
                 'value' => measurement.pm25.to_s,
               },
             ],
@@ -68,11 +68,11 @@ describe '/api/internal/measurements' do
           'number_of_measurements' => 10,
           'average_values' => [
             {
-              'name' => 'pm10',
+              'name' => 'PM 10',
               'value' => measurement.pm10.to_s,
             },
             {
-              'name' => 'pm25',
+              'name' => 'PM 2.5',
               'value' => measurement.pm25.to_s,
             },
           ],
