@@ -17,16 +17,20 @@ describe API::Internal::ArticlesController do
 
     context 'when published articles in DB' do
       let!(:not_published_article) { create(:article, published: false, published_at: nil) }
-      let!(:published_article_without_image) { create(:article, published: true, published_at: Time.current, updated_at: Time.current - 2.days) }
-      let!(:published_article_with_image) { FactoryBot.create(:article, body: '#', published: true, published_at: Time.current) }
+      let!(:published_article_without_image) do
+        create(:article, published: true, published_at: Time.current,
+                         updated_at: Time.current - 2.days)
+      end
+      let!(:published_article_with_image) do
+        FactoryBot.create(:article, body: '#', published: true,
+                                    published_at: Time.current)
+      end
 
       context 'when article without image' do
         before do
           get api_internal_articles_path
         end
         it 'returns image: nil when article has no image' do
-          image = published_article_without_image.body.embeds.find(&:image?)
-
           expect(response.body).to be_json_eql({
             id: published_article_without_image.id,
             title: published_article_without_image.title,
