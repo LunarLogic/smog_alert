@@ -23,13 +23,11 @@ export const CalendarDailyInfo = ({
   getCalendarDailyValuesData,
   calendarChosenDay,
   calendarChosenCityIndex,
-  calendarDailyValuesData
+  calendarDailyValues
 }) => {
   useEffect(() => {
     getCalendarDailyValuesData(calendarChosenDay, calendarChosenCityIndex);
   }, [calendarChosenDay, calendarChosenCityIndex]);
-
-  const calendarDailyValues = calendarDailyValuesData;
 
   const { date, average_values, number_of_measurements } = calendarDailyValues;
 
@@ -81,13 +79,13 @@ export const CalendarDailyInfo = ({
 const mapStateToProps = createStructuredSelector({
   calendarChosenDay: selectCalendarChosenDay,
   calendarChosenCityIndex: selectCalendarChosenCityIndex,
-  calendarDailyValuesData: selectCalendarDailyValuesData
+  calendarDailyValues: selectCalendarDailyValuesData
 });
 
 CalendarDailyInfo.propTypes = {
   getCalendarDailyValuesData: PropTypes.func,
   calendarChosenDay: PropTypes.string,
-  calendarDailyValuesData: PropTypes.object,
+  calendarDailyValues: PropTypes.object,
   calendarChosenCityIndex: PropTypes.number
 };
 

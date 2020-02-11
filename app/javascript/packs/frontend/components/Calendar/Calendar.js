@@ -20,7 +20,7 @@ import { classNameForPollutionStatus } from "../../helpers";
 
 import "./Calendar.scss";
 
-const Calendar = ({
+export const Calendar = ({
   setCalendarChosenYear,
   setCalendarChosenDay,
   calendarStatusData,

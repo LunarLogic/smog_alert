@@ -27,7 +27,7 @@ import { calendarLegendContent } from "./calendarLegendContent";
 
 import "./CalendarSection.scss";
 
-const CalendarSection = ({
+export const CalendarSection = ({
   getCalendarStatusData,
   setCalendarChosenCity,
   calendarStatusData,

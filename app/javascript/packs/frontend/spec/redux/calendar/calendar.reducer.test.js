@@ -8,7 +8,8 @@ describe("calendar reducer", () => {
     calendarValuesData: {},
     calendarChosenYear: new Date().getFullYear(),
     calendarChosenDay: yesterdayDateFormatted(),
-    calendarChosenCity: "Zabierzów, Wapienna"
+    calendarChosenCity: "Zabierzów, Wapienna",
+    calendarDailyValuesData: {}
   };
   it("should return initial state", () => {
     expect(calendarReducer(undefined, {})).toEqual(initialState);
@@ -41,7 +42,8 @@ describe("calendar reducer", () => {
       calendarValuesData: {},
       calendarChosenYear: new Date().getFullYear(),
       calendarChosenDay: yesterdayDateFormatted(),
-      calendarChosenCity: "Zabierzów, Wapienna"
+      calendarChosenCity: "Zabierzów, Wapienna",
+      calendarDailyValuesData: {}
     });
   });
   it("should handle getCalendarValuesData action", () => {
@@ -76,7 +78,8 @@ describe("calendar reducer", () => {
       },
       calendarChosenYear: new Date().getFullYear(),
       calendarChosenDay: yesterdayDateFormatted(),
-      calendarChosenCity: "Zabierzów, Wapienna"
+      calendarChosenCity: "Zabierzów, Wapienna",
+      calendarDailyValuesData: {}
     });
   });
 });
