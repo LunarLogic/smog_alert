@@ -5,11 +5,14 @@ import { createStructuredSelector } from "reselect";
 import { PropTypes } from "prop-types";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
+import { Loader } from "../../components";
+
 import { getArticles } from "../../redux/news/news.actions";
 import { selectArticles } from "../../redux/redux.selectors";
-import { getDate } from "../../helpers/getDate";
+import { getDate } from "../../helpers";
 
 import "./Article.scss";
+
 import { setCurrentPath } from "../../redux/application/application.actions";
 
 const Article = ({ match, getArticles, articles, setCurrentPath }) => {
@@ -26,6 +29,10 @@ const Article = ({ match, getArticles, articles, setCurrentPath }) => {
     chosenArticle = articles.find(item => item.id === Number(articleId));
     body = chosenArticle.body;
   }
+
+  const loaderStyles = {
+    height: "75vh"
+  };
 
   return chosenArticle ? (
     <div className="article">
@@ -47,7 +54,9 @@ const Article = ({ match, getArticles, articles, setCurrentPath }) => {
         <div className="article__button--text">Powrót do listy aktualności</div>
       </a>
     </div>
-  ) : null;
+  ) : (
+    <Loader className="article__loader" loaderStyles={loaderStyles} />
+  );
 };
 
 const mapDispatchToProps = dispatch => ({
