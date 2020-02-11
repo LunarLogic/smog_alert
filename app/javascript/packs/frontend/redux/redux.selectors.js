@@ -67,3 +67,34 @@ export const selectMapHoveredCity = createSelector(
   [selectMapSection],
   mapSection => mapSection.hovered_city
 );
+
+const selectCalendar = state => state.calendar;
+
+export const selectCalendarChosenYear = createSelector(
+  [selectCalendar],
+  calendar => calendar.calendarChosenYear
+);
+
+export const selectCalendarStatusData = createSelector(
+  [selectCalendar],
+  calendar => calendar.calendarStatusData
+);
+
+export const selectCalendarValuesData = createSelector(
+  [selectCalendar],
+  calendar => calendar.calendarValuesData
+);
+
+const selectNews = state => state.news;
+
+export const selectArticles = createSelector(
+  [selectNews],
+  news => news.articles
+);
+
+const selectApplication = state => state.application;
+
+export const selectPath = createSelector(
+  [selectApplication],
+  application => application.path
+);

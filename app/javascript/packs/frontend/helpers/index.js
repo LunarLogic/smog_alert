@@ -9,6 +9,7 @@ import { setEmot } from "./setEmot";
 import { setGradient } from "./setGradient";
 import { setAverageColor } from "./setAverageColor";
 import { setCloudColor } from "./setCloudColor";
+import { getDate } from "./getDate";
 
 export {
   classNameForPollutionStatus,
@@ -21,5 +22,6 @@ export {
   setGradient,
   setAverageColor,
   setCloudColor,
-  yesterdayDateFormatted
+  yesterdayDateFormatted,
+  getDate
 };

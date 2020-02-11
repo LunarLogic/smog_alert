@@ -17,7 +17,7 @@ export const MapSection = ({ chosenCity, getChosenCity }) => {
   }, []);
 
   return (
-    <Element className="map-section" name="map-section">
+    <Element className="map-section" name="map-section" id="map-section">
       <div className="map-section__heading">
         Jakość powietrza w gminie Zabierzów
       </div>
