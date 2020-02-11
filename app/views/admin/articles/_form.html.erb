@@ -7,7 +7,7 @@
     </div>
   <% end %>
   <br>
-  <%= f.fields_for :tags do |ff| %>
+  <%= f.simple_fields_for :tags do |ff| %>
     <%= render 'tag_fields', f: ff %>
   <% end %>
   <%= f.button :submit, button_label, class: 'btn btn-primary' %>
