@@ -3,11 +3,11 @@ FactoryBot.define do
     title { 'Aricle Title' }
     body { 'Article Body' }
     overview { 'Article Overview' }
+  end
 
-    factory :article_with_image do
-      title { 'Aricle2 Title' }
-      body { rails_blob_path(Faker::LoremPixel.image) }
-      overview { 'Article2 Overview' }
-    end
+  factory :article_with_image, class: :Article do
+    title { 'Aricle2 Title' }
+    body { html_with_image }
+    overview { 'Article2 Overview' }
   end
 end
