@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
 import { createStructuredSelector } from "reselect";
 
-import { DropdownMenu } from "..";
+import { DropdownMenu, Loader } from "..";
 import { setColor } from "../../helpers";
 
 import "./PollutionSideCard.scss";
@@ -27,6 +27,7 @@ export const PollutionSideCard = ({
     getChosenCity("");
   };
 
+
   // List of cities for dropdown component
   let dropdownOptions = [];
 
@@ -43,7 +44,12 @@ export const PollutionSideCard = ({
     }
   });
 
-  return (
+
+  const loaderStyles = {
+    height: "62.7rem"
+  };
+
+  return chosenCityData ? (
     <div className="side-pollution-card">
       <div
         className="side-pollution-card__return-button"
@@ -93,6 +99,11 @@ export const PollutionSideCard = ({
         })}
       </div>
     </div>
+  ) : (
+    <Loader
+      className="side-pollution-card__loader"
+      loaderStyles={loaderStyles}
+    />
   );
 };
 

@@ -25,11 +25,11 @@ module Calendar
         number_of_measurements: day_measurements_with_data.size,
         average_values: [
           {
-            name: 'pm10',
+            name: 'PM 10',
             value: pm10_average,
           },
           {
-            name: 'pm25',
+            name: 'PM 2.5',
             value: day_measurements_with_data.average(:pm25),
           },
         ],

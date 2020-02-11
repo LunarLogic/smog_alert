@@ -21,6 +21,7 @@ import Searchbox from "./Searchbox/Searchbox";
 import TownImage from "./TownImage/TownImage";
 import PopUp from "./PopUp/PopUp";
 import ArticleOverview from "./ArticleOverview/ArticleOverview";
+import Loader from "./Loader/Loader";
 
 export {
   Calendar,
@@ -45,5 +46,6 @@ export {
   PollutionSideCard,
   TownImage,
   PopUp,
-  ArticleOverview
+  ArticleOverview,
+  Loader
 };

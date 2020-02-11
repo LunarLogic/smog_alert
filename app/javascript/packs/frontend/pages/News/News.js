@@ -5,9 +5,10 @@ import { createStructuredSelector } from "reselect";
 import { selectArticles } from "../../redux/redux.selectors";
 import { PropTypes } from "prop-types";
 
-import { ArticleOverview } from "../../components";
+import { ArticleOverview, Loader } from "../../components";
 
 import "./News.scss";
+
 import { setCurrentPath } from "../../redux/application/application.actions";
 
 const News = ({ match, getArticles, articles, setCurrentPath }) => {
@@ -21,6 +22,11 @@ const News = ({ match, getArticles, articles, setCurrentPath }) => {
       b.updated_at > a.updated_at ? 1 : -1
     );
   }
+
+  const loaderStyles = {
+    height: "75vh"
+  };
+
   return articles.length ? (
     <div className="news">
       <div className="news__heading">Aktualności</div>
@@ -38,7 +44,7 @@ const News = ({ match, getArticles, articles, setCurrentPath }) => {
       })}
     </div>
   ) : (
-    "loading"
+    <Loader className="news__loader" loaderStyles={loaderStyles} />
   );
 };
 
