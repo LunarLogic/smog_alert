@@ -2,9 +2,8 @@ import React from "react";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { DisappearedLoading } from "react-loadingg";
 
-import { PollutionBar } from "../";
+import { PollutionBar, Loader } from "../";
 import { setColor, findMeasurement } from "../../helpers";
 import { selectCitiesPollutionData } from "../../redux/redux.selectors";
 import {
@@ -13,7 +12,6 @@ import {
 } from "../../redux/mapSection/mapSection.actions";
 
 import "./PollutionComparison.scss";
-import { grey } from "../../styles/_variables.scss";
 
 export const PollutionComparison = ({
   citiesPollutionData,
@@ -88,9 +86,10 @@ export const PollutionComparison = ({
           );
         })
       ) : (
-        <div className="pollution-comparison__loader">
-          <DisappearedLoading color={grey} style={loaderStyles} />
-        </div>
+        <Loader
+          className="pollution-comparison__loader"
+          loaderStyles={loaderStyles}
+        />
       )}
     </div>
   );

@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import { createStructuredSelector } from "reselect";
-import { DisappearedLoading } from "react-loadingg";
 
 import {
   PollutionCard,
@@ -11,7 +10,8 @@ import {
   Recommendation,
   TownImage,
   PopUp,
-  Searchbox
+  Searchbox,
+  Loader
 } from "../../components";
 
 import {
@@ -23,7 +23,7 @@ import {
 import { setPopUpStatus } from "../../redux/homepage/homepage.actions";
 
 import "./CurrentPollutionSection.scss";
-import { neutralColor, grey } from "../../styles/_variables.scss";
+import { neutralColor } from "../../styles/_variables.scss";
 import { setCloudColor } from "../../helpers";
 
 const CurrentPollutionSection = ({
@@ -82,9 +82,7 @@ const CurrentPollutionSection = ({
       </div>
     </div>
   ) : (
-    <div className="current-pollution__loader">
-      <DisappearedLoading color={grey} style={loaderStyles} />
-    </div>
+    <Loader className="current-pollution__loader" loaderStyles={loaderStyles} />
   );
 };
 

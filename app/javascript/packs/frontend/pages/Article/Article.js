@@ -4,14 +4,14 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { PropTypes } from "prop-types";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import { DisappearedLoading } from "react-loadingg";
+
+import { Loader } from "../../components";
 
 import { getArticles } from "../../redux/news/news.actions";
 import { selectArticles } from "../../redux/redux.selectors";
-import { getDate } from "../../helpers/getDate";
+import { getDate } from "../../helpers";
 
 import "./Article.scss";
-import { grey } from "../../styles/_variables.scss";
 
 import { setCurrentPath } from "../../redux/application/application.actions";
 
@@ -55,9 +55,7 @@ const Article = ({ match, getArticles, articles, setCurrentPath }) => {
       </a>
     </div>
   ) : (
-    <div className="article__loader">
-      <DisappearedLoading color={grey} style={loaderStyles} />
-    </div>
+    <Loader className="article__loader" loaderStyles={loaderStyles} />
   );
 };
 

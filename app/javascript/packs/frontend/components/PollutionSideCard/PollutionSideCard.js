@@ -3,13 +3,11 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
 import { createStructuredSelector } from "reselect";
-import { DisappearedLoading } from "react-loadingg";
 
-import { DropdownMenu } from "..";
+import { DropdownMenu, Loader } from "..";
 import { setColor } from "../../helpers";
 
 import "./PollutionSideCard.scss";
-import { grey } from "../../styles/_variables.scss";
 
 import { getChosenCity } from "../../redux/mapSection/mapSection.actions";
 import { selectMapChosenCityData } from "../../redux/redux.selectors";
@@ -71,9 +69,10 @@ export const PollutionSideCard = ({ chosenCityData, getChosenCity }) => {
       </div>
     </div>
   ) : (
-    <div className="side-pollution-card__loader">
-      <DisappearedLoading color={grey} style={loaderStyles} />
-    </div>
+    <Loader
+      className="side-pollution-card__loader"
+      loaderStyles={loaderStyles}
+    />
   );
 };
 

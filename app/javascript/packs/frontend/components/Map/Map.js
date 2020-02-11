@@ -3,17 +3,13 @@ import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { Link as ScrollLink } from "react-scroll";
-import { DisappearedLoading } from "react-loadingg";
+
+import { Loader } from "../";
 
 import "./Map.scss";
 import { MapContainer, MapPath, MapText, MapDot } from "./Map.styles.jsx";
 import mapElements from "./MapElements";
-import {
-  mapColor,
-  noDataColor,
-  bp600,
-  grey
-} from "../../styles/_variables.scss";
+import { mapColor, noDataColor, bp600 } from "../../styles/_variables.scss";
 
 import { setAverageColor } from "../../helpers";
 import {
@@ -139,9 +135,7 @@ export const Map = ({
       </ScrollLink>
     </div>
   ) : (
-    <div className="map__loader">
-      <DisappearedLoading color={grey} style={loaderStyles} />
-    </div>
+    <Loader className="map__loader" loaderStyles={loaderStyles} />
   );
 };
 

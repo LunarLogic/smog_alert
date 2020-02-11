@@ -4,12 +4,10 @@ import { getArticles } from "../../redux/news/news.actions";
 import { createStructuredSelector } from "reselect";
 import { selectArticles } from "../../redux/redux.selectors";
 import { PropTypes } from "prop-types";
-import { DisappearedLoading } from "react-loadingg";
 
-import { ArticleOverview } from "../../components";
+import { ArticleOverview, Loader } from "../../components";
 
 import "./News.scss";
-import { grey } from "../../styles/_variables.scss";
 
 import { setCurrentPath } from "../../redux/application/application.actions";
 
@@ -46,9 +44,7 @@ const News = ({ match, getArticles, articles, setCurrentPath }) => {
       })}
     </div>
   ) : (
-    <div className="news__loader">
-      <DisappearedLoading color={grey} style={loaderStyles} />
-    </div>
+    <Loader className="news__loader" loaderStyles={loaderStyles} />
   );
 };
 
