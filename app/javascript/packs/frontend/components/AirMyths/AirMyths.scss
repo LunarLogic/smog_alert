@@ -15,22 +15,22 @@
       font-size: 2.4rem;
       line-height: 2.8rem;
       font-weight: 700;
-      position: relative;
-      padding: 1rem;
+      //   position: relative;
+      //   padding: 1rem;
 
-      &:before {
-        content: "\201C";
-        font-size: 100%;
-        display: block;
-        position: absolute;
-        top: 2.5rem;
-        left: -0.2rem;
-      }
-      &:after {
-        content: "\201D";
-        font-size: 100%;
-        margin-left: 0.1rem;
-      }
+      //   &:before {
+      //     content: "\201C";
+      //     font-size: 100%;
+      //     display: block;
+      //     position: absolute;
+      //     top: 2.5rem;
+      //     left: -0.2rem;
+      //   }
+      //   &:after {
+      //     content: "\201D";
+      //     font-size: 100%;
+      //     margin-left: 0.1rem;
+      //   }
     }
     &-text {
       font-size: 1.6rem;
