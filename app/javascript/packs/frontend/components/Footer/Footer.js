@@ -27,9 +27,9 @@ const Footer = ({ organizationDetails }) => {
           <div className="footer__info-brand">{name}</div>
           <div className="footer__info-description">{description}</div>
           <div className="footer__info-credentials">
-            W serwisie wykorzystano dane z pyłomierza własnego oraz dane z
-            pyłomierzy firmy Airly, a także informacje o sile wiatru ze stacji
-            meteo AGH, Kraków, 50° 04 N 19° 57 E.
+            W serwisie wykorzystano dane z pyłomierzy firmy{" "}
+            <a href="https://airly.eu/pl">Airly</a>, a także informacje o sile
+            wiatru ze stacji meteo AGH, Kraków, 50° 04 N 19° 57 E.
           </div>
         </div>
         <div className="footer__contact">
