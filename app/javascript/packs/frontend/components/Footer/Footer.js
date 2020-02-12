@@ -35,9 +35,9 @@ const Footer = ({ organizationDetails }) => {
         <div className="footer__contact">
           <div className="footer__contact-heading">Skontaktuj się z nami:</div>
           <div className="footer__contact-details">
-            {footerContent.map(detail => (
+            {footerContent.map((detail, index) => (
               <ContactDetail
-                key={detail.value}
+                key={`footer-contact-detail-${index}`}
                 icon={detail.icon}
                 item={detail.value}
                 type={detail.type}

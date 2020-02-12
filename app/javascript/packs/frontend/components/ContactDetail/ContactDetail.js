@@ -37,7 +37,7 @@ const ContactDetail = ({ icon, item, type }) => {
 
 ContactDetail.propTypes = {
   item: PropTypes.string,
-  icon: PropTypes.string,
+  icon: PropTypes.object,
   type: PropTypes.string
 };
 
