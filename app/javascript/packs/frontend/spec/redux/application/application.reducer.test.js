@@ -17,4 +17,16 @@ describe("application reducer", () => {
       path: "/aktualnosci"
     });
   });
+  it("should handle GET_ORGANIZATION_DETAILS", () => {
+    const action = {
+      type: applicationActionTypes.GET_ORGANIZATION_DETAILS,
+      payload: { name: "Zabierzowski Alarm Smogowy" }
+    };
+    expect(applicationReducer(initialState, action)).toEqual({
+      path: "",
+      organizationDetails: {
+        name: "Zabierzowski Alarm Smogowy"
+      }
+    });
+  });
 });

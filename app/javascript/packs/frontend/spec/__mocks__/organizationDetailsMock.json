@@ -1,0 +1,11 @@
+{
+  "data": {
+    "name": "Zabierzowski Alarm Smogowy",
+    "description": "Stowarzyszenie tworzone przez ludzi, którzy lubią czyste powietrze i zielone drzewa",
+    "email": "zabierzow-smog@gmail.com",
+    "facebook": "https://facebook.com/ZabierzowskiAlarmSmogowy/",
+    "logo": "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--2886ca8facad3f5c6365e60bd119984aa1f18e4b/logo.jpg",
+    "illustration": null,
+    "map": null
+  }
+}
