@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
 
+import { PageTitle } from "../";
+
 import { setCurrentPath } from "../../redux/application/application.actions";
 
 const Error404 = ({ setCurrentPath }) => {
@@ -11,6 +13,7 @@ const Error404 = ({ setCurrentPath }) => {
   });
   return (
     <div className="error-404">
+      <PageTitle title="Strona nie istnieje" />
       <h1 className="error-404__title">404</h1>
       <p className="error-404__text">
         Wygląda na to, że strona o podanym adresie nie istnieje. Wybierz jeden z

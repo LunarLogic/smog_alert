@@ -1,5 +1,6 @@
 import React from "react";
 import ReactHtmlParser from "react-html-parser";
+import { Link } from "react-router-dom";
 import { PropTypes } from "prop-types";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 
@@ -20,10 +21,10 @@ const ArticleOverview = ({ title, body, publishingDate, updatingDate, id }) => {
         </div>
       </div>
       <div className="article-overview__body">{ReactHtmlParser(body)}</div>
-      <a className="article-overview__button" href={`/aktualnosci/${id}`}>
+      <Link className="article-overview__button" to={`/aktualnosci/${id}`}>
         <div className="article-overview__button--text">Czytaj więcej</div>
         <ArrowForwardIcon />
-      </a>
+      </Link>
     </div>
   );
 };
