@@ -7,8 +7,8 @@ import WebFont from "webfontloader";
 import { PropTypes } from "prop-types";
 
 import "./App.scss";
-import { Homepage, Statistics, News, Article } from "./pages";
-import { Error404, Footer, Navigation, NavigationMobile } from "./components";
+import { Homepage, Statistics, News, Article, Error404 } from "./pages";
+import { Footer, Navigation, NavigationMobile } from "./components";
 
 import { getOrganizationDetails } from "./redux/application/application.actions";
 

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 import { PropTypes } from "prop-types";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import { animateScroll } from "react-scroll";
 
 import { Loader, PageTitle } from "../../components";
 
@@ -23,6 +24,7 @@ const Article = ({ match, getArticles, articles, setCurrentPath }) => {
   useEffect(() => {
     setCurrentPath(match.path);
     getArticles();
+    animateScroll.scrollToTop();
   }, []);
 
   //Temporary solution, waiting for changes in the API

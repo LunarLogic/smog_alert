@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import { Homepage } from "../pages/Homepage/Homepage";
-import { Error404 } from "../components";
+import { Error404 } from "../pages";
 import App from "../App";
 import { MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";

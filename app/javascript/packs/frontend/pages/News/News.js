@@ -4,6 +4,7 @@ import { getArticles } from "../../redux/news/news.actions";
 import { createStructuredSelector } from "reselect";
 import { selectArticles } from "../../redux/redux.selectors";
 import { PropTypes } from "prop-types";
+import { animateScroll } from "react-scroll";
 
 import { ArticleOverview, Loader, PageTitle } from "../../components";
 
@@ -15,6 +16,7 @@ const News = ({ match, getArticles, articles, setCurrentPath }) => {
   useEffect(() => {
     setCurrentPath(match.path);
     getArticles();
+    animateScroll.scrollToTop();
   }, []);
   let sortedArticles;
   if (articles.length) {

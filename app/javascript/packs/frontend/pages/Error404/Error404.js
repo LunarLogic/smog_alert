@@ -6,7 +6,7 @@ import FacebookIcon from "@material-ui/icons/Facebook";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import TwitterIcon from "@material-ui/icons/Twitter";
 
-import { PageTitle } from "../";
+import { PageTitle } from "../../components";
 
 import "./Error404.scss";
 
@@ -38,9 +38,9 @@ const Error404 = ({ setCurrentPath, organizationDetails }) => {
         Wybierz jeden z linków w menu lub kliknij poniżej aby wrócić na stronę
         główną.
       </p>
-      <div className="error-404__back-button">
-        <Link to="/">Powrót na stronę główną</Link>
-      </div>
+      <Link className="error-404__back-button" to="/">
+        Powrót na stronę główną
+      </Link>
       <div className="error-404__links">
         {contactLinks.map((link, index) => (
           <a

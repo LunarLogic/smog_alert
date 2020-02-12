@@ -5,7 +5,6 @@ import CalendarLegendBox from "./CalendarLegendBox/CalendarLegendBox";
 import ContactDetail from "./ContactDetail/ContactDetail";
 import CustomButton from "./CustomButton/CustomButton";
 import DropdownMenu from "./DropdownMenu/DropdownMenu";
-import Error404 from "./Error404/Error404";
 import Footer from "./Footer/Footer";
 import Icon from "./Icon/Icon";
 import Loader from "./Loader/Loader";
@@ -32,7 +31,6 @@ export {
   ContactDetail,
   CustomButton,
   DropdownMenu,
-  Error404,
   Footer,
   Icon,
   Loader,
