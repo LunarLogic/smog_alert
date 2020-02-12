@@ -1,0 +1,42 @@
+@import "../../styles/variables";
+
+.air-myths {
+  &__heading {
+    font-size: 4.2rem;
+    font-weight: 700;
+    line-height: 4.9rem;
+    color: $textColor;
+    margin-top: 4.9rem;
+    margin-bottom: 2.4rem;
+  }
+  &__content {
+    margin: 3rem 0;
+    &-title {
+      font-size: 2.4rem;
+      line-height: 2.8rem;
+      font-weight: 700;
+      position: relative;
+      padding: 1rem;
+
+      &:before {
+        content: "\201C";
+        font-size: 100%;
+        display: block;
+        position: absolute;
+        top: 2.5rem;
+        left: -0.2rem;
+      }
+      &:after {
+        content: "\201D";
+        font-size: 100%;
+        margin-left: 0.1rem;
+      }
+    }
+    &-text {
+      font-size: 1.6rem;
+      line-height: 2.3rem;
+      margin-top: 2rem;
+      text-align: justify;
+    }
+  }
+}

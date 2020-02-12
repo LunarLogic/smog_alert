@@ -1,3 +1,4 @@
+import AirMyths from "./AirMyths/AirMyths";
 import Calendar from "./Calendar/Calendar";
 import CalendarLegendBox from "./CalendarLegendBox/CalendarLegendBox";
 import ContactDetail from "./ContactDetail/ContactDetail";
@@ -21,6 +22,7 @@ import TownImage from "./TownImage/TownImage";
 import PopUp from "./PopUp/PopUp";
 
 export {
+  AirMyths,
   Calendar,
   CalendarLegendBox,
   ContactDetail,
