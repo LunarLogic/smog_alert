@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import { animateScroll } from "react-scroll";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
+import { connect } from "react-redux";
+import WebFont from "webfontloader";
+import { PropTypes } from "prop-types";
 
 import "./App.scss";
-import { Homepage, Statistics, News } from "./pages";
-import WebFont from "webfontloader";
+import { Homepage, Statistics, News, Article } from "./pages";
 import { Error404, Footer, Navigation, NavigationMobile } from "./components";
-import { Article } from "./pages";
+
+import { getOrganizationDetails } from "./redux/application/application.actions";
 
 WebFont.load({
   google: {
@@ -15,7 +18,11 @@ WebFont.load({
   }
 });
 
-const App = () => {
+const App = ({ getOrganizationDetails }) => {
+  useEffect(() => {
+    getOrganizationDetails();
+  }, []);
+
   return (
     <div>
       <Navigation />
@@ -38,4 +45,8 @@ const App = () => {
   );
 };
 
-export default App;
+App.propTypes = {
+  getOrganizationDetails: PropTypes.func
+};
+
+export default connect(null, { getOrganizationDetails })(App);
