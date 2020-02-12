@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { PropTypes } from "prop-types";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import MailOutlineIcon from "@material-ui/icons/MailOutline";
 
 import { ContactDetail } from "../";
 
@@ -12,7 +14,10 @@ import { selectOrganizationDetails } from "../../redux/application/application.s
 
 const Footer = ({ organizationDetails }) => {
   const { logo, name, description, email, facebook } = organizationDetails;
-  const footerContent = [email, facebook];
+  const footerContent = [
+    { value: email, icon: <MailOutlineIcon />, type: "email" },
+    { value: facebook, icon: <FacebookIcon />, type: "facebook" }
+  ];
 
   return (
     <div className="footer">
@@ -31,7 +36,12 @@ const Footer = ({ organizationDetails }) => {
           <div className="footer__contact-heading">Skontaktuj się z nami:</div>
           <div className="footer__contact-details">
             {footerContent.map(detail => (
-              <ContactDetail key={detail} item={detail} />
+              <ContactDetail
+                key={detail.value}
+                icon={detail.icon}
+                item={detail.value}
+                type={detail.type}
+              />
             ))}
           </div>
         </div>
