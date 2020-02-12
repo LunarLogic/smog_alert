@@ -10,8 +10,6 @@ class Admin::ArticlesController < Admin::BaseController
   def new
     @article = Article.new
     @article.tags.new
-    @article.tags.new
-    @article.tags.new
   end
 
   def create

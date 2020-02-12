@@ -10,5 +10,8 @@
   <%= f.simple_fields_for :tags do |ff| %>
     <%= render 'tag_fields', f: ff %>
   <% end %>
+  <div id="js-new-tags-fields">
+  </div>
+  <p><button class="btn btn-secondary" id="js-add-tag-field-button">Dodaj tag</button></p>
   <%= f.button :submit, button_label, class: 'btn btn-primary' %>
 <% end %>

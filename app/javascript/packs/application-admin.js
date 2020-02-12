@@ -8,3 +8,5 @@ require("jquery")
 
 import "bootstrap";
 import "../stylesheets/application-admin";
+
+import "./admin/article_form"
