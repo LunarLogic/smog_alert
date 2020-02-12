@@ -41,13 +41,7 @@ Rails.application.routes.draw do
           get :hourly_average_for_month
         end
       end
-      resources :articles, only: [] do
-        collection do
-          get :index
-          get :show
-        end
-      end
-
+      resources :articles, only: [:index, :show]
       resources :organizations, only: [] do
         collection do
           get :current_data

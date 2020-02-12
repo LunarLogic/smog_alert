@@ -1,6 +1,6 @@
 class API::Internal::ArticlesController < API::Internal::BaseController
   def index
-    data = published_articles.map do |article|
+    data = ArticlesRepository.new.published_articles.map do |article|
       API::Internal::ArticleOverviewPresenter.new(article)
     end
 
@@ -15,10 +15,6 @@ class API::Internal::ArticlesController < API::Internal::BaseController
   end
 
   private
-
-  def published_articles
-    Article.where(published: true).order('updated_at DESC')
-  end
 
   def article_params
     params.require(:article).permit(:title, :body, :overview)
