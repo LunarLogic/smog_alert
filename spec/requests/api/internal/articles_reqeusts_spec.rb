@@ -1,5 +1,3 @@
-# include Rails.application.routes.url_helpers
-
 describe API::Internal::ArticlesController do
   describe 'GET /api/internal/articles' do
     describe '#index'
@@ -44,14 +42,14 @@ describe API::Internal::ArticlesController do
 
       context 'when article with image' do
         before do
-          # Rails.application.routes.default_url_options[:host] = 'smogalert.test'
+          Rails.application.routes.default_url_options[:host] = 'smogalert.test'
           published_article_with_image.body = html_with_image
           published_article_with_image.save
           get api_internal_articles_path
         end
 
         after do
-          # Rails.application.routes.default_url_options[:host] = nil
+          Rails.application.routes.default_url_options[:host] = nil
         end
 
         it 'returns an image when article has one' do

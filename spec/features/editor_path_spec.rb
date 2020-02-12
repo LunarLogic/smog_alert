@@ -2,6 +2,7 @@ require 'rails_helper'
 
 def add_new_article(article)
   fill_in 'Tytuł', with: article.title
+  fill_in 'Skrót artykułu', with: article.overview
   find('#article_body').click.set article.body
   click_on('Dodaj')
 end
