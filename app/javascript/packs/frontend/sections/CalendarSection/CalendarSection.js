@@ -68,6 +68,9 @@ export const CalendarSection = ({
     <div className="calendar-section">
       <div className="calendar-section__location-and-data">
         <div className="calendar-section__location-and-data-dropdown">
+          <div className="calendar-section__location-and-data-dropdown-heading">
+            Kalendarz
+          </div>
           <div className="calendar-section__location-and-data-dropdown__label">
             Wybierz miejscowość
           </div>
