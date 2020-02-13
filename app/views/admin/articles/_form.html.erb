@@ -7,8 +7,13 @@
     </div>
   <% end %>
   <br>
-  <%= f.simple_fields_for :tags do |ff| %>
-    <%= render 'tag_fields', f: ff %>
+  <% if article.tags.present? %>
+    <%= f.simple_fields_for :tags do |ff| %>
+      <div class="d-flex tag-field">
+        <%= render 'tag_fields', f: ff %>
+        <button type='button' class="close btn-tag-field-remove ml-2"><span aria-hidden='true'>&times;</span></button>
+      </div>
+    <% end %>
   <% end %>
   <div id="js-new-tags-fields">
   </div>
