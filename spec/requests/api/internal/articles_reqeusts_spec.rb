@@ -39,13 +39,10 @@ describe API::Internal::ArticlesController do
 
       context 'when article with image' do
         before do
-          Rails.application.routes.default_url_options[:host] = 'smogalert.test'
           published_article_with_image.body = html_with_image
           published_article_with_image.save
           get api_internal_articles_path
         end
-
-        after { Rails.application.routes.default_url_options[:host] = nil }
 
         it 'returns an image when article has one' do
           expect(response.body).to be_json_eql({
