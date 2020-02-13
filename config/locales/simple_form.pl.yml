@@ -1,10 +1,10 @@
 pl:
   simple_form:
-    "yes": 'Tak'
-    "no": 'Nie'
+    "yes": "Tak"
+    "no": "Nie"
     required:
-      text: 'Wymagane'
-      mark: '*'
+      text: "Wymagane"
+      mark: "*"
       # You can uncomment the line below if you need to overwrite the whole required html.
       # When using html, text and mark won't be used.
       # html: '<abbr title="required">*</abbr>'
@@ -13,26 +13,27 @@ pl:
     # Examples
     labels:
       defaults:
-        password: 'Hasło'
-        password_confirmation: 'Potwierdź hasło'
-        remember_me: 'Zapamiętaj mnie'
+        password: "Hasło"
+        password_confirmation: "Potwierdź hasło"
+        remember_me: "Zapamiętaj mnie"
       user:
         new:
-          email: 'E-mail'
+          email: "E-mail"
         edit:
-          email: 'E-mail'
+          email: "E-mail"
       location:
-        name: 'Miejscowość'
-        street: 'Ulica'
-        latitude: 'Szerokość'
-        longitude: 'Długość'
-        installation_id: 'Id instalacji Airly'
+        name: "Miejscowość"
+        street: "Ulica"
+        latitude: "Szerokość"
+        longitude: "Długość"
+        installation_id: "Id instalacji Airly"
       article:
-        title: 'Tytuł'
-        body: 'Treść'
+        title: "Tytuł"
+        body: "Treść"
+        overview: "Skrót artykułu"
     hints:
       defaults:
-        username: 'Nazwa użytkownika'
+        username: "Nazwa użytkownika"
         # password: 'Proszę nie podawać znaków specjalnych'
     # include_blanks:
     #   defaults:
