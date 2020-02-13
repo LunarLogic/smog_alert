@@ -20,13 +20,4 @@
     font-size: 3rem;
     margin-bottom: 4rem;
   }
-  &__back-button {
-    @include back-button;
-  }
-  &__links {
-    display: flex;
-    &-item {
-      @include social-media-link;
-    }
-  }
 }

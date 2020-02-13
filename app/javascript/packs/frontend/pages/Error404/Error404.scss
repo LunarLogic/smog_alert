@@ -19,14 +19,4 @@
   &__text {
     @include information-text;
   }
-  &__back-button {
-    @include back-button;
-  }
-  &__links {
-    display: flex;
-
-    &-item {
-      @include social-media-link;
-    }
-  }
 }

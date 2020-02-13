@@ -1,5 +1,6 @@
 import AirMyths from "./AirMyths/AirMyths";
 import ArticleOverview from "./ArticleOverview/ArticleOverview";
+import ButtonsGroup from "./ButtonsGroup/ButtonsGroup";
 import Calendar from "./Calendar/Calendar";
 import CalendarDailyInfo from "./CalendarDailyInfo/CalendarDailyInfo";
 import CalendarLegendBox from "./CalendarLegendBox/CalendarLegendBox";
@@ -28,6 +29,7 @@ import TownImage from "./TownImage/TownImage";
 export {
   AirMyths,
   ArticleOverview,
+  ButtonsGroup,
   Calendar,
   CalendarDailyInfo,
   CalendarLegendBox,
