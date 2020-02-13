@@ -6,11 +6,19 @@ import { connect } from "react-redux";
 import WebFont from "webfontloader";
 import { PropTypes } from "prop-types";
 
-import "./App.scss";
-import { Homepage, Statistics, News, Article, Error404 } from "./pages";
+import { getOrganizationDetails } from "./redux/application/application.actions";
+
+import {
+  AirFacts,
+  Homepage,
+  Statistics,
+  News,
+  Article,
+  Error404
+} from "./pages";
 import { Footer, Navigation, NavigationMobile } from "./components";
 
-import { getOrganizationDetails } from "./redux/application/application.actions";
+import "./App.scss";
 
 WebFont.load({
   google: {
@@ -30,6 +38,7 @@ const App = ({ getOrganizationDetails }) => {
       <div className="container">
         <Switch>
           <Route exact path="/" component={Homepage} />
+          <Route exact path="/czym-oddycham" component={AirFacts} />
           <Route exact path="/statistics" component={Statistics} />
           <Route exact path="/aktualnosci" component={News} />
           <Route exact path="/aktualnosci/:articleId" component={Article} />

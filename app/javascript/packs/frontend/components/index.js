@@ -1,3 +1,4 @@
+import AirMyths from "./AirMyths/AirMyths";
 import ArticleOverview from "./ArticleOverview/ArticleOverview";
 import Calendar from "./Calendar/Calendar";
 import CalendarDailyInfo from "./CalendarDailyInfo/CalendarDailyInfo";
@@ -24,6 +25,7 @@ import Searchbox from "./Searchbox/Searchbox";
 import TownImage from "./TownImage/TownImage";
 
 export {
+  AirMyths,
   ArticleOverview,
   Calendar,
   CalendarDailyInfo,

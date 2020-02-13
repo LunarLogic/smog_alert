@@ -1,0 +1,22 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.air-myths {
+  &__heading {
+    @include heading;
+  }
+  &__content {
+    margin: 3rem 0;
+    &-title {
+      @include title;
+      border-bottom: 0.1rem solid $frameColor;
+      padding: 1.5rem 0;
+    }
+    &-text {
+      font-size: 1.8rem;
+      line-height: 1.5;
+      text-align: justify;
+      padding: 3rem 1.5rem 0 1.5rem;
+    }
+  }
+}
