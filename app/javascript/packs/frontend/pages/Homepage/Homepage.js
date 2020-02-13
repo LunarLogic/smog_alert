@@ -6,6 +6,7 @@ import { getCitiesPollutionData } from "../../redux/homepage/homepage.actions";
 import { setCurrentPath } from "../../redux/application/application.actions";
 
 import { CurrentPollutionSection, MapSection } from "../../sections";
+import { PageTitle } from "../../components";
 
 import "./Homepage.scss";
 
@@ -16,6 +17,7 @@ export const Homepage = ({ match, getCitiesPollutionData, setCurrentPath }) => {
   }, []);
   return (
     <div className="homepage">
+      <PageTitle title="Aktualny stan powietrza" />
       <CurrentPollutionSection />
       <hr className="homepage__horizontal-line" />
       <MapSection />

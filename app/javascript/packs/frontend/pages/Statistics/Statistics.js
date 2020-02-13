@@ -9,7 +9,7 @@ import { setCurrentPath } from "../../redux/application/application.actions";
 import { selectCitiesPollutionData } from "../../redux/redux.selectors";
 
 import { CalendarSection } from "../../sections";
-import { Loader } from "../../components";
+import { Loader, PageTitle } from "../../components";
 
 import "./Statistics.scss";
 
@@ -31,6 +31,7 @@ const Statistics = ({
 
   return cities.length ? (
     <div className="statistics">
+      <PageTitle title="Statystyki" />
       <CalendarSection />
     </div>
   ) : (

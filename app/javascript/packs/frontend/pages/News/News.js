@@ -4,8 +4,9 @@ import { getArticles } from "../../redux/news/news.actions";
 import { createStructuredSelector } from "reselect";
 import { selectArticles } from "../../redux/redux.selectors";
 import { PropTypes } from "prop-types";
+import { animateScroll } from "react-scroll";
 
-import { ArticleOverview, Loader } from "../../components";
+import { ArticleOverview, Loader, PageTitle } from "../../components";
 
 import "./News.scss";
 
@@ -15,6 +16,7 @@ const News = ({ match, getArticles, articles, setCurrentPath }) => {
   useEffect(() => {
     setCurrentPath(match.path);
     getArticles();
+    animateScroll.scrollToTop();
   }, []);
   let sortedArticles;
   if (articles.length) {
@@ -29,6 +31,7 @@ const News = ({ match, getArticles, articles, setCurrentPath }) => {
 
   return articles.length ? (
     <div className="news">
+      <PageTitle title="Aktualności" />
       <div className="news__heading">Aktualności</div>
       {sortedArticles.map(article => {
         return (

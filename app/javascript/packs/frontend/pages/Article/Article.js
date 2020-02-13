@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import ReactHtmlParser from "react-html-parser";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 import { PropTypes } from "prop-types";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import { animateScroll } from "react-scroll";
 
-import { Loader } from "../../components";
+import { Loader, PageTitle } from "../../components";
 
 import { getArticles } from "../../redux/news/news.actions";
 import { selectArticles } from "../../redux/redux.selectors";
@@ -22,6 +24,7 @@ const Article = ({ match, getArticles, articles, setCurrentPath }) => {
   useEffect(() => {
     setCurrentPath(match.path);
     getArticles();
+    animateScroll.scrollToTop();
   }, []);
 
   //Temporary solution, waiting for changes in the API
@@ -36,6 +39,7 @@ const Article = ({ match, getArticles, articles, setCurrentPath }) => {
 
   return chosenArticle ? (
     <div className="article">
+      <PageTitle title={chosenArticle.title} />
       <div className="article__heading">{chosenArticle.title}</div>
       <div className="article__date">
         <div className="article__date-published">
@@ -49,10 +53,10 @@ const Article = ({ match, getArticles, articles, setCurrentPath }) => {
         <div className="article__container--body">{ReactHtmlParser(body)}</div>
         <div className="article__container--author">Autor: </div>
       </div>
-      <a className="article__button" href="/aktualnosci">
+      <Link className="article__button" to="/aktualnosci">
         <ArrowBackIcon />
         <div className="article__button--text">Powrót do listy aktualności</div>
-      </a>
+      </Link>
     </div>
   ) : (
     <Loader className="article__loader" loaderStyles={loaderStyles} />
