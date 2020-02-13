@@ -5,29 +5,44 @@ import { PropTypes } from "prop-types";
 
 import {
   getCalendarStatusData,
-  getCalendarValuesData
+  setCalendarChosenCity
 } from "../../redux/calendar/calendar.actions";
+import { selectCitiesPollutionDataList } from "../../redux/redux.selectors";
+
 import {
   selectCalendarChosenYear,
-  selectCalendarStatusData
-} from "../../redux/redux.selectors";
+  selectCalendarStatusData,
+  selectCalendarChosenCity,
+  selectCalendarChosenCityIndex
+} from "../../redux/calendar/calendar.selectors";
 
-import { Calendar, CalendarLegendBox } from "../../components";
+import {
+  Calendar,
+  CalendarDailyInfo,
+  CalendarLegendBox,
+  DropdownMenu
+} from "../../components";
 import { setColor } from "../../helpers";
-
-import "./CalendarSection.scss";
 import { calendarLegendContent } from "./calendarLegendContent";
 
-const CalendarSection = ({
+import "./CalendarSection.scss";
+
+export const CalendarSection = ({
   getCalendarStatusData,
+  setCalendarChosenCity,
   calendarStatusData,
-  calendarChosenYear
+  calendarChosenYear,
+  calendarChosenCity,
+  calendarChosenCityIndex,
+  citiesList
 }) => {
   useEffect(() => {
-    getCalendarStatusData(calendarChosenYear, 19);
-  }, [calendarChosenYear]);
+    getCalendarStatusData(calendarChosenYear, calendarChosenCityIndex);
+  }, [calendarChosenYear, calendarChosenCityIndex]);
 
   const daysGroupedByStatus = calendarStatusData[calendarChosenYear];
+
+  // Calendar Legend
 
   const renderCalendarLegend = () =>
     calendarLegendContent.map(item => {
@@ -51,6 +66,19 @@ const CalendarSection = ({
 
   return (
     <div className="calendar-section">
+      <div className="calendar-section__location-and-data">
+        <div className="calendar-section__location-and-data-dropdown">
+          <div className="calendar-section__location-and-data-dropdown__label">
+            Wybierz miejscowość
+          </div>
+          <DropdownMenu
+            optionsList={citiesList}
+            chosenCityToBeDisplayed={calendarChosenCity}
+            handleChosenCity={setCalendarChosenCity}
+          />
+        </div>
+        <CalendarDailyInfo />
+      </div>
       <Calendar />
       <div className="calendar-section__legend">{renderCalendarLegend()}</div>
     </div>
@@ -59,16 +87,23 @@ const CalendarSection = ({
 
 CalendarSection.propTypes = {
   getCalendarStatusData: PropTypes.func,
+  setCalendarChosenCity: PropTypes.func,
   calendarStatusData: PropTypes.object,
-  calendarChosenYear: PropTypes.number
+  calendarChosenYear: PropTypes.number,
+  calendarChosenCity: PropTypes.string,
+  calendarChosenCityIndex: PropTypes.number,
+  citiesList: PropTypes.array
 };
 
 const mapStateToProps = createStructuredSelector({
+  calendarChosenCity: selectCalendarChosenCity,
+  calendarChosenCityIndex: selectCalendarChosenCityIndex,
   calendarChosenYear: selectCalendarChosenYear,
-  calendarStatusData: selectCalendarStatusData
+  calendarStatusData: selectCalendarStatusData,
+  citiesList: selectCitiesPollutionDataList
 });
 
 export default connect(mapStateToProps, {
   getCalendarStatusData,
-  getCalendarValuesData
+  setCalendarChosenCity
 })(CalendarSection);

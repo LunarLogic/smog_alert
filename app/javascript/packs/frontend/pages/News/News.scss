@@ -1,0 +1,16 @@
+@import "../../styles/variables";
+
+.news {
+  &__heading {
+    font-size: 4.2rem;
+    font-weight: bold;
+    line-height: 4.9rem;
+    color: $textColor;
+    margin-top: 4.9rem;
+    margin-bottom: 2.4rem;
+  }
+  &__loader {
+    display: flex;
+    justify-content: center;
+  }
+}

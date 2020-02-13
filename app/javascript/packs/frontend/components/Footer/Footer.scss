@@ -42,7 +42,7 @@
       background-color: $grey;
     }
     &-brand {
-      margin-top: 2rem;
+      margin-top: 1.5rem;
       font-size: 1.6rem;
       line-height: 1.9rem;
       font-weight: 500;
@@ -61,6 +61,13 @@
       font-weight: 300;
       line-height: 1.5;
       margin-top: 5rem;
+
+      a:visited {
+        color: $secondaryColor;
+      }
+      a:hover {
+        color: $secondaryColorDark;
+      }
     }
   }
   &__contact {

@@ -4,21 +4,52 @@ import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
 import { createStructuredSelector } from "reselect";
 
-import { DropdownMenu } from "..";
+import { DropdownMenu, Loader } from "..";
 import { setColor } from "../../helpers";
 
 import "./PollutionSideCard.scss";
 
 import { getChosenCity } from "../../redux/mapSection/mapSection.actions";
-import { selectMapChosenCityData } from "../../redux/redux.selectors";
+import {
+  selectMapChosenCityData,
+  selectCitiesPollutionData,
+  selectMapLocation
+} from "../../redux/redux.selectors";
 import PollutionSpecificData from "../PollutionSpecificData/PollutionSpecificData";
 
-export const PollutionSideCard = ({ chosenCityData, getChosenCity }) => {
+export const PollutionSideCard = ({
+  citiesPollutionData,
+  chosenCityData,
+  getChosenCity,
+  chosenCity
+}) => {
   const removeChosenCity = () => {
     getChosenCity("");
   };
 
-  return (
+
+  // List of cities for dropdown component
+  let dropdownOptions = [];
+
+  const checkOptions = city => {
+    return (
+      dropdownOptions.length === 0 ||
+      !dropdownOptions.find(element => element === city.location_name)
+    );
+  };
+
+  citiesPollutionData.forEach(city => {
+    if (checkOptions(city)) {
+      dropdownOptions.push(city.location_name);
+    }
+  });
+
+
+  const loaderStyles = {
+    height: "62.7rem"
+  };
+
+  return chosenCityData ? (
     <div className="side-pollution-card">
       <div
         className="side-pollution-card__return-button"
@@ -35,7 +66,11 @@ export const PollutionSideCard = ({ chosenCityData, getChosenCity }) => {
             Wybierz miejscowość
           </div>
           <div className="side-pollution-card__content--dropdown-options">
-            <DropdownMenu />
+            <DropdownMenu
+              optionsList={dropdownOptions}
+              handleChosenCity={getChosenCity}
+              chosenCityToBeDisplayed={chosenCity}
+            />
           </div>
         </div>
         {chosenCityData.map(data => {
@@ -64,20 +99,29 @@ export const PollutionSideCard = ({ chosenCityData, getChosenCity }) => {
         })}
       </div>
     </div>
+  ) : (
+    <Loader
+      className="side-pollution-card__loader"
+      loaderStyles={loaderStyles}
+    />
   );
 };
 
 PollutionSideCard.propTypes = {
+  citiesPollutionData: PropTypes.array,
   chosenCityData: PropTypes.array,
-  getChosenCity: PropTypes.func
+  getChosenCity: PropTypes.func,
+  chosenCity: PropTypes.string
 };
 
 const mapStateToProps = createStructuredSelector({
-  chosenCityData: selectMapChosenCityData
+  chosenCityData: selectMapChosenCityData,
+  chosenCity: selectMapLocation,
+  citiesPollutionData: selectCitiesPollutionData
 });
 
 const mapDispatchToProps = dispatch => ({
-  getChosenCity: chosenCity => dispatch(getChosenCity(chosenCity))
+  getChosenCity: mapChosenCity => dispatch(getChosenCity(mapChosenCity))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PollutionSideCard);

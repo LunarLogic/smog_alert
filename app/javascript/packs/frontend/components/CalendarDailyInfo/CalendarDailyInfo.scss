@@ -1,0 +1,28 @@
+@import "../../styles/_variables.scss";
+
+.calendar-daily-info {
+  width: 32rem;
+  font-size: 1.2rem;
+  line-height: 1.7rem;
+  border: 0.1rem solid #c8c8cd;
+  border-radius: 0.4rem;
+  padding: 1.5rem;
+  color: $textColor;
+  &__box {
+    margin-bottom: 1.5rem;
+
+    display: flex;
+    align-items: center;
+    &-measurements {
+      flex: none;
+    }
+    &-emot {
+      width: 100%;
+      text-align: center;
+      & svg {
+        width: 7rem;
+        height: 7rem;
+      }
+    }
+  }
+}
