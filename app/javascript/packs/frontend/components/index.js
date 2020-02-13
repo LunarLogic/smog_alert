@@ -13,6 +13,7 @@ import Recommendation from "./Recommendation/Recommendation";
 import Map from "./Map/Map";
 import Navigation from "./Navigation/Navigation";
 import NavigationMobile from "./NavigationMobile/NavigationMobile";
+import NoItemFound from "./NoItemFound/NoItemFound";
 import PageTitle from "./PageTitle/PageTitle";
 import PollutionBar from "./PollutionBar/PollutionBar";
 import PollutionCard from "./PollutionCard/PollutionCard";
@@ -40,6 +41,7 @@ export {
   Map,
   Navigation,
   NavigationMobile,
+  NoItemFound,
   PageTitle,
   PollutionBar,
   PollutionCard,

@@ -1,7 +1,7 @@
 import { newsActionTypes } from "./news.types";
 
 const INITIAL_STATE = {
-  articles: []
+  articles: null
 };
 
 const newsReducer = (state = INITIAL_STATE, action) => {
