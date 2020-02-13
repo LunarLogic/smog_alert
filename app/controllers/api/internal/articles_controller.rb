@@ -1,4 +1,6 @@
 class API::Internal::ArticlesController < API::Internal::BaseController
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
+
   def index
     data = ArticlesRepository.new.published_articles.map do |article|
       API::Internal::ArticleOverviewPresenter.new(article)
@@ -18,5 +20,9 @@ class API::Internal::ArticlesController < API::Internal::BaseController
 
   def article_params
     params.require(:article).permit(:title, :body, :overview)
+  end
+
+  def render_not_found_response(exception)
+    render json: { error: exception.message }, status: :not_found
   end
 end

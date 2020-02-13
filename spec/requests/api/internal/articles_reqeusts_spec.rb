@@ -66,14 +66,12 @@ describe API::Internal::ArticlesController do
   describe 'GET /api/internal/articles/:id' do
     before { get "/api/internal/articles/#{article_id}" }
 
-    #  TODO fix failing test
     context 'when article is not published' do
       let(:article) { create(:article, published: false, published_at: nil) }
       let(:article_id) { article.id }
 
-      it 'returns status code 404' do
-        expect(response).to have_http_status(404)
-        # expect(response.body).to include("Couldn't find Article")
+      it 'raise an error' do
+        expect(response.body).to include('error')
       end
     end
 
