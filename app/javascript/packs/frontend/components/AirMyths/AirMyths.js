@@ -4,9 +4,9 @@ import airMythsContent from "./AirMyths.json";
 import "./AirMyths.scss";
 
 const AirMyths = () => {
-  const createAirMyth = airMythsContent.data.map(myth => {
+  const createAirMyth = airMythsContent.data.map((myth, index) => {
     return (
-      <div className="air-myths__content" key={myth.title}>
+      <div className="air-myths__content" key={`${index}-myth`}>
         <div className="air-myths__content-title">{myth.title}</div>
         <div className="air-myths__content-text">{myth.text}</div>
       </div>
