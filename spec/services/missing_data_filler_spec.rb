@@ -12,7 +12,7 @@ describe MissingDataFiller do
           time = '2020-02-11T17:17:17'.to_time - num.hour
           hour = time.hour
           day = time.to_date
-          measurement = FactoryBot.create(:measurement, location: location, date: day, hour: hour)
+          FactoryBot.create(:measurement, location: location, date: day, hour: hour)
         end
       end
 
@@ -30,7 +30,7 @@ describe MissingDataFiller do
           time = '2020-02-11T17:17:17'.to_time - num.hour
           hour = time.hour
           day = time.to_date
-          measurement = FactoryBot.create(:measurement, location: location, date: day, hour: hour)
+          FactoryBot.create(:measurement, location: location, date: day, hour: hour)
         end
       end
 
