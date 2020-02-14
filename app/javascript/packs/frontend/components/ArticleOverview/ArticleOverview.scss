@@ -5,7 +5,7 @@
   border: 0.1rem solid $frameColor;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.15);
   border-radius: 0.6rem;
-  padding: 3.5rem;
+  padding: 4rem;
   margin: 2rem 0 2rem 0;
   &__title {
     @include title;
@@ -24,33 +24,55 @@
       border-left: 0.1rem solid $grey;
     }
   }
-  &__body {
-    font-size: 1.6rem;
-    line-height: 1.9rem;
-    margin-top: 2rem;
-  }
-  &__button {
+  &__container {
     display: flex;
-    justify-content: flex-end;
     margin-top: 2rem;
-    color: $secondaryColor;
-    &:hover {
-      color: $secondaryColorDark;
-      svg {
-        fill: $secondaryColorDark;
+    align-items: center;
+
+    @media only screen and(max-width: $bp-1200) {
+      align-items: flex-start;
+    }
+
+    @media only screen and(max-width: $bp-800) {
+      flex-direction: column;
+    }
+
+    &--overview {
+      width: 75%;
+      font-size: 1.6rem;
+      line-height: 2.1rem;
+      margin-left: 2rem;
+      display: flex;
+      flex-direction: column;
+
+      @media only screen and(max-width: $bp-800) {
+        width: 100%;
+        margin-left: 0;
       }
     }
-    &--text {
-      font-size: 1.6rem;
-      line-height: 2.5rem;
-      padding-right: 0.5rem;
-      cursor: pointer;
-    }
-    svg {
-      height: 2.5rem;
-      width: 2.5rem;
-      fill: $secondaryColor;
-      cursor: pointer;
+    &--button {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 2rem;
+      color: $secondaryColor;
+      &:hover {
+        color: $secondaryColorDark;
+        svg {
+          fill: $secondaryColorDark;
+        }
+      }
+      &-text {
+        font-size: 1.6rem;
+        line-height: 2.5rem;
+        padding-right: 0.5rem;
+        cursor: pointer;
+      }
+      svg {
+        height: 2.5rem;
+        width: 2.5rem;
+        fill: $secondaryColor;
+        cursor: pointer;
+      }
     }
   }
 }

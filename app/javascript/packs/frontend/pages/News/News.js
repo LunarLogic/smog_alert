@@ -42,7 +42,8 @@ const News = ({ match, getArticles, articles, setCurrentPath }) => {
             <ArticleOverview
               key={article.id}
               title={article.title}
-              body={article.body}
+              image={article.image}
+              overview={article.overview}
               publishingDate={article.published_at}
               updatingDate={article.updated_at}
               id={article.id}
