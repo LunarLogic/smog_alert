@@ -9,7 +9,7 @@ describe MissingDataFiller do
       before do
         hours = 1..21
         hours.each do |num|
-          time = '2020-02-11T17:17:17'.to_time - num.hour
+          time = Time.zone.parse('2020-02-11T17:17:17') - num.hour
           hour = time.hour
           day = time.to_date
           FactoryBot.create(:measurement, location: location, date: day, hour: hour)
@@ -27,7 +27,7 @@ describe MissingDataFiller do
       before do
         hours = 1..24
         hours.each do |num|
-          time = '2020-02-11T17:17:17'.to_time - num.hour
+          time = Time.zone.parse('2020-02-11T17:17:17') - num.hour
           hour = time.hour
           day = time.to_date
           FactoryBot.create(:measurement, location: location, date: day, hour: hour)
@@ -36,7 +36,7 @@ describe MissingDataFiller do
 
       it 'does not creat any new measurements' do
         VCR.use_cassette('services/missing_data_filler/measurement_for_zabierzow') do
-          expect { subject }.not_to change { Measurement.count }
+          expect { subject }.to change { Measurement.count }.by(0)
         end
       end
     end

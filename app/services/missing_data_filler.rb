@@ -13,7 +13,7 @@ class MissingDataFiller
     return if data.nil?
 
     data.each do |hourly_data|
-      hour = hourly_data['tillDateTime'].to_time.hour
+      hour = Time.zone.parse(hourly_data['tillDateTime']).hour
       day = hourly_data['tillDateTime'].to_date
       measurements_taken = measurements_repository.data_presence(@location, day, hour)
       if measurements_taken.empty?
