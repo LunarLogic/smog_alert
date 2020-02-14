@@ -1,7 +1,14 @@
 unless Rails.env.production?
-  user = User.find_or_create_by(email: 'admin@example.com')
+  superadmin = User.find_or_create_by(email: 'admin@example.com') do |user|
+    user.admin = true
+    user.role = :superadmin
+    password = '123456'
+    user.password = password
+    user.password_confirmation = password
+    user.confirmed_at = Time.current
+  end
 
-  unless user.confirmed?
+  editor = User.find_or_create_by(email: 'editor@example.com') do |user|
     user.admin = true
     password = '123456'
     user.password = password
@@ -10,18 +17,24 @@ unless Rails.env.production?
     user.confirm
   end
 
-  user.superadmin!
+  unpublished_articles = 5.times.collect do
+    Article.create({
+      title: Faker::Lorem.unique.sentence,
+      body: Faker::Lorem.sentence(word_count: 150),
+      overview: Faker::Lorem.sentence(word_count: 15),
+      user_id: [editor.id, superadmin.id].sample
+    })
+  end
 
-  editor = User.find_or_create_by(email: 'editor@example.com')
-
-  unless editor.confirmed?
-    editor.admin = true
-    password = '123456'
-    editor.password = password
-    editor.password_confirmation = password
-    editor.editor!
-    editor.skip_confirmation!
-    editor.confirm
+  published_articles = 5.times.collect do
+    Article.create({
+      title: Faker::Lorem.unique.sentence,
+      body: Faker::Lorem.sentence(word_count: 150),
+      overview: Faker::Lorem.sentence(word_count: 15),
+      user_id: [editor.id, superadmin.id].sample,
+      published: true,
+      published_at: Time.current
+    })
   end
 
   15.times do
