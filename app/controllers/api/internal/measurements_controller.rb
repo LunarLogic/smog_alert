@@ -29,7 +29,7 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
   def hourly_average_for_month
     location = Location.find(hourly_stats_params[:location_id])
     date = hourly_stats_params[:date].to_date
-    monthly_measurement = statistics_repository.monthly_measurements(location, date)
+    monthly_measurement = measurements_repository.monthly_measurements(location, date)
     data = API::Internal::HourlyAveragePollutionPresenter.new(location, date, monthly_measurement).to_hash
     render json: { data: data }
   end
@@ -40,8 +40,8 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
     LocationsRepository.new
   end
 
-  def statistics_repository
-    StatisticsRepository.new
+  def measurements_repository
+    MeasurementsRepository.new
   end
 
   def hourly_stats_params
