@@ -10,4 +10,8 @@ class ArticlesRepository
     article.published_at = nil
     article.save
   end
+
+  def published_articles
+    Article.where(published: true).order('updated_at DESC')
+  end
 end

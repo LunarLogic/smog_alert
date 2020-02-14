@@ -2,6 +2,7 @@ require 'rails_helper'
 
 def add_new_article(article)
   fill_in 'Tytuł', with: article.title
+  fill_in 'Skrót artykułu', with: article.overview
   find('#article_body').click.set article.body
   click_on('Dodaj')
 end
@@ -38,7 +39,7 @@ describe 'admin interactions with articles' do
     end
     expect(page).to have_current_path(edit_admin_article_path(article))
     fill_in 'Tytuł', with: 'edited title'
-    click_on('Edytuj')
+    click_on('Zapisz zmiany')
     expect(page).to have_current_path(admin_articles_path)
     expect(page).to have_content('edited title')
   end

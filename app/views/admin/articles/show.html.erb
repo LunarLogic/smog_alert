@@ -1,5 +1,6 @@
 <h1><%= @article.title %></h1>
-<p><%= @article.body%></p>
+<p><%= @article.body %></p>
+<p><br>Skrót artykułu:</br><%= @article.overview %></p>
 <p><br>Data wpisu:</br><%= @article.created_at%></p>
 
 <%= link_to 'Edytuj', edit_admin_article_path(@article), class: "btn btn-light btn-sm"%>
