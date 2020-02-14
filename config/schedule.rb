@@ -22,3 +22,7 @@
 every :hour, at: 0 do
   rake "schedule:airly:import_current_measurements"
 end
+
+every :day, at: ['1:00am', '1:00pm']  do
+  rake "schedule:airly:fill_missing_data"
+end
