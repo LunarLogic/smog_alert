@@ -7,15 +7,15 @@
     </div>
   <% end %>
   <br>
-  <% if article.tags.present? %>
-    <%= f.simple_fields_for :tags do |ff| %>
-      <div class="d-flex tag-field">
-        <%= render 'tag_fields', f: ff %>
-        <button type='button' class="close btn-tag-field-remove ml-2"><span aria-hidden='true'>&times;</span></button>
-      </div>
+  <div id="js-tags-fields">
+    <% if article.tags.present? %>
+      <%= f.simple_fields_for :tags do |ff| %>
+        <div class="d-flex tag-field">
+          <%= render 'tag_fields', f: ff %>
+          <button type='button' class="close btn-tag-field-remove ml-2"><span aria-hidden='true'>&times;</span></button>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
-  <div id="js-new-tags-fields">
   </div>
   <p><button class="btn btn-secondary" id="js-add-tag-field-button">Dodaj tag</button></p>
   <%= f.button :submit, button_label, class: 'btn btn-primary' %>
