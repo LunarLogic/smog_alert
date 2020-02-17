@@ -1,3 +1,5 @@
+require 'active_record/fixtures'
+
 module ActiveTextHelper
   def html_with_image
     attachable = create_file_blob(filename: 'kitten2.png', content_type: 'image/png')
