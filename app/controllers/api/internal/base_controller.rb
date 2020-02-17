@@ -6,13 +6,13 @@ module API
       rescue_from(ActionController::ParameterMissing) do |parameter_missing_exception|
         error = {}
         error[parameter_missing_exception.param] = ['parameter is required']
-        response = { errors: [error] }
+        response = { data: nil, errors: [error] }
         render json: response, status: :unprocessable_entity
       end
 
       rescue_from ActiveRecord::RecordNotFound do |exception|
-        response = { errors: [exception] }
-        render json: response, status: :unprocessable_entity
+        response = { data: nil, errors: [exception] }
+        render json: response, status: :not_found
       end
     end
   end
