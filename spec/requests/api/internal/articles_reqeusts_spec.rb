@@ -63,16 +63,17 @@ describe API::Internal::ArticlesController do
   describe 'GET /api/internal/articles/:id' do
     before { get "/api/internal/articles/#{article_id}" }
 
-    context 'when article is not published' do
+    context 'when no published article in DB' do
       let(:article) { create(:article, published: false, published_at: nil) }
       let(:article_id) { article.id }
 
-      it 'raise an error' do
-        expect(response.body).to include('error')
+      it 'raises an error' do
+        expect(response.body).to be_json_eql(nil.to_json).at_path('data')
+        # expect(response.body).to include('error')
       end
     end
 
-    context 'when article in DB AND published' do
+    context 'when published article in DB' do
       let(:article) { create(:article, published: true, published_at: Time.current) }
       let(:article_id) { article.id }
 

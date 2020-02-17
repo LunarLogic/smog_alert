@@ -11,8 +11,8 @@ module API
       end
 
       rescue_from ActiveRecord::RecordNotFound do |exception|
-        response = { errors: [exception] }
-        render json: response, status: :unprocessable_entity
+        response = { data: nil, errors: [exception] }
+        render json: response, status: :not_found
       end
     end
   end
