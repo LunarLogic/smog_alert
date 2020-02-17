@@ -9,6 +9,10 @@
   margin: 2rem 0 2rem 0;
   &__title {
     @include title;
+    @media only screen and(max-width: $bp-600) {
+      font-size: 3rem;
+      line-height: 3.9rem;
+    }
   }
   &__date {
     font-size: 1.2rem;
@@ -16,6 +20,10 @@
     color: $grey;
     margin: 1rem 0;
     display: flex;
+    @media only screen and(max-width: $bp-600) {
+      font-size: 1.6rem;
+      line-height: 2rem;
+    }
     &-published {
       margin-right: 1rem;
     }
@@ -33,21 +41,19 @@
       align-items: flex-start;
     }
 
-    @media only screen and(max-width: $bp-800) {
+    @media only screen and(max-width: $bp-1000) {
       flex-direction: column;
+      align-items: center;
     }
 
     &--overview {
-      width: 75%;
       font-size: 1.6rem;
       line-height: 2.1rem;
-      margin-left: 2rem;
       display: flex;
       flex-direction: column;
-
-      @media only screen and(max-width: $bp-800) {
-        width: 100%;
-        margin-left: 0;
+      @media only screen and(max-width: $bp-600) {
+        font-size: 2rem;
+        line-height: 2.5rem;
       }
     }
     &--button {
@@ -66,6 +72,11 @@
         line-height: 2.5rem;
         padding-right: 0.5rem;
         cursor: pointer;
+
+        @media only screen and(max-width: $bp-600) {
+          font-size: 2rem;
+          line-height: 2.9rem;
+        }
       }
       svg {
         height: 2.5rem;

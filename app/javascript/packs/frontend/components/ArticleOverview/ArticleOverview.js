@@ -29,7 +29,7 @@ const ArticleOverview = ({
         </div>
       </div>
       <div className="article-overview__container">
-        <ArticleOverviewImage image={image} />
+        {image ? <ArticleOverviewImage image={image} /> : null}
         <div className="article-overview__container--overview">
           <div className="article-overview__container--overview-text">
             {overview}
