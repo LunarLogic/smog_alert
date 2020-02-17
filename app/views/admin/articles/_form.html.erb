@@ -11,8 +11,7 @@
     <% if article.tags.present? %>
       <%= f.simple_fields_for :tags do |ff| %>
         <div class="d-flex tag-field">
-          <%= render 'tag_fields', f: ff %>
-          <button type='button' class="close btn-tag-field-remove ml-2"><span aria-hidden='true'>&times;</span></button>
+          <%= render 'tag_fields', f: ff, article: article %>
         </div>
       <% end %>
     <% end %>
