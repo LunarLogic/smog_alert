@@ -1,5 +1,4 @@
 class API::Internal::ArticlesController < API::Internal::BaseController
-
   def index
     data = ArticlesRepository.new.published_articles.map do |article|
       API::Internal::ArticleOverviewPresenter.new(article)
