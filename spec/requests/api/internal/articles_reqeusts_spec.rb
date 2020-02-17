@@ -1,8 +1,8 @@
 describe API::Internal::ArticlesController do
   describe 'GET /api/internal/articles' do
-    describe '#index'
+    let!(:editor) { create(:editor, id: 2) }
     context 'when no published articles in DB' do
-      let!(:article) { create(:article, published: false, published_at: nil) }
+      let!(:article) { create(:article, published: false, published_at: nil, user: editor) }
 
       before { get api_internal_articles_path }
 
@@ -12,15 +12,16 @@ describe API::Internal::ArticlesController do
     end
 
     context 'when published articles in DB' do
-      let!(:not_published_article) { create(:article, published: false, published_at: nil) }
+      let!(:not_published_article) { create(:article, published: false, published_at: nil, user: editor) }
       let!(:published_article_without_image) do
         create(:article, published: true, published_at: Time.current,
-                         updated_at: Time.current - 2.days)
+                         updated_at: Time.current - 2.days, user: editor)
       end
       let!(:published_article_with_image) do
         FactoryBot.create(:article, body: '#', published: true,
-                                    published_at: Time.current)
+                                    published_at: Time.current, user: editor)
       end
+
 
       context 'when article without image' do
         before { get api_internal_articles_path }
@@ -61,10 +62,11 @@ describe API::Internal::ArticlesController do
   end
 
   describe 'GET /api/internal/articles/:id' do
+    let!(:editor) { create(:editor, id: 2) }
     before { get "/api/internal/articles/#{article_id}" }
 
     context 'when article is not published' do
-      let(:article) { create(:article, published: false, published_at: nil) }
+      let(:article) { create(:article, published: false, published_at: nil, user: editor) }
       let(:article_id) { article.id }
 
       it 'raise an error' do
@@ -73,7 +75,7 @@ describe API::Internal::ArticlesController do
     end
 
     context 'when article in DB AND published' do
-      let(:article) { create(:article, published: true, published_at: Time.current) }
+      let(:article) { create(:article, published: true, published_at: Time.current, user: editor) }
       let(:article_id) { article.id }
 
       it 'returns an article' do
