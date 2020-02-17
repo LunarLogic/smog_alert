@@ -1,5 +1,5 @@
 require_relative '../spec/support/config/active_text_helper.rb'
-include ActiveTextHelper
+extend ActiveTextHelper
 
 unless Rails.env.production?
   superadmin = User.find_or_create_by(email: 'admin@example.com') do |user|
@@ -40,14 +40,16 @@ unless Rails.env.production?
     })
   end
 
-  # unpublished_articles_with_image = 5.times.collect do
-  #   Article.create({
-  #     title: Faker::Lorem.unique.sentence,
-  #     body: html_with_image,
-  #     overview: Faker::Lorem.sentence(word_count: 15),
-  #     user_id: [editor.id, superadmin.id].sample
-  #   })
-  # end
+  published_articles_with_image = 5.times.collect do
+    Article.create({
+      title: Faker::Lorem.unique.sentence,
+      body: html_with_image,
+      overview: Faker::Lorem.sentence(word_count: 15),
+      user_id: [editor.id, superadmin.id].sample,
+      published: true,
+      published_at: Time.current
+    })
+  end
 end
 
 cities = [
