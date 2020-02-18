@@ -14,9 +14,8 @@ import {
 } from "../../redux/application/application.selectors";
 
 import "./Navigation.scss";
-import { resetArticle } from "../../redux/news/news.actions";
 
-const Navigation = ({ path, organizationDetails, resetArticle }) => {
+const Navigation = ({ path, organizationDetails }) => {
   const { links, button } = navigationContent;
   const { name, logo } = organizationDetails;
 
@@ -42,9 +41,6 @@ const Navigation = ({ path, organizationDetails, resetArticle }) => {
             <NavLink
               key={link.displayName}
               className="navigation__links-item"
-              onClick={() => {
-                path !== "/aktualnosci" ? resetArticle() : null;
-              }}
               to={link.path}
             >
               {link.displayName}
@@ -77,14 +73,10 @@ const mapStateToProps = createStructuredSelector({
   organizationDetails: selectOrganizationDetails
 });
 
-const mapDispatchToProps = dispatch => ({
-  resetArticle: () => dispatch(resetArticle())
-});
-
 Navigation.propTypes = {
   path: PropTypes.string,
   organizationDetails: PropTypes.object,
   resetArticle: PropTypes.func
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
+export default connect(mapStateToProps)(Navigation);

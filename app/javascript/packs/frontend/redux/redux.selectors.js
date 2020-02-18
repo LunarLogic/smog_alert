@@ -104,6 +104,11 @@ export const selectArticleLoader = createSelector(
 
 export const selectNewsError = createSelector([selectNews], news => news.error);
 
+export const selectNewsErrorCode = createSelector(
+  [selectNews],
+  news => news.errorCode
+);
+
 export const selectArticle = createSelector([selectNews], news => news.article);
 
 const selectApplication = state => state.application;

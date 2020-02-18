@@ -5,17 +5,22 @@ const INITIAL_STATE = {
   article: {},
   newsLoader: true,
   articleLoader: true,
-  error: false
+  error: false,
+  errorCode: {}
 };
 
 const newsReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case newsActionTypes.GET_ARTICLES_PENDING:
-      return {
-        ...state,
-        newsLoader: true,
-        error: false
-      };
+      if (!state.articles.length) {
+        return {
+          ...state,
+          newsLoader: true,
+          error: false
+        };
+      }
+      return state;
+
     case newsActionTypes.GET_ARTICLES_SUCCESS:
       return {
         ...state,
@@ -46,13 +51,13 @@ const newsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         articleLoader: false,
-        error: true
+        error: true,
+        errorCode: action.payload.status
       };
     case newsActionTypes.RESET_ARTICLE:
       return {
         ...state,
         article: {},
-        articles: [],
         newsLoader: true
       };
     default:

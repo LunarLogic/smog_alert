@@ -11,11 +11,12 @@ import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 
 import { Loader, PageTitle, NoItemFound } from "../../components";
 
-import { getArticle, resetArticle } from "../../redux/news/news.actions";
+import { getArticle } from "../../redux/news/news.actions";
 import {
   selectArticle,
   selectArticleLoader,
-  selectNewsError
+  selectNewsError,
+  selectNewsErrorCode
 } from "../../redux/redux.selectors";
 import { getDate } from "../../helpers";
 
@@ -30,7 +31,7 @@ const Article = ({
   loader,
   error,
   setCurrentPath,
-  resetArticle
+  errorCode
 }) => {
   const articleId = match.params.articleId;
   const { title, body, published_at, updated_at } = article;
@@ -46,13 +47,27 @@ const Article = ({
     }
 
     if (error) {
-      return (
-        <NoItemFound
-          image={<ErrorOutlineIcon />}
-          text="Przepraszamy, wystąpił błąd. Prosimy spróbować później."
-          linkTo={{ href: "/", text: "Powrót na stronę główną" }}
-        />
-      );
+      switch (errorCode) {
+        case 404:
+          return (
+            <NoItemFound
+              image={<LibraryBooksIcon />}
+              text={"Przepraszamy, wybrany artykuł nie istnieje"}
+              linkTo={{
+                href: "/aktualnosci",
+                text: "Powrót do listy aktualności"
+              }}
+            />
+          );
+        default:
+          return (
+            <NoItemFound
+              image={<ErrorOutlineIcon />}
+              text="Przepraszamy, wystąpił błąd. Prosimy spróbować później."
+              linkTo={{ href: "/", text: "Powrót na stronę główną" }}
+            />
+          );
+      }
     }
 
     if (article) {
@@ -74,11 +89,7 @@ const Article = ({
             </div>
             <div className="article__container--author">Autor: </div>
           </div>
-          <Link
-            className="article__button"
-            to="/aktualnosci"
-            onClick={resetArticle}
-          >
+          <Link className="article__button" to="/aktualnosci">
             <ArrowBackIcon />
             <div className="article__button--text">
               Powrót do listy aktualności
@@ -87,13 +98,6 @@ const Article = ({
         </div>
       );
     }
-    return (
-      <NoItemFound
-        image={<LibraryBooksIcon />}
-        text={"Przepraszamy, wybrany artykuł nie istnieje"}
-        linkTo={{ href: "/aktualnosci", text: "Powrót do listy aktualności" }}
-      />
-    );
   };
 
   const loaderStyles = {
@@ -105,14 +109,14 @@ const Article = ({
 
 const mapDispatchToProps = dispatch => ({
   getArticle: id => dispatch(getArticle(id)),
-  setCurrentPath: path => dispatch(setCurrentPath(path)),
-  resetArticle: () => dispatch(resetArticle())
+  setCurrentPath: path => dispatch(setCurrentPath(path))
 });
 
 const mapStateToProps = createStructuredSelector({
   article: selectArticle,
   loader: selectArticleLoader,
-  error: selectNewsError
+  error: selectNewsError,
+  errorCode: selectNewsErrorCode
 });
 
 Article.propTypes = {
