@@ -10,10 +10,19 @@ describe '/api/internal/measurements' do
         'year' => measurement.date.year,
         'daily_average_measurements' => [
           {
-            'day' => measurement.date.to_s,
-            'pm10' => measurement.pm10.to_s,
-            'pm25' => measurement.pm25.to_s,
-            'number_of_measurements' => 10
+            'date' => '2019-11-27',
+            'number_of_measurements' => 10,
+            'average_values' => [
+              {
+                'name' => 'PM 10',
+                'value' => measurement.pm10.to_s,
+              },
+              {
+                'name' => 'PM 2.5',
+                'value' => measurement.pm25.to_s,
+              },
+            ],
+            'status' => 'zbyt mało danych'
           },
         ]
       }
@@ -28,7 +37,10 @@ describe '/api/internal/measurements' do
       location_id = location.id
       get calendar_values_api_internal_measurements_path(location_id: location_id)
       expect(response.status).to eq(422)
-      expect(response.body).to be_json_eql({ 'errors' => [{ 'year' => ['parameter is required'] }] }.to_json)
+      expect(response.body).to be_json_eql({
+        'data' => nil,
+        'errors' => [{ 'year' => ['parameter is required'] }]
+      }.to_json)
     end
   end
 
@@ -46,6 +58,32 @@ describe '/api/internal/measurements' do
       location_id = location.id
       year = location.measurements.last.date.year
       get calendar_status_api_internal_measurements_path(location_id: location_id, year: year)
+      json = JSON.parse(response.body)
+      expect(json).to eq(expected_response)
+    end
+  end
+
+  describe 'GET /calendar_daily_values' do
+    it 'repsonds with json containing the right data' do
+      expected_response =
+        {
+          'date' => '2019-11-27',
+          'number_of_measurements' => 10,
+          'average_values' => [
+            {
+              'name' => 'PM 10',
+              'value' => measurement.pm10.to_s,
+            },
+            {
+              'name' => 'PM 2.5',
+              'value' => measurement.pm25.to_s,
+            },
+          ],
+          'status' => 'zbyt mało danych'
+        }
+      location_id = location.id
+      date = measurement.date
+      get calendar_daily_values_api_internal_measurements_path(location_id: location_id, date: date)
       json = JSON.parse(response.body)
       expect(json).to eq(expected_response)
     end

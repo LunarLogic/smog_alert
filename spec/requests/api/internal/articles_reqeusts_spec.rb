@@ -69,8 +69,12 @@ describe API::Internal::ArticlesController do
       let(:article) { create(:article, published: false, published_at: nil, user: editor) }
       let(:article_id) { article.id }
 
-      it 'raise an error' do
-        expect(response.body).to include('error')
+      it 'raises an error' do
+        expect(response.body).to be_json_eql(nil.to_json).at_path('data')
+        expect(response.body).to be_json_eql(
+          "Couldn't find Article with 'id'=#{article.id} [WHERE \"articles\".\"published\" = $1]"
+          .to_json,
+        ).at_path('errors/0')
       end
     end
 

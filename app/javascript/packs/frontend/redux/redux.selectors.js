@@ -84,3 +84,17 @@ export const selectCalendarValuesData = createSelector(
   [selectCalendar],
   calendar => calendar.calendarValuesData
 );
+
+const selectNews = state => state.news;
+
+export const selectArticles = createSelector(
+  [selectNews],
+  news => news.articles
+);
+
+const selectApplication = state => state.application;
+
+export const selectPath = createSelector(
+  [selectApplication],
+  application => application.path
+);

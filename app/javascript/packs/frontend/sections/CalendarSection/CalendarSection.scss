@@ -1,6 +1,36 @@
 @import "../../styles/variables";
+@import "../../styles/mixins";
 
 .calendar-section {
+  &__location-and-data {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+    @media only screen and (max-width: $bp-1000) {
+      flex-direction: column;
+    }
+    &-dropdown {
+      width: 40%;
+      position: relative;
+      @media only screen and (max-width: $bp-1000) {
+        min-height: 20rem;
+        width: 35.1rem;
+      }
+      &-heading {
+        @include heading;
+        margin-top: 0;
+        margin-bottom: 3.5rem;
+      }
+      &__label {
+        font-size: 1.6rem;
+        line-height: 1.9rem;
+        font-weight: 700;
+        color: #747485;
+        margin-bottom: 0.8rem;
+      }
+    }
+  }
   &__legend {
     width: 100%;
     margin-top: 2rem;

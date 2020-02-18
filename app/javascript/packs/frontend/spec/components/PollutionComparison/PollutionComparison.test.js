@@ -83,8 +83,8 @@ describe("PollutionComparison", () => {
         })}
       />
     );
-    expect(wrapperEmpty.find(".pollution-comparison").text()).toEqual(
-      "loading"
+    expect(wrapperEmpty.find(".pollution-comparison__loader").exists()).toEqual(
+      true
     );
   });
 

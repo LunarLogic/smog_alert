@@ -117,4 +117,8 @@
     display: flex;
     justify-content: space-around;
   }
+  &__loader {
+    display: flex;
+    justify-content: center;
+  }
 }

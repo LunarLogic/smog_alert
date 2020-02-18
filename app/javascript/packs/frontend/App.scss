@@ -50,4 +50,13 @@ a {
     margin-right: 0.5rem;
     color: $grey;
   }
+
+  &:hover {
+    svg {
+      fill: $secondaryColorDark;
+    }
+    div {
+      color: $secondaryColor;
+    }
+  }
 }

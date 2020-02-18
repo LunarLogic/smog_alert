@@ -1,9 +1,13 @@
 import calendarActionTypes from "./calendar.types";
+import { yesterdayDateFormatted } from "../../helpers";
 
 const INITIAL_STATE = {
   calendarStatusData: {},
   calendarValuesData: {},
-  calendarChosenYear: new Date().getFullYear()
+  calendarDailyValuesData: {},
+  calendarChosenYear: new Date().getFullYear(),
+  calendarChosenDay: yesterdayDateFormatted(),
+  calendarChosenCity: "Zabierzów, Wapienna"
 };
 
 const calendarReducer = (state = INITIAL_STATE, action) => {
@@ -18,10 +22,25 @@ const calendarReducer = (state = INITIAL_STATE, action) => {
         ...state,
         calendarValuesData: action.payload
       };
+    case calendarActionTypes.GET_CALENDAR_DAILY_VALUES_DATA:
+      return {
+        ...state,
+        calendarDailyValuesData: action.payload
+      };
     case calendarActionTypes.SET_CALENDAR_CHOSEN_YEAR:
       return {
         ...state,
         calendarChosenYear: action.payload
+      };
+    case calendarActionTypes.SET_CALENDAR_CHOSEN_DAY:
+      return {
+        ...state,
+        calendarChosenDay: action.payload
+      };
+    case calendarActionTypes.SET_CALENDAR_CHOSEN_CITY:
+      return {
+        ...state,
+        calendarChosenCity: action.payload
       };
     default:
       return state;
