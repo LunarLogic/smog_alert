@@ -26,7 +26,7 @@ const ButtonsGroup = ({ linkTo, contactLinks }) => {
 
 ButtonsGroup.propTypes = {
   linkTo: PropTypes.object,
-  contactLinks: PropTypes.object
+  contactLinks: PropTypes.array
 };
 
 export default ButtonsGroup;

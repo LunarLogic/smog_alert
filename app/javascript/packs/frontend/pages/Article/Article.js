@@ -7,60 +7,87 @@ import { PropTypes } from "prop-types";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { animateScroll } from "react-scroll";
 import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
+import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 
 import { Loader, PageTitle, NoItemFound } from "../../components";
 
-import { getArticles } from "../../redux/news/news.actions";
-import { selectArticles } from "../../redux/redux.selectors";
+import { getArticle, resetArticle } from "../../redux/news/news.actions";
+import {
+  selectArticle,
+  selectArticleLoader,
+  selectNewsError
+} from "../../redux/redux.selectors";
 import { getDate } from "../../helpers";
 
 import "./Article.scss";
 
 import { setCurrentPath } from "../../redux/application/application.actions";
 
-const Article = ({ match, getArticles, articles, setCurrentPath }) => {
+const Article = ({
+  match,
+  getArticle,
+  article,
+  loader,
+  error,
+  setCurrentPath,
+  resetArticle
+}) => {
   const articleId = match.params.articleId;
-  let chosenArticle;
-  let body;
+  const { title, body, published_at, updated_at } = article;
   useEffect(() => {
     setCurrentPath(match.path);
-    getArticles();
+    getArticle(articleId);
     animateScroll.scrollToTop();
   }, []);
 
-  //Temporary solution, waiting for changes in the API
-  if (articles && articles.length) {
-    chosenArticle = articles.find(item => item.id === Number(articleId));
-    body = chosenArticle.body;
-  }
+  const displayArticle = () => {
+    if (loader) {
+      return <Loader className="article__loader" loaderStyles={loaderStyles} />;
+    }
 
-  const displayArticle = chosenArticle => {
-    return chosenArticle ? (
-      <div className="article">
-        <PageTitle title={chosenArticle.title} />
-        <div className="article__heading">{chosenArticle.title}</div>
-        <div className="article__date">
-          <div className="article__date-published">
-            Opublikowano {getDate(chosenArticle.published_at)}
+    if (error) {
+      return (
+        <NoItemFound
+          image={<ErrorOutlineIcon />}
+          text="Przepraszamy, wystąpił błąd. Prosimy spróbować później."
+          linkTo={{ href: "/", text: "Powrót na stronę główną" }}
+        />
+      );
+    }
+
+    if (article) {
+      return (
+        <div className="article">
+          <PageTitle title={title} />
+          <div className="article__heading">{title}</div>
+          <div className="article__date">
+            <div className="article__date-published">
+              Opublikowano {getDate(published_at)}
+            </div>
+            <div className="article__date-updated">
+              Uaktualniono {getDate(updated_at)}
+            </div>
           </div>
-          <div className="article__date-updated">
-            Uaktualniono {getDate(chosenArticle.updated_at)}
+          <div className="article__container">
+            <div className="article__container--body">
+              {ReactHtmlParser(body)}
+            </div>
+            <div className="article__container--author">Autor: </div>
           </div>
+          <Link
+            className="article__button"
+            to="/aktualnosci"
+            onClick={resetArticle}
+          >
+            <ArrowBackIcon />
+            <div className="article__button--text">
+              Powrót do listy aktualności
+            </div>
+          </Link>
         </div>
-        <div className="article__container">
-          <div className="article__container--body">
-            {ReactHtmlParser(body)}
-          </div>
-          <div className="article__container--author">Autor: </div>
-        </div>
-        <Link className="article__button" to="/aktualnosci">
-          <ArrowBackIcon />
-          <div className="article__button--text">
-            Powrót do listy aktualności
-          </div>
-        </Link>
-      </div>
-    ) : (
+      );
+    }
+    return (
       <NoItemFound
         image={<LibraryBooksIcon />}
         text={"Przepraszamy, wybrany artykuł nie istnieje"}
@@ -73,27 +100,27 @@ const Article = ({ match, getArticles, articles, setCurrentPath }) => {
     height: "60vh"
   };
 
-  return articles ? (
-    displayArticle(chosenArticle)
-  ) : (
-    <Loader className="article__loader" loaderStyles={loaderStyles} />
-  );
+  return displayArticle();
 };
 
 const mapDispatchToProps = dispatch => ({
-  getArticles: () => dispatch(getArticles()),
-  setCurrentPath: path => dispatch(setCurrentPath(path))
+  getArticle: id => dispatch(getArticle(id)),
+  setCurrentPath: path => dispatch(setCurrentPath(path)),
+  resetArticle: () => dispatch(resetArticle())
 });
 
 const mapStateToProps = createStructuredSelector({
-  articles: selectArticles
+  article: selectArticle,
+  loader: selectArticleLoader,
+  error: selectNewsError
 });
 
 Article.propTypes = {
   match: PropTypes.object,
   getArticles: PropTypes.func,
   articles: PropTypes.array,
-  setCurrentPath: PropTypes.func
+  setCurrentPath: PropTypes.func,
+  resetArticle: PropTypes.func
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Article);

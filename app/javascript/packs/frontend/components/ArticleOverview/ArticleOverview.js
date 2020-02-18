@@ -1,5 +1,5 @@
 import React from "react";
-import ReactHtmlParser from "react-html-parser";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { PropTypes } from "prop-types";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
@@ -8,6 +8,7 @@ import { getDate } from "../../helpers";
 
 import "./ArticleOverview.scss";
 import { ArticleOverviewImage } from "./ArticleOverview.styles.jsx";
+import { resetArticle } from "../../redux/news/news.actions";
 
 const ArticleOverview = ({
   title,
@@ -15,7 +16,8 @@ const ArticleOverview = ({
   overview,
   publishingDate,
   updatingDate,
-  id
+  id,
+  resetArticle
 }) => {
   return (
     <div className="article-overview">
@@ -37,6 +39,7 @@ const ArticleOverview = ({
           <Link
             className="article-overview__container--button"
             to={`/aktualnosci/${id}`}
+            onClick={resetArticle}
           >
             <div className="article-overview__container--button-text">
               Czytaj więcej
@@ -49,13 +52,18 @@ const ArticleOverview = ({
   );
 };
 
+const mapDispatchToProps = dispatch => ({
+  resetArticle: () => dispatch(resetArticle())
+});
+
 ArticleOverview.propTypes = {
   title: PropTypes.string,
   image: PropTypes.string,
   overview: PropTypes.string,
   publishingDate: PropTypes.string,
   updatingDate: PropTypes.string,
-  id: PropTypes.string
+  id: PropTypes.number,
+  resetArticle: PropTypes.func
 };
 
-export default ArticleOverview;
+export default connect(null, mapDispatchToProps)(ArticleOverview);
