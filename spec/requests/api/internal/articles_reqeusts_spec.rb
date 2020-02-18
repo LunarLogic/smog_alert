@@ -1,6 +1,7 @@
 describe API::Internal::ArticlesController do
   describe 'GET /api/internal/articles' do
     let!(:editor) { create(:editor, id: 2) }
+
     context 'when no published articles in DB' do
       let!(:article) { create(:article, published: false, published_at: nil, user: editor) }
 
@@ -62,6 +63,7 @@ describe API::Internal::ArticlesController do
 
   describe 'GET /api/internal/articles/:id' do
     let!(:editor) { create(:editor, id: 2) }
+
     before { get "/api/internal/articles/#{article_id}" }
 
     context 'when article is not published' do
