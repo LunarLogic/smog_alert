@@ -12,7 +12,7 @@ class Article < ApplicationRecord
   validates_associated :tags
 
   def tags_attributes=(tags_hash)
-    names = tags_hash.map { |_, tag| tag[:name].strip }.reject(&:blank?).uniq
+    names = tags_hash.map { |tag| tag[:name].strip }.reject(&:blank?).uniq
     self.tags = names.map { |name| Tag.where(name: name).first_or_create! } if names.present?
   end
 
