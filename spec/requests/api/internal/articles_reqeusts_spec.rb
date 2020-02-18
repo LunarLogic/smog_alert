@@ -22,7 +22,6 @@ describe API::Internal::ArticlesController do
                                     published_at: Time.current, user: editor)
       end
 
-
       context 'when article without image' do
         before { get api_internal_articles_path }
 
