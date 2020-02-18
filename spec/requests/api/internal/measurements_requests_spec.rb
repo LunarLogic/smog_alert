@@ -37,7 +37,10 @@ describe '/api/internal/measurements' do
       location_id = location.id
       get calendar_values_api_internal_measurements_path(location_id: location_id)
       expect(response.status).to eq(422)
-      expect(response.body).to be_json_eql({ 'errors' => [{ 'year' => ['parameter is required'] }] }.to_json)
+      expect(response.body).to be_json_eql({
+        'data' => nil,
+        'errors' => [{ 'year' => ['parameter is required'] }]
+      }.to_json)
     end
   end
 
