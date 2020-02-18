@@ -77,12 +77,12 @@ describe 'admin interactions with articles' do
     end
 
     scenario 'check if tags are present' do
-      expect(page.has_selector?('.tag-field')).to be true
+      expect(page.has_selector?('.tag-field input')).to be true
     end
 
     scenario 'remove tag' do
       click_on(class: 'close')
-      expect(page.has_selector?('.tag-field')).to be false
+      expect(page.has_selector?('.tag-field input')).to be false
       expect(article.tags.empty?).to be true
     end
   end
