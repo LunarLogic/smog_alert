@@ -8,7 +8,8 @@ def add_new_article(article)
 end
 
 describe 'admin interactions with articles' do
-  let!(:article) { FactoryBot.create(:article) }
+  let!(:superadmin) { create(:superadmin) }
+  let!(:article) { FactoryBot.create(:article, user: superadmin) }
   let!(:new_article) { FactoryBot.build(:article) }
 
   before :each do
