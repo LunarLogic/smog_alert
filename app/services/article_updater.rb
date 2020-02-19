@@ -4,7 +4,7 @@ class ArticleUpdater
   end
 
   def call(params)
-    save_tags(params[:tags_attributes])
+    manage_tags(params[:tags_attributes])
   end
 
   def manage_tags(tags_attributes)
