@@ -83,6 +83,7 @@ describe 'admin interactions with articles' do
     scenario 'remove tag' do
       click_on(class: 'close')
       expect(page.has_selector?('.tag-field input')).to be false
+      click_on('Zapisz')
       expect(article.tags.empty?).to be true
     end
   end
