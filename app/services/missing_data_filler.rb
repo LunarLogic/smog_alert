@@ -11,6 +11,7 @@ class MissingDataFiller
 
   def fill_data(data)
     return if data.nil?
+    added_measurements = 0
 
     data.each do |hourly_data|
       hour = Time.zone.parse(hourly_data['tillDateTime']).hour
@@ -19,8 +20,10 @@ class MissingDataFiller
       if measurements_taken.empty?
         missing_data = AirlyExtractor::MeasurementData.extract(hourly_data)
         @location.measurements.create(missing_data)
+        added_measurements += 1
       end
     end
+    added_measurements
   end
 
   private

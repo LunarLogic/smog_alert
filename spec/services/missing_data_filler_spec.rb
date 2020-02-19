@@ -19,6 +19,7 @@ describe MissingDataFiller do
       it 'creates new measurement for a given location' do
         VCR.use_cassette('services/missing_data_filler/measurement_for_zabierzow') do
           expect { subject }.to change { Measurement.count }.by(3)
+          expect(subject).to eql(3)
         end
       end
     end
