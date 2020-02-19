@@ -1,4 +1,4 @@
-describe MissingDataFiller do
+describe MissingDailyMeasurementsFiller do
   let(:location) { FactoryBot.create(:fake_zabierzow) }
   let(:missing_data_filler) { described_class.new(location) }
 
@@ -35,7 +35,7 @@ describe MissingDataFiller do
         end
       end
 
-      it 'does not creat any new measurements' do
+      it 'does not create any new measurements' do
         VCR.use_cassette('services/missing_data_filler/measurement_for_zabierzow') do
           expect { subject }.to change { Measurement.count }.by(0)
         end

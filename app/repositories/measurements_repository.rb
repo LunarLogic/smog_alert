@@ -1,5 +1,5 @@
 class MeasurementsRepository
-  def data_presence(location, day, hour)
+  def for_location_by_day_and_hour(location, day, hour)
     location.measurements.where(date: day, hour: hour)
   end
 

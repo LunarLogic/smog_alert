@@ -1,4 +1,4 @@
-class MissingDataFiller
+class MissingDailyMeasurementsFiller
   def initialize(location)
     @location = location
   end
@@ -9,6 +9,8 @@ class MissingDataFiller
     fill_data(historical_data)
   end
 
+  private
+
   def fill_data(data)
     return if data.nil?
     added_measurements = 0
@@ -16,7 +18,7 @@ class MissingDataFiller
     data.each do |hourly_data|
       hour = Time.zone.parse(hourly_data['tillDateTime']).hour
       day = hourly_data['tillDateTime'].to_date
-      measurements_taken = measurements_repository.data_presence(@location, day, hour)
+      measurements_taken = measurements_repository.for_location_by_day_and_hour(@location, day, hour)
       if measurements_taken.empty?
         missing_data = AirlyExtractor::MeasurementData.extract(hourly_data)
         @location.measurements.create(missing_data)
@@ -25,8 +27,6 @@ class MissingDataFiller
     end
     added_measurements
   end
-
-  private
 
   def measurements_repository
     MeasurementsRepository.new
