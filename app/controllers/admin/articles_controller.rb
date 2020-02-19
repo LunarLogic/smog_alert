@@ -13,6 +13,7 @@ class Admin::ArticlesController < Admin::BaseController
 
   def create
     @article = Article.new(article_params)
+    @article.user_id = current_user.id
     if @article.save
       flash[:success] = 'Pomyślnie dodano wpis'
       redirect_to admin_articles_path
@@ -75,6 +76,6 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def article_params
-    params.require(:article).permit(:title, :body, :overview)
+    params.require(:article).permit(:title, :body, :overview, :user_id)
   end
 end

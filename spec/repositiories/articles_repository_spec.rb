@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe ArticlesRepository do
   let(:articles_repository) { ArticlesRepository.new }
-
+  let(:user) { FactoryBot.create(:user) }
   describe '#make_published' do
     it 'changes publish and published_at params to be true' do
-      article = FactoryBot.create(:article, published: false, published_at: nil)
+      article = FactoryBot.create(:article, published: false, published_at: nil, user: user)
       articles_repository.make_published(article)
       expect(article.published).to be true
       expect(article.published_at).not_to be nil
@@ -14,7 +14,7 @@ RSpec.describe ArticlesRepository do
 
   describe '#make_unpublished' do
     it 'changes publish and published_at params to be false' do
-      article = FactoryBot.create(:article, published: true, published_at: Time.current)
+      article = FactoryBot.create(:article, published: true, published_at: Time.current, user: user)
       articles_repository.make_unpublished(article)
       expect(article.published).to be false
       expect(article.published_at).to be nil

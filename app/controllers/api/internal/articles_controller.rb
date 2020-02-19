@@ -17,6 +17,6 @@ class API::Internal::ArticlesController < API::Internal::BaseController
   private
 
   def article_params
-    params.require(:article).permit(:title, :body, :overview)
+    params.require(:article).permit(:title, :body, :overview, :user_id)
   end
 end

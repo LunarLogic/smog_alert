@@ -10,7 +10,7 @@ end
 describe 'editor navigating the admin panel' do
   let!(:location) { FactoryBot.create(:location) }
   let!(:user) { FactoryBot.create(:user) }
-  let!(:article) { FactoryBot.create(:article) }
+  let!(:article) { FactoryBot.create(:article, user: user) }
   let!(:organization) { FactoryBot.create(:organization) }
 
   before :each do
