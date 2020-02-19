@@ -23,7 +23,7 @@ const NavigationMobile = ({ path, organizationDetails }) => {
   const [hamburgerActive, setHamburgerActive] = useState(false);
 
   return (
-    <header className="hamburger-navigation">
+    <nav className="hamburger-navigation">
       <div className="hamburger-navigation-container">
         <div className="hamburger-navigation--closed">
           <div className="hamburger-navigation__brand">
@@ -54,6 +54,7 @@ const NavigationMobile = ({ path, organizationDetails }) => {
               className={`hamburger hamburger--spin ${
                 hamburgerActive ? "is-active" : ""
               }`}
+              aria-label="hamburger-menu"
               type="button"
               onClick={() => {
                 setHamburgerActive(!hamburgerActive);
@@ -109,7 +110,7 @@ const NavigationMobile = ({ path, organizationDetails }) => {
           </div>
         </div>
       </div>
-    </header>
+    </nav>
   );
 };
 

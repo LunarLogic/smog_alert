@@ -20,7 +20,7 @@ const Navigation = ({ path, organizationDetails }) => {
   const { name, logo } = organizationDetails;
 
   return organizationDetails ? (
-    <header className="navigation">
+    <nav className="navigation">
       <div className="navigation-container">
         <div className="navigation__brand">
           <Link to="/">
@@ -64,7 +64,7 @@ const Navigation = ({ path, organizationDetails }) => {
           <CustomButton text={button} />
         </div>
       </div>
-    </header>
+    </nav>
   ) : null;
 };
 
