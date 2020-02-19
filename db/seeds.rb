@@ -23,38 +23,40 @@ unless Rails.env.production?
     user.confirmed_at = Time.current
   end
 
-  # unpublished_articles
-  5.times.collect do
-    Article.create(
-      title: Faker::Lorem.unique.sentence,
-      body: Faker::Lorem.sentence(word_count: 150),
-      overview: Faker::Lorem.sentence(word_count: 15),
-      user_id: [editor.id, superadmin.id].sample,
-    )
-  end
+  if Article.all.count < 45
+    # unpublished_articles
+    5.times.collect do
+      Article.create!(
+        title: Faker::Lorem.unique.sentence,
+        body: Faker::Lorem.sentence(word_count: 1000),
+        overview: Faker::Lorem.sentence(word_count: 100),
+        user_id: [editor.id, superadmin.id].sample,
+      )
+    end
 
-  # published_articles
-  5.times.collect do
-    Article.create(
-      title: Faker::Lorem.unique.sentence,
-      body: Faker::Lorem.sentence(word_count: 150),
-      overview: Faker::Lorem.sentence(word_count: 15),
-      user_id: [editor.id, superadmin.id].sample,
-      published: true,
-      published_at: Time.current,
-    )
-  end
+    # published_articles
+    5.times.collect do
+      Article.create!(
+        title: Faker::Lorem.unique.sentence,
+        body: Faker::Lorem.sentence(word_count: 1000),
+        overview: Faker::Lorem.sentence(word_count: 100),
+        user_id: [editor.id, superadmin.id].sample,
+        published: true,
+        published_at: Time.current,
+      )
+    end
 
-  # published_articles_with_image
-  5.times.collect do
-    Article.create(
-      title: Faker::Lorem.unique.sentence,
-      body: ArticleImageHelper.html_with_image,
-      overview: Faker::Lorem.sentence(word_count: 15),
-      user_id: [editor.id, superadmin.id].sample,
-      published: true,
-      published_at: Time.current,
-    )
+    # published_articles_with_image
+    5.times.collect do
+      Article.create!(
+        title: Faker::Lorem.unique.sentence,
+        body: Faker::Lorem.sentence(word_count: 200) + ArticleImageHelper.html_with_image + Faker::Lorem.sentence(word_count: 200),
+        overview: Faker::Lorem.sentence(word_count: 100),
+        user_id: [editor.id, superadmin.id].sample,
+        published: true,
+        published_at: Time.current,
+      )
+    end
   end
 end
 
