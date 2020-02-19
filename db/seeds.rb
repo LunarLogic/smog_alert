@@ -50,7 +50,9 @@ unless Rails.env.production?
     5.times.collect do
       Article.create!(
         title: Faker::Lorem.unique.sentence,
-        body: Faker::Lorem.sentence(word_count: 200) + ArticleImageHelper.html_with_image + Faker::Lorem.sentence(word_count: 200),
+        body: Faker::Lorem.sentence(word_count: 200) +
+              ArticleImageHelper.html_with_image +
+              Faker::Lorem.sentence(word_count: 200),
         overview: Faker::Lorem.sentence(word_count: 100),
         user_id: [editor.id, superadmin.id].sample,
         published: true,
