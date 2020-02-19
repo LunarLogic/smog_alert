@@ -49,6 +49,7 @@
     "styled-components": "^4.4.1",
     "trix": "^1.0.0",
     "turbolinks": "^5.2.0",
+    "victory": "^34.1.1",
     "webfontloader": "^1.6.28",
     "webpack-dev-server": "^3.9.0"
   },

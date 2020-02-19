@@ -8,7 +8,7 @@ import { getCitiesPollutionData } from "../../redux/homepage/homepage.actions";
 import { setCurrentPath } from "../../redux/application/application.actions";
 import { selectCitiesPollutionData } from "../../redux/redux.selectors";
 
-import { CalendarSection } from "../../sections";
+import { CalendarSection, ChartsSection } from "../../sections";
 import { Loader, PageTitle } from "../../components";
 
 import "./Statistics.scss";
@@ -33,6 +33,7 @@ const Statistics = ({
     <div className="statistics">
       <PageTitle title="Statystyki" />
       <CalendarSection />
+      <ChartsSection />
     </div>
   ) : (
     <Loader className="statistics__loader" loaderStyles={loaderStyles} />
