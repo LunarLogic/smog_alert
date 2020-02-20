@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { PropTypes } from "prop-types";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 import { selectCitiesPollutionDataList } from "../../redux/redux.selectors";
 import { selectChartChosenCity } from "../../redux/charts/charts.selectors";
@@ -16,17 +18,28 @@ export const ChartsSection = ({
   chartChosenCity,
   setChartChosenCity
 }) => {
+  const [startDate, setStartDate] = useState(new Date());
+
   return (
     <div className="charts-section">
-      <div className="charts-section-heading">Wykresy</div>
-      <div className="charts-section-heading-dropdown__label">
-        Wybierz miejscowość
+      <div className="charts-section-heading">Statystyki</div>
+      <div className="charts-section-dropdown__label">Wybierz miejscowość</div>
+      <div className="charts-section-dropdown__menu">
+        <DropdownMenu
+          optionsList={citiesList}
+          chosenCityToBeDisplayed={chartChosenCity}
+          handleChosenCity={setChartChosenCity}
+        />
       </div>
-      <DropdownMenu
-        optionsList={citiesList}
-        chosenCityToBeDisplayed={chartChosenCity}
-        handleChosenCity={setChartChosenCity}
-      />
+      <div className="charts-section-dropdown__label">Wybierz miesiąc</div>
+      <div className="charts-section-date-picker">
+        <DatePicker
+          selected={startDate}
+          onChange={date => setStartDate(date)}
+          dateFormat="MM/yyyy"
+          showMonthYearPicker
+        />
+      </div>
       <Chart />
     </div>
   );

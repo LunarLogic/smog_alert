@@ -1,6 +1,11 @@
 import React from "react";
 import { data } from "./chartContent";
-import { VictoryBar, VictoryChart, VictoryAxis } from "victory";
+import {
+  VictoryBar,
+  VictoryChart,
+  VictoryAxis,
+  VictoryContainer
+} from "victory";
 import { setColor } from "../../helpers/setColor";
 
 const Chart = () => {
@@ -15,6 +20,7 @@ const Chart = () => {
         domain={{ x: [0, 24], y: [0, maxValue + 10] }}
         width={1150}
         height={500}
+        containerComponent={<VictoryContainer style={{ position: "unset" }} />}
       >
         <VictoryAxis
           tickValues={Array.from(Array(24), (x, index) => index)}
