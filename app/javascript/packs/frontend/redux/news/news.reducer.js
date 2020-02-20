@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   newsLoader: true,
   articleLoader: true,
   error: false,
-  errorCode: {}
+  errorCode: null
 };
 
 const newsReducer = (state = INITIAL_STATE, action) => {

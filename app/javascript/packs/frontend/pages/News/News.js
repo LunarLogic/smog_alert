@@ -23,7 +23,7 @@ import "./News.scss";
 
 import { setCurrentPath } from "../../redux/application/application.actions";
 
-const News = ({
+export const News = ({
   match,
   getArticles,
   articles,

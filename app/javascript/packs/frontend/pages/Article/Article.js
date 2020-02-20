@@ -24,7 +24,7 @@ import "./Article.scss";
 
 import { setCurrentPath } from "../../redux/application/application.actions";
 
-const Article = ({
+export const Article = ({
   match,
   getArticle,
   article,

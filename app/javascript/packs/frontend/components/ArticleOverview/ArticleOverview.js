@@ -10,7 +10,7 @@ import "./ArticleOverview.scss";
 import { ArticleOverviewImage } from "./ArticleOverview.styles.jsx";
 import { resetArticle } from "../../redux/news/news.actions";
 
-const ArticleOverview = ({
+export const ArticleOverview = ({
   title,
   image,
   overview,
