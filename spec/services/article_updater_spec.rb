@@ -11,6 +11,7 @@ RSpec.describe ArticleUpdater do
     params[:tags_attributes] = [{ name: tag1, id: tag1.id }]
     ArticleUpdater.new(article).call(params)
     expect(article.tags.count).to eq(1)
+    expect(article.tags.first.name).to eq('tag1')
   end
 
   it 'deletes tagging when all tags were' do
@@ -25,5 +26,13 @@ RSpec.describe ArticleUpdater do
     expect(Tagging.all.count).to eq(1)
     ArticleUpdater.new(article).call(params)
     expect(Tag.all.count).to eq(0)
+  end
+
+  it 'updates article\'s title and body' do
+    params[:title] = 'New title'
+    params[:body] = 'New body'
+    ArticleUpdater.new(article).call(params)
+    expect(article.title).to eq('New title')
+    expect(article.body.to_s).to include('New body')
   end
 end
