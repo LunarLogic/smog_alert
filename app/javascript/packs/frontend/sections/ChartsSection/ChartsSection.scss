@@ -1,0 +1,11 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.charts-section {
+  display: flex;
+  flex-direction: column;
+  &-heading {
+    @include heading;
+    margin: 3.5rem 0;
+  }
+}
