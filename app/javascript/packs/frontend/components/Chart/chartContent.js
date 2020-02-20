@@ -84,7 +84,7 @@ export const data = {
         {
           hour: 15,
           value: 50,
-          status: "zły"
+          status: "bardzo dobry"
         },
         {
           hour: 16,

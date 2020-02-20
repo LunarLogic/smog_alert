@@ -7,6 +7,7 @@ import homepageReducer from "./homepage/homepage.reducer";
 import searchboxReducer from "./searchbox/searchbox.reducer";
 import mapSectionReducer from "./mapSection/mapSection.reducer";
 import calendarReducer from "./calendar/calendar.reducer";
+import chartReducer from "./charts/charts.reducer";
 import newsReducer from "./news/news.reducer";
 
 const persistConfig = {
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   searchbox: searchboxReducer,
   mapSection: mapSectionReducer,
   calendar: calendarReducer,
+  chart: chartReducer,
   news: newsReducer
 });
 
