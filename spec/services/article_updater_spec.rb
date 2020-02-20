@@ -31,7 +31,6 @@ RSpec.describe ArticleUpdater do
   context 'manage editing of tags' do
     it 'deletes relation with a tag if it\'s name was changed' do
       tag1 = article.tags.create(name: 'tag1')
-      article.tags.create(name: 'tag2')
       tag3 = Tag.create(name: 'tag3')
       params[:tags_attributes] = [{ name: tag3.name, id: tag1.id }]
       ArticleUpdater.new(article).call(params)

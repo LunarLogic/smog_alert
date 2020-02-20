@@ -19,7 +19,6 @@ class ArticleUpdater
   end
 
   def edit_tags(tags_attributes)
-
   end
 
   def delete_tags(tags_attributes)
