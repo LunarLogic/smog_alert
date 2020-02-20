@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe StatisticsRepository do
+RSpec.describe MeasurementsRepository do
   describe '#monthly_measurements' do
-    let(:statistics_repository) { StatisticsRepository.new }
+    let(:measurements_repository) { MeasurementsRepository.new }
     let!(:location_a) { FactoryBot.create(:location) }
     let!(:location_b) { FactoryBot.create(:location) }
 
-    subject { statistics_repository.monthly_measurements(location_a, Time.current.at_beginning_of_month) }
+    subject { measurements_repository.monthly_measurements(location_a, Time.current.at_beginning_of_month) }
 
     context 'when database contains measurements from the given month for the given location' do
       let!(:right_measurement_first) do
