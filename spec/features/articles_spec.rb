@@ -52,6 +52,7 @@ describe 'admin interactions with articles' do
 
     scenario 'create new article with tags' do
       fill_in 'Tytuł', with: 'New article with tags'
+      fill_in 'Skrót artykułu', with: article.overview
       find('#article_body').click.set article.body
       click_on('Dodaj tag')
       find('.tag-field input').set 'Zabierzów'
@@ -86,6 +87,7 @@ describe 'admin interactions with articles' do
       click_on(class: 'close')
       expect(page.has_selector?('.tag-field input')).to be false
       click_on('Zapisz')
+      article.reload
       expect(article.tags.empty?).to be true
     end
   end
