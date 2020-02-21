@@ -2,8 +2,6 @@ require 'rails_helper'
 
 RSpec.describe GiosScaleChecker do
   describe '#call' do
-    let(:giosscalechecker) { GiosScaleChecker.new(:pm10, 20) }
-
     subject { giosscalechecker.call }
 
     context 'when pm10 value is 20' do
