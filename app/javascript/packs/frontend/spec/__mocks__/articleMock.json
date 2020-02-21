@@ -1,13 +1,9 @@
 {
-  "data": [
-    {
-      "id": 402,
-      "title": "Id eum repudiandae est.",
-      "body": "<div class=\"trix-content\">\n  Necessitatibus voluptatem voluptas tempore enim quas dolorem qui architecto doloremque dicta sed aut nihil dolore eos impedit est velit quo excepturi aliquid rerum sint neque aperiam sequi ducimus fugiat deleniti sunt soluta incidunt et odio id aut tempora doloribus animi alias qui qui et quae quo earum rem magni commodi autem nesciunt quis perferendis inventore ex est expedita temporibus officiis vitae debitis quos qui non error deserunt sint facere et sit in adipisci minima et natus ea consequuntur in vel sapiente occaecati ut ipsam dolorem saepe voluptas praesentium fugit blanditiis nemo itaque facilis reiciendis at dolores veritatis quod molestiae voluptates explicabo eligendi nam ea aliquam nisi sed fuga omnis ullam laborum vero asperiores ratione consectetur porro minus rerum ab eaque cupiditate repellat maxime aut ut non illum accusamus cum sit harum recusandae perspiciatis corporis libero nulla quidem odit omnis ut atque suscipit pariatur repudiandae sunt esse rerum amet velit sit.\n</div>\n",
-      "published": true,
-      "published_at": "2020-02-07T11:51:23.698Z",
-      "updated_at": "2020-02-07T11:51:23.706Z",
-      "created_at": "2020-02-06T08:11:00.972Z"
-    }
-  ]
+  "data": {
+    "id": 13,
+    "title": "Explicabo quidem tenetur deleniti.",
+    "body": "<div class=\"trix-content\">\n  <div>Voluptates nulla expedita iure quas facere rerum quos illo eum ipsam rerum magnam corporis beatae possimus dolore occaecati dolorum qui blanditiis rerum qui et dignissimos vero maxime sed consequatur illum qui commodi dolor et deleniti quasi voluptatem quia ut ab provident sint facilis reprehenderit quisquam quia voluptas deserunt et magni modi repellat doloribus reiciendis odio dicta maiores consectetur dolores et unde alias et perferendis corrupti culpa earum aut architecto repellendus nisi sit itaque aperiam odit cupiditate aut ullam et enim ea minima repudiandae omnis voluptatem debitis consequatur quod similique est pariatur recusandae explicabo soluta nam fuga eos accusantium quidem officiis nobis consequuntur ut et quia veniam sapiente eius quam ut doloremque necessitatibus voluptatibus delectus ducimus praesentium et officia mollitia atque harum molestiae ea excepturi laudantium tenetur neque qui quia in qui voluptatum non distinctio est at eveniet natus saepe vel quis sit iste vel consequatur eligendi fugiat sit labore ipsa.</div>\n</div>\n",
+    "published_at": "2020-02-14T15:04:55.914Z",
+    "updated_at": "2020-02-14T15:04:55.920Z"
+  }
 }

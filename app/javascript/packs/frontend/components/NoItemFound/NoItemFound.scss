@@ -1,22 +1,24 @@
 @import "../../styles/variables";
 @import "../../styles/mixins";
 
-.error-404 {
+.no-item-found {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 60vh;
-
-  &__title {
-    font-size: 20rem;
-    line-height: 20rem;
-    font-weight: lighter;
-    color: $warningColor;
-    margin: 0;
-    text-shadow: 1px 1px 7px rgba(0, 0, 0, 0.15);
+  &__image {
+    margin-bottom: 2rem;
+    svg {
+      height: 6rem;
+      width: 6rem;
+      fill: $grey;
+    }
   }
   &__text {
     @include information-text;
+    font-size: 3rem;
+    line-height: 4rem;
+    margin-bottom: 4rem;
   }
 }

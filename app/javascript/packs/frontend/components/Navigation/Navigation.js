@@ -75,7 +75,8 @@ const mapStateToProps = createStructuredSelector({
 
 Navigation.propTypes = {
   path: PropTypes.string,
-  organizationDetails: PropTypes.object
+  organizationDetails: PropTypes.object,
+  resetArticle: PropTypes.func
 };
 
 export default connect(mapStateToProps)(Navigation);

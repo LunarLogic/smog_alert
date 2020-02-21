@@ -14,3 +14,11 @@
   line-height: 2.8rem;
   font-weight: bold;
 }
+
+@mixin information-text {
+  font-size: 1.7rem;
+  line-height: 2.4rem;
+  text-align: center;
+  color: $grey;
+  margin: 0.5rem 0;
+}

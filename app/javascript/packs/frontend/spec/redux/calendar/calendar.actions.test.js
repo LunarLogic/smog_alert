@@ -15,7 +15,7 @@ const mockStore = configureMockStore([thunkMiddleware]);
 const mockAdapter = new MockAdapter(axios);
 
 describe("calendar actions", () => {
-  it("handles requesting calendar status API", () => {
+  it("handles requesting calendar status API", async () => {
     mockAdapter
       .onGet(
         "/api/internal/measurements/calendar_status?year=2019&location_id=21"
@@ -32,11 +32,11 @@ describe("calendar actions", () => {
     const store = mockStore({ payload: {} });
     const action = store.getActions();
 
-    store.dispatch(getCalendarStatusData(2019, 21)).then(() => {
+    await store.dispatch(getCalendarStatusData(2019, 21)).then(() => {
       expect(action).toEqual(expectedAction);
     });
   });
-  it("handles requesting calendar values API", () => {
+  it("handles requesting calendar values API", async () => {
     mockAdapter
       .onGet(
         "/api/internal/measurements/calendar_values?year=2019&location_id=21"
@@ -53,7 +53,7 @@ describe("calendar actions", () => {
     const store = mockStore({ payload: {} });
     const action = store.getActions();
 
-    store.dispatch(getCalendarValuesData(2019, 21)).then(() => {
+    await store.dispatch(getCalendarValuesData(2019, 21)).then(() => {
       expect(action).toEqual(expectedAction);
     });
   });
