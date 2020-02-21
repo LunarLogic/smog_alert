@@ -11,7 +11,7 @@ class ArticleUpdater
   end
 
   def update_tags(tags_attributes)
-    tags_names = tags_attributes.present? ? tags_attributes.map { |tag| tag[:name] } : []
+    tags_names = tags_attributes.present? ? tags_attributes.map { |tag| tag[:name] }.uniq.reject(&:blank?) : []
     @article_tags_repository.update_article_tags(@article, tags_names)
   end
 

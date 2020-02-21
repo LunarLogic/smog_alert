@@ -29,7 +29,7 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def update
-    if @article.update(article_params)
+    if article_updater.call( { article: article_params, id: params[:id] })
       flash[:success] = 'Pomyslnie edytowano wpis'
       redirect_to admin_articles_path
     else
@@ -77,5 +77,9 @@ class Admin::ArticlesController < Admin::BaseController
 
   def article_params
     params.require(:article).permit(:title, :body, :overview, :user_id, tags_attributes: [:name, :id])
+  end
+
+  def article_updater
+    ArticleUpdater.new
   end
 end
