@@ -19,10 +19,7 @@ class HourlyAverageStatisticsCounter
   private
 
   def monthly_average_by_hour(hour, particle)
-    if @monthly_measurements == nil
-      value = nil
-      status = nil
-    else
+    unless @monthly_measurements.nil?
       average_pollution = 0
       number_of_days = 0
       @monthly_measurements.each do |measurement|
@@ -35,11 +32,11 @@ class HourlyAverageStatisticsCounter
         value = average_pollution / number_of_days
         status = GiosScaleChecker.new(particle, value).call
       end
-      {
-        hour: hour,
-        value: value,
-        status: status,
-      }
     end
+    {
+      hour: hour,
+      value: value,
+      status: status,
+    }
   end
 end
