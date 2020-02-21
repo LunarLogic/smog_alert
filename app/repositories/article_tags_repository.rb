@@ -9,7 +9,8 @@ class ArticleTagsRepository
     existing_tags_names = article.tags.pluck(:name)
     new_tags_names = tags_names - existing_tags_names
     new_tags_names.each do |name|
-      article.tags.create!(name: name)
+      tag = Tag.find_or_create_by(name: name)
+      Tagging.create(article_id: article.id, tag_id: tag.id)
     end
   end
 

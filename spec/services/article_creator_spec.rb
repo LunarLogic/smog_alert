@@ -23,6 +23,13 @@ describe ArticleCreator do
     expect(Article.last.tags.count).to eq(0)
   end
 
+  it 'doesn\'t create a new tag if a tag is already in the db' do
+    tag1 = Tag.create(name: 'tag1')
+    params[:tags_attributes] = [{ name: tag1.name }]
+    ArticleCreator.new.call(user_id: superadmin.id, params: params)
+    expect(Tag.all.count).to eq(1)
+  end
+
   it 'returns false when validations don\'t pass' do
     params[:title] = ''
     expect(ArticleCreator.new.call(user_id: superadmin.id, params: params)). to eq(false)
