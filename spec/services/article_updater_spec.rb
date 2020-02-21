@@ -28,14 +28,13 @@ RSpec.describe ArticleUpdater do
     expect(Tag.all.count).to eq(0)
   end
 
-  context 'manage editing of tags' do
+  context 'manage editing tags' do
     it 'deletes relation with a tag if it\'s name was changed' do
       tag1 = article.tags.create(name: 'tag1')
-      tag3 = Tag.create(name: 'tag3')
-      params[:tags_attributes] = [{ name: tag3.name, id: tag1.id }]
+      params[:tags_attributes] = [{ name: 'tag3', id: tag1.id }]
       ArticleUpdater.new(article).call(params)
-      expect(article.tags.last.name).to eq(tag3.name)
-      expect(article.tags.last.id).to eq(tag3.id)
+      article.reload
+      expect(article.tags.last.name).to eq('tag3')
       expect(article.tags.all).to_not include(tag1)
     end
   end
