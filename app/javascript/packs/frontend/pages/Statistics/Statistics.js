@@ -5,37 +5,56 @@ import { withRouter } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 
 import { getCitiesPollutionData } from "../../redux/homepage/homepage.actions";
+import { setCurrentPath } from "../../redux/application/application.actions";
 import { selectCitiesPollutionData } from "../../redux/redux.selectors";
 
 import { CalendarSection } from "../../sections";
-import { DropdownMenu } from "../../components/DropdownMenu/DropdownMenu";
+import { Loader, PageTitle } from "../../components";
 
 import "./Statistics.scss";
 
-const Statistics = ({ citiesPollutionData, getCitiesPollutionData }) => {
+const Statistics = ({
+  match,
+  citiesPollutionData,
+  getCitiesPollutionData,
+  setCurrentPath
+}) => {
   useEffect(() => {
+    setCurrentPath(match.path);
     getCitiesPollutionData();
   }, []);
 
   const cities = citiesPollutionData;
+  const loaderStyles = {
+    height: "75vh"
+  };
 
-  return cities ? (
+  return cities.length ? (
     <div className="statistics">
-      {/* <DropdownMenu /> */}
+      <PageTitle title="Statystyki" />
       <CalendarSection />
     </div>
-  ) : null;
+  ) : (
+    <Loader className="statistics__loader" loaderStyles={loaderStyles} />
+  );
 };
 
 const mapStateToProps = createStructuredSelector({
   citiesPollutionData: selectCitiesPollutionData
 });
 
+const mapDispatchToProps = dispatch => ({
+  getCitiesPollutionData: () => dispatch(getCitiesPollutionData()),
+  setCurrentPath: path => dispatch(setCurrentPath(path))
+});
+
 Statistics.propTypes = {
+  match: PropTypes.object,
   getCitiesPollutionData: PropTypes.func,
-  citiesPollutionData: PropTypes.array
+  citiesPollutionData: PropTypes.array,
+  setCurrentPath: PropTypes.func
 };
 
 export default withRouter(
-  connect(mapStateToProps, { getCitiesPollutionData })(Statistics)
+  connect(mapStateToProps, mapDispatchToProps)(Statistics)
 );

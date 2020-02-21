@@ -12,4 +12,8 @@
     border-bottom-left-radius: 0.6rem;
     border-bottom-right-radius: 0.6rem;
   }
+  &__loader {
+    display: flex;
+    justify-content: center;
+  }
 }

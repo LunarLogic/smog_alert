@@ -12,10 +12,17 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
     render json: { data: data }
   end
 
+  def calendar_daily_values
+    location = Location.find(calendar_day_params[:location_id])
+    date = calendar_day_params[:date]
+    average_measurements = Calendar::DailyAverageValues.new.for_day(location, date)
+    render json: average_measurements
+  end
+
   def calendar_values
     location = Location.find(calendar_params[:location_id])
     year = calendar_params[:year].to_i
-    daily_measurements = Calendar::DailyAverageValues.new.call(location, year)
+    daily_measurements = Calendar::DailyAverageValues.new.for_year(location, year)
     render json: { year: year, daily_average_measurements: daily_measurements }
   end
 
@@ -29,7 +36,7 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
   def hourly_average_for_month
     location = Location.find(hourly_stats_params[:location_id])
     date = hourly_stats_params[:date].to_date
-    monthly_measurement = statistics_repository.monthly_measurements(location, date)
+    monthly_measurement = measurements_repository.monthly_measurements(location, date)
     data = API::Internal::HourlyAveragePollutionPresenter.new(location, date, monthly_measurement).to_hash
     render json: { data: data }
   end
@@ -40,8 +47,8 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
     LocationsRepository.new
   end
 
-  def statistics_repository
-    StatisticsRepository.new
+  def measurements_repository
+    MeasurementsRepository.new
   end
 
   def hourly_stats_params
@@ -54,5 +61,11 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
     params.require(:year)
     params.require(:location_id)
     params.permit([:year, :location_id])
+  end
+
+  def calendar_day_params
+    params.require(:date)
+    params.require(:location_id)
+    params.permit([:date, :location_id])
   end
 end

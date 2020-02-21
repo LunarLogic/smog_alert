@@ -1,10 +1,22 @@
 class API::Internal::ArticlesController < API::Internal::BaseController
   def index
-    articles = Article.where(published: true)
-    data = articles.map do |article|
-      API::Internal::ArticlePresenter.new(article)
+    data = ArticlesRepository.new.published_articles.map do |article|
+      API::Internal::ArticleOverviewPresenter.new(article)
     end
 
     render json: { data: data }
+  end
+
+  def show
+    article = ArticlesRepository.new.published_articles.find(params[:id])
+    data = API::Internal::ArticlePresenter.new(article)
+
+    render json: { data: data }
+  end
+
+  private
+
+  def article_params
+    params.require(:article).permit(:title, :body, :overview, :user_id)
   end
 end

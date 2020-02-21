@@ -5,7 +5,7 @@ module AirlyExtractor
     end
 
     def initialize(data)
-      @data = data['current']
+      @data = data
     end
 
     def extract

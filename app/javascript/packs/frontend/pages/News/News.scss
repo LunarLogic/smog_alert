@@ -1,0 +1,12 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.news {
+  &__heading {
+    @include heading;
+  }
+  &__loader {
+    display: flex;
+    justify-content: center;
+  }
+}

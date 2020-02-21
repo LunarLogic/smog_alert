@@ -31,11 +31,11 @@ export const PollutionSpecificData = ({
           </PollutionOverviewText>
         </div>
         <div className="pollution-specific-data__info--specific">
-          {data.map(data => {
+          {data.map((data, index) => {
             const percent = setPercent(data.name, data.value);
             return (
               <PollutionIndexData
-                key={`${display_name}-${data.value}-pollution-index-data`}
+                key={`${index}-pollution-index-data`}
                 indicator={data.name}
                 value={data.value.toString()}
                 percent={data.value !== "--" ? percent : "--"}

@@ -1,34 +1,64 @@
-unless Rails.env.production?
-  user = User.find_or_create_by(email: 'admin@example.com')
+require_relative '../spec/support/config/active_text_helper.rb'
 
-  unless user.confirmed?
+class ArticleImageHelper
+  extend ActiveTextHelper
+end
+
+unless Rails.env.production?
+  superadmin = User.find_or_create_by(email: 'admin@example.com') do |user|
     user.admin = true
+    user.role = :superadmin
     password = '123456'
     user.password = password
     user.password_confirmation = password
-    user.skip_confirmation!
-    user.confirm
+    user.confirmed_at = Time.current
   end
 
-  user.superadmin!
-
-  editor = User.find_or_create_by(email: 'editor@example.com')
-
-  unless editor.confirmed?
-    editor.admin = true
+  editor = User.find_or_create_by(email: 'editor@example.com') do |user|
+    user.admin = true
+    user.role = :editor
     password = '123456'
-    editor.password = password
-    editor.password_confirmation = password
-    editor.editor!
-    editor.skip_confirmation!
-    editor.confirm
+    user.password = password
+    user.password_confirmation = password
+    user.confirmed_at = Time.current
   end
 
-  15.times do
-    Article.create([{
-      title: Faker::Lorem.unique.sentence,
-      body: Faker::Lorem.sentence(word_count: 150)
-    }])
+  if Article.all.count < 45
+    # unpublished_articles
+    5.times.collect do
+      Article.create!(
+        title: Faker::Lorem.unique.sentence,
+        body: Faker::Lorem.sentence(word_count: 1000),
+        overview: Faker::Lorem.sentence(word_count: 100),
+        user_id: [editor.id, superadmin.id].sample,
+      )
+    end
+
+    # published_articles
+    5.times.collect do
+      Article.create!(
+        title: Faker::Lorem.unique.sentence,
+        body: Faker::Lorem.sentence(word_count: 1000),
+        overview: Faker::Lorem.sentence(word_count: 100),
+        user_id: [editor.id, superadmin.id].sample,
+        published: true,
+        published_at: Time.current,
+      )
+    end
+
+    # published_articles_with_image
+    5.times.collect do
+      Article.create!(
+        title: Faker::Lorem.unique.sentence,
+        body: Faker::Lorem.sentence(word_count: 200) +
+              ArticleImageHelper.html_with_image +
+              Faker::Lorem.sentence(word_count: 200),
+        overview: Faker::Lorem.sentence(word_count: 100),
+        user_id: [editor.id, superadmin.id].sample,
+        published: true,
+        published_at: Time.current,
+      )
+    end
   end
 end
 

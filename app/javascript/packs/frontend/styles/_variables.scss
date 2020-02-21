@@ -33,6 +33,7 @@ $neutralColor: #e3e4fb;
 
 :export {
   grey: $grey;
+  frameColor: $frameColor;
   warning: $warningColor;
   noDataColor: $noDataColor;
   neutralColor: $neutralColor;
@@ -43,5 +44,8 @@ $neutralColor: #e3e4fb;
   badFirst: $badFirst;
   badSecond: $badSecond;
   mapColor: $mapColor;
+  bp420: $bp-420;
   bp600: $bp-600;
+  bp800: $bp-800;
+  bp1000: $bp-1000;
 }

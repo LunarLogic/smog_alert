@@ -1,7 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   root to: 'frontend#index'
@@ -40,10 +40,11 @@ Rails.application.routes.draw do
           get :current
           get :calendar_values
           get :calendar_status
+          get :calendar_daily_values
           get :hourly_average_for_month
         end
       end
-      resources :articles, only: :index
+      resources :articles, only: [:index, :show]
       resources :organizations, only: [] do
         collection do
           get :current_data

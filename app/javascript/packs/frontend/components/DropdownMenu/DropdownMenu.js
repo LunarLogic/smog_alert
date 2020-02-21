@@ -1,31 +1,15 @@
 import React, { useState } from "react";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
-import { createStructuredSelector } from "reselect";
 import { PropTypes } from "prop-types";
-import { connect } from "react-redux";
 
 import "./DropdownMenu.scss";
-import {
-  selectMapLocation,
-  selectCitiesPollutionData
-} from "../../redux/redux.selectors";
-import { getChosenCity } from "../../redux/mapSection/mapSection.actions";
 
 export const DropdownMenu = ({
-  citiesPollutionData,
-  chosenCity,
-  getChosenCity
+  optionsList,
+  chosenCityToBeDisplayed,
+  handleChosenCity
 }) => {
-  let options = [];
-
-  const checkOptions = city => {
-    return (
-      options.length === 0 ||
-      !options.find(element => element === city.location_name)
-    );
-  };
-
   const toggleMenu = () => {
     setShowMenu(!showMenu);
     setArrow(!arrowUp);
@@ -33,16 +17,10 @@ export const DropdownMenu = ({
 
   const changeChosenCity = city => {
     setShowMenu(false);
-    getChosenCity(city);
+    handleChosenCity(city);
   };
 
-  citiesPollutionData.forEach(city => {
-    if (checkOptions(city)) {
-      options.push(city.location_name);
-    }
-  });
-
-  options.sort((a, b) => a.localeCompare(b));
+  const options = optionsList.sort((a, b) => a.localeCompare(b));
 
   const [showMenu, setShowMenu] = useState(false);
   const [arrowUp, setArrow] = useState(false);
@@ -50,7 +28,9 @@ export const DropdownMenu = ({
   return (
     <div className="dropdown">
       <div className="dropdown__control" onClick={toggleMenu}>
-        <div className="dropdown__control--placeholder">{chosenCity}</div>
+        <div className="dropdown__control--placeholder">
+          {chosenCityToBeDisplayed}
+        </div>
         {arrowUp ? <ExpandLessIcon /> : <ExpandMoreIcon />}
       </div>
       {showMenu ? (
@@ -61,6 +41,7 @@ export const DropdownMenu = ({
               key={`${city}-dropdown`}
               onClick={() => {
                 changeChosenCity(city);
+                toggleMenu();
               }}
             >
               {city}
@@ -73,18 +54,9 @@ export const DropdownMenu = ({
 };
 
 DropdownMenu.propTypes = {
-  chosenCity: PropTypes.string,
-  getChosenCity: PropTypes.func,
-  citiesPollutionData: PropTypes.array
+  chosenCityToBeDisplayed: PropTypes.string,
+  handleChosenCity: PropTypes.func,
+  optionsList: PropTypes.array
 };
 
-const mapStateToProps = createStructuredSelector({
-  chosenCity: selectMapLocation,
-  citiesPollutionData: selectCitiesPollutionData
-});
-
-const mapDispatchToProps = dispatch => ({
-  getChosenCity: chosenCity => dispatch(getChosenCity(chosenCity))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(DropdownMenu);
+export default DropdownMenu;

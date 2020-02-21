@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 2020_02_21_114545) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "published", default: false
     t.datetime "published_at"
+    t.text "overview"
+    t.integer "user_id"
     t.index ["published"], name: "index_articles_on_published"
   end
 
@@ -132,6 +134,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_114545) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "articles", "users"
   add_foreign_key "measurements", "locations"
   add_foreign_key "taggings", "tags"
 end

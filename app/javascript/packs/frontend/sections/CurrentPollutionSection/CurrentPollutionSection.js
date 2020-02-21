@@ -3,21 +3,24 @@ import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import { createStructuredSelector } from "reselect";
-import { setPopUpStatus } from "../../redux/homepage/homepage.actions";
 
 import {
   PollutionCard,
   PollutionScale,
   Recommendation,
   TownImage,
-  PopUp
+  PopUp,
+  Searchbox,
+  Loader
 } from "../../components";
+
 import {
   selectLocation,
   selectAdvice,
   selectChosenCityData,
   selectPopUpStatus
 } from "../../redux/redux.selectors";
+import { setPopUpStatus } from "../../redux/homepage/homepage.actions";
 
 import "./CurrentPollutionSection.scss";
 import { neutralColor } from "../../styles/_variables.scss";
@@ -34,8 +37,13 @@ const CurrentPollutionSection = ({
     setPopUpStatus(!popUpOpen);
   };
 
+  const loaderStyles = {
+    height: "66.1rem"
+  };
+
   return chosenCityData ? (
     <div className="current-pollution">
+      <Searchbox />
       <div className="current-pollution__heading">
         Aktualna jakość powietrza w miejscowości
         <br />
@@ -74,7 +82,7 @@ const CurrentPollutionSection = ({
       </div>
     </div>
   ) : (
-    "loading"
+    <Loader className="current-pollution__loader" loaderStyles={loaderStyles} />
   );
 };
 

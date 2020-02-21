@@ -1,0 +1,24 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.no-item-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  &__image {
+    margin-bottom: 2rem;
+    svg {
+      height: 6rem;
+      width: 6rem;
+      fill: $grey;
+    }
+  }
+  &__text {
+    @include information-text;
+    font-size: 3rem;
+    line-height: 4rem;
+    margin-bottom: 4rem;
+  }
+}

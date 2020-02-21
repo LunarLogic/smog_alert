@@ -1,16 +1,24 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { PropTypes } from "prop-types";
 
 import { CustomButton } from "../";
 import navigationContent from "../Navigation/navigationContent";
-import Logo from "../../assets/logo.jpg";
 
 import "./NavigationMobile.scss";
 import "./Hamburger.scss";
 
-const NavigationMobile = () => {
-  const { links, button, brand } = navigationContent;
+import {
+  selectPath,
+  selectOrganizationDetails
+} from "../../redux/application/application.selectors";
+
+const NavigationMobile = ({ path, organizationDetails }) => {
+  const { links, button } = navigationContent;
+  const { name, logo } = organizationDetails;
 
   const [hamburgerActive, setHamburgerActive] = useState(false);
 
@@ -26,15 +34,18 @@ const NavigationMobile = () => {
               }}
             >
               <div className="hamburger-navigation__brand-logo">
-                <img
-                  className="hamburger-navigation__brand-logo-img"
-                  src={Logo}
-                  alt="logo"
-                />
+                {logo ? (
+                  <img
+                    className="hamburger-navigation__brand-logo-img"
+                    src={logo}
+                  />
+                ) : (
+                  <div className="hamburger-navigation__brand-logo-img"></div>
+                )}
               </div>
             </Link>
             <Link to="/">
-              <div className="hamburger-navigation__brand-name">{brand}</div>
+              <div className="hamburger-navigation__brand-name">{name}</div>
             </Link>
           </div>
           <div className="hamburger-navigation__links">
@@ -72,15 +83,27 @@ const NavigationMobile = () => {
               {link.displayName}
             </NavLink>
           ))}
-          <ScrollLink
-            className="hamburger-navigation__links-item"
-            to="map-section"
-            smooth={true}
-            duration={500}
-            offset={-50}
-          >
-            Mapa
-          </ScrollLink>
+          {path.path === "/" ? (
+            <ScrollLink
+              className="hamburger-navigation__links-item"
+              to="map-section"
+              smooth={true}
+              duration={500}
+              offset={-50}
+              onClick={() => {
+                setHamburgerActive(false);
+              }}
+            >
+              Mapa
+            </ScrollLink>
+          ) : (
+            <a
+              className="hamburger-navigation__links-item"
+              href="/#map-section"
+            >
+              Mapa
+            </a>
+          )}
           <div className="hamburger-navigation__links-button">
             <CustomButton text={button} />
           </div>
@@ -90,4 +113,14 @@ const NavigationMobile = () => {
   );
 };
 
-export default NavigationMobile;
+const mapStateToProps = createStructuredSelector({
+  path: selectPath,
+  organizationDetails: selectOrganizationDetails
+});
+
+NavigationMobile.propTypes = {
+  path: PropTypes.string,
+  organizationDetails: PropTypes.object
+};
+
+export default connect(mapStateToProps)(NavigationMobile);

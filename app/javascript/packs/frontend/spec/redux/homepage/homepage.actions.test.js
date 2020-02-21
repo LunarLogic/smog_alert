@@ -15,7 +15,7 @@ const mockStore = configureMockStore([thunkMiddleware]);
 const mockAdapter = new MockAdapter(axios);
 
 describe("homepage actions", () => {
-  it("handles requesting homepage API", () => {
+  it("handles requesting homepage API", async () => {
     mockAdapter
       .onGet("/api/internal/measurements/current")
       .reply(200, mockCitiesPollutionData);
@@ -28,7 +28,7 @@ describe("homepage actions", () => {
     ];
     const store = mockStore({ payload: {} });
     const action = store.getActions();
-    store.dispatch(getCitiesPollutionData()).then(() => {
+    await store.dispatch(getCitiesPollutionData()).then(() => {
       expect(action).toEqual(expectedAction);
     });
   });

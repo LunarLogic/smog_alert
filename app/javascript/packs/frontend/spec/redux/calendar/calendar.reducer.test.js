@@ -1,11 +1,15 @@
 import calendarReducer from "../../../redux/calendar/calendar.reducer";
 import calendarActionTypes from "../../../redux/calendar/calendar.types";
+import { yesterdayDateFormatted } from "../../../helpers";
 
 describe("calendar reducer", () => {
   const initialState = {
     calendarStatusData: {},
     calendarValuesData: {},
-    calendarChosenYear: new Date().getFullYear()
+    calendarChosenYear: new Date().getFullYear(),
+    calendarChosenDay: yesterdayDateFormatted(),
+    calendarChosenCity: "Zabierzów, Wapienna",
+    calendarDailyValuesData: {}
   };
   it("should return initial state", () => {
     expect(calendarReducer(undefined, {})).toEqual(initialState);
@@ -36,7 +40,10 @@ describe("calendar reducer", () => {
         ]
       },
       calendarValuesData: {},
-      calendarChosenYear: new Date().getFullYear()
+      calendarChosenYear: new Date().getFullYear(),
+      calendarChosenDay: yesterdayDateFormatted(),
+      calendarChosenCity: "Zabierzów, Wapienna",
+      calendarDailyValuesData: {}
     });
   });
   it("should handle getCalendarValuesData action", () => {
@@ -69,7 +76,10 @@ describe("calendar reducer", () => {
           }
         ]
       },
-      calendarChosenYear: new Date().getFullYear()
+      calendarChosenYear: new Date().getFullYear(),
+      calendarChosenDay: yesterdayDateFormatted(),
+      calendarChosenCity: "Zabierzów, Wapienna",
+      calendarDailyValuesData: {}
     });
   });
 });
