@@ -8,7 +8,7 @@ RSpec.describe ArticleUpdater do
     tag1 = article.tags.create(name: 'tag1')
     article.tags.create(name: 'tag2')
     expect(Tagging.all.count).to eq(2)
-    params[:tags_attributes] = [{ name: tag1, id: tag1.id }]
+    params[:tags_attributes] = [{ name: tag1.name, id: tag1.id }]
     ArticleUpdater.new(article).call(params)
     expect(article.tags.count).to eq(1)
     expect(article.tags.first.name).to eq('tag1')
