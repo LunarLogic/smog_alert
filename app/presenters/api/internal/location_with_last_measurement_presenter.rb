@@ -29,7 +29,7 @@ class API::Internal::LocationWithLastMeasurementPresenter
   def last_hour_measurement_values
     return nil unless @last_hour_measurement
 
-    pm10checker = Pm10GiosScaleChecker.new(@last_hour_measurement.pm10)
+    pm10checker = GiosScaleChecker.new(:pm10, @last_hour_measurement.pm10)
 
     {
       from_date_time: @last_hour_measurement.from_date_time,
@@ -49,6 +49,6 @@ class API::Internal::LocationWithLastMeasurementPresenter
 
     pm10_average = pm10_array.sum / pm10_array.size
 
-    Pm10GiosScaleChecker.new(pm10_average).call
+    GiosScaleChecker.new(:pm10, pm10_average).call
   end
 end

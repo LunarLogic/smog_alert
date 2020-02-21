@@ -7,12 +7,6 @@ RSpec.describe HourlyAverageStatisticsCounter do
 
     subject { hourly_average.call }
 
-    context 'when there is no data for the given month for the given location' do
-      it 'returns nil' do
-        expect(subject).to eql nil
-      end
-    end
-
     context 'when the data for some hours is missing' do
       before do
         hours = 0..10
@@ -26,10 +20,10 @@ RSpec.describe HourlyAverageStatisticsCounter do
       end
 
       it 'returns nil for the missing hours' do
-        expect(subject.count).to eql 24
-        expect(subject[0]).to be_kind_of(Hash)
-        expect(subject[0][0][:average_pm10]).to eql 3.25
-        expect(subject[23][23]).to eql nil
+        expect(subject.count).to eql 2
+        expect(subject[:average_pm10]).to be_kind_of(Array)
+        expect(subject[:average_pm10][0][:value]).to eql 3.25
+        expect(subject[:average_pm10][23][:value]).to eql nil
       end
     end
 
@@ -46,11 +40,11 @@ RSpec.describe HourlyAverageStatisticsCounter do
       end
 
       it 'returns an array of 24 hashes with average measurements' do
-        expect(subject.count).to eql 24
-        expect(subject[0]).to be_kind_of(Hash)
-        expect(subject[0]).to have_key(0)
-        expect(subject[0][0]).to be_kind_of(Hash)
-        expect(subject[0][0][:average_pm10]).to eql 3.25
+        expect(subject.count).to eql 2
+        expect(subject[:average_pm10]).to be_kind_of(Array)
+        expect(subject[:average_pm10].count).to eql 24
+        expect(subject[:average_pm10][0]).to be_kind_of(Hash)
+        expect(subject[:average_pm10][0][:value]).to eql 3.25
       end
     end
   end
