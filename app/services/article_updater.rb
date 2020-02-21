@@ -10,6 +10,8 @@ class ArticleUpdater
     update_title_and_body(article_params.except(:tags_attributes))
   end
 
+  private
+
   def update_tags(tags_attributes)
     tags_names = tags_attributes.present? ? tags_attributes.map { |tag| tag[:name] }.uniq.reject(&:blank?) : []
     @article_tags_repository.update_article_tags(@article, tags_names)
