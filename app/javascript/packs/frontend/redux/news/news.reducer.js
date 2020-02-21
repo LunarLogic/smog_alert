@@ -20,7 +20,6 @@ const newsReducer = (state = INITIAL_STATE, action) => {
         };
       }
       return state;
-
     case newsActionTypes.GET_ARTICLES_SUCCESS:
       return {
         ...state,

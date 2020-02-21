@@ -44,5 +44,5 @@ export const getArticle = id => {
 };
 
 export const resetArticle = () => {
-  return { type: newsActionTypes.RESET_ARTICLE, payload: {} };
+  return { type: newsActionTypes.RESET_ARTICLE };
 };

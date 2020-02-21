@@ -69,7 +69,7 @@ describe("Article page", () => {
           <Article
             match={{ params: { id: 13 } }}
             getArticle={jest.fn()}
-            article={articleMock.data[0]}
+            article={articleMock.data}
             loader={false}
             error={false}
             setCurrentPath={jest.fn()}
