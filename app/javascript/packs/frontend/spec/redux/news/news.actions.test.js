@@ -16,7 +16,7 @@ const mockStore = configureMockStore([thunkMiddleware]);
 const mockAdapter = new MockAdapter(axios);
 
 describe("News actions", () => {
-  it("handles requesting article overviews from API", () => {
+  it("handles requesting article overviews from API", async () => {
     mockAdapter.onGet("/api/internal/articles").reply(200, articlesMock);
 
     const expectedAction = [
@@ -30,22 +30,22 @@ describe("News actions", () => {
     const store = mockStore({ payload: {} });
     const action = store.getActions();
 
-    store.dispatch(getArticles()).then(() => {
+    await store.dispatch(getArticles()).then(() => {
       expect(action).toEqual(expectedAction);
     });
   });
-  it("handles error response from article overviews API", () => {
+  it("handles error response from article overviews API", async () => {
     const response = { status: 404 };
     mockAdapter.onGet("/api/internal/articles").reply(404, response);
 
     const store = mockStore({ payload: {} });
     const action = store.getActions();
 
-    store.dispatch(getArticles()).then(() => {
+    await store.dispatch(getArticles()).then(() => {
       expect(action[1]).toEqual(expect.any(Object));
     });
   });
-  it("handles requesting single article from API", () => {
+  it("handles requesting single article from API", async () => {
     mockAdapter.onGet("/api/internal/articles/13").reply(200, articleMock);
 
     const expectedAction = [
@@ -59,7 +59,7 @@ describe("News actions", () => {
     const store = mockStore({ payload: {} });
     const action = store.getActions();
 
-    store.dispatch(getArticle()).then(() => {
+    await store.dispatch(getArticle(13)).then(() => {
       expect(action).toEqual(expectedAction);
     });
   });

@@ -61,7 +61,7 @@ export const PollutionComparison = ({
   return (
     <div className="pollution-comparison">
       {citiesPollutionData.length && sortedPollutionData ? (
-        sortedPollutionData.map(cityData => {
+        sortedPollutionData.map((cityData, index) => {
           const {
             location_name,
             location_display_name,
@@ -72,7 +72,7 @@ export const PollutionComparison = ({
             highestPollutionValue;
           return (
             <PollutionBar
-              key={`${location_display_name}-bar`}
+              key={`${index}-bar`}
               width={width}
               backgroundColor={setColor(last_hour_measurement)}
               location={location_display_name}
