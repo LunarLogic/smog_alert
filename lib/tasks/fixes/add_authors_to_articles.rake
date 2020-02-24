@@ -4,8 +4,7 @@ namespace :fixes do
     puts 'Start adding users to articles:'
     author_ids = User.ids
     Article.where(user_id: nil).each do |article|
-      article.user_id = author_ids.sample
-      article.save!
+      article.update_attribute(:user_id, author_ids.sample)
     end
   end
 end
