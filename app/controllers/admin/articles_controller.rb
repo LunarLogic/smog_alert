@@ -1,5 +1,5 @@
 class Admin::ArticlesController < Admin::BaseController
-  before_action :find_article, except: [:index, :new, :create]
+  before_action :find_article, except: [:index, :new, :create, :update]
   before_action :check_authorization, only: [:destroy, :publish, :unpublish]
   after_action :verify_authorized, except: [:index, :new, :create, :show, :edit, :update]
 

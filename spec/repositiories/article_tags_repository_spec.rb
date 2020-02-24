@@ -45,11 +45,6 @@ describe ArticleTagsRepository do
   it 'doesn\'t delete tag from db if it has other taggings' do
     ArticleTagsRepository.new.create_new_tags(article, ['tag1'])
     ArticleTagsRepository.new.create_new_tags(article2, ['tag1'])
-    # tag = article2.tags.find_or_create_by(name: 'tag1')
-    # byebug
-    # if tag.id
-    #   Tagging.create(article_id: article2.id, tag_id: tag.id)
-    # end
     expect(Tagging.all.count).to eq(2)
     expect(Tag.all.count).to eq(1)
     tags_names = []
