@@ -8,6 +8,7 @@ class ArticleUpdater
     article_params = params[:article]
     update_tags(article_params[:tags_attributes])
     update_title_and_body(article_params.except(:tags_attributes))
+    @article
   end
 
   private

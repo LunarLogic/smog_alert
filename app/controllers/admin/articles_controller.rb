@@ -12,9 +12,8 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def create
-    @article = Article.new(article_params)
-    @article.user_id = current_user.id
-    if article_creator.call(user_id: current_user.id, params: article_params)
+    @article = article_creator.call(user_id: current_user.id, params: article_params)
+    if @article.persisted?
       flash[:success] = 'Pomyślnie dodano wpis'
       redirect_to admin_articles_path
     else
@@ -29,7 +28,8 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def update
-    if article_updater.call(article: article_params, id: params[:id])
+    @article = article_updater.call(article: article_params, id: params[:id])
+    if @article.valid?
       flash[:success] = 'Pomyslnie edytowano wpis'
       redirect_to admin_articles_path
     else

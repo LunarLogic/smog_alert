@@ -29,9 +29,4 @@ describe ArticleCreator do
     ArticleCreator.new.call(user_id: superadmin.id, params: params)
     expect(Tag.all.count).to eq(1)
   end
-
-  it 'returns false when validations don\'t pass' do
-    params[:title] = ''
-    expect(ArticleCreator.new.call(user_id: superadmin.id, params: params)). to eq(false)
-  end
 end

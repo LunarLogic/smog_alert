@@ -11,5 +11,4 @@ class Article < ApplicationRecord
   validates :title, :body, :overview, :user_id, presence: true
   validates :overview, length: { maximum: 1500 }
   validates_associated :tags
-
 end

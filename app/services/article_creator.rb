@@ -5,7 +5,10 @@ class ArticleCreator
 
   def call(user_id:, params:)
     article = create_article(user_id, params.except(:tags_attributes))
-    create_tags(article, params) if article && params[:tags_attributes]
+    if article.valid?
+      article.save!
+      create_tags(article, params) if params[:tags_attributes]
+    end
     article
   end
 
@@ -13,11 +16,7 @@ class ArticleCreator
 
   def create_article(id, params)
     params[:user_id] = id
-    begin
-      Article.create!(params)
-    rescue ActiveRecord::RecordInvalid
-      false
-    end
+    Article.create(params)
   end
 
   def create_tags(article, params)

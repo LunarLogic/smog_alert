@@ -38,6 +38,12 @@ describe 'admin interactions with articles' do
       expect(page).to have_content(new_article.title)
     end
 
+    scenario 'display flash message when validations didn\'t pass' do
+      expect(page).to have_current_path(new_admin_article_path)
+      click_on('Dodaj')
+      expect(page).to have_content('nie może być puste')
+    end
+
     scenario 'add tag field' do
       click_on('Dodaj tag')
       expect(page.has_selector?('.tag-field')).to be true

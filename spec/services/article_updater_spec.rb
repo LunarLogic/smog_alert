@@ -49,11 +49,6 @@ RSpec.describe ArticleUpdater do
     expect(article.body.to_s).to include('New body')
   end
 
-  it 'returns false if body was empty' do
-    params[:article][:body] = ''
-    expect(ArticleUpdater.new.call(params)).to eq(false)
-  end
-
   it 'deletes tags when name was erased' do
     tag1 = article.tags.create(name: 'tag1')
     params[:article][:tags_attributes] = [{ name: '', id: tag1.id }]
