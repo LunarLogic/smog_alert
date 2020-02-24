@@ -8,10 +8,14 @@ $(document).ready(function() {
     });
   }
 
-  $("#js-add-tag-field-button").click(function(e) {
-    e.preventDefault();
-    const newTag = $("#js-tag-template").html();
-    $("#js-tags-fields").append(newTag);
-  });
+  function attachAddHandlers(e) {
+    $("#js-add-tag-field-button").click(function(e) {
+      e.preventDefault();
+      const newTag = $("#js-tag-template").html();
+      $("#js-tags-fields").append(newTag);
+    });
+  }
+
+  attachAddHandlers();
   attachRemoveHandlers();
 });
