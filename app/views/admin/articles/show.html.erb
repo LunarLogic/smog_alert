@@ -3,8 +3,8 @@
 <p><br>Skrót artykułu:</br><%= @article.overview %></p>
 <div>
   <h6>Tagi:</h6>
-  <%= @article.tags.each do |tag| %>
-    <p class="tag"><%= tag %></p>
+  <% @article.tags.each do |tag| %>
+    <p class="tag"><%= tag.name %></p>
   <% end %>
 </div>
 <p><br>Data wpisu:</br><%= @article.created_at%></p>
