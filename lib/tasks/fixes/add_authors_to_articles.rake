@@ -1,11 +1,13 @@
 namespace :fixes do
   desc 'Add missing authors to previosly created articles'
-  task add_author_to_article: :environment do
+  task add_authors_to_articles: :environment do
     puts 'Start adding users to articles:'
-    Article.all.each do |article|
+    authors_id = User.ids
+    Article.where(user_id: nil).each do |article|
       puts article.id
-      article.user_id = [editor.id, superadmin.id].sample if article.user_id.nil?
-      article.save!
+      article.user_id = authors_id.sample
+      puts "after #{article.user_id}"      
+      # article.save!
     end
   end
 end
