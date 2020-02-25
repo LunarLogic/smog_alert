@@ -2,7 +2,7 @@
 @import "../../styles/mixins";
 
 .news {
-  @include margins-news;
+  @include margins-text-content;
 
   &__heading {
     @include heading;

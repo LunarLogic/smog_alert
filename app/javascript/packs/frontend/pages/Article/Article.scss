@@ -2,7 +2,7 @@
 @import "../../styles/mixins";
 
 .article {
-  @include margins-news;
+  @include margins-text-content;
 
   &__heading {
     font-size: 4.5rem;
