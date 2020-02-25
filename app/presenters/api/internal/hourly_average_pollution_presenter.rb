@@ -16,8 +16,6 @@ class API::Internal::HourlyAveragePollutionPresenter
   end
 
   def average_pollution_by_hour
-    return nil unless @monthly_measurements
-
     HourlyAverageStatisticsCounter.new(@monthly_measurements).call
   end
 end
