@@ -84,7 +84,7 @@ rails routes
   Turn on `Format On Save` checkbox
   From now on every change in code base will be automatically formatted by [Prettier](https://prettier.io/).
 
-#### Deployment
+### Deployment
 
 - To deploy from master branch use:
 
@@ -98,7 +98,7 @@ rails routes
 
 `cap staging deploy:seed`
 
-#### Tips
+### Tips
 
 - Edit credentials in VIM by running:
 
@@ -128,7 +128,7 @@ smogalert@staging:~$ cd application/current
 RAILS_ENV=staging /usr/local/rbenv/bin/rbenv exec bundle exec rails console
 ```
 
-#### Tests
+### Tests
 
 - Run the test suite: `bundle exec rspec`
 
