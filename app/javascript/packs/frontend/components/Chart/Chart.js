@@ -20,7 +20,9 @@ const Chart = () => {
         domain={{ x: [0, 24], y: [0, maxValue + 10] }}
         width={1150}
         height={500}
-        containerComponent={<VictoryContainer style={{ position: "unset" }} />}
+        containerComponent={
+          <VictoryContainer style={{ position: "unset", width: "inherit" }} />
+        }
       >
         <VictoryAxis
           tickValues={Array.from(Array(24), (x, index) => index)}

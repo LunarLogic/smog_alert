@@ -6,40 +6,69 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import { selectCitiesPollutionDataList } from "../../redux/redux.selectors";
-import { selectChartChosenCity } from "../../redux/charts/charts.selectors";
-import { setChartChosenCity } from "../../redux/charts/charts.actions";
+import {
+  selectChartChosenCity,
+  selectChartChosenIndicator
+} from "../../redux/charts/charts.selectors";
+import {
+  setChartChosenCity,
+  setChartChosenIndicator
+} from "../../redux/charts/charts.actions";
 
-import { Chart, DropdownMenu } from "../../components";
+import { Chart, CustomButton, DropdownMenu } from "../../components";
 
 import "./ChartsSection.scss";
 
 export const ChartsSection = ({
   citiesList,
   chartChosenCity,
-  setChartChosenCity
+  chartChosenIndicator,
+  setChartChosenCity,
+  setChartChosenIndicator
 }) => {
   const [startDate, setStartDate] = useState(new Date());
+  const indicatorsList = ["PM 10", "PM 2.5"];
+  console.log(`01-${startDate.getMonth()}-${startDate.getFullYear()}`);
 
   return (
     <div className="charts-section">
       <div className="charts-section-heading">Statystyki</div>
-      <div className="charts-section-dropdown__label">Wybierz miejscowość</div>
-      <div className="charts-section-dropdown__menu">
-        <DropdownMenu
-          optionsList={citiesList}
-          chosenCityToBeDisplayed={chartChosenCity}
-          handleChosenCity={setChartChosenCity}
-        />
+      <div className="charts-section-options">
+        <div className="charts-section-dropdown">
+          <div className="charts-section-dropdown__label">Wybierz wskaźnik</div>
+          <div className="charts-section-dropdown__menu">
+            <DropdownMenu
+              optionsList={indicatorsList}
+              chosenCityToBeDisplayed={chartChosenIndicator}
+              handleChosenCity={setChartChosenIndicator}
+            />
+          </div>
+        </div>
+        <div className="charts-section-dropdown">
+          <div className="charts-section-dropdown__label">
+            Wybierz miejscowość
+          </div>
+          <div className="charts-section-dropdown__menu">
+            <DropdownMenu
+              optionsList={citiesList}
+              chosenCityToBeDisplayed={chartChosenCity}
+              handleChosenCity={setChartChosenCity}
+            />
+          </div>
+        </div>
+        <div className="charts-section-dropdown">
+          <div className="charts-section-dropdown__label">Wybierz miesiąc</div>
+          <div className="charts-section-date-picker">
+            <DatePicker
+              selected={startDate}
+              onChange={date => setStartDate(date)}
+              dateFormat="MM/yyyy"
+              showMonthYearPicker
+            />
+          </div>
+        </div>
       </div>
-      <div className="charts-section-dropdown__label">Wybierz miesiąc</div>
-      <div className="charts-section-date-picker">
-        <DatePicker
-          selected={startDate}
-          onChange={date => setStartDate(date)}
-          dateFormat="MM/yyyy"
-          showMonthYearPicker
-        />
-      </div>
+      <CustomButton text="Zastosuj" />
       <Chart />
     </div>
   );
@@ -47,13 +76,19 @@ export const ChartsSection = ({
 
 ChartsSection.propTypes = {
   setChartChosenCity: PropTypes.func,
+  setChartChosenIndicator: PropTypes.func,
   citiesList: PropTypes.array,
-  chartChosenCity: PropTypes.string
+  chartChosenCity: PropTypes.string,
+  chartChosenIndicator: PropTypes.string
 };
 
 const mapStateToProps = createStructuredSelector({
   citiesList: selectCitiesPollutionDataList,
-  chartChosenCity: selectChartChosenCity
+  chartChosenCity: selectChartChosenCity,
+  chartChosenIndicator: selectChartChosenIndicator
 });
 
-export default connect(mapStateToProps, { setChartChosenCity })(ChartsSection);
+export default connect(mapStateToProps, {
+  setChartChosenCity,
+  setChartChosenIndicator
+})(ChartsSection);

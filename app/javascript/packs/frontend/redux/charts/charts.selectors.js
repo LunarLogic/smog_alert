@@ -6,3 +6,8 @@ export const selectChartChosenCity = createSelector(
   [selectChart],
   chart => chart.chartChosenCity
 );
+
+export const selectChartChosenIndicator = createSelector(
+  [selectChart],
+  chart => chart.chartChosenIndicator
+);

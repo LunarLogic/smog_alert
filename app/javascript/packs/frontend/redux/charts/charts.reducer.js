@@ -1,7 +1,8 @@
 import chartsActionTypes from "./charts.types";
 
 const INITIAL_STATE = {
-  chartChosenCity: "Zabierzów, Wapienna"
+  chartChosenCity: "Zabierzów, Wapienna",
+  chartChosenIndicator: "PM 10"
 };
 
 const chartReducer = (state = INITIAL_STATE, action) => {
@@ -10,6 +11,11 @@ const chartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         chartChosenCity: action.payload
+      };
+    case chartsActionTypes.SET_CHART_CHOSEN_INDICATOR:
+      return {
+        ...state,
+        chartChosenIndicator: action.payload
       };
     default:
       return state;

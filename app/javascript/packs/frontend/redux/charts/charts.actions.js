@@ -5,3 +5,8 @@ export const setChartChosenCity = chosenCity => ({
   type: chartsActionTypes.SET_CHART_CHOSEN_CITY,
   payload: chosenCity
 });
+
+export const setChartChosenIndicator = chosenIndicator => ({
+  type: chartsActionTypes.SET_CHART_CHOSEN_INDICATOR,
+  payload: chosenIndicator
+});
