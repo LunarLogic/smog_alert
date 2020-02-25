@@ -5,13 +5,12 @@ class API::Internal::ArticlesController < API::Internal::BaseController
     operation :get do
       key :summary, 'All published articles'
       key :description, 'Returns all published articles by admin'
-      #key :operationId, 'findPets'
+      # key :operationId, 'findPets'
       key :produces, [
         'application/json',
-        #'text/html',
       ]
       key :tags, [
-        'articles'
+        'articles',
       ]
       parameter do
         key :name, :tags
@@ -37,14 +36,14 @@ class API::Internal::ArticlesController < API::Internal::BaseController
         schema do
           key :type, :array
           items do
-            #key :'$ref', :Pet
+            # key :'$ref', :Pet
           end
         end
       end
       response :default do
         key :description, 'unexpected error'
         schema do
-          #key :'$ref', :ErrorModel
+          # key :'$ref', :ErrorModel
         end
       end
     end
