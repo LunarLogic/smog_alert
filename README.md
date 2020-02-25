@@ -134,3 +134,10 @@ RAILS_ENV=staging /usr/local/rbenv/bin/rbenv exec bundle exec rails console
 
 - Run tests in Chrome browser in development: `CHROME=true rspec spec/features/homepage_spec.rb`
 
+### API docs
+
+React application uses API exposed by Rails. Here is documentation:
+
+http://petstore.swagger.io/?url=http://localhost:3000/apidocs
+
+We use [Swagger Blocks](https://github.com/fotinakis/swagger-blocks) to edit docs.
