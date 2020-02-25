@@ -12,9 +12,11 @@ import {
 } from "../../redux/charts/charts.selectors";
 import {
   setChartChosenCity,
-  setChartChosenIndicator
+  setChartChosenIndicator,
+  setChartChosenMonth
 } from "../../redux/charts/charts.actions";
 
+import { formatMonthlyDate } from "../../helpers";
 import { Chart, CustomButton, DropdownMenu } from "../../components";
 
 import "./ChartsSection.scss";
@@ -24,11 +26,15 @@ export const ChartsSection = ({
   chartChosenCity,
   chartChosenIndicator,
   setChartChosenCity,
-  setChartChosenIndicator
+  setChartChosenIndicator,
+  setChartChosenMonth
 }) => {
   const [startDate, setStartDate] = useState(new Date());
   const indicatorsList = ["PM 10", "PM 2.5"];
-  console.log(`01-${startDate.getMonth()}-${startDate.getFullYear()}`);
+  const setDate = date => {
+    setStartDate(date);
+    setChartChosenMonth(formatMonthlyDate(date));
+  };
 
   return (
     <div className="charts-section">
@@ -61,7 +67,7 @@ export const ChartsSection = ({
           <div className="charts-section-date-picker">
             <DatePicker
               selected={startDate}
-              onChange={date => setStartDate(date)}
+              onChange={date => setDate(date)}
               dateFormat="MM/yyyy"
               showMonthYearPicker
             />
@@ -77,6 +83,7 @@ export const ChartsSection = ({
 ChartsSection.propTypes = {
   setChartChosenCity: PropTypes.func,
   setChartChosenIndicator: PropTypes.func,
+  setChartChosenMonth: PropTypes.func,
   citiesList: PropTypes.array,
   chartChosenCity: PropTypes.string,
   chartChosenIndicator: PropTypes.string
@@ -90,5 +97,6 @@ const mapStateToProps = createStructuredSelector({
 
 export default connect(mapStateToProps, {
   setChartChosenCity,
-  setChartChosenIndicator
+  setChartChosenIndicator,
+  setChartChosenMonth
 })(ChartsSection);

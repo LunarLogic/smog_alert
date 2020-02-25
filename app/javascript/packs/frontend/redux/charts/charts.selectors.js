@@ -11,3 +11,8 @@ export const selectChartChosenIndicator = createSelector(
   [selectChart],
   chart => chart.chartChosenIndicator
 );
+
+export const selectChartChosenMonth = createSelector(
+  [selectChart],
+  chart => chart.chartChosenMonth
+);

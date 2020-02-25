@@ -10,3 +10,8 @@ export const setChartChosenIndicator = chosenIndicator => ({
   type: chartsActionTypes.SET_CHART_CHOSEN_INDICATOR,
   payload: chosenIndicator
 });
+
+export const setChartChosenMonth = chosenMonth => ({
+  type: chartsActionTypes.SET_CHART_CHOSEN_MONTH,
+  payload: chosenMonth
+});
