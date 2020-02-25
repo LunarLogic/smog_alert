@@ -35,11 +35,7 @@
   &__container {
     display: flex;
     margin-top: 2rem;
-    align-items: center;
-
-    @media only screen and(max-width: $bp-1200) {
-      align-items: flex-start;
-    }
+    align-items: flex-start;
 
     @media only screen and(max-width: $bp-1000) {
       flex-direction: column;
@@ -48,7 +44,7 @@
 
     &--overview {
       font-size: 1.6rem;
-      line-height: 2.1rem;
+      line-height: 2.4rem;
       display: flex;
       flex-direction: column;
       @media only screen and(max-width: $bp-600) {
