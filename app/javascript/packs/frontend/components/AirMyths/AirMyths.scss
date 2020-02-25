@@ -4,19 +4,51 @@
 .air-myths {
   &__heading {
     @include heading;
+    margin-bottom: 1.6rem;
   }
-  &__content {
-    margin: 3rem 0;
-    &-title {
-      @include title;
-      border-bottom: 0.1rem solid $frameColor;
-      padding: 1.5rem 0;
+  &__subheading {
+    font-size: 1.8rem;
+    line-height: 2.7rem;
+  }
+  &__single-myth {
+    &--counter {
+      font-size: 1.6em;
+      line-height: 1.9rem;
+      // color: $warningColor;
+      color: $secondaryColor;
+      padding: 1.7rem 0 1.1rem 0;
+      border-top: 0.1rem solid $frameColor;
+      margin-top: 5.5rem;
     }
-    &-text {
-      font-size: 1.8rem;
-      line-height: 1.5;
-      text-align: justify;
-      padding: 3rem 1.5rem 0 1.5rem;
+    &--container {
+      display: flex;
+
+      &-quotation-marks {
+        margin-left: -0.9rem;
+        svg {
+          // fill: $warningColor;
+          fill: $secondaryColor;
+          width: 4.4rem;
+          height: 3.9rem;
+        }
+      }
+      &-content {
+        display: flex;
+        flex-direction: column;
+        &-title {
+          font-size: 2.8rem;
+          line-height: 3.4rem;
+          font-weight: bold;
+          text-align: justify;
+          margin: 1.5rem 0 0 0;
+        }
+        &-text {
+          font-size: 1.8rem;
+          line-height: 2.7rem;
+          text-align: justify;
+          margin-top: 3rem;
+        }
+      }
     }
   }
 }

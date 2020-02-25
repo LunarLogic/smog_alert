@@ -5,7 +5,7 @@ import "./AirFacts.scss";
 
 const AirFacts = () => {
   return (
-    <div>
+    <div className="air-facts">
       <AirMyths />
     </div>
   );

@@ -37,7 +37,10 @@ describe '/api/internal/measurements' do
       location_id = location.id
       get calendar_values_api_internal_measurements_path(location_id: location_id)
       expect(response.status).to eq(422)
-      expect(response.body).to be_json_eql({ 'errors' => [{ 'year' => ['parameter is required'] }] }.to_json)
+      expect(response.body).to be_json_eql({
+        'data' => nil,
+        'errors' => [{ 'year' => ['parameter is required'] }]
+      }.to_json)
     end
   end
 
@@ -107,8 +110,10 @@ describe '/api/internal/measurements' do
 
       it 'returns json with average pollution per hour' do
         expect(response.body).to have_json_path('data')
-        expect(response.body).to have_json_size(24).at_path('data/average_pollution_by_hour')
-        expect(response.body).to be_json_eql(3.25).at_path('data/average_pollution_by_hour/0/0/average_pm10')
+        expect(response.body).to have_json_size(24).at_path('data/average_pollution_by_hour/average_pm10')
+        expect(response.body).to be_json_eql(3.25).at_path('data/average_pollution_by_hour/average_pm10/0/value')
+        expect(response.body).to be_json_eql('bardzo dobry'.to_json)
+          .at_path('data/average_pollution_by_hour/average_pm25/13/status')
       end
     end
   end

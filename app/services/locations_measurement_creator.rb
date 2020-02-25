@@ -5,7 +5,8 @@ class LocationsMeasurementCreator
 
   def call
     airly_data = AirlyAPI::Measurements.new.by_installation_id(installation_id)
-    data = AirlyExtractor::MeasurementData.extract(airly_data)
+    current_measurement = airly_data['current']
+    data = AirlyExtractor::MeasurementData.extract(current_measurement)
     if data
       measurement = @location.measurements.create(data)
       Result::Success.new(data: measurement)
