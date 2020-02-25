@@ -76,7 +76,7 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def article_params
-    params.require(:article).permit(:title, :body, :overview, :user_id, tags_attributes: [:name, :id])
+    params.require(:article).permit(:title, :body, :overview, :user_id, tags_attributes: [:name])
   end
 
   def article_creator
