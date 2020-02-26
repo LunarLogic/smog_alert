@@ -15,14 +15,6 @@ class ApidocsController < ActionController::Base
         key :name, 'MIT'
       end
     end
-    # tag do
-    #   key :name, 'pet'
-    #   key :description, 'Pets operations'
-    #   externalDocs do
-    #     key :description, 'Find more info in Smog Alert README'
-    #     key :url, 'https://github.com/LunarLogic/smog_alert'
-    #   end
-    # end
     key :host, 'staging.smogalert.lunarlogic.io'
     key :basePath, '/'
     key :schemes, ['https']
@@ -33,8 +25,6 @@ class ApidocsController < ActionController::Base
   # A list of all classes that have swagger_* declarations.
   SWAGGERED_CLASSES = [
     API::Internal::ArticlesController,
-    # Pet,
-    # ErrorModel,
     self,
   ].freeze
 
