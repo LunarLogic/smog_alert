@@ -8,12 +8,13 @@ import "react-datepicker/dist/react-datepicker.css";
 import { selectCitiesPollutionDataList } from "../../redux/redux.selectors";
 import {
   selectChartChosenCity,
-  selectChartChosenIndicator
+  selectChartChosenIndicator,
+  selectChartChosenCityIndex
 } from "../../redux/charts/charts.selectors";
 import {
   setChartChosenCity,
   setChartChosenIndicator,
-  setChartChosenMonth
+  getChartHourlyAverageForMonthData
 } from "../../redux/charts/charts.actions";
 
 import { formatMonthlyDate } from "../../helpers";
@@ -27,13 +28,25 @@ export const ChartsSection = ({
   chartChosenIndicator,
   setChartChosenCity,
   setChartChosenIndicator,
-  setChartChosenMonth
+  getChartHourlyAverageForMonthData,
+  chartChosenCityIndex
 }) => {
   const [startDate, setStartDate] = useState(new Date());
+  const [chartChosenMonth, setChartChosenMonth] = useState(
+    formatMonthlyDate(new Date())
+  );
+
+  useEffect(() => {
+    getChartHourlyAverageForMonthData(chartChosenMonth, chartChosenCityIndex);
+  }, []);
+
   const indicatorsList = ["PM 10", "PM 2.5"];
   const setDate = date => {
     setStartDate(date);
     setChartChosenMonth(formatMonthlyDate(date));
+  };
+  const refreshChartData = () => {
+    getChartHourlyAverageForMonthData(chartChosenMonth, chartChosenCityIndex);
   };
 
   return (
@@ -74,7 +87,9 @@ export const ChartsSection = ({
           </div>
         </div>
       </div>
-      <CustomButton text="Zastosuj" />
+      <div onClick={refreshChartData}>
+        <CustomButton text="Zastosuj" />
+      </div>
       <Chart />
     </div>
   );
@@ -84,19 +99,22 @@ ChartsSection.propTypes = {
   setChartChosenCity: PropTypes.func,
   setChartChosenIndicator: PropTypes.func,
   setChartChosenMonth: PropTypes.func,
+  getChartHourlyAverageForMonthData: PropTypes.func,
   citiesList: PropTypes.array,
   chartChosenCity: PropTypes.string,
-  chartChosenIndicator: PropTypes.string
+  chartChosenIndicator: PropTypes.string,
+  chartChosenCityIndex: PropTypes.number
 };
 
 const mapStateToProps = createStructuredSelector({
   citiesList: selectCitiesPollutionDataList,
   chartChosenCity: selectChartChosenCity,
-  chartChosenIndicator: selectChartChosenIndicator
+  chartChosenIndicator: selectChartChosenIndicator,
+  chartChosenCityIndex: selectChartChosenCityIndex
 });
 
 export default connect(mapStateToProps, {
   setChartChosenCity,
   setChartChosenIndicator,
-  setChartChosenMonth
+  getChartHourlyAverageForMonthData
 })(ChartsSection);
