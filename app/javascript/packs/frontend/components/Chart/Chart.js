@@ -1,5 +1,8 @@
 import React from "react";
-import { data } from "./chartContent";
+import { connect } from "react-redux";
+import { PropTypes } from "prop-types";
+import { createStructuredSelector } from "reselect";
+
 import {
   VictoryBar,
   VictoryChart,
@@ -8,8 +11,28 @@ import {
 } from "victory";
 import { setColor } from "../../helpers/setColor";
 
-const Chart = () => {
-  const average_data = data.data.average_pollution_by_hour.average_pm10;
+import { selectChartHourlyAverageForMonthDataPollutionValues } from "../../redux/charts/charts.selectors";
+
+const Chart = ({
+  indicator,
+  chartHourlyAverageForMonthDataPollutionValues
+}) => {
+  let chartData = chartHourlyAverageForMonthDataPollutionValues;
+
+  let chartIndicator;
+  indicator === "PM 10"
+    ? (chartIndicator = "average_pm10")
+    : (chartIndicator = "average_pm25");
+
+  // Assign value to average_data required by Victory Chart - until data is available assign mock default data
+  let average_data = Array.from(Array(24), (x, index) => {
+    const hourlyDefaultValues = { hour: index, value: 0, status: "" };
+    return hourlyDefaultValues;
+  });
+  if (chartData) {
+    average_data = chartData[chartIndicator];
+  }
+
   const maxValue = Math.max(...average_data.map(item => item.value));
 
   return (
@@ -59,4 +82,13 @@ const Chart = () => {
   );
 };
 
-export default Chart;
+const mapStateToProps = createStructuredSelector({
+  chartHourlyAverageForMonthDataPollutionValues: selectChartHourlyAverageForMonthDataPollutionValues
+});
+
+Chart.propTypes = {
+  indicator: PropTypes.string,
+  chartHourlyAverageForMonthDataPollutionValues: PropTypes.object
+};
+
+export default connect(mapStateToProps)(Chart);

@@ -18,6 +18,16 @@ export const selectChartChosenMonth = createSelector(
   chart => chart.chartChosenMonth
 );
 
+export const selectChartHourlyAverageForMonthData = createSelector(
+  [selectChart],
+  chart => chart.chartHourlyAverageForMonthData
+);
+
+export const selectChartHourlyAverageForMonthDataPollutionValues = createSelector(
+  [selectChartHourlyAverageForMonthData],
+  data => data.average_pollution_by_hour
+);
+
 export const selectChartChosenCityIndex = createSelector(
   [selectCitiesPollutionData, selectChartChosenCity],
   (citiesPollutionData, location_display_name) => {

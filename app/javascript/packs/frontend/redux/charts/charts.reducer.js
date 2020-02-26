@@ -15,7 +15,7 @@ const chartReducer = (state = INITIAL_STATE, action) => {
     case chartsActionTypes.GET_CHART_HOURLY_AVERAGE_FOR_MONTH_DATA:
       return {
         ...state,
-        chartHourlyAverageForMonthData: action.payload
+        chartHourlyAverageForMonthData: action.payload.data
       };
     case chartsActionTypes.SET_CHART_CHOSEN_CITY:
       return {

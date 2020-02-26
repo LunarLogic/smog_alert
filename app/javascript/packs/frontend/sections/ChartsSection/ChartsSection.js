@@ -32,6 +32,7 @@ export const ChartsSection = ({
   chartChosenCityIndex
 }) => {
   const [startDate, setStartDate] = useState(new Date());
+  const [indicator, setIndicator] = useState("PM 10");
   const [chartChosenMonth, setChartChosenMonth] = useState(
     formatMonthlyDate(new Date())
   );
@@ -45,8 +46,10 @@ export const ChartsSection = ({
     setStartDate(date);
     setChartChosenMonth(formatMonthlyDate(date));
   };
+
   const refreshChartData = () => {
     getChartHourlyAverageForMonthData(chartChosenMonth, chartChosenCityIndex);
+    setIndicator(chartChosenIndicator);
   };
 
   return (
@@ -90,7 +93,7 @@ export const ChartsSection = ({
       <div onClick={refreshChartData}>
         <CustomButton text="Zastosuj" />
       </div>
-      <Chart />
+      <Chart indicator={indicator} />
     </div>
   );
 };
