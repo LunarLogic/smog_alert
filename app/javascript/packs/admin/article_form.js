@@ -1,3 +1,5 @@
+import { autocompleteTags } from "./autocomplete"
+
 $(document).ready(function() {
   function attachRemoveHandlers(e) {
     $("#js-tags-fields").on("click", ".tag-field button.close", function(e) {
@@ -13,6 +15,7 @@ $(document).ready(function() {
       e.preventDefault();
       const newTag = $("#js-tag-template").html();
       $("#js-tags-fields").append(newTag);
+      autocompleteTags();
     });
   }
 

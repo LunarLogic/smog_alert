@@ -9,6 +9,7 @@ class Admin::ArticlesController < Admin::BaseController
 
   def new
     @article = Article.new
+    @tags_names = Tag.pluck(:name)
   end
 
   def create
@@ -25,6 +26,7 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def edit
+    @tags_names = Tag.pluck(:name)
   end
 
   def update
