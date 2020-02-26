@@ -1,7 +1,7 @@
 class API::Internal::ArticlesController < API::Internal::BaseController
   include Swagger::Blocks
 
-  swagger_path '/pets' do
+  swagger_path '/api/internal/articles' do
     operation :get do
       key :summary, 'All published articles'
       key :description, 'Returns all published articles by admin'
@@ -12,42 +12,38 @@ class API::Internal::ArticlesController < API::Internal::BaseController
       key :tags, [
         'articles',
       ]
-      parameter do
-        key :name, :tags
-        key :in, :query
-        key :description, 'tags to filter by'
-        key :required, false
-        key :type, :array
-        items do
-          key :type, :string
-        end
-        key :collectionFormat, :csv
-      end
-      parameter do
-        key :name, :limit
-        key :in, :query
-        key :description, 'maximum number of results to return'
-        key :required, false
-        key :type, :integer
-        key :format, :int32
-      end
       response 200 do
-        key :description, 'pet response'
+        key :description, 'Array of articles'
         schema do
-          key :type, :array
-          items do
-            # key :'$ref', :Pet
+          key :type, :object
+          property :data do
+            key :type, :array
+            items do
+              property :id do
+                key :type, :integer
+              end
+              property :title do
+                key :type, :string
+              end
+              property :image do
+                key :type, :string
+              end
+              property :overview do
+                key :type, :string
+              end
+              property :published_at do
+                key :type, :string
+              end
+              property :updated_at do
+                key :type, :string
+              end
+            end
           end
-        end
-      end
-      response :default do
-        key :description, 'unexpected error'
-        schema do
-          # key :'$ref', :ErrorModel
         end
       end
     end
   end
+
   def index
     data = ArticlesRepository.new.published_articles.map do |article|
       API::Internal::ArticleOverviewPresenter.new(article)
