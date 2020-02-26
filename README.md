@@ -140,6 +140,9 @@ React application uses API exposed by Rails.
 
 We use [Swagger Blocks](https://github.com/fotinakis/swagger-blocks) to manage API docs.
 
+It generates JSON API endpoint http://localhost:3000/apidocs that is translated to web page thanks to http://petstore.swagger.io
+See below examples.
+
 #### How to preview documentation via staging
 
 http://petstore.swagger.io/?url=https://staging.smogalert.lunarlogic.io/apidocs
