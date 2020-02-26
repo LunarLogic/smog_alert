@@ -26,8 +26,7 @@ class ApidocsController < ActionController::Base
   SWAGGERED_CLASSES = [
     API::Internal::ArticlesController,
     API::Internal::OrganizationsController,
-    # Pet,
-    # ErrorModel,
+    API::Internal::MeasurementsController,
     self,
   ].freeze
 
