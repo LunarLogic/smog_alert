@@ -45,13 +45,13 @@ class API::Internal::OrganizationsController < API::Internal::BaseController
         schema do
           key :type, :object
           property :data do
-              key :type, :string
-              key :description, 'Default value is null'
+            key :type, :string
+            key :description, 'Default value is null'
           end
           property :errors do
             key :type, :array
             items do
-              key :type, :string  
+              key :type, :string
             end
           end
         end
