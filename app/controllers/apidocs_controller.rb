@@ -25,6 +25,9 @@ class ApidocsController < ActionController::Base
   # A list of all classes that have swagger_* declarations.
   SWAGGERED_CLASSES = [
     API::Internal::ArticlesController,
+    API::Internal::OrganizationsController,
+    # Pet,
+    # ErrorModel,
     self,
   ].freeze
 
