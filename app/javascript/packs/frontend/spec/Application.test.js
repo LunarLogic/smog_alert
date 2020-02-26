@@ -6,9 +6,13 @@ import App from "../App";
 import { MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "../redux/store";
-// import mockCities from "../spec/__mocks__/citiesPollutionDataMock.json";
-// import configureStore from "redux-mock-store";
-// const mockStore = configureStore([]);
+import MockAdapter from "axios-mock-adapter";
+import axios from "axios";
+import {
+  mockGettingCurrentMeasurements,
+  mockGettingOrganizationCurrentData
+} from "./helpers/mockHelpers";
+import flushPromises from "./helpers/flushPromises";
 
 describe("Routing component", () => {
   it("invalid path should redirect to 404", () => {
@@ -38,25 +42,33 @@ describe("Routing component", () => {
 });
 
 describe("Integration test for Homepage", () => {
-  // it("list opens", () => {
-  //   const getCitiesPollutionData = jest.fn(() => {
-  //     return mockCities;
-  //   });
-  //   console.log(getCitiesPollutionData());
-  //   const wrapper = mount(
-  //     <Provider store={store}>
-  //       <Homepage getCitiesPollutionData={getCitiesPollutionData} />
-  //     </Provider>
-  //   );
-  //   const input = wrapper.find("input");
-  //   input.simulate("focus");
-  //   input.simulate("change", { target: { value: "Brzoskwinia" } });
-  //   expect(wrapper.find("input").props().value).toEqual("Brzoskwinia");
-  //   wrapper.update();
-  //   wrapper
-  //     .find("li")
-  //     .at(0)
-  //     .simulate("click");
-  //   expect(wrapper.find("input").props().value).toEqual("");
-  // });
+  it("list opens", async () => {
+    const mockAdapter = new MockAdapter(axios);
+    mockGettingCurrentMeasurements(mockAdapter);
+    mockGettingOrganizationCurrentData(mockAdapter);
+    const wrapper = mount(
+      <Provider store={store}>
+        <MemoryRouter initialEntries={["/"]}>
+          <App />
+        </MemoryRouter>
+      </Provider>
+    );
+
+    await flushPromises();
+    wrapper.update();
+
+    const input = wrapper.find("input");
+    input.simulate("focus");
+    input.simulate("change", { target: { value: "Brzoskwinia" } });
+    expect(wrapper.find("input").props().value).toEqual("Brzoskwinia");
+
+    wrapper
+      .find("li")
+      .at(0)
+      .simulate("click");
+    expect(wrapper.find("input").props().value).toEqual("");
+    expect(wrapper.find(".current-pollution__heading").text()).toEqual(
+      "Aktualna jakość powietrza w miejscowościBrzoskwinia, Brzoskwinia 186"
+    );
+  });
 });
