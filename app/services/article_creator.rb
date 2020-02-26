@@ -14,9 +14,8 @@ class ArticleCreator
 
   private
 
-  def create_article(id, params)
-    params[:user_id] = id
-    Article.create(params)
+  def create_article(user_id, params)
+    Article.create(params.merge(user_id: user_id))
   end
 
   def create_tags(article, params)
