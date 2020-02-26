@@ -23,8 +23,9 @@ class ApidocsController < ActionController::Base
     #     key :url, 'https://github.com/LunarLogic/smog_alert'
     #   end
     # end
-    key :host, 'https://staging.smogalert.lunarlogic.io'
+    key :host, 'staging.smogalert.lunarlogic.io'
     key :basePath, '/'
+    key :schemes, ['https']
     key :consumes, ['application/json']
     key :produces, ['application/json']
   end
