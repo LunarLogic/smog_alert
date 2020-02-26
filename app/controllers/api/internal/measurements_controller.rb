@@ -24,7 +24,7 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
               property :location_name do
                 key :type, :string
               end
-              # TODO add other properties
+              # TODO: add other properties
             end
           end
         end
