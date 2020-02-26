@@ -24,7 +24,47 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
               property :location_name do
                 key :type, :string
               end
-              # TODO add other properties
+              property :location_street do
+                key :type, :string
+              end
+              property :location_display_name do
+                key :type, :string
+              end
+              property :lat do
+                key :type, :integer
+              end
+              property :lng do
+                key :type, :integer
+              end
+              property :status_of_locations_grouped_by_name do
+                key :type, :string
+              end
+              property :last_hour_measurement do
+                key :type, :object
+                property :from_date_time do
+                  key :type, :string
+                end
+                property :till_date_time do
+                  key :type, :string
+                end
+                property :values do
+                  key :type, :array
+                  items do
+                    property :name do
+                      key :type, :string
+                    end
+                    property :value do
+                      key :type, :integer
+                    end
+                  end
+                end
+                property :status do
+                  key :type, :string
+                end
+                property :advice do
+                  key :type, :string
+                end
+              end
             end
           end
         end
