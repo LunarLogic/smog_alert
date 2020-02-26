@@ -74,7 +74,7 @@ export const Article = ({
       return (
         <div className="article">
           <PageTitle title={title} />
-          <div className="article__heading">{title}</div>
+          <h1 className="article__heading">{title}</h1>
           <div className="article__date">
             <div className="article__date-published">
               Opublikowano {getDate(published_at)}

@@ -1,4 +1,79 @@
 class API::Internal::MeasurementsController < API::Internal::BaseController
+  include Swagger::Blocks
+
+  swagger_path '/api/internal/measurements/current' do
+    operation :get do
+      key :summary, 'Get current measurements'
+      key :description, 'Get measurements from last hour for all locations'
+      key :produces, [
+        'application/json',
+      ]
+      key :tags, [
+        'measurements',
+      ]
+      response 200 do
+        key :description, 'Array of locations with last hour measurements'
+        schema do
+          key :type, :object
+          property :data do
+            key :type, :array
+            items do
+              property :location_id do
+                key :type, :integer
+              end
+              property :location_name do
+                key :type, :string
+              end
+              property :location_street do
+                key :type, :string
+              end
+              property :location_display_name do
+                key :type, :string
+              end
+              property :lat do
+                key :type, :integer
+              end
+              property :lng do
+                key :type, :integer
+              end
+              property :status_of_locations_grouped_by_name do
+                key :type, :string
+                key :description, 'When missing then value is null'
+              end
+              property :last_hour_measurement do
+                key :type, :object
+                key :description, 'When missing then value is null'
+                property :from_date_time do
+                  key :type, :string
+                end
+                property :till_date_time do
+                  key :type, :string
+                end
+                property :values do
+                  key :type, :array
+                  items do
+                    property :name do
+                      key :type, :string
+                    end
+                    property :value do
+                      key :type, :integer
+                    end
+                  end
+                end
+                property :status do
+                  key :type, :string
+                end
+                property :advice do
+                  key :type, :string
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+
   def current
     locations = Location.all
     data = locations.map do |location|

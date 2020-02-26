@@ -30,6 +30,17 @@ describe("ArticleOverview component", () => {
     expect(
       wrapper.find(".article-overview__container--overview-text").text()
     ).toEqual("Ipsum");
-    expect(wrapper.find("Link").prop("to")).toContain("1");
+    expect(
+      wrapper
+        .find("Link")
+        .at(0)
+        .prop("to")
+    ).toContain("1");
+    expect(
+      wrapper
+        .find("Link")
+        .at(1)
+        .prop("to")
+    ).toContain("1");
   });
 });

@@ -2,6 +2,8 @@
 @import "../../styles/mixins";
 
 .news {
+  @include margins-text-content;
+
   &__heading {
     @include heading;
   }
