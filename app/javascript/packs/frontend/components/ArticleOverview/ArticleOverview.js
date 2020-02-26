@@ -21,7 +21,11 @@ export const ArticleOverview = ({
 }) => {
   return (
     <div className="article-overview">
-      <div className="article-overview__title">{title}</div>
+      <div className="article-overview__title">
+        <Link to={`/aktualnosci/${id}`} onClick={resetArticle}>
+          {title}
+        </Link>
+      </div>
       <div className="article-overview__date">
         <div className="article-overview__date-published">
           Opublikowano {getDate(publishingDate)}

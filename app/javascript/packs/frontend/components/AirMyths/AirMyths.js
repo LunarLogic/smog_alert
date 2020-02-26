@@ -1,7 +1,5 @@
 import React from "react";
-import FormatQuoteIcon from "@material-ui/icons/FormatQuote";
-// import CloseIcon from "@material-ui/icons/Close";
-// import ReportProblemIcon from "@material-ui/icons/ReportProblem";
+import CloseIcon from "@material-ui/icons/Close";
 import airMythsContent from "./AirMyths.json";
 
 import "./AirMyths.scss";
@@ -12,8 +10,8 @@ const AirMyths = () => {
       <div className="air-myths__single-myth" key={`${index}-myth`}>
         <div className="air-myths__single-myth--counter">MIT #{index + 1}:</div>
         <div className="air-myths__single-myth--container">
-          <div className="air-myths__single-myth--container-quotation-marks">
-            <FormatQuoteIcon />
+          <div className="air-myths__single-myth--container-icon">
+            <CloseIcon />
           </div>
           <div className="air-myths__single-myth--container-content">
             <h1 className="air-myths__single-myth--container-content-title">

@@ -14,8 +14,7 @@
     &--counter {
       font-size: 1.6em;
       line-height: 1.9rem;
-      // color: $warningColor;
-      color: $secondaryColor;
+      color: $warningColor;
       padding: 1.7rem 0 1.1rem 0;
       border-top: 0.1rem solid $frameColor;
       margin-top: 5.5rem;
@@ -23,11 +22,10 @@
     &--container {
       display: flex;
 
-      &-quotation-marks {
-        margin-left: -0.9rem;
+      &-icon {
+        margin-left: -1rem;
         svg {
-          // fill: $warningColor;
-          fill: $secondaryColor;
+          fill: $warningColor;
           width: 4.4rem;
           height: 3.9rem;
         }
@@ -37,10 +35,10 @@
         flex-direction: column;
         &-title {
           font-size: 2.8rem;
-          line-height: 3.4rem;
+          line-height: 3.6rem;
           font-weight: bold;
           text-align: justify;
-          margin: 1.5rem 0 0 0;
+          margin: 0;
         }
         &-text {
           font-size: 1.8rem;
