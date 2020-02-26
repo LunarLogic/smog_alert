@@ -84,7 +84,7 @@ rails routes
   Turn on `Format On Save` checkbox
   From now on every change in code base will be automatically formatted by [Prettier](https://prettier.io/).
 
-#### Deployment
+### Deployment
 
 - To deploy from master branch use:
 
@@ -98,7 +98,7 @@ rails routes
 
 `cap staging deploy:seed`
 
-#### Tips
+### Tips
 
 - Edit credentials in VIM by running:
 
@@ -128,9 +128,23 @@ smogalert@staging:~$ cd application/current
 RAILS_ENV=staging /usr/local/rbenv/bin/rbenv exec bundle exec rails console
 ```
 
-#### Tests
+### Tests
 
 - Run the test suite: `bundle exec rspec`
 
 - Run tests in Chrome browser in development: `CHROME=true rspec spec/features/homepage_spec.rb`
+
+### API docs
+
+React application uses API exposed by Rails.
+
+We use [Swagger Blocks](https://github.com/fotinakis/swagger-blocks) to manage API docs.
+
+#### How to preview documentation via staging
+
+http://petstore.swagger.io/?url=https://staging.smogalert.lunarlogic.io/apidocs
+
+#### How to preview documentation in development
+
+http://petstore.swagger.io/?url=http://localhost:3000/apidocs
 
