@@ -75,6 +75,14 @@ rails db:seed
 rails routes
 ```
 
+- To use Guard run
+
+```
+guard
+```
+
+in command line. Then when you save a file guard will automatically run tests for it
+
 ### Editor config
 
 - Visual Studio Code
