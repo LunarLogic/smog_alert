@@ -38,9 +38,11 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
               end
               property :status_of_locations_grouped_by_name do
                 key :type, :string
+                key :description, 'When missing then value is null'
               end
               property :last_hour_measurement do
                 key :type, :object
+                key :description, 'When missing then value is null'
                 property :from_date_time do
                   key :type, :string
                 end
