@@ -1,5 +1,5 @@
 class Admin::ArticlesController < Admin::BaseController
-  before_action :find_article, except: [:index, :new, :create]
+  before_action :find_article, except: [:index, :new, :create, :update]
   before_action :check_authorization, only: [:destroy, :publish, :unpublish]
   after_action :verify_authorized, except: [:index, :new, :create, :show, :edit, :update]
 
@@ -12,9 +12,8 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def create
-    @article = Article.new(article_params)
-    @article.user_id = current_user.id
-    if @article.save
+    @article = article_creator.call(user_id: current_user.id, params: article_params)
+    if @article.persisted?
       flash[:success] = 'Pomyślnie dodano wpis'
       redirect_to admin_articles_path
     else
@@ -29,7 +28,8 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def update
-    if @article.update(article_params)
+    @article = article_updater.call(article: article_params, id: params[:id])
+    if @article.valid?
       flash[:success] = 'Pomyslnie edytowano wpis'
       redirect_to admin_articles_path
     else
@@ -76,6 +76,14 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def article_params
-    params.require(:article).permit(:title, :body, :overview, :user_id)
+    params.require(:article).permit(:title, :body, :overview, :user_id, tags_attributes: [:name])
+  end
+
+  def article_creator
+    ArticleCreator.new
+  end
+
+  def article_updater
+    ArticleUpdater.new
   end
 end
