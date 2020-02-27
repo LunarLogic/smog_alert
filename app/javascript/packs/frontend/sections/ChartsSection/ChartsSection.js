@@ -21,6 +21,7 @@ import { formatMonthlyDate } from "../../helpers";
 import { Chart, CustomButton, DropdownMenu } from "../../components";
 
 import "./ChartsSection.scss";
+import { changePickedDateIntoText } from "../../helpers/changePickedDateIntoText";
 
 export const ChartsSection = ({
   citiesList,
@@ -31,10 +32,13 @@ export const ChartsSection = ({
   getChartHourlyAverageForMonthData,
   chartChosenCityIndex
 }) => {
-  const [startDate, setStartDate] = useState(new Date());
+  const [pickerDate, setPickerDate] = useState(new Date());
   const [indicator, setIndicator] = useState("PM 10");
   const [chartChosenMonth, setChartChosenMonth] = useState(
     formatMonthlyDate(new Date())
+  );
+  const [chartChosenDateText, setChartChosenDateText] = useState(
+    changePickedDateIntoText(pickerDate)
   );
 
   useEffect(() => {
@@ -43,19 +47,20 @@ export const ChartsSection = ({
 
   const indicatorsList = ["PM 10", "PM 2.5"];
   const setDate = date => {
-    setStartDate(date);
+    setPickerDate(date);
     setChartChosenMonth(formatMonthlyDate(date));
   };
 
   const refreshChartData = () => {
     getChartHourlyAverageForMonthData(chartChosenMonth, chartChosenCityIndex);
     setIndicator(chartChosenIndicator);
+    setChartChosenDateText(changePickedDateIntoText(pickerDate));
   };
 
   return (
     <div className="charts-section">
-      <div className="charts-section-heading">Statystyki</div>
-      <div className="charts-section-options">
+      <div className="charts-section__heading">Statystyki</div>
+      <div className="charts-section__options">
         <div className="charts-section-dropdown">
           <div className="charts-section-dropdown__label">Wybierz wskaźnik</div>
           <div className="charts-section-dropdown__menu">
@@ -82,7 +87,7 @@ export const ChartsSection = ({
           <div className="charts-section-dropdown__label">Wybierz miesiąc</div>
           <div className="charts-section-date-picker">
             <DatePicker
-              selected={startDate}
+              selected={pickerDate}
               onChange={date => setDate(date)}
               dateFormat="MM/yyyy"
               showMonthYearPicker
@@ -90,8 +95,16 @@ export const ChartsSection = ({
           </div>
         </div>
       </div>
-      <div onClick={refreshChartData}>
+      <div className="charts-section__submit" onClick={refreshChartData}>
         <CustomButton text="Zastosuj" />
+      </div>
+      <div className="charts-section__subheading">
+        Średnia godzinowa wartość wskaźnika{" "}
+        <span className="charts-section__subheading--bold">{indicator}</span> w
+        miesiącu{" "}
+        <span className="charts-section__subheading--bold">
+          {chartChosenDateText}
+        </span>
       </div>
       <Chart indicator={indicator} />
     </div>

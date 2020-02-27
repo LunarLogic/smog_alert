@@ -1,3 +1,4 @@
+import { changePickedDateIntoText } from "./changePickedDateIntoText";
 import { classNameForPollutionStatus } from "./classNameForPollutionStatus";
 import { findMeasurement } from "./findMeasurement";
 import { formatMonthlyDate } from "./formatMonthlyDate";
@@ -13,6 +14,7 @@ import { getDate } from "./getDate";
 import { yesterdayDateFormatted } from "./yesterdayDateFormatted";
 
 export {
+  changePickedDateIntoText,
   classNameForPollutionStatus,
   findMeasurement,
   formatMonthlyDate,

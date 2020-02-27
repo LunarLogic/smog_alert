@@ -11,15 +11,42 @@
     line-height: 1.9rem;
     margin-left: 0 !important;
   }
-  &-heading {
+  &__heading {
     @include heading;
     margin: 3.5rem 0;
   }
-  &-options {
+  &__subheading {
+    font-size: 2.8rem;
+    line-height: 3.4rem;
+    margin-top: 3.5rem;
+    margin-bottom: 3.5rem;
+    &--bold {
+      font-size: 3rem;
+      line-height: 3.8rem;
+      font-weight: 700;
+      text-transform: lowercase;
+    }
+  }
+  &__options {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    @media only screen and (max-width: $bp-1000) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
   &-dropdown {
+    &:first-of-type {
+      z-index: 20;
+    }
+    &:nth-of-type(2) {
+      z-index: 10;
+    }
+    width: 31%;
+    @media only screen and (max-width: $bp-1000) {
+      width: 30rem;
+    }
     &__label {
       font-size: 1.6rem;
       line-height: 1.9rem;
@@ -28,13 +55,20 @@
       margin-bottom: 0.8rem;
     }
     &__menu {
-      width: 30rem;
       height: 10rem;
       position: relative;
     }
   }
+  &__submit {
+    display: flex;
+    justify-content: flex-end;
+    @media only screen and (max-width: $bp-1000) {
+      justify-content: flex-start;
+    }
+  }
   &-date-picker {
     font-size: 1.6rem !important;
+    height: 10rem;
     input {
       padding: 2.4rem !important;
       height: inherit;
@@ -44,9 +78,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 30rem;
+      width: 100%;
       box-sizing: border-box;
       font-size: 1.6rem;
+    }
+    .react-datepicker-wrapper {
+      width: 100%;
     }
   }
 }
