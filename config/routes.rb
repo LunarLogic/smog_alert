@@ -48,6 +48,7 @@ Rails.application.routes.draw do
           get :current_data
         end
       end
+      post :contact, to: 'contact#create'
     end
   end
 
