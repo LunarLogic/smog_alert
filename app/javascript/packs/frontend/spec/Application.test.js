@@ -14,6 +14,12 @@ import {
 } from "./helpers/mockHelpers";
 import flushPromises from "./helpers/flushPromises";
 
+beforeEach(() => {
+  const mockAdapter = new MockAdapter(axios);
+  mockGettingCurrentMeasurements(mockAdapter);
+  mockGettingOrganizationCurrentData(mockAdapter);
+});
+
 describe("Routing component", () => {
   it("invalid path should redirect to 404", () => {
     const wrapper = mount(
@@ -43,9 +49,6 @@ describe("Routing component", () => {
 
 describe("Integration test for Homepage", () => {
   it("list opens", async () => {
-    const mockAdapter = new MockAdapter(axios);
-    mockGettingCurrentMeasurements(mockAdapter);
-    mockGettingOrganizationCurrentData(mockAdapter);
     const wrapper = mount(
       <Provider store={store}>
         <MemoryRouter initialEntries={["/"]}>
