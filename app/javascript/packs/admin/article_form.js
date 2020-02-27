@@ -1,6 +1,16 @@
-import { autocompleteTags } from "./autocomplete"
-
 $(document).ready(function() {
+
+  function autocompleteTags() {
+    let availableTags
+    const element = document.getElementById('js-tags-fields')
+    if (element) {
+      availableTags = JSON.parse((element).dataset.tags);
+      $(".tag-input").autocomplete({
+        source: availableTags
+      })
+    }
+  }
+
   function attachRemoveHandlers(e) {
     $("#js-tags-fields").on("click", ".tag-field button.close", function(e) {
       e.preventDefault();
@@ -15,10 +25,19 @@ $(document).ready(function() {
       e.preventDefault();
       const newTag = $("#js-tag-template").html();
       $("#js-tags-fields").append(newTag);
-      autocompleteTags();
+      autocompleteTags()
     });
   }
 
   attachAddHandlers();
   attachRemoveHandlers();
+
+  autocompleteTags()
+
+  // const availableTags = document.getElementById('js-tags-fields').dataset.tags;
+
+  // $($(".article_tags_name")[index-1]).children().autocomplete({
+  //     source: ['aaa', 'aabkf', 'aadeoi']
+  //   });
+
 });
