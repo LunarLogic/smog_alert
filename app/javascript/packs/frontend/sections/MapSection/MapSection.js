@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
-import { Element } from "react-scroll";
+import { Element, Link as ScrollLink } from "react-scroll";
 
 import { PollutionComparison, Map } from "../../components";
 import { PollutionSideCard } from "../../components";
@@ -26,7 +26,14 @@ export const MapSection = ({ chosenCity, getChosenCity }) => {
       </div>
       <div className="map-section__content">
         <div className="map-section__content--map">
-          <Map />
+          <ScrollLink
+            to="map-section__content--info"
+            smooth={true}
+            duration={500}
+            offset={-100}
+          >
+            <Map />
+          </ScrollLink>
         </div>
         <Element
           className="map-section__content--info"
