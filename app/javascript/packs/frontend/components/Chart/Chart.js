@@ -4,6 +4,7 @@ import { PropTypes } from "prop-types";
 import { createStructuredSelector } from "reselect";
 
 import {
+  Bar,
   VictoryBar,
   VictoryChart,
   VictoryAxis,
@@ -13,7 +14,7 @@ import { setColor } from "../../helpers/setColor";
 
 import { selectChartHourlyAverageForMonthDataPollutionValues } from "../../redux/charts/charts.selectors";
 
-const Chart = ({ indicator, chartHourlyPollutionValues }) => {
+export const Chart = ({ indicator, chartHourlyPollutionValues }) => {
   let chartIndicator;
   indicator === "PM 10"
     ? (chartIndicator = "average_pm10")
@@ -38,7 +39,7 @@ const Chart = ({ indicator, chartHourlyPollutionValues }) => {
       <VictoryChart
         singleQuadrantDomainPadding={{ x: false }}
         domainPadding={20}
-        domain={{ x: [1, 25], y: [0, maxValue + 10] }}
+        domain={{ x: [1, 24], y: [0, maxValue + 10] }}
         width={1150}
         height={500}
         containerComponent={
@@ -66,12 +67,10 @@ const Chart = ({ indicator, chartHourlyPollutionValues }) => {
           data={average_data}
           x="hour"
           y="value"
+          dataComponent={<Bar transform="translate(0, -1)" />}
           style={{
             data: {
               fill: ({ datum }) => setColor(datum)
-            },
-            labels: {
-              fontSize: 15
             }
           }}
         />
