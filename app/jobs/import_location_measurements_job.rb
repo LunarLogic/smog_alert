@@ -1,5 +1,6 @@
 class ImportLocationMeasurementsJob < ApplicationJob
   queue_as :default
+  sidekiq_options lock: :until_executed
 
   def perform(location_id)
     location = Location.find(location_id)
