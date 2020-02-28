@@ -357,6 +357,9 @@ GEM
       rack (~> 2.0)
       rack-protection (>= 2.0.0)
       redis (>= 4.1.0)
+    sidekiq-unique-jobs (5.0.2)
+      sidekiq (>= 4.0)
+      thor
     simple_form (5.0.1)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -457,6 +460,7 @@ DEPENDENCIES
   selenium-webdriver
   shoulda-matchers
   sidekiq
+  sidekiq-unique-jobs
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)

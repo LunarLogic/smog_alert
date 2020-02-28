@@ -43,6 +43,7 @@ gem 'pundit'
 gem 'rest-client'
 
 gem 'sidekiq'
+gem 'sidekiq-unique-jobs'
 gem 'whenever', require: false
 
 gem 'geocoder', '~> 1.6'
