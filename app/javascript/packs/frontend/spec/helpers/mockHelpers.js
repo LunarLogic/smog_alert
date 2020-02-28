@@ -1,4 +1,5 @@
 import mockCities from "../__mocks__/citiesPollutionDataMock.json";
+import articlesMock from "../__mocks__/articlesMock.json";
 
 export function mockGettingCurrentMeasurements(mockAdapter) {
   mockAdapter
@@ -14,4 +15,8 @@ export function mockGettingOrganizationCurrentData(mockAdapter) {
       facebook: "http://aasdsa.pl"
     }
   });
+}
+
+export function mockGettingArticles(mockAdapter) {
+  mockAdapter.onGet("/api/internal/articles").reply(200, articlesMock);
 }
