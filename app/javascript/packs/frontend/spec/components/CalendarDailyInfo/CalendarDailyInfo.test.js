@@ -51,7 +51,7 @@ describe("<CalendarDailyInfo/>", () => {
     expect(wrapper.text().includes("Dzień:2020-02-02")).toBe(true);
     expect(wrapper.text().includes("pm10:100")).toBe(true);
     expect(wrapper.text().includes("pm25:25")).toBe(true);
-    expect(wrapper.text().includes("liczba pomiarów:18")).toBe(true);
+    expect(wrapper.text().includes("liczba pomiarów*:18")).toBe(true);
   });
   it("component is correctly rendered when data for a chosen day is not available", () => {
     const mockCalendarChosenDay = "2020-02-02";
@@ -66,6 +66,6 @@ describe("<CalendarDailyInfo/>", () => {
     expect(wrapper.text().includes("Dzień:2020-02-02")).toBe(true);
     expect(wrapper.text().includes("pm10:--μg")).toBe(true);
     expect(wrapper.text().includes("pm25:--μg")).toBe(true);
-    expect(wrapper.text().includes("liczba pomiarów:0")).toBe(true);
+    expect(wrapper.text().includes("liczba pomiarów*:0")).toBe(true);
   });
 });
