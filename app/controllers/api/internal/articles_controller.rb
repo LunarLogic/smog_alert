@@ -1,9 +1,9 @@
 class API::Internal::ArticlesController < API::Internal::BaseController
   def index
-    # data = ArticlesRepository.new.published_articles.map do |article|
-    #   API::Internal::ArticleOverviewPresenter.new(article)
-    # end
-    data = Article.page(params[:page]).per(params[:per_page])
+    paginated_articles = ArticlesRepository.new.published_articles.page(page).per(per_page)
+    data = paginated_articles.map do |article|
+      API::Internal::ArticleOverviewPresenter.new(article)
+    end
 
     render json:
     {
@@ -11,8 +11,14 @@ class API::Internal::ArticlesController < API::Internal::BaseController
       meta: { pagination:
               {
                 per_page: params[:per_page],
-                total_pages: data.total_pages,
-                total_objects: data.total_count
+                total_pages: paginated_articles.total_pages,
+                total_objects: paginated_articles.total_count,
+                prev_page: paginated_articles.prev_page,
+                current_page: paginated_articles.current_page,
+                next_page: paginated_articles.next_page,
+                is_first_page: paginated_articles.first_page?,
+                is_last_page: paginated_articles.last_page?,
+                is_page_out_of_range: paginated_articles.out_of_range?
               } }
     }
   end
@@ -28,5 +34,13 @@ class API::Internal::ArticlesController < API::Internal::BaseController
 
   def article_params
     params.require(:article).permit(:title, :body, :overview, :user_id)
+  end
+
+  def page
+    @page ||= params[:page] || 1
+  end
+
+  def per_page
+    @per_page ||= params[:per_page] || 5
   end
 end
