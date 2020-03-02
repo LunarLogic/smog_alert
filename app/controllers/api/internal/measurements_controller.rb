@@ -108,6 +108,89 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
     render json: { data: data }
   end
 
+  swagger_path '/api/internal/measurements/hourly_average_for_month' do
+    operation :get do
+      key :summary, 'Get average hourly values for a given month'
+      key :produces, [
+        'application/json',
+      ]
+      key :tags, [
+        'measurements',
+      ]
+      parameter do
+        key :name, :location_id
+        key :in, :query
+        key :description, 'Id of chosen location'
+        key :required, true
+        key :type, :integer
+        key :format, :int32
+      end
+      parameter do
+        key :name, :date
+        key :in, :query
+        key :description, 'Chosen month in date format DD-MM-YYYY, preferably indicating first day of the month'
+        key :required, true
+        key :type, :string
+      end
+      response 200 do
+        key :description, 'Returns location object with average hourly pollution data for a given month'
+        schema do
+          key :type, :object
+          property :data do
+            key :type, :object
+            property :location_id do
+              key :type, :integer
+            end
+            property :location_name do
+              key :type, :string
+            end
+            property :month do
+              key :type, :integer
+            end
+            property :year do
+              key :type, :integer
+            end
+            property :average_pollution_by_hour do
+              key :type, :object
+              property :average_pm10 do
+                key :type, :array
+                items do
+                  property :hour do
+                    key :type, :integer
+                  end
+                  property :value do
+                    key :type, :integer
+                    key :description, 'When missing then value is null'
+                  end
+                  property :status do
+                    key :type, :string
+                    key :description, 'When missing then value is null'
+                  end
+                end
+              end
+              property :average_pm25 do
+                key :type, :array
+                items do
+                  property :hour do
+                    key :type, :integer
+                  end
+                  property :value do
+                    key :type, :integer
+                    key :description, 'When missing then value is null'
+                  end
+                  property :status do
+                    key :type, :string
+                    key :description, 'When missing then value is null'
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+
   def hourly_average_for_month
     location = Location.find(hourly_stats_params[:location_id])
     date = hourly_stats_params[:date].to_date
