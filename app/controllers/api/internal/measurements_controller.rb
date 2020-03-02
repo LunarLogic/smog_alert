@@ -74,6 +74,77 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
     end
   end
 
+  swagger_path '/api/internal/measurements/calendar_daily_values' do
+    operation :get do
+      key :summary, 'Get daily average measurements'
+      key :description, 'Get average measurements for a given day for a given location'
+      key :produces, [
+        'application/json',
+      ]
+      key :tags, [
+        'measurements',
+      ]
+      parameter do
+        key :name, :location_id
+        key :in, :query
+        key :description, 'Id of the location'
+        key :required, true
+        key :type, :integer
+        key :format, :int32
+      end
+      parameter do
+        key :name, :date
+        key :in, :query
+        key :description, 'Chosen day in date format DD-MM-YYYY'
+        key :required, true
+        key :type, :string
+      end
+      response 200 do
+        key :description, 'Object with number of measurements, array of averages and status'
+        schema do
+          key :type, :object
+          property :date do
+            key :type, :string
+          end
+          property :number_of_measurements do
+            key :type, :integer
+          end
+          property :average_values do
+            key :type, :array
+            items do
+              property :name do
+                key :type, :string
+              end
+              property :value do
+                key :type, :string
+                key :description, 'When missing then value is null'
+              end
+            end
+          end
+          property :status do
+            key :type, :string
+          end
+        end
+      end
+      response 404 do
+        key :description, 'No location with a given id'
+        schema do
+          key :type, :object
+          property :data do
+            key :type, :string
+            key :description, 'Default value is null'
+          end
+          property :errors do
+            key :type, :array
+            items do
+              key :type, :string
+            end
+          end
+        end
+      end
+    end
+  end
+
   def current
     locations = Location.all
     data = locations.map do |location|
