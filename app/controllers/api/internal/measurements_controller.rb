@@ -123,7 +123,6 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
           end
           property :status do
             key :type, :string
-            key :description, 'Unless the number of measurements is below 18'
           end
         end
       end
