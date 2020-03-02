@@ -113,14 +113,14 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
       ]
       parameter do
         key :name, :year
-        key :in, :path
+        key :in, :query
         key :description, 'Year for which you want to get data'
         key :required, true
         key :type, :integer
       end
       parameter do
         key :name, :location_id
-        key :in, :path
+        key :in, :query
         key :description, 'Id of location for which you want to get data'
         key :required, true
         key :type, :integer
