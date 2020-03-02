@@ -101,6 +101,58 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
     render json: { year: year, daily_average_measurements: daily_measurements }
   end
 
+  swagger_path '/api/internal/measurements/calendar_status' do
+    operation :get do
+      key :summary, 'Get calendar status'
+      key :description, 'Get information about days with given pollution status for a given year and location'
+      key :produces, [
+        'application/json',
+      ]
+      key :tags, [
+        'measurements',
+      ]
+      parameter do
+        key :name, :year
+        key :in, :query
+        key :description, 'Year for which you want to get data'
+        key :required, true
+        key :type, :integer
+      end
+      parameter do
+        key :name, :location_id
+        key :in, :query
+        key :description, 'Id of location for which you want to get data'
+        key :required, true
+        key :type, :integer
+      end
+      response 200 do
+        key :description, 'Array of objects containing days with given status for a given year'
+        schema do
+          key :type, :object
+          property :data do
+            key :type, :object
+            property '2020'.to_sym do
+              key :type, :array
+              items do
+                key :type, :object
+                property :status do
+                  key :type, :string
+                end
+                property :days do
+                  key :type, :array
+                  items do
+                    key :type, :string
+                    key :format, :date
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+
   def calendar_status
     location = Location.find(calendar_params[:location_id])
     year = calendar_params[:year].to_i
