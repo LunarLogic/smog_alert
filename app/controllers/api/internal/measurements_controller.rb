@@ -101,7 +101,6 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
     render json: { year: year, daily_average_measurements: daily_measurements }
   end
 
-
   swagger_path '/api/internal/measurements/calendar_status' do
     operation :get do
       key :summary, 'Get calendar status'
@@ -111,7 +110,6 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
       ]
       key :tags, [
         'measurements',
-        'calendar',
       ]
       parameter do
         key :name, :year
