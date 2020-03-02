@@ -117,12 +117,29 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
               end
               property :value do
                 key :type, :string
+                key :description, 'When missing then value is null'
               end
             end
           end
           property :status do
             key :type, :string
             key :description, 'Unless the number of measurements is below 18'
+          end
+        end
+      end
+      response 404 do
+        key :description, 'No location with a given id'
+        schema do
+          key :type, :object
+          property :data do
+            key :type, :string
+            key :description, 'Default value is null'
+          end
+          property :errors do
+            key :type, :array
+            items do
+              key :type, :string
+            end
           end
         end
       end
