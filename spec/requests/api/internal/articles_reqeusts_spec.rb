@@ -6,9 +6,21 @@ describe API::Internal::ArticlesController do
       let!(:article) { create(:article, published: false, published_at: nil, user: editor) }
 
       before { get api_internal_articles_path }
-
-      it do
-        expect(response.body).to be_json_eql({ data: [] }.to_json)
+        it 'returns no data' do 
+        expect(response.body).to be_json_eql({ 
+          data: [], 
+          meta:  { pagination: 
+            {
+              per_page: nil,
+              total_pages: 0,
+              total_objects: 0,
+              prev_page: nil,
+              current_page: 1,
+              next_page: nil,
+              is_first_page: true,
+              is_last_page: false,
+              is_page_out_of_range: true
+            } } }.to_json)
       end
     end
 
