@@ -17,11 +17,14 @@ import {
   getChartHourlyAverageForMonthData
 } from "../../redux/charts/charts.actions";
 
-import { formatMonthlyDate } from "../../helpers";
+import {
+  changePickedDateIntoText,
+  findPreviousMonth,
+  formatMonthlyDate
+} from "../../helpers";
 import { Chart, CustomButton, DropdownMenu } from "../../components";
 
 import "./ChartsSection.scss";
-import { changePickedDateIntoText } from "../../helpers/changePickedDateIntoText";
 
 export const ChartsSection = ({
   citiesList,
@@ -32,10 +35,10 @@ export const ChartsSection = ({
   getChartHourlyAverageForMonthData,
   chartChosenCityIndex
 }) => {
-  const [pickerDate, setPickerDate] = useState(new Date());
+  const [pickerDate, setPickerDate] = useState(findPreviousMonth(new Date()));
   const [indicator, setIndicator] = useState("PM 10");
   const [chartChosenMonth, setChartChosenMonth] = useState(
-    formatMonthlyDate(new Date())
+    formatMonthlyDate(findPreviousMonth(new Date()))
   );
   const [chartChosenDateText, setChartChosenDateText] = useState(
     changePickedDateIntoText(pickerDate)
@@ -46,6 +49,7 @@ export const ChartsSection = ({
   }, []);
 
   const indicatorsList = ["PM 10", "PM 2.5"];
+
   const setDate = date => {
     setPickerDate(date);
     setChartChosenMonth(formatMonthlyDate(date));

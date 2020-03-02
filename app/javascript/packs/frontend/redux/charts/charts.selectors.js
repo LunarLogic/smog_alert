@@ -23,7 +23,7 @@ export const selectChartHourlyAverageForMonthData = createSelector(
   chart => chart.chartHourlyAverageForMonthData
 );
 
-export const selectChartHourlyAverageForMonthDataPollutionValues = createSelector(
+export const selectChartAverageHourPollution = createSelector(
   [selectChartHourlyAverageForMonthData],
   data => data.average_pollution_by_hour
 );

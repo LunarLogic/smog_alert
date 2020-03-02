@@ -1,12 +1,12 @@
 import chartReducer from "../../../redux/charts/charts.reducer";
 import chartsActionTypes from "../../../redux/charts/charts.types";
-import { formatMonthlyDate } from "../../../helpers";
+import { formatMonthlyDate, findPreviousMonth } from "../../../helpers";
 
 describe("calendar reducer", () => {
   const initialState = {
     chartChosenCity: "Zabierzów, Wapienna",
     chartChosenIndicator: "PM 10",
-    chartChosenMonth: formatMonthlyDate(new Date()),
+    chartChosenMonth: formatMonthlyDate(findPreviousMonth(new Date())),
     chartHourlyAverageForMonthData: {}
   };
   it("should return initial state", () => {
@@ -22,7 +22,7 @@ describe("calendar reducer", () => {
     ).toEqual({
       chartChosenCity: "Nielepice",
       chartChosenIndicator: "PM 10",
-      chartChosenMonth: formatMonthlyDate(new Date()),
+      chartChosenMonth: formatMonthlyDate(findPreviousMonth(new Date())),
       chartHourlyAverageForMonthData: {}
     });
   });
@@ -36,7 +36,7 @@ describe("calendar reducer", () => {
     ).toEqual({
       chartChosenCity: "Zabierzów, Wapienna",
       chartChosenIndicator: "PM 2.5",
-      chartChosenMonth: formatMonthlyDate(new Date()),
+      chartChosenMonth: formatMonthlyDate(findPreviousMonth(new Date())),
       chartHourlyAverageForMonthData: {}
     });
   });
@@ -75,7 +75,7 @@ describe("calendar reducer", () => {
     ).toEqual({
       chartChosenCity: "Zabierzów, Wapienna",
       chartChosenIndicator: "PM 10",
-      chartChosenMonth: formatMonthlyDate(new Date()),
+      chartChosenMonth: formatMonthlyDate(findPreviousMonth(new Date())),
       chartHourlyAverageForMonthData: {
         location_id: 26,
         location_name: "Zabierzów, Wapienna",

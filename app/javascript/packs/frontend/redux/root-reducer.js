@@ -11,7 +11,7 @@ import chartReducer from "./charts/charts.reducer";
 import newsReducer from "./news/news.reducer";
 
 const persistConfig = {
-  key: "root-v2",
+  key: "root-v3",
   storage,
   whitelist: ["searchbox"]
 };

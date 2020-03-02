@@ -1,6 +1,7 @@
 import { changePickedDateIntoText } from "./changePickedDateIntoText";
 import { classNameForPollutionStatus } from "./classNameForPollutionStatus";
 import { findMeasurement } from "./findMeasurement";
+import { findPreviousMonth } from "./findPreviousMonth";
 import { formatMonthlyDate } from "./formatMonthlyDate";
 import { setColor } from "./setColor";
 import { setIndicator } from "./setIndicator";
@@ -17,6 +18,7 @@ export {
   changePickedDateIntoText,
   classNameForPollutionStatus,
   findMeasurement,
+  findPreviousMonth,
   formatMonthlyDate,
   setColor,
   setIndicator,

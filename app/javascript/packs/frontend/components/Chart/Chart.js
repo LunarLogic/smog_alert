@@ -12,7 +12,7 @@ import {
 } from "victory";
 import { setColor } from "../../helpers/setColor";
 
-import { selectChartHourlyAverageForMonthDataPollutionValues } from "../../redux/charts/charts.selectors";
+import { selectChartAverageHourPollution } from "../../redux/charts/charts.selectors";
 
 export const Chart = ({ indicator, chartHourlyPollutionValues }) => {
   let chartIndicator;
@@ -80,7 +80,7 @@ export const Chart = ({ indicator, chartHourlyPollutionValues }) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-  chartHourlyPollutionValues: selectChartHourlyAverageForMonthDataPollutionValues
+  chartHourlyPollutionValues: selectChartAverageHourPollution
 });
 
 Chart.propTypes = {

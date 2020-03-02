@@ -1,12 +1,12 @@
 import chartsActionTypes from "./charts.types";
-import { formatMonthlyDate } from "../../helpers";
+import { findPreviousMonth, formatMonthlyDate } from "../../helpers";
 
 const currentDate = new Date();
 
 const INITIAL_STATE = {
   chartChosenCity: "Zabierzów, Wapienna",
   chartChosenIndicator: "PM 10",
-  chartChosenMonth: formatMonthlyDate(currentDate),
+  chartChosenMonth: formatMonthlyDate(findPreviousMonth(currentDate)),
   chartHourlyAverageForMonthData: {}
 };
 

@@ -13,7 +13,7 @@ describe 'Homepage', :xchrome do # change :xchrome tag to :chrome to see tests r
 
   it 'renders react components' do
     expect(page).to have_content 'Aktualna jakość powietrza w miejscowości'
-    expect(page).to have_content 'Zabierzów, Kolejowa 26'
+    expect(page).to have_content 'Zabierzów, Wapienna'
     expect(page).to have_content 'Jakość powietrza w gminie Zabierzów'
   end
 end
