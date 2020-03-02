@@ -75,8 +75,8 @@
     {
       "location_id": 25,
       "location_name": "Zabierzów",
-      "location_street": "Kolejowa 26",
-      "location_display_name": "Zabierzów, Kolejowa 26",
+      "location_street": "Wapienna",
+      "location_display_name": "Zabierzów, Wapienna",
       "lat": 50.116028,
       "lng": 19.800639,
       "last_hour_measurement": {
