@@ -1,6 +1,5 @@
 class ImportLocationMeasurementsWorker
   include Sidekiq::Worker
-  # queue_as :default
   sidekiq_options queue: :default,
                   lock: :until_executed,
                   log_duplicate_payload: true
