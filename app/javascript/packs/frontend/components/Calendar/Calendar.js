@@ -20,7 +20,7 @@ import { classNameForPollutionStatus } from "../../helpers";
 
 import "./Calendar.scss";
 
-const moment = require("moment");
+import moment from "moment";
 
 export const Calendar = ({
   setCalendarChosenYear,
