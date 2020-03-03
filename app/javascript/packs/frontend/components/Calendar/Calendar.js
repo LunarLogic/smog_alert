@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { PropTypes } from "prop-types";
@@ -20,12 +20,18 @@ import { classNameForPollutionStatus } from "../../helpers";
 
 import "./Calendar.scss";
 
+const moment = require("moment");
+
 export const Calendar = ({
   setCalendarChosenYear,
   setCalendarChosenDay,
   calendarStatusData,
   calendarChosenYear
 }) => {
+  const [calendarSelectedDay, setCalendarSelectedDay] = useState(
+    moment(new Date())
+  );
+
   // Get status data and convert it to the object used by Calendar to set custom css classes
 
   const statusData = calendarStatusData[calendarChosenYear];
@@ -40,6 +46,7 @@ export const Calendar = ({
   }
 
   const onDatePicked = date => {
+    setCalendarSelectedDay(date);
     setCalendarChosenDay(date.format("YYYY-MM-DD"));
   };
 
@@ -59,6 +66,7 @@ export const Calendar = ({
         customClasses={customClassesData}
         firstDayOfWeek={1}
         onPickDate={onDatePicked}
+        selectedDay={calendarSelectedDay}
       />
     </div>
   );
