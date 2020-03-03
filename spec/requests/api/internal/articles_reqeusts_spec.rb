@@ -38,7 +38,7 @@ describe API::Internal::ArticlesController do
                                     published_at: Time.current, user: editor)
       end
 
-      context 'when pagiantion params provided' do
+      context 'when pagination params provided' do
         before { get api_internal_articles_path(page: 2, per_page: 2) }
 
         it 'returns meta with pagination params values' do
