@@ -5,21 +5,21 @@ class API::Internal::ArticlesController < API::Internal::BaseController
       API::Internal::ArticleOverviewPresenter.new(article)
     end
 
-    render json:
-    {
+    render json: {
       data: data,
-      meta: { pagination:
-              {
-                per_page: params[:per_page],
-                total_pages: paginated_articles.total_pages,
-                total_objects: paginated_articles.total_count,
-                prev_page: paginated_articles.prev_page,
-                current_page: paginated_articles.current_page,
-                next_page: paginated_articles.next_page,
-                is_first_page: paginated_articles.first_page?,
-                is_last_page: paginated_articles.last_page?,
-                is_page_out_of_range: paginated_articles.out_of_range?
-              } }
+      meta: {
+        pagination: {
+          per_page: per_page,
+          total_pages: paginated_articles.total_pages,
+          total_objects: paginated_articles.total_count,
+          prev_page: paginated_articles.prev_page,
+          current_page: paginated_articles.current_page,
+          next_page: paginated_articles.next_page,
+          is_first_page: paginated_articles.first_page?,
+          is_last_page: paginated_articles.last_page?,
+          is_page_out_of_range: paginated_articles.out_of_range?
+        }
+      }
     }
   end
 
@@ -41,6 +41,6 @@ class API::Internal::ArticlesController < API::Internal::BaseController
   end
 
   def per_page
-    @per_page ||= params[:per_page] || 5
+    @per_page ||= params[:per_page] ? params[:per_page].to_i : 5
   end
 end

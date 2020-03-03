@@ -10,20 +10,18 @@ describe API::Internal::ArticlesController do
         expect(response.body).to have_json_path('meta')
         expect(response.body).to be_json_eql({
           data: [],
-          meta:
-          {
-            pagination:
-          {
-            per_page: nil,
-            total_pages: 0,
-            total_objects: 0,
-            prev_page: nil,
-            current_page: 1,
-            next_page: nil,
-            is_first_page: true,
-            is_last_page: false,
-            is_page_out_of_range: true
-          }
+          meta: {
+            pagination: {
+              per_page: 5,
+              total_pages: 0,
+              total_objects: 0,
+              prev_page: nil,
+              current_page: 1,
+              next_page: nil,
+              is_first_page: true,
+              is_last_page: false,
+              is_page_out_of_range: true
+            }
           }
         }.to_json)
       end
@@ -43,9 +41,9 @@ describe API::Internal::ArticlesController do
       context 'when pagiantion params provided' do
         before { get api_internal_articles_path(page: 2, per_page: 2) }
 
-        it 'returns meta with paagination params values' do
+        it 'returns meta with pagination params values' do
           expect(response.body).to have_json_path('meta')
-          expect(response.body).to be_json_eql('2'.to_json).at_path('meta/pagination/per_page')
+          expect(response.body).to be_json_eql(2).at_path('meta/pagination/per_page')
           expect(response.body).to be_json_eql(2).at_path('meta/pagination/current_page')
         end
       end
@@ -53,9 +51,9 @@ describe API::Internal::ArticlesController do
       context 'when pagination params NOT provided' do
         before { get api_internal_articles_path }
 
-        it 'returns meta with paagination default values' do
+        it 'returns meta with pagination default values' do
           expect(response.body).to have_json_path('meta')
-          expect(response.body).to be_json_eql('null').at_path('meta/pagination/per_page')
+          expect(response.body).to be_json_eql(5).at_path('meta/pagination/per_page')
           expect(response.body).to be_json_eql(1).at_path('meta/pagination/current_page')
         end
       end
