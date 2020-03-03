@@ -191,7 +191,7 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
         key :format, :int32
       end
       response 200 do
-        key :description, 'Object with year and daily average measurements, array of days with number of measurements, average values and status'
+        key :description, 'Object with daily average measurement for a given year anlocation'
         schema do
           key :type, :object
           property :year do
@@ -201,24 +201,27 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
             key :type, :array
             items do
               key :type, :object
-              property :date :string do
+              property :date do
+                key :type, :string
               end
               property :number_of_measurements do
                 key :type, :integer
               end
               property :average_values do
-              key :type, :array
-                property :name do
-                  key :type, :string
-                end
-                property :value do
-                  key :type, :string
+                key :type, :array
+                items do
+                  property :name do
+                    key :type, :string
+                  end
+                  property :value do
+                    key :type, :string
+                  end
                 end
               end
             end
-              property :status do
-                key :type, :string
-              end
+            property :status do
+              key :type, :string
+            end
           end
         end
       end
