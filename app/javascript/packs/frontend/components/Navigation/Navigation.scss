@@ -71,7 +71,7 @@
         color: $textColor;
       }
       &:hover,
-      .isActive {
+      &.isActive {
         color: $secondaryColor;
         box-sizing: border-box;
         &::before {

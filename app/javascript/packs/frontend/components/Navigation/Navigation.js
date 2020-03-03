@@ -1,23 +1,21 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import { connect } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
-import { Link as ScrollLink } from "react-scroll";
+import { Link } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 import { PropTypes } from "prop-types";
 
 import { CustomButton } from "../";
 import navigationContent from "./navigationContent";
 
-import {
-  selectPath,
-  selectOrganizationDetails
-} from "../../redux/application/application.selectors";
+import { selectOrganizationDetails } from "../../redux/application/application.selectors";
 
 import "./Navigation.scss";
 
-const Navigation = ({ path, organizationDetails }) => {
+const Navigation = ({ organizationDetails }) => {
   const { links, button } = navigationContent;
   const { name, logo } = organizationDetails;
+  const path = useLocation().pathname;
 
   return organizationDetails ? (
     <header className="navigation">
@@ -38,29 +36,18 @@ const Navigation = ({ path, organizationDetails }) => {
         </div>
         <div className="navigation__links">
           {links.map(link => (
-            <NavLink
+            <Link
               key={link.displayName}
-              className="navigation__links-item"
+              className={
+                path === link.path
+                  ? "navigation__links-item isActive"
+                  : "navigation__links-item"
+              }
               to={link.path}
             >
               {link.displayName}
-            </NavLink>
+            </Link>
           ))}
-          {path.path === "/" ? (
-            <ScrollLink
-              className="navigation__links-item"
-              to="map-section"
-              smooth={true}
-              duration={500}
-              offset={-50}
-            >
-              Mapa
-            </ScrollLink>
-          ) : (
-            <a className="navigation__links-item" href="/#map-section">
-              Mapa
-            </a>
-          )}
           <CustomButton text={button} />
         </div>
       </div>
@@ -69,12 +56,10 @@ const Navigation = ({ path, organizationDetails }) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-  path: selectPath,
   organizationDetails: selectOrganizationDetails
 });
 
 Navigation.propTypes = {
-  path: PropTypes.string,
   organizationDetails: PropTypes.object,
   resetArticle: PropTypes.func
 };
