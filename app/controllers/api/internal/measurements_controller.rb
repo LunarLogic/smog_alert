@@ -165,6 +165,69 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
     render json: average_measurements
   end
 
+  swagger_path '/api/internal/measurements/calendar_values' do
+    operation :get do
+      key :summary, 'Get calendar values'
+      key :description, 'Get daily average measurements for a given year and location'
+      key :produces, [
+        'application/json',
+      ]
+      key :tags, [
+        'measurements',
+      ]
+      parameter do
+        key :name, :year
+        key :in, :query
+        key :description, 'Year for which you want to get data'
+        key :required, true
+        key :type, :integer
+      end
+      parameter do
+        key :name, :location_id
+        key :in, :query
+        key :description, 'Id of the location for which you want to get data'
+        key :required, true
+        key :type, :integer
+        key :format, :int32
+      end
+      response 200 do
+        key :description, 'Object with daily average measurements for a given year and location'
+        schema do
+          key :type, :object
+          property :year do
+            key :type, :integer
+          end
+          property :daily_average_measurements do
+            key :type, :array
+            items do
+              key :type, :object
+              property :date do
+                key :type, :string
+              end
+              property :number_of_measurements do
+                key :type, :integer
+              end
+              property :average_values do
+                key :type, :array
+                items do
+                  property :name do
+                    key :type, :string
+                  end
+                  property :value do
+                    key :type, :string
+                  end
+                end
+              end
+            end
+            property :status do
+              key :type, :string
+            end
+          end
+        end
+      end
+    end
+  end
+
   def calendar_values
     location = Location.find(calendar_params[:location_id])
     year = calendar_params[:year].to_i
