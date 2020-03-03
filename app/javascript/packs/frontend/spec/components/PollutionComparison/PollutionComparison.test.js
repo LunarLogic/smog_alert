@@ -23,7 +23,7 @@ describe("PollutionComparison", () => {
   });
 
   it("renders correct amount of PollutionBar components", () => {
-    expect(wrapper.find(".pollution-bar").length).toEqual(3);
+    expect(wrapper.find(".pollution-bar").length).toEqual(4);
   });
 
   it("sorts PollutionBars in decreasing order", () => {
@@ -38,11 +38,17 @@ describe("PollutionComparison", () => {
         .find(".pollution-bar__info-location")
         .at(1)
         .text()
-    ).toEqual("Brzoskwinia, Brzoskwinia 186");
+    ).toEqual("Zabierzów, Wapienna");
     expect(
       wrapper
         .find(".pollution-bar__info-location")
         .at(2)
+        .text()
+    ).toEqual("Brzoskwinia, Brzoskwinia 186");
+    expect(
+      wrapper
+        .find(".pollution-bar__info-location")
+        .at(3)
         .text()
     ).toEqual("Aleksandrowice");
   });
@@ -66,7 +72,7 @@ describe("PollutionComparison", () => {
   it("sets chosenCity when user clicks on a PollutionBar", () => {
     wrapper
       .find(".pollution-bar")
-      .at(2)
+      .at(3)
       .simulate("click");
     expect(chosenCity).toEqual("Aleksandrowice");
   });
@@ -138,7 +144,18 @@ describe("PollutionComparison", () => {
     expect(
       wrapperPartiallyEmpty
         .find("PollutionBar")
+        .at(2)
+        .prop("value")
+    ).toBeGreaterThan(
+      wrapperPartiallyEmpty
+        .find("PollutionBar")
         .at(3)
+        .prop("value")
+    );
+    expect(
+      wrapperPartiallyEmpty
+        .find("PollutionBar")
+        .at(4)
         .prop("location")
     ).toEqual("Nielepice, Józefa Trzaskowskiego");
   });

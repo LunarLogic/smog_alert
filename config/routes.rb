@@ -31,6 +31,8 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
+  resources :apidocs, only: [:index]
+
   namespace :api do
     namespace :internal do
       resources :measurements, only: [] do

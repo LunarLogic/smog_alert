@@ -43,9 +43,12 @@ gem 'pundit'
 gem 'rest-client'
 
 gem 'sidekiq'
+gem 'sidekiq-unique-jobs'
 gem 'whenever', require: false
 
 gem 'geocoder', '~> 1.6'
+
+gem 'swagger-blocks'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -55,6 +58,7 @@ group :development, :test do
   gem 'rubocop', require: false
   gem 'rubocop-rails'
   gem 'factory_bot_rails'
+  gem 'guard-rspec', require: false
 end
 
 group :production do
@@ -86,6 +90,7 @@ group :test do
   gem 'webmock'
   gem 'shoulda-matchers'
   gem 'json_spec'
+  gem 'rspec-retry'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

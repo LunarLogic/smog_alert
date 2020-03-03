@@ -1,10 +1,12 @@
 @import "../../styles/variables";
+@import "../../styles/mixins";
 
 .error-404 {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 60vh;
 
   &__title {
     font-size: 20rem;
@@ -15,57 +17,6 @@
     text-shadow: 1px 1px 7px rgba(0, 0, 0, 0.15);
   }
   &__text {
-    font-size: 1.7rem;
-    line-height: 2.4rem;
-    text-align: center;
-    color: $grey;
-    margin: 0.5rem 0;
-  }
-  &__back-button {
-    font-size: 1.6rem;
-    line-height: 2.2rem;
-    font-weight: 500;
-    padding: 1.4rem 2.1rem;
-    border-radius: 0.5rem;
-    background-color: $grey;
-    margin: 2rem;
-    cursor: pointer;
-    color: $secondaryColorContrast;
-
-    &:visited {
-      color: $secondaryColorContrast;
-    }
-
-    &:hover {
-      background-color: $secondaryColor;
-    }
-  }
-  &__links {
-    display: flex;
-
-    &-item {
-      color: $grey;
-      margin: 0 1.5rem;
-      width: 3.8rem;
-      height: 3.8rem;
-      border-radius: 50%;
-      border: 0.1rem solid $frameColor;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      a:visited {
-        color: $grey;
-      }
-
-      svg {
-        width: 2.5rem;
-        height: 2.5rem;
-      }
-      &:hover {
-        color: $secondaryColor;
-        border-color: $secondaryColor;
-      }
-    }
+    @include information-text;
   }
 }
