@@ -191,7 +191,7 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
         key :format, :int32
       end
       response 200 do
-        key :description, 'Object with daily average measurement for a given year anlocation'
+        key :description, 'Object with daily average measurements for a given year and location'
         schema do
           key :type, :object
           property :year do
