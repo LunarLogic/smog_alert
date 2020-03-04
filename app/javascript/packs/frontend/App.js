@@ -10,11 +10,12 @@ import { getOrganizationDetails } from "./redux/application/application.actions"
 
 import {
   AirFacts,
-  Homepage,
-  Statistics,
-  News,
   Article,
-  Error404
+  Error404,
+  Homepage,
+  News,
+  Statistics,
+  Solutions
 } from "./pages";
 import { Footer, Navigation, NavigationMobile } from "./components";
 
@@ -42,6 +43,7 @@ const App = ({ getOrganizationDetails }) => {
           <Route exact path="/statistics" component={Statistics} />
           <Route exact path="/aktualnosci" component={News} />
           <Route exact path="/aktualnosci/:articleId" component={Article} />
+          <Route exact path="/rozwiazania" component={Solutions} />
           <Route component={Error404} />
         </Switch>
         <div className="scroll-to-top" onClick={animateScroll.scrollToTop}>

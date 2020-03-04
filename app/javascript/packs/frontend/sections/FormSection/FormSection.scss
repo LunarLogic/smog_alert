@@ -1,0 +1,11 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  max-width: 50rem;
+  &__heading {
+    @include heading;
+  }
+}

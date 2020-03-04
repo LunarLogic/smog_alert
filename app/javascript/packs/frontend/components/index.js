@@ -9,6 +9,7 @@ import ContactDetail from "./ContactDetail/ContactDetail";
 import CustomButton from "./CustomButton/CustomButton";
 import DropdownMenu from "./DropdownMenu/DropdownMenu";
 import Footer from "./Footer/Footer";
+import Form from "./Form/Form";
 import Icon from "./Icon/Icon";
 import Loader from "./Loader/Loader";
 import Recommendation from "./Recommendation/Recommendation";
@@ -39,6 +40,7 @@ export {
   CustomButton,
   DropdownMenu,
   Footer,
+  Form,
   Icon,
   Loader,
   Recommendation,

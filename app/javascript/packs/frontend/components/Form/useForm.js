@@ -60,4 +60,7 @@ const useForm = (stateSchema, validationSchema = {}, callback) => {
       callback(state);
     }
   };
+  return { state, disabled, handleOnChange, handleOnSubmit };
 };
+
+export default useForm;
