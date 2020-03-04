@@ -71,7 +71,6 @@ const NavigationMobile = ({ organizationDetails }) => {
           {links.map(link => (
             <Link
               key={link.displayName}
-              activeClassName="activeLink"
               className={
                 path === link.path
                   ? "hamburger-navigation__links-item isActive"
