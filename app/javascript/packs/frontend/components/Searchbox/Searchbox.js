@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
-import Autosuggest from "../Autosuggest/Autosuggest";
+import Autosuggest from "react-autosuggest";
 
 import { setChosenCity } from "../../redux/searchbox/searchbox.actions";
 import { selectCitiesPollutionDataList } from "../../redux/redux.selectors";
