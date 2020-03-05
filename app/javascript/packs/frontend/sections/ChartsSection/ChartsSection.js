@@ -93,7 +93,7 @@ export const ChartsSection = ({
             <DatePicker
               selected={pickerDate}
               onChange={date => setDate(date || new Date())}
-              minDate={new Date().getFullYear() - 2}
+              minDate={new Date("2019-12")}
               maxDate={new Date()}
               dateFormat="MM/yyyy"
               showMonthYearPicker
