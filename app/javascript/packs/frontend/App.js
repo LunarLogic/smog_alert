@@ -8,14 +8,7 @@ import { PropTypes } from "prop-types";
 
 import { getOrganizationDetails } from "./redux/application/application.actions";
 
-import {
-  AirFacts,
-  Homepage,
-  Statistics,
-  News,
-  Article,
-  Error404
-} from "./pages";
+// import { AirFacts, News, Article, Error404 } from "./pages";
 import { Footer, Navigation, NavigationMobile } from "./components";
 
 import "./App.scss";
@@ -29,12 +22,17 @@ WebFont.load({
   }
 });
 
+const Homepage = lazy(() => import("./pages/Homepage/Homepage.js"));
+const Statistics = lazy(() => import("./pages/Statistics/Statistics.js"));
+const AirFacts = lazy(() => import("./pages/AirFacts/AirFacts.js"));
+const News = lazy(() => import("./pages/News/News.js"));
+const Article = lazy(() => import("./pages/Article/Article.js"));
+const Error404 = lazy(() => import("./pages/Error404/Error404.js"));
+
 const App = ({ getOrganizationDetails }) => {
   useEffect(() => {
     getOrganizationDetails();
   }, []);
-
-  // const Homepage = lazy(() => import("./pages/Homepage/Homepage.js"));
 
   return (
     <div>
@@ -42,14 +40,14 @@ const App = ({ getOrganizationDetails }) => {
       <NavigationMobile />
       <div className="container">
         <Switch>
-          {/* <Suspense fallback={<div>...Loading</div>}> */}
-          <Route exact path="/" component={Homepage} />
-          <Route exact path="/czym-oddycham" component={AirFacts} />
-          <Route exact path="/statistics" component={Statistics} />
-          <Route exact path="/aktualnosci" component={News} />
-          <Route exact path="/aktualnosci/:articleId" component={Article} />
-          <Route component={Error404} />
-          {/* </Suspense> */}
+          <Suspense fallback={<div>...Loading</div>}>
+            <Route exact path="/" component={Homepage} />
+            <Route exact path="/czym-oddycham" component={AirFacts} />
+            <Route exact path="/statistics" component={Statistics} />
+            <Route exact path="/aktualnosci" component={News} />
+            <Route exact path="/aktualnosci/:articleId" component={Article} />
+            <Route component={Error404} />
+          </Suspense>
         </Switch>
         <div className="scroll-to-top" onClick={animateScroll.scrollToTop}>
           <div className="scroll-to-top__text">Powrót na górę strony </div>
