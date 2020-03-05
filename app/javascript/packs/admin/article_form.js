@@ -1,13 +1,12 @@
 $(document).ready(function() {
-
   function autocompleteTags() {
-    let availableTags
-    const element = document.getElementById('js-tags-fields')
+    let availableTags;
+    const element = document.getElementById("js-tags-fields");
     if (element) {
-      availableTags = JSON.parse((element).dataset.tags);
+      availableTags = JSON.parse(element.dataset.tags);
       $(".tag-input").autocomplete({
         source: availableTags
-      })
+      });
     }
   }
 
@@ -25,19 +24,12 @@ $(document).ready(function() {
       e.preventDefault();
       const newTag = $("#js-tag-template").html();
       $("#js-tags-fields").append(newTag);
-      autocompleteTags()
+      autocompleteTags();
     });
   }
 
   attachAddHandlers();
   attachRemoveHandlers();
 
-  autocompleteTags()
-
-  // const availableTags = document.getElementById('js-tags-fields').dataset.tags;
-
-  // $($(".article_tags_name")[index-1]).children().autocomplete({
-  //     source: ['aaa', 'aabkf', 'aadeoi']
-  //   });
-
+  autocompleteTags();
 });

@@ -1,18 +1,20 @@
-const { environment } = require('@rails/webpacker')
+const { environment } = require("@rails/webpacker");
 
-const webpack = require('webpack')
-environment.plugins.prepend('Provide',
+const webpack = require("webpack");
+environment.plugins.append(
+  "Provide",
   new webpack.ProvidePlugin({
-    $: 'jquery',
-    jQuery: 'jquery'
+    $: "jquery",
+    jQuery: "jquery",
+    Popper: ["popper.js", "default"]
   })
 );
 
 const aliasConfig = {
-    'jquery': 'jquery-ui-dist/external/jquery/jquery.js',
-    'jquery-ui': 'jquery-ui-dist/jquery-ui.js'
+  jquery: "jquery/src/jquery",
+  jquery_ui: "jquery-ui/ui/widgets/autocomplete.js"
 };
 
-environment.config.set('resolve.alias', aliasConfig);
+environment.config.set("resolve.alias", aliasConfig);
 
-module.exports = environment
+module.exports = environment;
