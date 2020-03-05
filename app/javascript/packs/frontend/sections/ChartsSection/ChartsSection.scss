@@ -82,8 +82,28 @@
       box-sizing: border-box;
       font-size: 1.6rem;
     }
-    .react-datepicker-wrapper {
-      width: 100%;
+    .react-datepicker {
+      font-size: 12px;
+      &-year-header {
+        font-size: 16px;
+      }
+      &__navigation {
+        top: 13px;
+      }
+      &-wrapper {
+        width: 100%;
+      }
+      &__header {
+        padding-bottom: 8px;
+      }
+      &-popper {
+        z-index: 20;
+      }
+    }
+    .react-datepicker__month,
+    .react-datepicker__month-text,
+    .react-datepicker__month .react-datepicker__quarter-text {
+      margin: 5px;
     }
   }
 }
