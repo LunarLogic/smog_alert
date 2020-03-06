@@ -129,4 +129,14 @@ RSpec.describe MeasurementsRepository do
       end
     end
   end
+
+  describe '#first_month' do
+    let(:measurements_repository) { MeasurementsRepository.new }
+
+    it 'returns a month with first available measurement' do
+      FactoryBot.create(:measurement, date: Date.new(2019, 1, 3))
+      FactoryBot.create(:measurement, date: Date.new(2019, 2, 3))
+      expect(measurements_repository.first_month).to eq('2019-01')
+    end
+  end
 end
