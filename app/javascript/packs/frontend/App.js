@@ -22,12 +22,26 @@ WebFont.load({
   }
 });
 
-const Homepage = lazy(() => import("./pages/Homepage/Homepage.js"));
-const Statistics = lazy(() => import("./pages/Statistics/Statistics.js"));
-const AirFacts = lazy(() => import("./pages/AirFacts/AirFacts.js"));
-const News = lazy(() => import("./pages/News/News.js"));
-const Article = lazy(() => import("./pages/Article/Article.js"));
-const Error404 = lazy(() => import("./pages/Error404/Error404.js"));
+const Homepage = lazy(() =>
+  import(/* webpackChunkName: "Homepage" */ "./pages/Homepage/Homepage.js")
+);
+const Statistics = lazy(() =>
+  import(
+    /* webpackChunkName: "Statistics" */ "./pages/Statistics/Statistics.js"
+  )
+);
+const AirFacts = lazy(() =>
+  import(/* webpackChunkName: "AirFacts" */ "./pages/AirFacts/AirFacts.js")
+);
+const News = lazy(() =>
+  import(/* webpackChunkName: "News" */ "./pages/News/News.js")
+);
+const Article = lazy(() =>
+  import(/* webpackChunkName: "Article" */ "./pages/Article/Article.js")
+);
+const Error404 = lazy(() =>
+  import(/* webpackChunkName: "Error404" */ "./pages/Error404/Error404.js")
+);
 
 const App = ({ getOrganizationDetails }) => {
   useEffect(() => {
