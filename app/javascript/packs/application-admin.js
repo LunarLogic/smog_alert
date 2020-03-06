@@ -10,3 +10,17 @@ import "bootstrap";
 import "../stylesheets/application-admin";
 
 import "./admin/article_form"
+
+import React from "react";
+import ReactDOM from "react-dom";
+import HelloWorld from "./admin/components/HelloWorld";
+
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("dashboard-react");
+  if (container) {
+    ReactDOM.render(
+      <HelloWorld />,
+      container
+    );
+  }
+});
