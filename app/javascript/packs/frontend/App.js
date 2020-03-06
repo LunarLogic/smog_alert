@@ -9,7 +9,7 @@ import { PropTypes } from "prop-types";
 import { getOrganizationDetails } from "./redux/application/application.actions";
 
 // import { AirFacts, News, Article, Error404 } from "./pages";
-import { Footer, Navigation, NavigationMobile } from "./components";
+import { Footer, Navigation, NavigationMobile, Loader } from "./components";
 
 import "./App.scss";
 
@@ -48,21 +48,25 @@ const App = ({ getOrganizationDetails }) => {
     getOrganizationDetails();
   }, []);
 
+  const loaderStyles = { height: "66.1rem" };
+
   return (
     <div>
       <Navigation />
       <NavigationMobile />
       <div className="container">
-        <Switch>
-          <Suspense fallback={<div>...Loading</div>}>
+        <Suspense
+          fallback={<Loader className="loader" loaderStyles={loaderStyles} />}
+        >
+          <Switch>
             <Route exact path="/" component={Homepage} />
             <Route exact path="/czym-oddycham" component={AirFacts} />
             <Route exact path="/statistics" component={Statistics} />
             <Route exact path="/aktualnosci" component={News} />
             <Route exact path="/aktualnosci/:articleId" component={Article} />
             <Route component={Error404} />
-          </Suspense>
-        </Switch>
+          </Switch>
+        </Suspense>
         <div className="scroll-to-top" onClick={animateScroll.scrollToTop}>
           <div className="scroll-to-top__text">Powrót na górę strony </div>
           <ArrowUpwardIcon />
