@@ -17,6 +17,6 @@ class MeasurementsRepository
   end
 
   def first_month
-    Measurement.order(:date).first.date.strftime("%Y-%m")
+    Measurement.order(:date).first.date.strftime('%Y-%m')
   end
 end

@@ -385,6 +385,27 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
     render json: { data: data }
   end
 
+  swagger_path '/api/internal/measurements/first_month' do
+    operation :get do
+      key :summary, 'Get first month in which measurements are available'
+      key :produces, [
+        'application/json',
+      ]
+      key :tags, [
+        'measurements',
+      ]
+      response 200 do
+        key :description, 'Returns first month in which measurements are available in format YYYY-MM'
+        schema do
+          key :type, :object
+          property :data do
+            key :type, :string
+          end
+        end
+      end
+    end
+  end
+
   def first_month
     first_month = measurements_repository.first_month
     render json: { data: first_month }
