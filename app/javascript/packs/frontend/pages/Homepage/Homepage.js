@@ -16,12 +16,12 @@ export const Homepage = ({ match, getCitiesPollutionData, setCurrentPath }) => {
     getCitiesPollutionData();
   }, []);
   return (
-    <div className="homepage">
+    <main className="homepage">
       <PageTitle title="Aktualny stan powietrza" />
       <CurrentPollutionSection />
       <hr className="homepage__horizontal-line" />
       <MapSection />
-    </div>
+    </main>
   );
 };
 

@@ -18,7 +18,7 @@ const Navigation = ({ organizationDetails }) => {
   const path = useLocation().pathname;
 
   return organizationDetails ? (
-    <header className="navigation">
+    <nav className="navigation">
       <div className="navigation-container">
         <div className="navigation__brand">
           <Link to="/">
@@ -51,7 +51,7 @@ const Navigation = ({ organizationDetails }) => {
           <CustomButton text={button} />
         </div>
       </div>
-    </header>
+    </nav>
   ) : null;
 };
 
