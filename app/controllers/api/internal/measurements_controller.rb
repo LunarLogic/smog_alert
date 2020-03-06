@@ -385,6 +385,11 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
     render json: { data: data }
   end
 
+  def first_month
+    first_month = measurements_repository.first_month
+    render json: { data: first_month }
+  end
+
   private
 
   def measurements_repository

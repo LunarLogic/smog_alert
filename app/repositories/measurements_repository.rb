@@ -15,4 +15,8 @@ class MeasurementsRepository
   def last_hour_measurements_by_location_name(location_name)
     Location.where(name: location_name).map { |location| last_hour_measurement(location) }.compact
   end
+
+  def first_month
+    Measurement.order(:date).first.date
+  end
 end
