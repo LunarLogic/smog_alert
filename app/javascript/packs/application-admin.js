@@ -13,13 +13,13 @@ import "./admin/article_form"
 
 import React from "react";
 import ReactDOM from "react-dom";
-import HelloWorld from "./admin/components/HelloWorld";
+import Dashboard from "./admin/components/Dashboard"
 
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("dashboard-react");
   if (container) {
     ReactDOM.render(
-      <HelloWorld />,
+      <Dashboard/>,
       container
     );
   }
