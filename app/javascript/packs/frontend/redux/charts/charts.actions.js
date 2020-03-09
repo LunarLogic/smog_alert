@@ -16,6 +16,19 @@ export const getChartHourlyAverageForMonthData = (date, location_id) => {
   };
 };
 
+export const getChartFirstMonth = () => {
+  return dispatch => {
+    return axios
+      .get(`/api/internal/measurements/first_month`)
+      .then(({ data }) => {
+        dispatch({
+          type: chartsActionTypes.GET_CHART_FIRST_MONTH,
+          payload: data
+        });
+      });
+  };
+};
+
 export const setChartChosenCity = chosenCity => ({
   type: chartsActionTypes.SET_CHART_CHOSEN_CITY,
   payload: chosenCity

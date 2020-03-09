@@ -7,7 +7,8 @@ const INITIAL_STATE = {
   chartChosenCity: "Zabierzów, Wapienna",
   chartChosenIndicator: "PM 10",
   chartChosenMonth: formatMonthlyDate(findPreviousMonth(currentDate)),
-  chartHourlyAverageForMonthData: {}
+  chartHourlyAverageForMonthData: {},
+  chartFirstMonth: "2016-11"
 };
 
 const chartReducer = (state = INITIAL_STATE, action) => {
@@ -16,6 +17,11 @@ const chartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         chartHourlyAverageForMonthData: action.payload.data
+      };
+    case chartsActionTypes.GET_CHART_FIRST_MONTH:
+      return {
+        ...state,
+        chartFirstMonth: action.payload.data
       };
     case chartsActionTypes.SET_CHART_CHOSEN_CITY:
       return {
