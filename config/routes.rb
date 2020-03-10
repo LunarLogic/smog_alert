@@ -48,6 +48,7 @@ Rails.application.routes.draw do
           get :current_data
         end
       end
+      resources :contact_form, only: [:create]
     end
   end
 
