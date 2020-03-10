@@ -3,9 +3,8 @@ $(document).ready(function() {
     let availableTags;
     const element = document.getElementById("js-tags-fields");
     if (element) {
-      availableTags = JSON.parse(element.dataset.tags);
       $(".tag-input").autocomplete({
-        source: availableTags
+        source: "/admin/tags/names"
       });
     }
   }

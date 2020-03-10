@@ -8,7 +8,7 @@
     </div>
   <% end %>
   <br>
-  <div id="js-tags-fields" data-tags="<%= @tags_names.to_json %>">
+  <div id="js-tags-fields">
     <% article.tags.each do |tag| %>
       <div class="d-flex tag-field">
         <%= render 'tag', tag_name: tag.name %>
