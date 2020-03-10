@@ -23,6 +23,14 @@ unless Rails.env.production?
     user.confirmed_at = Time.current
   end
 
+  Organization.find_or_create_by(organization_name: 'Zabierzowski Alarm Smogowy') do |organization|
+    organization.description = 'Stowarzyszenie tworzone przez ludzi, którzy lubią czyste powietrze i zielone drzewa'
+    organization.email = 'zabierzow-smog@gmail.com'
+    organization.facebook = 'https://facebook.com/ZabierzowskiAlarmSmogowy/'
+    path = Rails.root.join('app', 'assets', 'images', 'logo.jpg')
+    organization.logo.attach(io: File.open(path), filename: 'logo.jpg')
+  end
+
   if Article.all.count < 45
     # unpublished_articles
     5.times.collect do

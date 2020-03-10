@@ -71,6 +71,30 @@
         "status": "zły",
         "advice": null
       }
+    },
+    {
+      "location_id": 25,
+      "location_name": "Zabierzów",
+      "location_street": "Wapienna",
+      "location_display_name": "Zabierzów, Wapienna",
+      "lat": 50.116028,
+      "lng": 19.800639,
+      "last_hour_measurement": {
+        "from_date_time": "2020-01-17T08:00:06.653Z",
+        "till_date_time": "2020-01-17T09:00:06.653Z",
+        "values": [
+          {
+            "name": "PM 10",
+            "value": 117.81
+          },
+          {
+            "name": "PM 2.5",
+            "value": 65.7
+          }
+        ],
+        "status": "zły",
+        "advice": null
+      }
     }
   ]
 }

@@ -1,5 +1,8 @@
-class ImportLocationMeasurementsJob < ApplicationJob
-  queue_as :default
+class ImportLocationMeasurementsWorker
+  include Sidekiq::Worker
+  sidekiq_options queue: :default,
+                  lock: :until_executed,
+                  log_duplicate_payload: true
 
   def perform(location_id)
     location = Location.find(location_id)

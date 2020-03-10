@@ -43,6 +43,7 @@ Rails.application.routes.draw do
           get :calendar_status
           get :calendar_daily_values
           get :hourly_average_for_month
+          get :first_month
         end
       end
       resources :articles, only: [:index, :show]

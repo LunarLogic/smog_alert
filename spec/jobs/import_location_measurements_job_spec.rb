@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ImportLocationMeasurementsJob, type: :job do
+RSpec.describe ImportLocationMeasurementsWorker, type: :job do
   describe '#perform' do
     let(:job) { described_class.new }
 

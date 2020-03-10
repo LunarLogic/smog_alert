@@ -4,7 +4,7 @@ import searchboxReducer from "../../../redux/searchbox/searchbox.reducer";
 
 describe("searchboxReducer", () => {
   const initialState = {
-    location_display_name: "Zabierzów, Kolejowa 26"
+    location_display_name: "Zabierzów, Wapienna"
   };
 
   it("should return initial state", () => {
