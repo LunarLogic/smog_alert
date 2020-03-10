@@ -7,7 +7,8 @@ describe("calendar reducer", () => {
     chartChosenCity: "Zabierzów, Wapienna",
     chartChosenIndicator: "PM 10",
     chartChosenMonth: formatMonthlyDate(findPreviousMonth(new Date())),
-    chartHourlyAverageForMonthData: {}
+    chartHourlyAverageForMonthData: {},
+    chartFirstMonth: "2016-11"
   };
   it("should return initial state", () => {
     expect(chartReducer(undefined, {})).toEqual(initialState);
@@ -23,7 +24,8 @@ describe("calendar reducer", () => {
       chartChosenCity: "Nielepice",
       chartChosenIndicator: "PM 10",
       chartChosenMonth: formatMonthlyDate(findPreviousMonth(new Date())),
-      chartHourlyAverageForMonthData: {}
+      chartHourlyAverageForMonthData: {},
+      chartFirstMonth: "2016-11"
     });
   });
   it("should handle SET_CHART_CHOSEN_INDICATOR action", () => {
@@ -37,7 +39,8 @@ describe("calendar reducer", () => {
       chartChosenCity: "Zabierzów, Wapienna",
       chartChosenIndicator: "PM 2.5",
       chartChosenMonth: formatMonthlyDate(findPreviousMonth(new Date())),
-      chartHourlyAverageForMonthData: {}
+      chartHourlyAverageForMonthData: {},
+      chartFirstMonth: "2016-11"
     });
   });
   it("should handle SET_CHART_CHOSEN_MONTH action", () => {
@@ -51,7 +54,8 @@ describe("calendar reducer", () => {
       chartChosenCity: "Zabierzów, Wapienna",
       chartChosenIndicator: "PM 10",
       chartChosenMonth: "01-02-2020",
-      chartHourlyAverageForMonthData: {}
+      chartHourlyAverageForMonthData: {},
+      chartFirstMonth: "2016-11"
     });
   });
   it("should handle GET_CHART_HOURLY_AVERAGE_FOR_MONTH_DATA action", () => {
@@ -85,7 +89,25 @@ describe("calendar reducer", () => {
           average_pm10: [],
           average_pm25: []
         }
-      }
+      },
+      chartFirstMonth: "2016-11"
+    });
+  });
+  it("should handle GET_CHART_FIRST_MONTH action", () => {
+    const mockFirstMonth = {
+      data: "2019-12"
+    };
+    expect(
+      chartReducer(initialState, {
+        type: chartsActionTypes.GET_CHART_FIRST_MONTH,
+        payload: mockFirstMonth
+      })
+    ).toEqual({
+      chartChosenCity: "Zabierzów, Wapienna",
+      chartChosenIndicator: "PM 10",
+      chartChosenMonth: formatMonthlyDate(findPreviousMonth(new Date())),
+      chartHourlyAverageForMonthData: {},
+      chartFirstMonth: "2019-12"
     });
   });
 });

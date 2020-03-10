@@ -4,7 +4,7 @@ const navigationContent = {
     { displayName: "Aktualności", path: "/aktualnosci" },
     { displayName: "Czym Oddycham", path: "/czym-oddycham" },
     { displayName: "Rozwiązania", path: "/rozwiazania" },
-    { displayName: "Statystyki", path: "/statistics" }
+    { displayName: "Statystyki", path: "/statystyki" }
   ],
   button: "Zmień Piec",
   brand: "Zabierzowski Alarm Smogowy"

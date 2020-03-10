@@ -9,12 +9,14 @@ import { selectCitiesPollutionDataList } from "../../redux/redux.selectors";
 import {
   selectChartChosenCity,
   selectChartChosenIndicator,
-  selectChartChosenCityIndex
+  selectChartChosenCityIndex,
+  selectChartFirstMonth
 } from "../../redux/charts/charts.selectors";
 import {
   setChartChosenCity,
   setChartChosenIndicator,
-  getChartHourlyAverageForMonthData
+  getChartHourlyAverageForMonthData,
+  getChartFirstMonth
 } from "../../redux/charts/charts.actions";
 
 import {
@@ -33,7 +35,9 @@ export const ChartsSection = ({
   setChartChosenCity,
   setChartChosenIndicator,
   getChartHourlyAverageForMonthData,
-  chartChosenCityIndex
+  getChartFirstMonth,
+  chartChosenCityIndex,
+  chartFirstMonth
 }) => {
   const [pickerDate, setPickerDate] = useState(findPreviousMonth(new Date()));
   const [indicator, setIndicator] = useState("PM 10");
@@ -45,6 +49,7 @@ export const ChartsSection = ({
   );
 
   useEffect(() => {
+    getChartFirstMonth();
     getChartHourlyAverageForMonthData(chartChosenMonth, chartChosenCityIndex);
   }, []);
 
@@ -93,7 +98,7 @@ export const ChartsSection = ({
             <DatePicker
               selected={pickerDate}
               onChange={date => setDate(date || new Date())}
-              minDate={new Date("2019-12")}
+              minDate={new Date(chartFirstMonth)}
               maxDate={new Date()}
               dateFormat="MM/yyyy"
               showMonthYearPicker
@@ -125,18 +130,22 @@ ChartsSection.propTypes = {
   citiesList: PropTypes.array,
   chartChosenCity: PropTypes.string,
   chartChosenIndicator: PropTypes.string,
-  chartChosenCityIndex: PropTypes.number
+  chartChosenCityIndex: PropTypes.number,
+  chartFirstMonth: PropTypes.string,
+  getChartFirstMonth: PropTypes.func
 };
 
 const mapStateToProps = createStructuredSelector({
   citiesList: selectCitiesPollutionDataList,
   chartChosenCity: selectChartChosenCity,
   chartChosenIndicator: selectChartChosenIndicator,
-  chartChosenCityIndex: selectChartChosenCityIndex
+  chartChosenCityIndex: selectChartChosenCityIndex,
+  chartFirstMonth: selectChartFirstMonth
 });
 
 export default connect(mapStateToProps, {
   setChartChosenCity,
   setChartChosenIndicator,
-  getChartHourlyAverageForMonthData
+  getChartHourlyAverageForMonthData,
+  getChartFirstMonth
 })(ChartsSection);

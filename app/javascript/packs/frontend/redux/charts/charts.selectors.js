@@ -38,3 +38,8 @@ export const selectChartChosenCityIndex = createSelector(
     }
   }
 );
+
+export const selectChartFirstMonth = createSelector(
+  [selectChart],
+  chart => chart.chartFirstMonth
+);
