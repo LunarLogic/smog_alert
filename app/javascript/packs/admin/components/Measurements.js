@@ -23,7 +23,7 @@ class Measurements extends React.Component {
 
   handleClick(measurements) {
     let alert_msg = ""
-    const values = measurements.map ((measurement, index) => (
+    measurements.forEach ((measurement, index) => (
       alert_msg += `${measurement.name}: ${measurement.value}; `
     ))
     alert(alert_msg)
@@ -40,7 +40,7 @@ class Measurements extends React.Component {
           <p>{measurement.last_hour_measurement ? measurement.last_hour_measurement.from_date_time : "brak danych z ostatniej godziny"}</p>
         </div>
         <div className="col-2">
-          <button className="btn btn-light btn-sm" onClick={() => this.handleClick(measurement.last_hour_measurement.values)}>Pokaż</button>
+          <button className="btn btn-light btn-sm" disabled={!measurement.last_hour_measurement} onClick={() => this.handleClick(measurement.last_hour_measurement.values)}>Pokaż</button>
         </div>
       </div>
     ));
