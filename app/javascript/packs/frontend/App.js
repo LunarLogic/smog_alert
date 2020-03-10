@@ -7,8 +7,6 @@ import WebFont from "webfontloader";
 import { PropTypes } from "prop-types";
 
 import { getOrganizationDetails } from "./redux/application/application.actions";
-
-// import { AirFacts, News, Article, Error404 } from "./pages";
 import { Footer, Navigation, NavigationMobile, Loader } from "./components";
 
 import "./App.scss";
@@ -61,7 +59,7 @@ const App = ({ getOrganizationDetails }) => {
           <Switch>
             <Route exact path="/" component={Homepage} />
             <Route exact path="/czym-oddycham" component={AirFacts} />
-            <Route exact path="/statistics" component={Statistics} />
+            <Route exact path="/statystyki" component={Statistics} />
             <Route exact path="/aktualnosci" component={News} />
             <Route exact path="/aktualnosci/:articleId" component={Article} />
             <Route component={Error404} />
