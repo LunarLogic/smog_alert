@@ -3,9 +3,13 @@ import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import configureMockStore from "redux-mock-store";
 
-import { getChartHourlyAverageForMonthData } from "../../../redux/charts/charts.actions";
+import {
+  getChartHourlyAverageForMonthData,
+  getChartFirstMonth
+} from "../../../redux/charts/charts.actions";
 import chartsActionTypes from "../../../redux/charts/charts.types";
 import chartHourlyAverageForMonthDataMock from "../../__mocks__/chartHourlyAverageForMonthDataMock.json";
+import chartFirstMonthDataMock from "../../__mocks__/chartFirstMonthDataMock.json";
 
 const mockStore = configureMockStore([thunkMiddleware]);
 const mockAdapter = new MockAdapter(axios);
@@ -33,5 +37,24 @@ describe("charts actions", () => {
       .then(() => {
         expect(action).toEqual(expectedAction);
       });
+  });
+  it("handles requesting first available month for the datepicker in charts section", async () => {
+    mockAdapter
+      .onGet("api/internal/measurements/first_month")
+      .reply(200, chartFirstMonthDataMock);
+
+    const expectedAction = [
+      {
+        type: chartsActionTypes.GET_CHART_FIRST_MONTH,
+        payload: chartFirstMonthDataMock
+      }
+    ];
+
+    const store = mockStore({ payload: {} });
+    const action = store.getActions();
+
+    await store.dispatch(getChartFirstMonth()).then(() => {
+      expect(action).toEqual(expectedAction);
+    });
   });
 });
