@@ -66,6 +66,16 @@ describe 'admin interactions with articles' do
       click_on('New article with tags')
       expect(page).to have_content('Zabierzów')
     end
+
+    scenario 'autocomplete tags' do
+      article = FactoryBot.create(:article, user_id: superadmin.id)
+      article.tags.create([{ name: 'smak' }, { name: 'smog' }])
+      click_on('Dodaj tag')
+      find('.tag-field input').set 'sm'
+      sleep 2
+      expect(page).to have_content('smak')
+      expect(page).to have_content('smog')
+    end
   end
 
   context 'edit an article' do
