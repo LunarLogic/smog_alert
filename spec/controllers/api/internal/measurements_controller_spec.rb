@@ -29,6 +29,25 @@ RSpec.describe API::Internal::MeasurementsController, type: :controller do
       end
     end
 
+    context 'when database contains measurement with missing pm10 for any given location' do
+      let!(:location_a) { FactoryBot.create(:location) }
+      let!(:measurement_a) do
+        FactoryBot.create(:measurement, location: location_a, till_date_time: (Time.current - 20.minutes), pm10: nil)
+      end
+
+      before do
+        get :current
+      end
+
+      it 'returns last measurement for the given location with nil status' do
+        expect(response.body).to be_json_eql(location_a.id.to_json).at_path('data/0/location_id')
+        expect(response.body).to be_json_eql(measurement_a.till_date_time.to_json)
+          .at_path('data/0/last_hour_measurement/till_date_time')
+        expect(response.body).to be_json_eql(nil.to_json)
+          .at_path('data/0/last_hour_measurement/status')
+      end
+    end
+
     context 'when two locations with the same location name AND both have different last hour measurement for PM 10' do
       let!(:location_a) { FactoryBot.create(:location, name: 'Zabierzów', street: 'street 1') }
       let!(:location_b) { FactoryBot.create(:location, name: 'Zabierzów', street: 'street 2') }
