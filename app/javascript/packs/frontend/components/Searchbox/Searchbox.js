@@ -2,53 +2,37 @@ import React, { useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
-import Select from "react-select";
+import Select, { components } from "react-select";
 
 import { setChosenCity } from "../../redux/searchbox/searchbox.actions";
 import { selectCitiesPollutionDataList } from "../../redux/redux.selectors";
 
 import "./Searchbox.scss";
-import { Input } from "./Searchbox.styles.jsx";
-import { grey, warning } from "../../styles/_variables.scss";
 import { createStructuredSelector } from "reselect";
 
 export const Searchbox = ({ cities, setChosenCity }) => {
-  const greyColor = grey;
-  const warningColor = warning;
-  const [textColor, setTextColor] = useState(greyColor);
   const options = cities.map(city => ({ value: city, label: city }));
 
+  const [selectedValue, setSelectedValue] = useState("");
+
   const onChange = (option, actionMeta) => {
-    console.log(option, actionMeta.action);
     switch (actionMeta.action) {
       case "select-option":
         setChosenCity(option.value);
-        return;
-      case "clear":
-        setChosenCity("");
+        setSelectedValue("");
         return;
       default:
         return;
     }
   };
 
-  const renderSuggestion = suggestion => (
-    <div className="searchbox__list--city">{suggestion}</div>
-  );
-
-  const renderInput = inputProps => (
-    <div className="searchbox__input">
-      <div className="searchbox__input--icon">
+  const DropdownIndicator = props => {
+    return (
+      <components.DropdownIndicator {...props}>
         <SearchIcon />
-      </div>
-      <Input
-        placeholder="Twoja miejscowość, lokalizacja..."
-        type="text"
-        textColor={textColor}
-        {...inputProps}
-      ></Input>
-    </div>
-  );
+      </components.DropdownIndicator>
+    );
+  };
 
   return (
     <div className="searchbox">
@@ -57,7 +41,10 @@ export const Searchbox = ({ cities, setChosenCity }) => {
         placeholder="Twoja miejscowość, lokalizacja..."
         noOptionsMessage={() => "Brak wybranej miejscowości"}
         onChange={onChange}
-        isClearable
+        className="react-select-container"
+        classNamePrefix="react-select"
+        components={{ DropdownIndicator }}
+        value={selectedValue}
       />
     </div>
   );
