@@ -341,4 +341,52 @@ if Rails.env.development? || Rails.env.test?
       ).save!
     end
   end
+
+  # generate measurements with missing pm data
+  till_date_time = DateTime.now
+
+  # when missing pm10
+  location_1 = Location.find_by(name: 'Aleksandrowice')
+  location_1.measurements.build(
+    date: till_date_time.to_date,
+    hour: till_date_time.hour,
+    pm10: nil,
+    pm25: rand(10.0..80.0).round(2),
+    temperature: rand(-10..10),
+    humidity: rand(60.0..90.0).round(2),
+    pressure: rand(900.0..1100.0).round(2),
+    from_date_time: till_date_time - 1.hour,
+    till_date_time: till_date_time,
+    advice: 'zostań w domu',
+  ).save!
+
+  # when missing pm25
+  location_2 = Location.find_by(name: 'Balice')
+  location_2.measurements.build(
+    date: till_date_time.to_date,
+    hour: till_date_time.hour,
+    pm10: rand(10.0..80.0).round(2),
+    pm25: nil,
+    temperature: rand(-10..10),
+    humidity: rand(60.0..90.0).round(2),
+    pressure: rand(900.0..1100.0).round(2),
+    from_date_time: till_date_time - 1.hour,
+    till_date_time: till_date_time,
+    advice: 'zostań w domu',
+  ).save!
+
+  # when missing pm10 and pm25
+  location_3 = Location.find_by(name: 'Brzezinka')
+  location_3.measurements.build(
+    date: till_date_time.to_date,
+    hour: till_date_time.hour,
+    pm10: nil,
+    pm25: nil,
+    temperature: rand(-10..10),
+    humidity: rand(60.0..90.0).round(2),
+    pressure: rand(900.0..1100.0).round(2),
+    from_date_time: till_date_time - 1.hour,
+    till_date_time: till_date_time,
+    advice: 'zostań w domu',
+  ).save!
 end
