@@ -44,7 +44,7 @@ class API::Internal::LocationWithLastMeasurementPresenter
   end
 
   def status_of_locations_grouped_by_name
-    pm10_array = @last_hour_measurements_by_location_name.map(&:pm10)
+    pm10_array = @last_hour_measurements_by_location_name.map(&:pm10).compact
     return if pm10_array.empty?
 
     pm10_average = pm10_array.sum / pm10_array.size
