@@ -346,8 +346,8 @@ if Rails.env.development? || Rails.env.test?
   till_date_time = DateTime.now
 
   # when missing pm10
-  location_1 = Location.find_by(name: 'Aleksandrowice')
-  location_1.measurements.build(
+  location1 = Location.find_by(name: 'Aleksandrowice')
+  location1.measurements.build(
     date: till_date_time.to_date,
     hour: till_date_time.hour,
     pm10: nil,
@@ -361,8 +361,8 @@ if Rails.env.development? || Rails.env.test?
   ).save!
 
   # when missing pm25
-  location_2 = Location.find_by(name: 'Balice')
-  location_2.measurements.build(
+  location2 = Location.find_by(name: 'Balice')
+  location2.measurements.build(
     date: till_date_time.to_date,
     hour: till_date_time.hour,
     pm10: rand(10.0..80.0).round(2),
@@ -376,8 +376,8 @@ if Rails.env.development? || Rails.env.test?
   ).save!
 
   # when missing pm10 and pm25
-  location_3 = Location.find_by(name: 'Brzezinka')
-  location_3.measurements.build(
+  location3 = Location.find_by(name: 'Brzezinka')
+  location3.measurements.build(
     date: till_date_time.to_date,
     hour: till_date_time.hour,
     pm10: nil,
