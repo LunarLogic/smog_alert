@@ -40,6 +40,9 @@ const Article = lazy(() =>
 const Error404 = lazy(() =>
   import(/* webpackChunkName: "Error404" */ "./pages/Error404/Error404.js")
 );
+const Solutions = lazy(() =>
+  import(/* webpackChunkName: "Solutions" */ "./pages/Solutions/Solutions.js")
+);
 
 const App = ({ getOrganizationDetails }) => {
   useEffect(() => {
@@ -62,6 +65,7 @@ const App = ({ getOrganizationDetails }) => {
             <Route exact path="/statystyki" component={Statistics} />
             <Route exact path="/aktualnosci" component={News} />
             <Route exact path="/aktualnosci/:articleId" component={Article} />
+            <Route exact path="/rozwiazania" component={Solutions} />
             <Route component={Error404} />
           </Switch>
         </Suspense>
