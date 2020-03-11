@@ -146,9 +146,9 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
   end
 
   def current
-    locations = Location.all
+    locations = locations_repository.locations_with_measurements_from_last_n_hours(1)
     data = locations.map do |location|
-      last_hour_measurement = measurements_repository.last_hour_measurement(location)
+      last_hour_measurement = location.measurements.last
       last_hour_measurements_by_location_name =
         measurements_repository.last_hour_measurements_by_location_name(location.name)
       API::Internal::LocationWithLastMeasurementPresenter.new(
@@ -417,6 +417,9 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
     MeasurementsRepository.new
   end
 
+  def locations_repository
+    LocationsRepository.new
+  end
   def hourly_stats_params
     params.require(:date)
     params.require(:location_id)
