@@ -163,5 +163,13 @@ RSpec.describe GiosScaleChecker do
         expect(subject).to eql 'bardzo zły'
       end
     end
+
+    context 'when pm10 value is nil' do
+      let(:giosscalechecker) { GiosScaleChecker.new(:pm10, nil) }
+
+      it 'returns nil as GIOŚ status' do
+        expect(subject).to be_nil
+      end
+    end
   end
 end
