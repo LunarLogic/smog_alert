@@ -11,31 +11,4 @@
     font-size: 1.8rem;
     line-height: 2.7rem;
   }
-  &__title {
-    font-size: 2.8rem;
-    line-height: 3.6rem;
-    font-weight: bold;
-    text-align: justify;
-    margin: 4rem 0 2.4rem 0;
-    border-top: 0.1rem solid $frameColor;
-    padding-top: 3rem;
-    @media only screen and (max-width: $bp-800) {
-      text-align: left;
-    }
-  }
-  &__content {
-    font-size: 1.8rem;
-    line-height: 2.7rem;
-    text-align: justify;
-    margin-top: 3rem;
-    &--bold {
-      font-weight: bold;
-      @media only screen and (max-width: $bp-800) {
-        text-align: left;
-      }
-    }
-    a {
-      color: $secondaryColor;
-    }
-  }
 }

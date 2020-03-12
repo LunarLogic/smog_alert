@@ -48,7 +48,9 @@ const Navigation = ({ organizationDetails }) => {
               {link.displayName}
             </Link>
           ))}
-          <CustomButton text={button} />
+          <Link key={button.displayName} to={button.path}>
+            <CustomButton text={button.displayName} />
+          </Link>
         </div>
       </div>
     </nav>

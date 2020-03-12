@@ -47,7 +47,15 @@ const NavigationMobile = ({ organizationDetails }) => {
             </Link>
           </div>
           <div className="hamburger-navigation__links">
-            <CustomButton text={button} />
+            <Link
+              key={button.displayName}
+              to={button.path}
+              onClick={() => {
+                setHamburgerActive(false);
+              }}
+            >
+              <CustomButton text={button.displayName} />
+            </Link>
             <button
               className={`hamburger hamburger--spin ${
                 hamburgerActive ? "is-active" : ""
@@ -86,7 +94,15 @@ const NavigationMobile = ({ organizationDetails }) => {
             </Link>
           ))}
           <div className="hamburger-navigation__links-button">
-            <CustomButton text={button} />
+            <Link
+              key={button.displayName}
+              to={button.path}
+              onClick={() => {
+                setHamburgerActive(false);
+              }}
+            >
+              <CustomButton text={button.displayName} />
+            </Link>
           </div>
         </div>
       </div>

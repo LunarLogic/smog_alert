@@ -1,0 +1,25 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.change-furnace {
+  @include margins-text-content;
+  &__heading {
+    @include heading;
+    margin-bottom: 1.6rem;
+  }
+  &__content {
+    font-size: 1.8rem;
+    line-height: 2.7rem;
+    text-align: justify;
+    margin-top: 3rem;
+    &--bold {
+      font-weight: bold;
+      @media only screen and (max-width: $bp-800) {
+        text-align: left;
+      }
+    }
+    a {
+      color: $secondaryColor;
+    }
+  }
+}

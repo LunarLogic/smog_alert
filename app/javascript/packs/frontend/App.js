@@ -44,6 +44,12 @@ const Solutions = lazy(() =>
   import(/* webpackChunkName: "Solutions" */ "./pages/Solutions/Solutions.js")
 );
 
+const ChangeFurnace = lazy(() =>
+  import(
+    /* webpackChunkName: "ChangeFurnace" */ "./pages/ChangeFurnace/ChangeFurnace.js"
+  )
+);
+
 const App = ({ getOrganizationDetails }) => {
   useEffect(() => {
     getOrganizationDetails();
@@ -66,6 +72,7 @@ const App = ({ getOrganizationDetails }) => {
             <Route exact path="/aktualnosci" component={News} />
             <Route exact path="/aktualnosci/:articleId" component={Article} />
             <Route exact path="/rozwiazania" component={Solutions} />
+            <Route exact path="/zmien-piec" component={ChangeFurnace} />
             <Route component={Error404} />
           </Switch>
         </Suspense>
