@@ -1,0 +1,14 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.solutions {
+  @include margins-text-content;
+  &__heading {
+    @include heading;
+    margin-bottom: 1.6rem;
+  }
+  &__subheading {
+    font-size: 1.8rem;
+    line-height: 2.7rem;
+  }
+}

@@ -6,7 +6,7 @@ const navigationContent = {
     { displayName: "Rozwiązania", path: "/rozwiazania" },
     { displayName: "Statystyki", path: "/statystyki" }
   ],
-  button: "Zmień Piec",
+  button: { displayName: "Zmień Piec", path: "/zmien-piec" },
   brand: "Zabierzowski Alarm Smogowy"
 };
 
