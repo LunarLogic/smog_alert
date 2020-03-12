@@ -22,7 +22,7 @@ export const PollutionScale = ({ chosenCityData }) => {
     var { last_hour_measurement } = chosenCityData;
     color = setColor(last_hour_measurement);
     indicator = setIndicator(last_hour_measurement);
-    if (!last_hour_measurement) {
+    if (!last_hour_measurement || last_hour_measurement.status === null) {
       opacity = 0;
     }
   }
