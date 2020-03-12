@@ -3,7 +3,8 @@ class LocationsRepository
     Location.pluck(:installation_id) & ids
   end
 
-  def locations_with_measurements_from_last_n_hours(n)
-    Location.eager_load(:measurements).where(['measurements.till_date_time >= ?', (Time.current - n.hour)])
+  def locations_with_measurements_from_last_n_hours(number_of_hours)
+    Location.eager_load(:measurements)
+      .where(['measurements.till_date_time >= ?', (Time.current - number_of_hours.hour)])
   end
 end

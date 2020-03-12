@@ -413,6 +413,7 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
   def locations_repository
     LocationsRepository.new
   end
+
   def hourly_stats_params
     params.require(:date)
     params.require(:location_id)
