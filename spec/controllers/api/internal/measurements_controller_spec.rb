@@ -89,8 +89,9 @@ RSpec.describe API::Internal::MeasurementsController, type: :controller do
       it 'returns no measurement for location a' do
         expect(response.body).to have_json_path('data')
         expect(response.body).to have_json_size(2).at_path('data')
-        expect(response.body).to have_json_path('data/0/location_name')
-        expect(response.body).to be_json_eql(location_a.name.to_json).at_path('data/0/location_name')
+        expect(response.body).to have_json_path('data/1/location_name')
+        expect(response.body).to be_json_eql(location_a.name.to_json).at_path('data/1/location_name')
+        expect(response.body).to be_json_eql(nil.to_json).at_path('data/1/last_hour_measurement')
       end
     end
   end
