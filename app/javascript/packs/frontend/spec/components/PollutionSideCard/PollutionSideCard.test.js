@@ -66,8 +66,8 @@ describe("Pollution Side Card", () => {
       "brak pomiaru"
     );
     expect(wrapperEmpty.find("PollutionSpecificData").prop("data")).toEqual([
-      { name: "PM 10", value: "--" },
-      { name: "PM 2.5", value: "--" }
+      { name: "PM 10", value: null },
+      { name: "PM 2.5", value: null }
     ]);
   });
 });
