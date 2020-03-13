@@ -7,7 +7,7 @@ class LastHourMeasurementsAssigner
         .map(&:last_hour_measurement).compact
       API::Internal::LocationWithLastMeasurementPresenter.new(
         location, last_hour_measurement, last_hour_measurements_by_location_name
-      )
+      ).to_hash
     end
     data
   end
