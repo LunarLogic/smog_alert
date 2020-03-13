@@ -55,36 +55,36 @@ class API::Internal::ArticlesController < API::Internal::BaseController
           end
           property :meta do
             key :type, :object
-              property :pagination do
-                key :type, :object
-                property :per_page do
-                  key :type, :string
-                end
-                property :total_pages do
-                  key :type, :string
-                end
-                property :total_objects do
-                  key :type, :string
-                end
-                property :prev_page do
-                  key :type, :string
-                end
-                property :current_page do
-                  key :type, :string
-                end
-                property :next_page do
-                  key :type, :string
-                end
-                property :is_first_page do
-                  key :type, :string
-                end
-                property :is_last_page do
-                  key :type, :string
-                end
-                property :is_page_out_of_range do
-                  key :type, :string
-                end
+            property :pagination do
+              key :type, :object
+              property :per_page do
+                key :type, :string
               end
+              property :total_pages do
+                key :type, :string
+              end
+              property :total_objects do
+                key :type, :string
+              end
+              property :prev_page do
+                key :type, :string
+              end
+              property :current_page do
+                key :type, :string
+              end
+              property :next_page do
+                key :type, :string
+              end
+              property :is_first_page do
+                key :type, :string
+              end
+              property :is_last_page do
+                key :type, :string
+              end
+              property :is_page_out_of_range do
+                key :type, :string
+              end
+            end
           end
         end
       end
