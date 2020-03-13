@@ -146,7 +146,7 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
   end
 
   def current
-    locations_with_measurements = locations_repository.fetch_locations_with_measurements_from_hour
+    locations_with_measurements = locations_repository.fetch_locations_with_measurements_from_last_hour
     data = LastHourMeasurementsAssigner.new.call(locations_with_measurements)
     render json: { data: data }
   end
