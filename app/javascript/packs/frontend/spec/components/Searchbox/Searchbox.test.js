@@ -1,6 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import { Searchbox } from "../../../components/Searchbox/Searchbox";
+import simulateSearchboxChange from "../../helpers/simulateSearchboxChange";
 
 describe("Searchbox component", () => {
   let wrapper;
@@ -25,22 +26,21 @@ describe("Searchbox component", () => {
   });
 
   it("on focus should render list with all options", () => {
-    expect(wrapper.find("li")).toHaveLength(0);
-    input.simulate("focus");
-    expect(wrapper.find("li")).toHaveLength(4);
+    expect(wrapper.find("Option")).toHaveLength(0);
+    input.simulate("change");
+    expect(wrapper.find("Option")).toHaveLength(4);
   });
 
   it("should render list with options filtered by the input value", () => {
-    input.simulate("focus");
-    input.simulate("change", { target: { value: "Brze" } });
-    expect(wrapper.find("li")).toHaveLength(2);
+    simulateSearchboxChange(wrapper, "Brze");
+    expect(wrapper.find("Option")).toHaveLength(2);
   });
 
   it("should set input value to the one typed in and after choosing an option from list it should clear out", () => {
-    input.simulate("focus");
-    input.simulate("change", { target: { value: "Nie" } });
+    simulateSearchboxChange(wrapper, "Nie");
+
     expect(wrapper.find("input").props().value).toEqual("Nie");
-    wrapper.find("li").simulate("click");
+    wrapper.find("Option").simulate("click");
     expect(location).toBe("Nielepice"); // checks additionally whether dispatch is called and returns correct value;
     expect(wrapper.find("input").props().value).toEqual("");
   });

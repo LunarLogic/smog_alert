@@ -13,6 +13,7 @@ import {
   mockGettingOrganizationCurrentData
 } from "./helpers/mockHelpers";
 import flushPromises from "./helpers/flushPromises";
+import simulateSearchboxChange from "./helpers/simulateSearchboxChange";
 
 beforeEach(() => {
   const mockAdapter = new MockAdapter(axios);
@@ -60,13 +61,11 @@ describe("Integration test for Homepage", () => {
     await flushPromises();
     wrapper.update();
 
-    const input = wrapper.find("input");
-    input.simulate("focus");
-    input.simulate("change", { target: { value: "Brzoskwinia" } });
+    simulateSearchboxChange(wrapper, "Brzoskwinia");
     expect(wrapper.find("input").props().value).toEqual("Brzoskwinia");
 
     wrapper
-      .find("li")
+      .find("Option")
       .at(0)
       .simulate("click");
     expect(wrapper.find("input").props().value).toEqual("");
