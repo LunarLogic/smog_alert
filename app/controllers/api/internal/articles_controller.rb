@@ -16,7 +16,7 @@ class API::Internal::ArticlesController < API::Internal::BaseController
         key :in, :path
         key :required, false
         key :type, :integer
-        #  default: 5
+        key :default, 5
       end
       parameter do
         key :name, :page
@@ -24,7 +24,7 @@ class API::Internal::ArticlesController < API::Internal::BaseController
         key :in, :path
         key :required, false
         key :type, :integer
-        #  default: 1
+        key :default, 1
       end
       response 200 do
         key :description, 'Array of articles'
