@@ -9,29 +9,28 @@ describe '/api/internal/measurements' do
       measurement = FactoryBot.create(:measurement, till_date_time: Time.current, location: location)
       expected_response = {
         data: [
-        {
-          location_id: location.id,
-          location_name: location.name,
-          location_street: location.street,
-          location_display_name: location.name,
-          lat: location.latitude,
-          lng: location.longitude,
-          status_of_locations_grouped_by_name: 'bardzo dobry',
-          last_hour_measurement:
           {
-            from_date_time: measurement.from_date_time,
-            till_date_time: measurement.till_date_time,
-            values: [
-              { name: 'PM 10', value: measurement.pm10 },
-              { name: 'PM 2.5', value: measurement.pm25 },
-            ],
-            status: 'bardzo dobry',
-            advice: measurement.advice
+            location_id: location.id,
+            location_name: location.name,
+            location_street: location.street,
+            location_display_name: location.name,
+            lat: location.latitude,
+            lng: location.longitude,
+            status_of_locations_grouped_by_name: 'bardzo dobry',
+            last_hour_measurement:
+            {
+              from_date_time: measurement.from_date_time,
+              till_date_time: measurement.till_date_time,
+              values: [
+                { name: 'PM 10', value: measurement.pm10 },
+                { name: 'PM 2.5', value: measurement.pm25 },
+              ],
+              status: 'bardzo dobry',
+              advice: measurement.advice
+            },
           },
-        },
-      ]}.to_json
-      location_id = location.id
-      year = location.measurements.last.date.year
+        ]
+      }.to_json
       get current_api_internal_measurements_path
       expect(JSON.parse(response.body)).to eq(JSON.parse(expected_response))
     end
