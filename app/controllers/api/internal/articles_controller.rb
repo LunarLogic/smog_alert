@@ -2,14 +2,30 @@ class API::Internal::ArticlesController < API::Internal::BaseController
   include Swagger::Blocks
 
   swagger_path '/api/internal/articles' do
-    operation :get do
-      key :summary, 'Get all published articles'
+    operation  :get do
+      key :summary, 'Get set of published articles'
       key :produces, [
         'application/json',
       ]
       key :tags, [
         'articles',
       ]
+      parameter do
+        key :name, :per_page
+        key :description, 'Number of articles per page'
+        key :in, :path
+        key :required, false
+        key :type, :integer
+        #  default: 5
+      end
+      parameter do
+        key :name, :page
+        key :description, 'Current page number'
+        key :in, :path
+        key :required, false
+        key :type, :integer
+        #  default: 1
+      end
       response 200 do
         key :description, 'Array of articles'
         schema do
@@ -36,6 +52,39 @@ class API::Internal::ArticlesController < API::Internal::BaseController
                 key :type, :string
               end
             end
+          end
+          property :meta do
+            key :type, :object
+              property :pagination do
+                key :type, :object
+                property :per_page do
+                  key :type, :string
+                end
+                property :total_pages do
+                  key :type, :string
+                end
+                property :total_objects do
+                  key :type, :string
+                end
+                property :prev_page do
+                  key :type, :string
+                end
+                property :current_page do
+                  key :type, :string
+                end
+                property :next_page do
+                  key :type, :string
+                end
+                property :is_first_page do
+                  key :type, :string
+                end
+                property :is_last_page do
+                  key :type, :string
+                end
+                property :is_page_out_of_range do
+                  key :type, :string
+                end
+              end
           end
         end
       end
