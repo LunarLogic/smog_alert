@@ -2,7 +2,7 @@ class API::Internal::ArticlesController < API::Internal::BaseController
   include Swagger::Blocks
 
   swagger_path '/api/internal/articles' do
-    operation  :get do
+    operation :get do
       key :summary, 'Get set of published articles'
       key :produces, [
         'application/json',
@@ -58,31 +58,31 @@ class API::Internal::ArticlesController < API::Internal::BaseController
             property :pagination do
               key :type, :object
               property :per_page do
-                key :type, :string
+                key :type, :integer
               end
               property :total_pages do
-                key :type, :string
+                key :type, :integer
               end
               property :total_objects do
-                key :type, :string
+                key :type, :integer
               end
               property :prev_page do
-                key :type, :string
+                key :type, :integer
               end
               property :current_page do
-                key :type, :string
+                key :type, :integer
               end
               property :next_page do
-                key :type, :string
+                key :type, :integer
               end
               property :is_first_page do
-                key :type, :string
+                key :type, :boolean
               end
               property :is_last_page do
-                key :type, :string
+                key :type, :boolean
               end
               property :is_page_out_of_range do
-                key :type, :string
+                key :type, :boolean
               end
             end
           end
