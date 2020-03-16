@@ -32,7 +32,7 @@ describe '/api/internal/measurements' do
         ]
       }.to_json
       get current_api_internal_measurements_path
-      expect(JSON.parse(response.body)).to eq(JSON.parse(expected_response))
+      expect(response.body).to be_json_eql(expected_response)
     end
   end
 
@@ -57,12 +57,11 @@ describe '/api/internal/measurements' do
             'status' => 'zbyt mało danych'
           },
         ]
-      }
+      }.to_json
       location_id = location.id
       year = location.measurements.last.date.year
       get calendar_values_api_internal_measurements_path(location_id: location_id, year: year)
-      json = JSON.parse(response.body)
-      expect(json).to eq(expected_response)
+      expect(response.body).to be_json_eql(expected_response)
     end
 
     it 'responds with 422 status when missing params' do
