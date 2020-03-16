@@ -26,14 +26,7 @@ export const MapSection = ({ chosenCity, getChosenCity }) => {
       </div>
       <div className="map-section__content">
         <div className="map-section__content--map">
-          <ScrollLink
-            to="map-section__content--info"
-            smooth={true}
-            duration={500}
-            offset={-100}
-          >
-            <Map />
-          </ScrollLink>
+          <Map />
         </div>
         <Element
           className="map-section__content--info"
