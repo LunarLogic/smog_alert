@@ -5,23 +5,8 @@ class API::Internal::ContactFormController < API::Internal::BaseController
     if data != {}
       render json: { errors: data }
     else # no errors
-      render json: { email: contact_form_params }
-    end
-  end
-
-  def prepare_email(contact_form_params)
-    { email: contact_form_params }  
-  end
-
-  def send_email
-    email = prepare_email(contact_form_params)
-    #  if email sent 
-    sender_response = EmailSender.new.call(email)
-    if sender_response == "OK"
-      feedback = "Your email was sent"
-    else
-    # if errors
-      feedback = "Your email was NOT sent"
+      # ContactMailer.with(contact_form_params).contact_form_email.deliver_now
+      render json: { email: ContactMailer.with(contact_form_params).contact_form_email.message }
     end
   end
 
