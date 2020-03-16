@@ -25,6 +25,22 @@ describe("Pollution Card component", () => {
     }
   };
 
+  const mockChosenCityWithPartialLastHourMeasurementData = {
+    last_hour_measurement: {
+      values: [
+        {
+          name: "PM 10",
+          value: null
+        },
+        {
+          name: "PM 2.5",
+          value: 36.7
+        }
+      ],
+      status: null
+    }
+  };
+
   it("Check if component renders correctly even though no data for last_hour_measurement has been provided", () => {
     wrapper = mount(
       <PollutionCard
@@ -49,6 +65,21 @@ describe("Pollution Card component", () => {
         .find(".card-pollution__current-data-specific-primary-value--bold")
         .text()
     ).toEqual("23");
+  });
+
+  it("Check how component behaves with one indicator null however status provided", () => {
+    wrapper = mount(
+      <PollutionCard
+        chosenCityData={mockChosenCityWithPartialLastHourMeasurementData}
+      />
+    );
+    expect(
+      wrapper
+        .find(".card-pollution__current-data-overview")
+        .children()
+        .at(1)
+        .text()
+    ).toEqual("brak pomiaru");
   });
 
   it("Check how component behaves with no data provided at all", () => {
