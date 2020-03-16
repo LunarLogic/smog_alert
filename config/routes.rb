@@ -18,6 +18,8 @@ Rails.application.routes.draw do
       end
     end
     resources :organizations
+    resources :characters
+    resources :characters_book_forms, only: [:new, :create]
     resources :articles do
       member do
         patch :publish, :unpublish

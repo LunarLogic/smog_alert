@@ -1,0 +1,13 @@
+<div class="header">
+  <h1>Dodaj postać</h1>
+</div>
+<%= simple_form_for [:admin, @characters_book_form] do |f| %>
+  <%= f.input :first_name, label: 'Imię postaci' %>
+  <%= f.input :last_name, label: 'Nazwisko postaci' %>
+  <%= f.input :title, label: 'Tytuł ksiązki' %>
+  <%= f.input :description, label: 'Opis' %>
+  <%= f.input :author, label: 'Autor' %>
+  <%= f.input :number_of_pages, label: 'Liczba stron' %>
+  <%= f.input :publishment_year, label: 'Rok publikacji' %>
+  <%= f.submit 'Zapisz postać', class: 'btn btn-primary' %>
+<% end %>
