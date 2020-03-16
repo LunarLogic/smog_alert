@@ -13,6 +13,13 @@ import {
   mockGettingOrganizationCurrentData
 } from "./helpers/mockHelpers";
 import flushPromises from "./helpers/flushPromises";
+import simulateSearchboxChange from "./helpers/simulateSearchboxChange";
+
+beforeEach(() => {
+  const mockAdapter = new MockAdapter(axios);
+  mockGettingCurrentMeasurements(mockAdapter);
+  mockGettingOrganizationCurrentData(mockAdapter);
+});
 
 describe("Routing component", () => {
   it("invalid path should redirect to 404", async () => {
@@ -55,9 +62,6 @@ describe("Routing component", () => {
 
 describe("Integration test for Homepage", () => {
   it("list opens", async () => {
-    const mockAdapter = new MockAdapter(axios);
-    mockGettingCurrentMeasurements(mockAdapter);
-    mockGettingOrganizationCurrentData(mockAdapter);
     const wrapper = mount(
       <Provider store={store}>
         <MemoryRouter initialEntries={["/"]}>
@@ -69,13 +73,11 @@ describe("Integration test for Homepage", () => {
     await flushPromises();
     wrapper.update();
 
-    const input = wrapper.find("input");
-    input.simulate("focus");
-    input.simulate("change", { target: { value: "Brzoskwinia" } });
+    simulateSearchboxChange(wrapper, "Brzoskwinia");
     expect(wrapper.find("input").props().value).toEqual("Brzoskwinia");
 
     wrapper
-      .find("li")
+      .find("Option")
       .at(0)
       .simulate("click");
     expect(wrapper.find("input").props().value).toEqual("");
