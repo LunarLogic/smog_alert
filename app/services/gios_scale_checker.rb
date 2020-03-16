@@ -10,6 +10,8 @@ class GiosScaleChecker
   }.freeze
 
   def call
+    return unless @value
+
     edge_values = EDGE_VALUES[@particle]
 
     if @value >= 0 && @value <= edge_values[0]

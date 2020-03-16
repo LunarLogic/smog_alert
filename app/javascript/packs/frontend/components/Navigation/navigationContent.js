@@ -1,12 +1,12 @@
 const navigationContent = {
   links: [
+    { displayName: "Strona Główna", path: "/" },
     { displayName: "Aktualności", path: "/aktualnosci" },
-    { displayName: "Czym oddycham", path: "/czym-oddycham" },
+    { displayName: "Czym Oddycham", path: "/czym-oddycham" },
     { displayName: "Rozwiązania", path: "/rozwiazania" },
-    { displayName: "Statystyki", path: "/statistics" }
-    // { displayName: "Mapa", path: "/map" }
+    { displayName: "Statystyki", path: "/statystyki" }
   ],
-  button: "Zmień Piec",
+  button: { displayName: "Zmień Piec", path: "/zmien-piec" },
   brand: "Zabierzowski Alarm Smogowy"
 };
 

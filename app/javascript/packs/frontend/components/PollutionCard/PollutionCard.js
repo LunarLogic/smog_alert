@@ -26,7 +26,7 @@ export const PollutionCard = ({ chosenCityData }) => {
       <div className="card-pollution__current-data-overview">
         <div className="card-pollution__current-data-overview-face">{emot}</div>
         <OverviewText color={color}>
-          {last_hour_measurement
+          {last_hour_measurement && last_hour_measurement.status !== null
             ? last_hour_measurement.status
             : "brak pomiaru"}
         </OverviewText>

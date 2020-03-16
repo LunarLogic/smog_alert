@@ -13,7 +13,7 @@ import { setCurrentPath } from "../../redux/application/application.actions";
 import { createStructuredSelector } from "reselect";
 import { selectOrganizationDetails } from "../../redux/application/application.selectors";
 
-const Error404 = ({ setCurrentPath, organizationDetails }) => {
+export const Error404 = ({ setCurrentPath, organizationDetails }) => {
   useEffect(() => {
     setCurrentPath("error");
   });

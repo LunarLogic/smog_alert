@@ -38,7 +38,7 @@ describe("PollutionComparison", () => {
         .find(".pollution-bar__info-location")
         .at(1)
         .text()
-    ).toEqual("Zabierzów, Kolejowa 26");
+    ).toEqual("Zabierzów, Wapienna");
     expect(
       wrapper
         .find(".pollution-bar__info-location")

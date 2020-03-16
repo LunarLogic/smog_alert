@@ -1,0 +1,109 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.charts-section {
+  display: flex;
+  flex-direction: column;
+  border-top: 0.1rem solid #c8c8cd;
+  margin-top: 7rem;
+  .custom-button {
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+    margin-left: 0 !important;
+  }
+  &__heading {
+    @include heading;
+    margin: 3.5rem 0;
+  }
+  &__subheading {
+    font-size: 2.8rem;
+    line-height: 3.4rem;
+    margin-top: 3.5rem;
+    margin-bottom: 3.5rem;
+    &--bold {
+      font-size: 3rem;
+      line-height: 3.8rem;
+      font-weight: 700;
+      text-transform: lowercase;
+    }
+  }
+  &__options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media only screen and (max-width: $bp-1000) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  &-dropdown {
+    &:first-of-type {
+      z-index: 20;
+    }
+    &:nth-of-type(2) {
+      z-index: 10;
+    }
+    width: 31%;
+    @media only screen and (max-width: $bp-1000) {
+      width: 30rem;
+    }
+    &__label {
+      font-size: 1.6rem;
+      line-height: 1.9rem;
+      font-weight: 700;
+      color: #747485;
+      margin-bottom: 0.8rem;
+    }
+    &__menu {
+      height: 10rem;
+      position: relative;
+    }
+  }
+  &__submit {
+    display: flex;
+    justify-content: flex-end;
+    @media only screen and (max-width: $bp-1000) {
+      justify-content: flex-start;
+    }
+  }
+  &-date-picker {
+    font-size: 1.6rem !important;
+    height: 10rem;
+    input {
+      padding: 2.4rem !important;
+      height: inherit;
+      width: inherit;
+      border: 0.1rem solid #c8c8cd !important;
+      border-radius: 0.4rem !important;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 1.6rem;
+    }
+    .react-datepicker {
+      font-size: 12px;
+      &-year-header {
+        font-size: 16px;
+      }
+      &__navigation {
+        top: 13px;
+      }
+      &-wrapper {
+        width: 100%;
+      }
+      &__header {
+        padding-bottom: 8px;
+      }
+      &-popper {
+        z-index: 20;
+      }
+    }
+    .react-datepicker__month,
+    .react-datepicker__month-text,
+    .react-datepicker__month .react-datepicker__quarter-text {
+      margin: 5px;
+    }
+  }
+}

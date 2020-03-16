@@ -48,7 +48,7 @@ export const CalendarDailyInfo = ({
         <div className="calendar-daily-info__box-measurements">
           <CalendarDailyInfoMeasurement>
             <CalendarDailyInfoMeasurementName>
-              liczba pomiarów:
+              liczba pomiarów*:
             </CalendarDailyInfoMeasurementName>
             <CalendarDailyInfoMeasurementValue>
               {number_of_measurements}
@@ -72,10 +72,11 @@ export const CalendarDailyInfo = ({
       </div>
       <div>
         <CalendarDailyInfoDisclaimer>
-          * Średnia wartość na podstawie co najmniej 18 pomiarów
+          * Pomiar wykonywany jest raz na godzinę.
         </CalendarDailyInfoDisclaimer>
         <CalendarDailyInfoDisclaimer>
-          ** Pomiar wykonywany jest raz na godzinę.
+          ** Średnia wartość PM 10 w postaci kolorowej ikony prezentowana jest
+          przy co najmniej 18 pomiarach
         </CalendarDailyInfoDisclaimer>
       </div>
     </div>

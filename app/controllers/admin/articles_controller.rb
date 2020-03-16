@@ -9,6 +9,7 @@ class Admin::ArticlesController < Admin::BaseController
 
   def new
     @article = Article.new
+    @tags_names = Tag.pluck(:name)
   end
 
   def create
@@ -25,6 +26,7 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def edit
+    @tags_names = Tag.pluck(:name)
   end
 
   def update
@@ -39,6 +41,7 @@ class Admin::ArticlesController < Admin::BaseController
 
   def destroy
     @article.destroy
+    article_tags_repository.delete_obsolete_tags
     flash[:success] = 'Pomyślnie usunięto wpis'
     redirect_to admin_articles_path
   end
@@ -73,6 +76,10 @@ class Admin::ArticlesController < Admin::BaseController
 
   def articles_repository
     ArticlesRepository.new
+  end
+
+  def article_tags_repository
+    ArticleTagsRepository.new
   end
 
   def article_params

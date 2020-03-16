@@ -13,7 +13,7 @@ gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5'
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+# gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
@@ -29,7 +29,6 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'webpacker', '~> 4.0'
 
-gem 'bootstrap', '~> 4.3.1'
 gem 'faker', '~> 2.10'
 
 gem 'simple_form'
@@ -43,6 +42,7 @@ gem 'pundit'
 gem 'rest-client'
 
 gem 'sidekiq'
+gem 'sidekiq-unique-jobs'
 gem 'whenever', require: false
 
 gem 'geocoder', '~> 1.6'
