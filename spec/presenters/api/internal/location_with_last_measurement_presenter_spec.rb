@@ -27,7 +27,7 @@ RSpec.describe API::Internal::LocationWithLastMeasurementPresenter do
     }
     expect(described_class.new(location, measurement, [measurement]).to_hash).to eq(expected_response)
   end
-  
+
   context 'when no last hour measurement' do
     it 'it returns array with hash with nil as last hour measurement' do
       expected_response = {

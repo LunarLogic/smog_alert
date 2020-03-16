@@ -5,6 +5,7 @@ RSpec.describe LastHourMeasurementsAssigner do
   let(:location_2) { FactoryBot.create(:location) }
 
   it 'it returns array with hash with last hour measurement' do
+    freeze_time
     measurement = FactoryBot.create(:measurement, till_date_time: 5.minutes.ago, location: location)
     expected_response = [
       {
