@@ -1,7 +1,7 @@
 class Location < ApplicationRecord
   has_many :measurements, dependent: :destroy
   has_one :last_hour_measurement,
-          -> { where(['till_date_time >= ?', (Time.current - 1.hour)]).order('till_date_time DESC') },
+          -> { where(['till_date_time >= ?', 1.hour.ago]).order('till_date_time DESC') },
           class_name: 'Measurement',
           inverse_of: :location
   validates :name, uniqueness: { scope: :street }

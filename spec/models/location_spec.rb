@@ -13,7 +13,8 @@ RSpec.describe Location, type: :model do
 
   describe '#last_hour_measurement' do
     let(:location) { FactoryBot.create(:location) }
-    it 'returns a the most recent measurement from past hour' do
+    
+    it 'returns the most recent measurement from past hour' do
       FactoryBot.create(:measurement, till_date_time: 5.minutes.ago, location: location)
       measurement = FactoryBot.create(:measurement, till_date_time: Time.current, location: location)
       expect(location.last_hour_measurement).to eq(measurement)
