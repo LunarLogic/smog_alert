@@ -73,7 +73,7 @@ function Measurement(props) {
           <p>{props.measurement.location_name}</p>
         </div>
         <div className="col-5">
-          <p>{props.measurement.last_hour_measurement ? props.measurement.last_hour_measurement.from_date_time : "brak danych z ostatniej godziny"}</p>
+          <p>{props.measurement.last_hour_measurement ? props.measurement.last_hour_measurement.till_date_time : "brak danych z ostatniej godziny"}</p>
         </div>
         <div className="col-2">
           <button disabled={!props.measurement.last_hour_measurement} className="btn btn-light btn-sm" onClick={() => props.onClick(props.index)}>Pokaż</button>
@@ -84,10 +84,11 @@ function Measurement(props) {
 }
 
 function MeasurementValues(props) {
+  const valuesList = props.measurements.map ((measurement, index) => (
+    <p key={measurement.name + props.index.toString()}>{measurement.name}: {measurement.value}</p>
+  ))
   return (
-    props.measurements.map ((measurement, index) => (
-      <p key={measurement.name + props.index.toString()}>{measurement.name}: {measurement.value}</p>
-    ))
+    <div>{valuesList}</div>
   )
 }
 
