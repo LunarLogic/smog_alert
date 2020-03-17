@@ -1,7 +1,7 @@
 import React from "react"
-import Articles from "../components/Articles"
-import Measurements from "../components/Measurements"
-import "../components/Dashboard.scss"
+import Articles from "./Articles"
+import Measurements from "./Measurements"
+import "./Dashboard.scss"
 // import { PropTypes } from "prop-types";
 
 class Dashboard extends React.Component {
