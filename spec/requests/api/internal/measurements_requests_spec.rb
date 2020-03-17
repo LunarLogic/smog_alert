@@ -4,6 +4,38 @@ describe '/api/internal/measurements' do
   let(:location) { FactoryBot.create(:location_with_measurements) }
   let(:measurement) { location.measurements.last }
 
+  describe 'GET /calendar_status' do
+    it 'repsonds with json containing the right data' do
+      measurement = FactoryBot.create(:measurement, till_date_time: Time.current, location: location)
+      expected_response = {
+        data: [
+          {
+            location_id: location.id,
+            location_name: location.name,
+            location_street: location.street,
+            location_display_name: location.name,
+            lat: location.latitude,
+            lng: location.longitude,
+            status_of_locations_grouped_by_name: 'bardzo dobry',
+            last_hour_measurement:
+            {
+              from_date_time: measurement.from_date_time,
+              till_date_time: measurement.till_date_time,
+              values: [
+                { name: 'PM 10', value: measurement.pm10 },
+                { name: 'PM 2.5', value: measurement.pm25 },
+              ],
+              status: 'bardzo dobry',
+              advice: measurement.advice
+            },
+          },
+        ]
+      }.to_json
+      get current_api_internal_measurements_path
+      expect(response.body).to be_json_eql(expected_response)
+    end
+  end
+
   describe 'GET /calendar_values' do
     it 'repsonds with json containing the right data' do
       expected_response = {
@@ -25,12 +57,11 @@ describe '/api/internal/measurements' do
             'status' => 'zbyt mało danych'
           },
         ]
-      }
+      }.to_json
       location_id = location.id
       year = location.measurements.last.date.year
       get calendar_values_api_internal_measurements_path(location_id: location_id, year: year)
-      json = JSON.parse(response.body)
-      expect(json).to eq(expected_response)
+      expect(response.body).to be_json_eql(expected_response)
     end
 
     it 'responds with 422 status when missing params' do

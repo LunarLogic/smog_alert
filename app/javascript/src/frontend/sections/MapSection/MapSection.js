@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
-import { Element } from "react-scroll";
+import { Element, Link as ScrollLink } from "react-scroll";
 
 import { PollutionComparison, Map } from "../../components";
 import { PollutionSideCard } from "../../components";

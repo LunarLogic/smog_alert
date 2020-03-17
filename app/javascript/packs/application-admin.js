@@ -10,4 +10,4 @@ require("@rails/ujs").start();
 import "bootstrap";
 import "../stylesheets/application-admin";
 
-import "./admin/article_form";
+import "../src/admin/article_form";
