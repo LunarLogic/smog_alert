@@ -3,6 +3,7 @@ class LocationsRepository
     Location.pluck(:installation_id) & ids
   end
 
-  def no_current_measurements
+  def locations_with_last_hour_measurement
+    Location.includes(:last_hour_measurement)
   end
 end

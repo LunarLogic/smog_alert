@@ -1,0 +1,75 @@
+@import "../../styles/variables";
+
+.searchbox {
+  width: 44rem;
+  @media only screen and (max-width: $bp-1200) {
+    margin: auto;
+  }
+  @media only screen and (max-width: $bp-600) {
+    width: 100%;
+    max-width: 53rem;
+  }
+  .react-select {
+    &-container {
+      width: inherit;
+      height: 6rem;
+    }
+    &__control {
+      border: 0.1rem solid #c8c8cd;
+      border-radius: 0.4rem;
+      height: inherit;
+      flex-direction: row-reverse;
+      overflow: hidden;
+    }
+    &__value-container {
+      font-size: 1.6rem;
+      line-height: 1.9rem;
+      margin-left: 1.2rem;
+    }
+    &__indicators {
+      background-color: #e9e9eb;
+      width: 5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    &__indicator-separator {
+      width: 0 !important;
+    }
+    &__dropdown-indicator {
+      svg {
+        width: 3.2rem;
+        height: 3.2rem;
+        color: #747485;
+      }
+    }
+    &__menu {
+      margin-top: 2px !important;
+      margin-bottom: 0;
+      &-list {
+        padding: 0 !important;
+        font-size: 1.6rem;
+        line-height: 1.9rem;
+      }
+      &-notice {
+        cursor: pointer;
+        padding: 2.1rem !important;
+        color: $warningColor !important;
+        &--is-focused {
+          background-color: $greyLighter !important;
+        }
+        &--no-options {
+          color: $warningColor !important;
+        }
+      }
+    }
+    &__option {
+      cursor: pointer;
+      color: #020221;
+      padding: 2.1rem !important;
+      &--is-focused {
+        background-color: $greyLighter !important;
+      }
+    }
+  }
+}

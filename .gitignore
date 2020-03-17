@@ -37,6 +37,7 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+settings.json
 
 # dependencies
 /.pnp

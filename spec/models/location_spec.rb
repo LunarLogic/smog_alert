@@ -10,4 +10,18 @@ RSpec.describe Location, type: :model do
     it { should validate_presence_of(:installation_id) }
     it { should validate_uniqueness_of(:installation_id) }
   end
+
+  describe '#last_hour_measurement' do
+    let(:location) { FactoryBot.create(:location) }
+
+    it 'returns the most recent measurement from past hour' do
+      FactoryBot.create(:measurement, till_date_time: 5.minutes.ago, location: location)
+      measurement = FactoryBot.create(:measurement, till_date_time: Time.current, location: location)
+      expect(location.last_hour_measurement).to eq(measurement)
+    end
+
+    it 'returns nil if location doesn\'t have measurement from past hour' do
+      expect(location.last_hour_measurement).to eq(nil)
+    end
+  end
 end
