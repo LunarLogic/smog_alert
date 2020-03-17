@@ -9,14 +9,6 @@ class Installations extends React.Component {
     };
   }
 
-  handleClick(index) {
-    if (this.state.chosenInstallation === index) {
-      this.setState({chosenInstallation: undefined})
-    } else {
-      this.setState({chosenInstallation: index})
-    }
-  }
-
   componentDidMount() {
     const url = "/api/internal/locations/no_current_measurements"
     fetch(url)
@@ -30,11 +22,36 @@ class Installations extends React.Component {
       .catch(() => console.log("Didn't work"));
   }
 
+  handleClick(installationId) {
+    if (this.state.chosenInstallationId === installationId) {
+      this.setState({chosenInstallationId: undefined})
+      this.setState({ measurement: undefined })
+    } else {
+      const url = "/api/internal/measurements/last_available?location_id=" + installationId.toString()
+      fetch(url)
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error("Network response was not ok.");
+        })
+        .then(response => {
+          this.setState({ measurement: response.data })
+          this.setState({chosenInstallationId: installationId})
+        })
+        .catch(() => console.log("Didn't work"));
+    }
+  }
+
   render() {
     const installations = this.state.installations;
     const allInstallations = installations.map((installation) => (
-      <div key={installation.id} className="row">
-        <Installation installation={installation} />
+      <div key={installation.id}>
+        <div className="row">
+          <Installation installation={installation} onClick = {(id) => this.handleClick(id)}/>
+        </div>
+        {this.state.chosenInstallationId === installation.id &&
+          <LastMeasurement measurement={this.state.measurement}/>}
       </div>
     ));
     const noInstallations = (
@@ -69,10 +86,29 @@ function Installation(props) {
         <p>{props.installation.street}</p>
       </div>
       <div className="col-3">
-        <button>Ostatni pomiar</button>
+        <button className="btn btn-link btn-sm" onClick={() => props.onClick(props.installation.id)}>Czas ostatniego pomiaru</button>
       </div>
     </>
   )
+}
+
+function LastMeasurement(props) {
+  const response = () => {
+    if (!props.measurement) {
+      return (
+        <p>Brak pomiarów dla tego czujnika</p>
+      )
+    } else {
+      const date = new Date(props.measurement.till_date_time)
+      return (
+        <p>{date.toLocaleString()}</p>
+      )
+    }
+  }
+  return(
+    <div className="last-measurement">
+      {response()}
+    </div>)
 }
 
 
