@@ -8,6 +8,6 @@ class LocationsRepository
   end
 
   def locations_without_last_hour_measurement
-    Location.left_outer_joins(:last_hour_measurement).where( measurements: {id: nil})
+    Location.left_outer_joins(:last_hour_measurement).where(measurements: { id: nil }).order('created_at ASC')
   end
 end
