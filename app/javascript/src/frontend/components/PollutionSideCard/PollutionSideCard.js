@@ -90,8 +90,8 @@ export const PollutionSideCard = ({
                 data.last_hour_measurement
                   ? data.last_hour_measurement.values
                   : [
-                      { name: "PM 10", value: "--" },
-                      { name: "PM 2.5", value: "--" }
+                      { name: "PM 10", value: null },
+                      { name: "PM 2.5", value: null }
                     ]
               }
             />
