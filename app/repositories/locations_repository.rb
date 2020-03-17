@@ -6,4 +6,8 @@ class LocationsRepository
   def locations_with_last_hour_measurement
     Location.includes(:last_hour_measurement)
   end
+
+  def locations_without_last_hour_measurement
+    Location.left_outer_joins(:last_hour_measurement).where( measurements: {id: nil})
+  end
 end

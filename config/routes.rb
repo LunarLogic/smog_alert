@@ -52,6 +52,11 @@ Rails.application.routes.draw do
           get :current_data
         end
       end
+      resources :locations, only: [] do
+        collection do
+          get :no_current_measurements
+        end
+      end
     end
   end
 
