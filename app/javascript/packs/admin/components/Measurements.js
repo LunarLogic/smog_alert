@@ -31,9 +31,7 @@ class Measurements extends React.Component {
   }
 
   displayMeasurementValues(index) {
-    if (this.state.chosenMeasurement === index) {
-      return <MeasurementValues measurements={this.state.measurements[index].last_hour_measurement.values}/>
-    }
+    return <MeasurementValues measurements={this.state.measurements[index].last_hour_measurement.values}/>
   }
 
   render() {
@@ -41,7 +39,8 @@ class Measurements extends React.Component {
     const allMeasurements = measurements.map((measurement, index) => (
       <>
         <Measurement measurement={measurement} index={index} onClick = {(i) => this.handleClick(i)} />
-        {this.displayMeasurementValues(index)}
+        {this.state.chosenMeasurement === index &&
+            <MeasurementValues measurements={this.state.measurements[index].last_hour_measurement.values} index={index}/>}
       </>
     ));
     const noMeasurement = (
@@ -66,33 +65,30 @@ class Measurements extends React.Component {
   }
 }
 
-class Measurement extends React.Component {
-  render() {
-    return (
-      <div key={this.props.index}>
-        <div className="row">
-          <div className="col-5">
-            <p>{this.props.measurement.location_name}</p>
-          </div>
-          <div className="col-5">
-            <p>{this.props.measurement.last_hour_measurement ? this.props.measurement.last_hour_measurement.from_date_time : "brak danych z ostatniej godziny"}</p>
-          </div>
-          <div className="col-2">
-            <button disabled={!this.props.measurement.last_hour_measurement} className="btn btn-light btn-sm" onClick={() => this.props.onClick(this.props.index)}>Pokaż</button>
-          </div>
+function Measurement(props) {
+  return (
+    <div>
+      <div key={props.measurement.display_name} className="row">
+        <div className="col-5">
+          <p>{props.measurement.location_name}</p>
+        </div>
+        <div className="col-5">
+          <p>{props.measurement.last_hour_measurement ? props.measurement.last_hour_measurement.from_date_time : "brak danych z ostatniej godziny"}</p>
+        </div>
+        <div className="col-2">
+          <button disabled={!props.measurement.last_hour_measurement} className="btn btn-light btn-sm" onClick={() => props.onClick(props.index)}>Pokaż</button>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
-class MeasurementValues extends React.Component {
-  render() {
-    return (
-      this.props.measurements.map ((measurement, index) => (
-        <p key={measurement.name}>{measurement.name}: {measurement.value}</p>
-      ))
-    )
-  }
+function MeasurementValues(props) {
+  return (
+    props.measurements.map ((measurement, index) => (
+      <p key={measurement.name + props.index.toString()}>{measurement.name}: {measurement.value}</p>
+    ))
+  )
 }
+
 export default Measurements;
