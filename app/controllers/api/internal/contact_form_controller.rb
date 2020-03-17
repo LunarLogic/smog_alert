@@ -1,12 +1,14 @@
 class API::Internal::ContactFormController < API::Internal::BaseController
   skip_before_action :verify_authenticity_token
+
   def create
-    data = ContactFormValidator.new.call(contact_form_params)
-    if data != {}
-      render json: { errors: data }
-    else # no errors
-      # ContactMailer.with(contact_form_params).contact_form_email.deliver_now
-      render json: { email: ContactMailer.with(contact_form_params).contact_form_email.message }
+    contact_form = ContactForm.new(contact_form_params)
+    if contact_form.valid?
+      email = ContactMailer.with(contact_form_params).contact_form_email
+      email.deliver_now
+      render plain: email.message
+    else
+      render json: { errors: contact_form.errors.messages }
     end
   end
 
