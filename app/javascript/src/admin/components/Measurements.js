@@ -38,9 +38,9 @@ class Measurements extends React.Component {
     const measurements = this.state.measurements;
     const allMeasurements = measurements.map((measurement, index) => (
       <>
-        <Measurement measurement={measurement} index={index} onClick = {(i) => this.handleClick(i)} />
+        <Measurement measurement={measurement} index={index} onClick = {(i) => this.handleClick(i)} key={props.measurement.display_name} />
         {this.state.chosenMeasurement === index &&
-            <MeasurementValues measurements={this.state.measurements[index].last_hour_measurement.values} index={index}/>}
+            <MeasurementValues measurements={this.state.measurements[index].last_hour_measurement.values}/>}
       </>
     ));
     const noMeasurement = (
@@ -68,7 +68,7 @@ class Measurements extends React.Component {
 function Measurement(props) {
   return (
     <div>
-      <div key={props.measurement.display_name} className="row">
+      <div className="row">
         <div className="col-5">
           <p>{props.measurement.location_name}</p>
         </div>
@@ -85,7 +85,7 @@ function Measurement(props) {
 
 function MeasurementValues(props) {
   const valuesList = props.measurements.map ((measurement, index) => (
-    <p key={measurement.name + props.index.toString()}>{measurement.name}: {measurement.value}</p>
+    <p key={index.toString()}>{measurement.name}: {measurement.value}</p>
   ))
   return (
     <div>{valuesList}</div>

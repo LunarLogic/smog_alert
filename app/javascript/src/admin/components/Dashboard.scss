@@ -1,4 +1,19 @@
-h2 {
-  text-align: center;
-  color: #4259ef;
+#dashboard-react {
+  h2 {
+    text-align: center;
+    color: #4259ef;
+    margin-bottom: 20px;
+  }
+
+  #dashboard-installations-list {
+    margin-bottom: 50px;
+  }
+
+  .no-installations-dashboard {
+    p {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      text-align: center;
+    }
+  }
 }

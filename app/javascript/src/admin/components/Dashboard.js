@@ -1,6 +1,6 @@
 import React from "react"
 import Articles from "./Articles"
-import Measurements from "./Measurements"
+import Installations from "./Installations"
 import "./Dashboard.scss"
 // import { PropTypes } from "prop-types";
 
@@ -9,7 +9,7 @@ class Dashboard extends React.Component {
     return (
       <>
         <Header />
-        <Measurements />
+        <Installations />
         <Articles />
       </>
     )
