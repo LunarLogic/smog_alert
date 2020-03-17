@@ -151,6 +151,12 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
     render json: { data: data }
   end
 
+  def last_available
+    location = Location.find(last_available_params[:location_id])
+    measurement = location.measurements.last
+    render json: { data: measurement }
+  end
+
   def calendar_daily_values
     location = Location.find(calendar_day_params[:location_id])
     date = calendar_day_params[:date]
@@ -430,5 +436,10 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
     params.require(:date)
     params.require(:location_id)
     params.permit([:date, :location_id])
+  end
+
+  def last_available_params
+    params.require(:location_id)
+    params.permit(:location_id)
   end
 end
