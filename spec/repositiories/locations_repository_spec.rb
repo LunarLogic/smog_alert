@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe LocationsRepository do
-  let!(:location1) {FactoryBot.create(:location)}
-  let!(:location2) {FactoryBot.create(:location)}
-  let!(:location3) {FactoryBot.create(:location)}
+  let!(:location1) { FactoryBot.create(:location) }
+  let!(:location2) { FactoryBot.create(:location) }
+  let!(:location3) { FactoryBot.create(:location) }
 
   describe '#locations_with_last_hour_measurement' do
     it 'returns locations that don\'t have measurement from last hour' do
