@@ -10,6 +10,11 @@ import { selectCitiesPollutionData } from "../../redux/redux.selectors";
 
 import { CalendarSection, ChartsSection } from "../../sections";
 import { Loader, PageTitle } from "../../components";
+import moment from "moment";
+
+// this is needed for react-yearly-calendar
+// to display months and days in Polish
+moment.locale("pl");
 
 import "./Statistics.scss";
 

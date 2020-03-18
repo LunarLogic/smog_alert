@@ -2,7 +2,7 @@ import React from "react";
 import { PropTypes } from "prop-types";
 
 import { PollutionIndexData } from "..";
-import { setLimit, setPercent, setEmot } from "../../helpers";
+import { setLimit, setPercent, setEmot, formatValue } from "../../helpers";
 import { PollutionOverviewText } from "./PollutionSpecificData.styles.jsx";
 import "./PollutionSpecificData.scss";
 
@@ -31,15 +31,17 @@ export const PollutionSpecificData = ({
           </PollutionOverviewText>
         </div>
         <div className="pollution-specific-data__info--specific">
-          {data.map((data, index) => {
+          {data.map(data => {
             const percent = setPercent(data.name, data.value);
+            const value = formatValue(data.value);
+            const limit = setLimit(data.name);
             return (
               <PollutionIndexData
-                key={`${index}-pollution-index-data`}
+                key={`${data.name}-pollution-index-data`}
                 indicator={data.name}
-                value={data.value !== null ? data.value.toString() : '--'}
-                percent={data.value !== "--" ? percent : "--"}
-                limit={setLimit(data.name)}
+                value={value}
+                percent={percent}
+                limit={limit}
               />
             );
           })}
