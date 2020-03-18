@@ -111,5 +111,4 @@ function LastMeasurement(props) {
     </div>)
 }
 
-
 export default Installations;
