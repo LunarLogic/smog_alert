@@ -112,7 +112,7 @@ describe '/api/internal/measurements' do
         expect(response.body).to have_json_path('data')
         expect(response.body).to have_json_size(24).at_path('data/average_pollution_by_hour/average_pm10')
         expect(response.body).to be_json_eql(3.25).at_path('data/average_pollution_by_hour/average_pm10/0/value')
-        expect(response.body).to be_json_eql('bardzo dobry'.to_json)
+        expect(response.body).to be_json_eql('doskonały'.to_json)
           .at_path('data/average_pollution_by_hour/average_pm25/13/status')
       end
     end
