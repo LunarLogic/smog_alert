@@ -8,10 +8,10 @@ import {
 describe("setGradient", () => {
   it("returns correct colors combination", () => {
     const mockLastHourMeasurement1 = {
-      status: "umiarkowany"
+      status: "średni"
     };
     const mockLastHourMeasurement2 = {
-      status: "dostateczny"
+      status: "zły"
     };
     expect(setGradient(mockLastHourMeasurement1).color1).toEqual(
       unhealthySecond

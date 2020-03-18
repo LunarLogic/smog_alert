@@ -1,10 +1,10 @@
 import {
-  veryGood,
+  excellent,
   good,
   moderate,
-  sufficient,
   bad,
-  veryBad
+  veryBad,
+  dramatic
 } from "./statusConstants.js";
 
 import {
@@ -16,12 +16,12 @@ import {
 } from "../styles/_variables.scss";
 
 const COLORS = {
-  [veryGood]: neutralColor,
+  [excellent]: neutralColor,
   [good]: neutralColor,
   [moderate]: unhealthyFirst,
-  [sufficient]: unhealthySecond,
-  [bad]: badFirst,
-  [veryBad]: badSecond
+  [bad]: unhealthySecond,
+  [veryBad]: badFirst,
+  [dramatic]: badSecond
 };
 
 export const setCloudColor = status => {

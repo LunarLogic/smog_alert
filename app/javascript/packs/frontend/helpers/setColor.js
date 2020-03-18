@@ -1,10 +1,10 @@
 import {
-  veryGood,
+  excellent,
   good,
   moderate,
-  sufficient,
   bad,
-  veryBad
+  veryBad,
+  dramatic
 } from "./statusConstants.js";
 
 import {
@@ -18,12 +18,12 @@ import {
 } from "../styles/_variables.scss";
 
 const SETTINGS = {
-  [veryGood]: goodFirst,
+  [excellent]: goodFirst,
   [good]: goodSecond,
   [moderate]: unhealthyFirst,
-  [sufficient]: unhealthySecond,
-  [bad]: badFirst,
-  [veryBad]: badSecond
+  [bad]: unhealthySecond,
+  [veryBad]: badFirst,
+  [dramatic]: badSecond
 };
 
 export const setColor = lastHourMeasurement => {

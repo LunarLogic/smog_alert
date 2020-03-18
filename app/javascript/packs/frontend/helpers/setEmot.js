@@ -1,29 +1,29 @@
 import {
-  VeryGoodEmot,
+  ExcellentEmot,
   GoodEmot,
   ModerateEmot,
-  SufficientEmot,
   BadEmot,
   VeryBadEmot,
+  DramaticEmot,
   NeutralEmot
 } from "../components/Emots";
 
 import {
-  veryGood,
+  excellent,
   good,
   moderate,
-  sufficient,
   bad,
-  veryBad
+  veryBad,
+  dramatic
 } from "./statusConstants.js";
 
 const EMOTS = {
-  [veryGood]: VeryGoodEmot,
+  [excellent]: ExcellentEmot,
   [good]: GoodEmot,
   [moderate]: ModerateEmot,
-  [sufficient]: SufficientEmot,
   [bad]: BadEmot,
-  [veryBad]: VeryBadEmot
+  [veryBad]: VeryBadEmot,
+  [dramatic]: DramaticEmot
 };
 
 export const setEmot = lastHourMeasurement => {

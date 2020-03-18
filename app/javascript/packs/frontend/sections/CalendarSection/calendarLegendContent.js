@@ -1,21 +1,21 @@
 export const calendarLegendContent = [
   {
-    status: "bardzo dobry"
+    status: "doskonały"
   },
   {
     status: "dobry"
   },
   {
-    status: "umiarkowany"
-  },
-  {
-    status: "dostateczny"
+    status: "średni"
   },
   {
     status: "zły"
   },
   {
     status: "bardzo zły"
+  },
+  {
+    status: "dramatyczny"
   },
   {
     status: "zbyt mało danych"

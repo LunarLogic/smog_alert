@@ -1,19 +1,19 @@
 import {
-  veryGood,
+  excellent,
   good,
   moderate,
-  sufficient,
   bad,
-  veryBad
+  veryBad,
+  dramatic
 } from "./statusConstants.js";
 
 const INDICATORS = {
-  [veryGood]: 1,
+  [excellent]: 1,
   [good]: 2,
   [moderate]: 3,
-  [sufficient]: 4,
-  [bad]: 5,
-  [veryBad]: 6
+  [bad]: 4,
+  [veryBad]: 5,
+  [dramatic]: 6
 };
 
 export const setIndicator = lastHourMeasurement => {

@@ -1,20 +1,20 @@
 import {
-  veryGood,
+  excellent,
   good,
   moderate,
-  sufficient,
   bad,
   veryBad,
+  dramatic,
   noSufficientData
 } from "./statusConstants.js";
 
 const CLASSNAMES = {
-  [veryGood]: "very-good",
+  [excellent]: "excellent",
   [good]: "good",
   [moderate]: "moderate",
-  [sufficient]: "sufficient",
   [bad]: "bad",
   [veryBad]: "very-bad",
+  [dramatic]: "dramatic",
   [noSufficientData]: "no-sufficient-data"
 };
 

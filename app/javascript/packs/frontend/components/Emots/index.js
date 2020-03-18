@@ -1,17 +1,17 @@
-import VeryGoodEmot from "./VeryGoodEmot";
+import ExcellentEmot from "./ExcellentEmot";
 import GoodEmot from "./GoodEmot";
 import ModerateEmot from "./ModerateEmot";
 import NeutralEmot from "./NeutralEmot";
-import SufficientEmot from "./SufficientEmot";
 import VeryBadEmot from "./VeryBadEmot";
 import BadEmot from "./BadEmot";
+import DramaticEmot from "./DramaticEmot";
 
 export {
-  VeryGoodEmot,
+  ExcellentEmot,
   GoodEmot,
-  SufficientEmot,
   ModerateEmot,
   BadEmot,
   VeryBadEmot,
+  DramaticEmot,
   NeutralEmot
 };
