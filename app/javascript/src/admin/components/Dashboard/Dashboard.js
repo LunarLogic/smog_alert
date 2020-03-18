@@ -1,8 +1,7 @@
 import React from "react"
-import Articles from "./Articles"
-import Installations from "./Installations"
+import {Articles, Installations} from "../"
+
 import "./Dashboard.scss"
-// import { PropTypes } from "prop-types";
 
 class Dashboard extends React.Component {
   render () {
@@ -25,7 +24,7 @@ function Header(props) {
           <p className="lead">
             Zarządzaj treściami dostępnymi na stronie
           </p>
-          <hr className="my-4" />
+          <hr/>
         </div>
       </div>
     </div>

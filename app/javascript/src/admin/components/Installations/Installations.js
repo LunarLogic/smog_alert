@@ -82,10 +82,10 @@ function Installation(props) {
       <div className="col-4">
         <p>{props.installation.name}</p>
       </div>
-      <div className="col-4">
+      <div className="col-3">
         <p>{props.installation.street}</p>
       </div>
-      <div className="col-3">
+      <div className="col-4 d-flex align-items-center justify-content-center">
         <button className="btn btn-link btn-sm" onClick={() => props.onClick(props.installation.id)}>Czas ostatniego pomiaru</button>
       </div>
     </>
@@ -96,17 +96,23 @@ function LastMeasurement(props) {
   const response = () => {
     if (!props.measurement) {
       return (
-        <p>Brak pomiarów dla tego czujnika</p>
+        <>
+        <div className="col-8"></div>
+        <div className="col-4"><p>Brak pomiarów dla tego czujnika</p></div>
+        </>
       )
     } else {
       const date = new Date(props.measurement.till_date_time)
       return (
-        <p>{date.toLocaleString()}</p>
+        <>
+        <div className="col-8"></div>
+        <div className="col-4"><p>{date.toLocaleString()}</p></div>
+        </>
       )
     }
   }
   return(
-    <div className="last-measurement">
+    <div className="last-measurement row">
       {response()}
     </div>)
 }

@@ -13,7 +13,7 @@ import "../src/admin/article_form"
 
 import React from "react";
 import ReactDOM from "react-dom";
-import Dashboard from "../src/admin/components/Dashboard"
+import Dashboard from "../src/admin/components/Dashboard/Dashboard"
 
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("dashboard-react");
