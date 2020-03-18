@@ -17,7 +17,7 @@ import {
   selectArticleLoader,
   selectNewsError,
   selectNewsErrorCode
-} from "../../redux/redux.selectors";
+} from "../../redux/news/news.selectors";
 import { getDate } from "../../helpers";
 
 import "./Article.scss";

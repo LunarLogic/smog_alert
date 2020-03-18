@@ -1,0 +1,50 @@
+@import "../../styles/variables";
+
+.pagination {
+  display: flex;
+  button:disabled,
+  button[disabled] {
+    background-color: $greyLight;
+    color: $grey;
+    cursor: auto;
+  }
+  button:focus,
+  button[focus] {
+    border: 1px solid $frameColor;
+  }
+  &-box {
+    box-sizing: border-box;
+    margin-left: -1px;
+    border: 1px solid $frameColor;
+    font-size: 1.9rem;
+    line-height: 2.4rem;
+    color: $secondaryColor;
+
+    width: 3.5rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    &:hover {
+      background-color: $greyLight;
+    }
+    &:first-child {
+      border-top-left-radius: 0.3rem;
+      border-bottom-left-radius: 0.3rem;
+    }
+    &:last-child {
+      border-top-right-radius: 0.3rem;
+      border-bottom-right-radius: 0.3rem;
+    }
+  }
+  &-page {
+    background-color: $secondaryColor;
+    color: white;
+    font-weight: 500;
+    border: 1px solid $secondaryColor;
+    &:hover {
+      background-color: $secondaryColor;
+    }
+  }
+}

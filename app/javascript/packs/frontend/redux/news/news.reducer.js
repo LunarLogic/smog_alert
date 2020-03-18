@@ -2,6 +2,7 @@ import { newsActionTypes } from "./news.types";
 
 const INITIAL_STATE = {
   articles: [],
+  pagination: {},
   article: {},
   newsLoader: true,
   articleLoader: true,
@@ -23,7 +24,8 @@ const newsReducer = (state = INITIAL_STATE, action) => {
     case newsActionTypes.GET_ARTICLES_SUCCESS:
       return {
         ...state,
-        articles: action.payload,
+        articles: action.payload.data,
+        pagination: action.payload.meta.pagination,
         newsLoader: false,
         error: false
       };

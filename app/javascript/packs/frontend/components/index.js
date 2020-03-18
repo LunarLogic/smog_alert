@@ -16,6 +16,7 @@ import Map from "./Map/Map";
 import Navigation from "./Navigation/Navigation";
 import NavigationMobile from "./NavigationMobile/NavigationMobile";
 import NoItemFound from "./NoItemFound/NoItemFound";
+import Pagination from "./Pagination/Pagination";
 import PageTitle from "./PageTitle/PageTitle";
 import PollutionBar from "./PollutionBar/PollutionBar";
 import PollutionCard from "./PollutionCard/PollutionCard";
@@ -47,6 +48,7 @@ export {
   NavigationMobile,
   NoItemFound,
   PageTitle,
+  Pagination,
   PollutionBar,
   PollutionCard,
   PollutionComparison,

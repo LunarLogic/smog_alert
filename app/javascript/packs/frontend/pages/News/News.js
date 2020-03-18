@@ -6,7 +6,7 @@ import {
   selectArticles,
   selectNewsLoader,
   selectNewsError
-} from "../../redux/redux.selectors";
+} from "../../redux/news/news.selectors";
 import { PropTypes } from "prop-types";
 import { animateScroll } from "react-scroll";
 import ImportContactsIcon from "@material-ui/icons/ImportContacts";
@@ -16,23 +16,14 @@ import {
   ArticleOverview,
   Loader,
   PageTitle,
-  NoItemFound
+  NoItemFound,
+  Pagination
 } from "../../components";
 
 import "./News.scss";
 
-import { setCurrentPath } from "../../redux/application/application.actions";
-
-export const News = ({
-  match,
-  getArticles,
-  articles,
-  setCurrentPath,
-  loader,
-  error
-}) => {
+export const News = ({ match, getArticles, articles, loader, error }) => {
   useEffect(() => {
-    setCurrentPath(match.path);
     getArticles();
     animateScroll.scrollToTop();
   }, []);
@@ -69,6 +60,9 @@ export const News = ({
             />
           );
         })}
+        <div className="news__pagination">
+          <Pagination />
+        </div>
       </div>
     ) : (
       <NoItemFound
@@ -89,15 +83,13 @@ export const News = ({
 News.propTypes = {
   getArticles: PropTypes.func,
   articles: PropTypes.array,
-  setCurrentPath: PropTypes.func,
   match: PropTypes.object,
   loader: PropTypes.bool,
   error: PropTypes.bool
 };
 
 const mapDispatchToProps = dispatch => ({
-  getArticles: () => dispatch(getArticles()),
-  setCurrentPath: path => dispatch(setCurrentPath(path))
+  getArticles: () => dispatch(getArticles())
 });
 
 const mapStateToProps = createStructuredSelector({
