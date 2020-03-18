@@ -27,6 +27,7 @@ class ApidocsController < ActionController::Base
     API::Internal::ArticlesController,
     API::Internal::OrganizationsController,
     API::Internal::MeasurementsController,
+    API::Internal::LocationsController,
     self,
   ].freeze
 

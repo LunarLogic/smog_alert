@@ -36,7 +36,7 @@ feature 'Login page: valid credentials' do
     let!(:admin) { FactoryBot.create(:admin) }
 
     scenario 'Show welcome message in admin panel' do
-      welcome_message = 'Witaj w panelu Administratora!'
+      welcome_message = 'Witaj w panelu Administratora'
       fill_in('E-mail', with: admin.email)
       fill_in('Hasło', with: admin.password)
       click_button('Zaloguj')

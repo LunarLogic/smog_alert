@@ -74,6 +74,103 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
     end
   end
 
+  def current
+    locations_with_measurements = locations_repository.locations_with_last_hour_measurement
+    data = LastHourMeasurementsAssigner.new.call(locations_with_measurements)
+    render json: { data: data }
+  end
+
+  swagger_path '/api/internal/measurements/last_available' do
+    operation :get do
+      key :summary, 'Get last available measurement for a given location'
+      key :produces, [
+        'application/json',
+      ]
+      key :tags, [
+        'measurements',
+      ]
+      parameter do
+        key :name, :location_id
+        key :in, :query
+        key :description, 'Id of the location'
+        key :required, true
+        key :type, :integer
+        key :format, :int32
+      end
+      response 200 do
+        key :description, 'Returns most recent measurement for location with a given id'
+        schema do
+          key :type, :object
+          property :data do
+            key :type, :array
+            items do
+              property :id do
+                key :type, :integer
+              end
+              property :date do
+                key :type, :string
+                key :format, :date
+              end
+              property :pm10 do
+                key :type, :number
+                key :format, :float
+                key :description, 'When missing then value is null'
+              end
+              property :pm25 do
+                key :type, :number
+                key :format, :float
+                key :description, 'When missing then value is null'
+              end
+              property :temperature do
+                key :type, :number
+                key :format, :float
+              end
+              property :humidity do
+                key :type, :number
+                key :format, :float
+              end
+              property :pressure do
+                key :type, :number
+                key :format, :float
+              end
+              property :from_date_time do
+                key :type, :string
+                key :format, 'date-time'.to_sym
+              end
+              property :till_date_time do
+                key :type, :string
+                key :format, 'date-time'.to_sym
+              end
+              property :location_id do
+                key :type, :integer
+              end
+              property :created_at do
+                key :type, :string
+                key :format, 'date-time'.to_sym
+              end
+              property :updated_at do
+                key :type, :string
+                key :format, 'date-time'.to_sym
+              end
+              property :hour do
+                key :type, :integer
+              end
+              property :advice do
+                key :type, :string
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+
+  def last_available
+    location = Location.find(last_available_params[:location_id])
+    measurement = location.measurements.last
+    render json: { data: measurement }
+  end
+
   swagger_path '/api/internal/measurements/calendar_daily_values' do
     operation :get do
       key :summary, 'Get daily average measurements'
@@ -143,12 +240,6 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
         end
       end
     end
-  end
-
-  def current
-    locations_with_measurements = locations_repository.locations_with_last_hour_measurement
-    data = LastHourMeasurementsAssigner.new.call(locations_with_measurements)
-    render json: { data: data }
   end
 
   def calendar_daily_values
@@ -430,5 +521,10 @@ class API::Internal::MeasurementsController < API::Internal::BaseController
     params.require(:date)
     params.require(:location_id)
     params.permit([:date, :location_id])
+  end
+
+  def last_available_params
+    params.require(:location_id)
+    params.permit(:location_id)
   end
 end
