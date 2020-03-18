@@ -181,26 +181,26 @@ div#calendar {
   user-select: none;
 }
 
-table.calendar td.very-good {
+table.calendar td.excellent {
   background-color: $goodFirst;
 }
 
-table.calendar td.good {
+table.calendar td.very-good {
   background-color: $goodSecond;
 }
 
 table.calendar td.moderate {
   background-color: $unhealthyFirst;
 }
-table.calendar td.sufficient {
+table.calendar td.bad {
   background-color: $unhealthySecond;
 }
 
-table.calendar td.bad {
+table.calendar td.very-bad {
   background-color: $badFirst;
 }
 
-table.calendar td.very-bad {
+table.calendar td.dramatic {
   background-color: $badSecond;
   color: rgba(255, 255, 255, 0.9);
 }

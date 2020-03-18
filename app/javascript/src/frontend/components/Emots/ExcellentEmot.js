@@ -1,6 +1,6 @@
 import React from "react";
 
-const VeryGoodEmot = () => {
+const ExcellentEmot = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -20,4 +20,4 @@ const VeryGoodEmot = () => {
   );
 };
 
-export default VeryGoodEmot;
+export default ExcellentEmot;

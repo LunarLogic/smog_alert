@@ -2,7 +2,7 @@ import { classNameForPollutionStatus } from "../../helpers";
 
 describe("classNameForPollutionStatus", () => {
   it("returns correct className", () => {
-    expect(classNameForPollutionStatus("bardzo dobry")).toEqual("very-good");
+    expect(classNameForPollutionStatus("doskonały")).toEqual("excellent");
     expect(classNameForPollutionStatus(undefined)).toEqual(
       "no-sufficient-data"
     );

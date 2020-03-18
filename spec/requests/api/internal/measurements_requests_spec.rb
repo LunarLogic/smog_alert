@@ -16,7 +16,7 @@ describe '/api/internal/measurements' do
             location_display_name: location.name,
             lat: location.latitude,
             lng: location.longitude,
-            status_of_locations_grouped_by_name: 'bardzo dobry',
+            status_of_locations_grouped_by_name: 'doskonały',
             last_hour_measurement:
             {
               from_date_time: measurement.from_date_time,
@@ -25,7 +25,7 @@ describe '/api/internal/measurements' do
                 { name: 'PM 10', value: measurement.pm10 },
                 { name: 'PM 2.5', value: measurement.pm25 },
               ],
-              status: 'bardzo dobry',
+              status: 'doskonały',
               advice: measurement.advice
             },
           },
@@ -143,7 +143,7 @@ describe '/api/internal/measurements' do
         expect(response.body).to have_json_path('data')
         expect(response.body).to have_json_size(24).at_path('data/average_pollution_by_hour/average_pm10')
         expect(response.body).to be_json_eql(3.25).at_path('data/average_pollution_by_hour/average_pm10/0/value')
-        expect(response.body).to be_json_eql('bardzo dobry'.to_json)
+        expect(response.body).to be_json_eql('doskonały'.to_json)
           .at_path('data/average_pollution_by_hour/average_pm25/13/status')
       end
     end

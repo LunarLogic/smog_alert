@@ -15,7 +15,7 @@ RSpec.describe LastHourMeasurementsAssigner do
           location_display_name: location.name,
           lat: location.latitude,
           lng: location.longitude,
-          status_of_locations_grouped_by_name: 'bardzo dobry',
+          status_of_locations_grouped_by_name: 'doskonały',
           last_hour_measurement:
           {
             from_date_time: measurement.from_date_time,
@@ -24,7 +24,7 @@ RSpec.describe LastHourMeasurementsAssigner do
               { name: 'PM 10', value: measurement.pm10 },
               { name: 'PM 2.5', value: measurement.pm25 },
             ],
-            status: 'bardzo dobry',
+            status: 'doskonały',
             advice: measurement.advice
           },
         },

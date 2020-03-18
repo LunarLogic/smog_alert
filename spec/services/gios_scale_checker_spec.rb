@@ -8,7 +8,7 @@ RSpec.describe GiosScaleChecker do
       let(:giosscalechecker) { GiosScaleChecker.new(:pm10, 20) }
 
       it 'returns "bardzo dobry" GIOŚ status' do
-        expect(subject).to eql 'bardzo dobry'
+        expect(subject).to eql 'doskonały'
       end
     end
 
@@ -32,7 +32,7 @@ RSpec.describe GiosScaleChecker do
       let(:giosscalechecker) { GiosScaleChecker.new(:pm10, 50.1) }
 
       it 'returns "umiarkowany" GIOŚ status' do
-        expect(subject).to eql 'umiarkowany'
+        expect(subject).to eql 'średni'
       end
     end
 
@@ -40,7 +40,7 @@ RSpec.describe GiosScaleChecker do
       let(:giosscalechecker) { GiosScaleChecker.new(:pm10, 80) }
 
       it 'returns "umiarkowany" GIOŚ status' do
-        expect(subject).to eql 'umiarkowany'
+        expect(subject).to eql 'średni'
       end
     end
 
@@ -48,7 +48,7 @@ RSpec.describe GiosScaleChecker do
       let(:giosscalechecker) { GiosScaleChecker.new(:pm10, 80.1) }
 
       it 'returns "dostateczny" GIOŚ status' do
-        expect(subject).to eql 'dostateczny'
+        expect(subject).to eql 'zły'
       end
     end
 
@@ -56,7 +56,7 @@ RSpec.describe GiosScaleChecker do
       let(:giosscalechecker) { GiosScaleChecker.new(:pm10, 110) }
 
       it 'returns "dostateczny" GIOŚ status' do
-        expect(subject).to eql 'dostateczny'
+        expect(subject).to eql 'zły'
       end
     end
 
@@ -64,7 +64,7 @@ RSpec.describe GiosScaleChecker do
       let(:giosscalechecker) { GiosScaleChecker.new(:pm10, 110.9) }
 
       it 'returns "zły" GIOŚ status' do
-        expect(subject).to eql 'zły'
+        expect(subject).to eql 'bardzo zły'
       end
     end
 
@@ -72,7 +72,7 @@ RSpec.describe GiosScaleChecker do
       let(:giosscalechecker) { GiosScaleChecker.new(:pm10, 150) }
 
       it 'returns "zły" GIOŚ status' do
-        expect(subject).to eql 'zły'
+        expect(subject).to eql 'bardzo zły'
       end
     end
 
@@ -80,7 +80,7 @@ RSpec.describe GiosScaleChecker do
       let(:giosscalechecker) { GiosScaleChecker.new(:pm10, 150.09) }
 
       it 'returns "bardzo zły" GIOŚ status' do
-        expect(subject).to eql 'bardzo zły'
+        expect(subject).to eql 'dramatyczny'
       end
     end
 
@@ -88,7 +88,7 @@ RSpec.describe GiosScaleChecker do
       let(:giosscalechecker) { GiosScaleChecker.new(:pm25, 13) }
 
       it 'returns "bardzo dobry" GIOŚ status' do
-        expect(subject).to eql 'bardzo dobry'
+        expect(subject).to eql 'doskonały'
       end
     end
 
@@ -112,7 +112,7 @@ RSpec.describe GiosScaleChecker do
       let(:giosscalechecker) { GiosScaleChecker.new(:pm25, 35.1) }
 
       it 'returns "umiarkowany" GIOŚ status' do
-        expect(subject).to eql 'umiarkowany'
+        expect(subject).to eql 'średni'
       end
     end
 
@@ -120,7 +120,7 @@ RSpec.describe GiosScaleChecker do
       let(:giosscalechecker) { GiosScaleChecker.new(:pm25, 55) }
 
       it 'returns "umiarkowany" GIOŚ status' do
-        expect(subject).to eql 'umiarkowany'
+        expect(subject).to eql 'średni'
       end
     end
 
@@ -128,7 +128,7 @@ RSpec.describe GiosScaleChecker do
       let(:giosscalechecker) { GiosScaleChecker.new(:pm25, 55.1) }
 
       it 'returns "dostateczny" GIOŚ status' do
-        expect(subject).to eql 'dostateczny'
+        expect(subject).to eql 'zły'
       end
     end
 
@@ -136,7 +136,7 @@ RSpec.describe GiosScaleChecker do
       let(:giosscalechecker) { GiosScaleChecker.new(:pm25, 75) }
 
       it 'returns "dostateczny" GIOŚ status' do
-        expect(subject).to eql 'dostateczny'
+        expect(subject).to eql 'zły'
       end
     end
 
@@ -144,7 +144,7 @@ RSpec.describe GiosScaleChecker do
       let(:giosscalechecker) { GiosScaleChecker.new(:pm25, 75.9) }
 
       it 'returns "zły" GIOŚ status' do
-        expect(subject).to eql 'zły'
+        expect(subject).to eql 'bardzo zły'
       end
     end
 
@@ -152,7 +152,7 @@ RSpec.describe GiosScaleChecker do
       let(:giosscalechecker) { GiosScaleChecker.new(:pm25, 110) }
 
       it 'returns "zły" GIOŚ status' do
-        expect(subject).to eql 'zły'
+        expect(subject).to eql 'bardzo zły'
       end
     end
 
@@ -160,7 +160,7 @@ RSpec.describe GiosScaleChecker do
       let(:giosscalechecker) { GiosScaleChecker.new(:pm25, 110.09) }
 
       it 'returns "bardzo zły" GIOŚ status' do
-        expect(subject).to eql 'bardzo zły'
+        expect(subject).to eql 'dramatyczny'
       end
     end
 
