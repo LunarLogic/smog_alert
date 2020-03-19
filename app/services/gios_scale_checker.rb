@@ -15,17 +15,17 @@ class GiosScaleChecker
     edge_values = EDGE_VALUES[@particle]
 
     if @value >= 0 && @value <= edge_values[0]
-      'bardzo dobry'
+      'doskonały'
     elsif @value > edge_values[0] && @value <= edge_values[1]
       'dobry'
     elsif @value > edge_values[1] && @value <= edge_values[2]
-      'umiarkowany'
+      'średni'
     elsif @value > edge_values[2] && @value <= edge_values[3]
-      'dostateczny'
-    elsif @value > edge_values[3] && @value <= edge_values[4]
       'zły'
-    else
+    elsif @value > edge_values[3] && @value <= edge_values[4]
       'bardzo zły'
+    else
+      'dramatyczny'
     end
   end
 end
