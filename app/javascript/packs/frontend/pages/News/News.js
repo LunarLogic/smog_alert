@@ -23,7 +23,9 @@ import {
 import "./News.scss";
 
 export const News = ({ match, getArticles, articles, loader, error }) => {
-  const pageId = match.params.pageId;
+  const { pageId } = match.params;
+  const { path, url } = match;
+  const redirectPath = path.split(":").shift();
 
   useEffect(() => {
     getArticles(pageId);
@@ -58,13 +60,13 @@ export const News = ({ match, getArticles, articles, loader, error }) => {
               overview={article.overview}
               publishingDate={article.published_at}
               updatingDate={article.updated_at}
-              pageId={pageId}
+              url={url}
               id={article.id}
             />
           );
         })}
         <div className="news__pagination">
-          <Pagination match={match} />
+          <Pagination redirectPath={redirectPath} />
         </div>
       </div>
     ) : (

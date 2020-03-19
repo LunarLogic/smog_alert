@@ -9,7 +9,7 @@ import { LinkButton } from "../";
 
 import "./Pagination.scss";
 
-const Pagination = ({ pagination }) => {
+const Pagination = ({ redirectPath, pagination }) => {
   const {
     total_pages,
     prev_page,
@@ -40,14 +40,14 @@ const Pagination = ({ pagination }) => {
   return (
     <div className="pagination">
       <LinkButton
-        to={`/aktualnosci/${1}`}
+        to={`${redirectPath}${1}`}
         className="pagination-box"
         disabled={is_first_page}
       >
         <span>«</span>
       </LinkButton>
       <LinkButton
-        to={`/aktualnosci/${prev_page}`}
+        to={`${redirectPath}${prev_page}`}
         className="pagination-box"
         disabled={is_first_page}
       >
@@ -56,7 +56,7 @@ const Pagination = ({ pagination }) => {
       {pagesArray.map(page => (
         <LinkButton
           key={page}
-          to={`/aktualnosci/${page}`}
+          to={`${redirectPath}${page}`}
           className={
             current_page === page
               ? "pagination-box pagination-page"
@@ -74,7 +74,7 @@ const Pagination = ({ pagination }) => {
             </div>
           )}
           <LinkButton
-            to={`/aktualnosci/${total_pages}`}
+            to={`${redirectPath}${total_pages}`}
             className={
               current_page === total_pages
                 ? "pagination-box pagination-page"
@@ -86,14 +86,14 @@ const Pagination = ({ pagination }) => {
         </>
       )}
       <LinkButton
-        to={`/aktualnosci/${next_page}`}
+        to={`${redirectPath}${next_page}`}
         className="pagination-box"
         disabled={is_last_page}
       >
         <span>›</span>
       </LinkButton>
       <LinkButton
-        to={`/aktualnosci/${total_pages}`}
+        to={`${redirectPath}${total_pages}`}
         className="pagination-box"
         disabled={is_last_page}
       >
@@ -104,7 +104,8 @@ const Pagination = ({ pagination }) => {
 };
 
 Pagination.propTypes = {
-  pagination: PropTypes.object
+  pagination: PropTypes.object,
+  url: PropTypes.string
 };
 
 const mapStateToProps = createStructuredSelector({

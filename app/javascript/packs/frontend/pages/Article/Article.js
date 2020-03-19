@@ -22,8 +22,6 @@ import { getDate } from "../../helpers";
 
 import "./Article.scss";
 
-import { setCurrentPath } from "../../redux/application/application.actions";
-
 export const Article = ({
   match,
   getArticle,
@@ -33,10 +31,10 @@ export const Article = ({
   setCurrentPath,
   errorCode
 }) => {
-  const articleId = match.params.articleId;
+  const { pageId, articleId } = match.params;
   const { title, body, published_at, updated_at } = article;
+
   useEffect(() => {
-    setCurrentPath(match.path);
     getArticle(articleId);
     animateScroll.scrollToTop();
   }, []);
@@ -54,7 +52,7 @@ export const Article = ({
               image={<LibraryBooksIcon />}
               text={"Przepraszamy, wybrany artykuł nie istnieje"}
               linkTo={{
-                href: "/aktualnosci",
+                href: `/aktualnosci/${pageId}`,
                 text: "Powrót do listy aktualności"
               }}
             />
@@ -89,7 +87,7 @@ export const Article = ({
             </div>
             <div className="article__container--author">Autor: </div>
           </div>
-          <Link className="article__button" to="/aktualnosci">
+          <Link className="article__button" to={`/aktualnosci/${pageId}`}>
             <ArrowBackIcon />
             <div className="article__button--text">
               Powrót do listy aktualności
@@ -108,8 +106,7 @@ export const Article = ({
 };
 
 const mapDispatchToProps = dispatch => ({
-  getArticle: id => dispatch(getArticle(id)),
-  setCurrentPath: path => dispatch(setCurrentPath(path))
+  getArticle: id => dispatch(getArticle(id))
 });
 
 const mapStateToProps = createStructuredSelector({
@@ -123,7 +120,6 @@ Article.propTypes = {
   match: PropTypes.object,
   getArticles: PropTypes.func,
   articles: PropTypes.array,
-  setCurrentPath: PropTypes.func,
   resetArticle: PropTypes.func
 };
 
