@@ -10,6 +10,7 @@ import CustomButton from "./CustomButton/CustomButton";
 import DropdownMenu from "./DropdownMenu/DropdownMenu";
 import Footer from "./Footer/Footer";
 import Icon from "./Icon/Icon";
+import LinkButton from "./LinkButton/LinkButton";
 import Loader from "./Loader/Loader";
 import Recommendation from "./Recommendation/Recommendation";
 import Map from "./Map/Map";
@@ -41,6 +42,7 @@ export {
   DropdownMenu,
   Footer,
   Icon,
+  LinkButton,
   Loader,
   Recommendation,
   Map,

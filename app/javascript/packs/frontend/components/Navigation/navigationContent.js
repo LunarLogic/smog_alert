@@ -1,7 +1,7 @@
 const navigationContent = {
   links: [
     { displayName: "Strona Główna", path: "/" },
-    { displayName: "Aktualności", path: "/aktualnosci" },
+    { displayName: "Aktualności", path: "/aktualnosci/1" },
     { displayName: "Czym Oddycham", path: "/czym-oddycham" },
     { displayName: "Rozwiązania", path: "/rozwiazania" },
     { displayName: "Statystyki", path: "/statystyki" }

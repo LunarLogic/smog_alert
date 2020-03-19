@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { getArticles } from "../../redux/news/news.actions";
+
 import { createStructuredSelector } from "reselect";
 import { selectPagination } from "../../redux/news/news.selectors";
 import { PropTypes } from "prop-types";
 
+import { LinkButton } from "../";
+
 import "./Pagination.scss";
 
-const Pagination = ({ getArticles, pagination }) => {
+const Pagination = ({ pagination }) => {
   const {
     total_pages,
     prev_page,
@@ -17,13 +19,12 @@ const Pagination = ({ getArticles, pagination }) => {
     is_last_page
   } = pagination;
 
-  const [updatePagination, setUpdatePagination] = useState(true);
   const [pagesArray, setPagesArray] = useState(
     Array.from(Array(total_pages), (x, index) => index + 1)
   );
 
   useEffect(() => {
-    if (updatePagination && current_page !== total_pages) {
+    if (current_page !== total_pages) {
       if (total_pages > 3) {
         if (total_pages - current_page > 2) {
           setPagesArray(Array.from([0, 1, 2], x => current_page + x));
@@ -34,69 +35,36 @@ const Pagination = ({ getArticles, pagination }) => {
         setPagesArray(Array.from(Array(total_pages), (x, index) => index + 1));
       }
     }
-  }, [current_page, updatePagination]);
-
-  const handleNext = () => {
-    setUpdatePagination(true);
-    if (is_last_page !== true) {
-      getArticles(next_page);
-    }
-  };
-  const handlePrevious = () => {
-    setUpdatePagination(true);
-    if (is_first_page !== true) {
-      getArticles(prev_page);
-    }
-  };
-  const handleLast = () => {
-    setUpdatePagination(true);
-    if (is_last_page !== true) {
-      getArticles(total_pages);
-    }
-  };
-  const handleFirst = () => {
-    setUpdatePagination(true);
-    if (is_first_page !== true) {
-      getArticles(1);
-    }
-  };
-
-  const handleChosenPage = page => {
-    setUpdatePagination(false);
-    getArticles(page);
-  };
+  }, [current_page]);
 
   return (
     <div className="pagination">
-      <button
-        disabled={is_first_page}
+      <LinkButton
+        to={`/aktualnosci/${1}`}
         className="pagination-box"
-        onClick={handleFirst}
+        disabled={is_first_page}
       >
         <span>«</span>
-      </button>
-      <button
-        disabled={is_first_page}
+      </LinkButton>
+      <LinkButton
+        to={`/aktualnosci/${prev_page}`}
         className="pagination-box"
-        onClick={handlePrevious}
+        disabled={is_first_page}
       >
         <span>‹</span>
-      </button>
+      </LinkButton>
       {pagesArray.map(page => (
-        <div
+        <LinkButton
           key={page}
+          to={`/aktualnosci/${page}`}
           className={
             current_page === page
               ? "pagination-box pagination-page"
               : "pagination-box"
           }
-          onClick={() => {
-            setUpdatePagination(true);
-            handleChosenPage(page);
-          }}
         >
           <span>{page}</span>
-        </div>
+        </LinkButton>
       ))}
       {total_pages > 3 && (
         <>
@@ -105,41 +73,37 @@ const Pagination = ({ getArticles, pagination }) => {
               <span>...</span>
             </div>
           )}
-          <div
+          <LinkButton
+            to={`/aktualnosci/${total_pages}`}
             className={
               current_page === total_pages
                 ? "pagination-box pagination-page"
                 : "pagination-box"
             }
-            onClick={() => handleChosenPage(total_pages)}
           >
             <span>{total_pages}</span>
-          </div>
+          </LinkButton>
         </>
       )}
-      <button
-        disabled={is_last_page}
+      <LinkButton
+        to={`/aktualnosci/${next_page}`}
         className="pagination-box"
-        onClick={() => {
-          setUpdatePagination(true);
-          handleNext();
-        }}
+        disabled={is_last_page}
       >
         <span>›</span>
-      </button>
-      <button
-        disabled={is_last_page}
+      </LinkButton>
+      <LinkButton
+        to={`/aktualnosci/${total_pages}`}
         className="pagination-box"
-        onClick={handleLast}
+        disabled={is_last_page}
       >
         <span>»</span>
-      </button>
+      </LinkButton>
     </div>
   );
 };
 
 Pagination.propTypes = {
-  getArticles: PropTypes.func,
   pagination: PropTypes.object
 };
 
@@ -147,4 +111,4 @@ const mapStateToProps = createStructuredSelector({
   pagination: selectPagination
 });
 
-export default connect(mapStateToProps, { getArticles })(Pagination);
+export default connect(mapStateToProps)(Pagination);

@@ -23,10 +23,12 @@ import {
 import "./News.scss";
 
 export const News = ({ match, getArticles, articles, loader, error }) => {
+  const pageId = match.params.pageId;
+
   useEffect(() => {
-    getArticles();
+    getArticles(pageId);
     animateScroll.scrollToTop();
-  }, []);
+  }, [pageId]);
 
   const displayArticles = () => {
     if (loader) {
@@ -56,12 +58,13 @@ export const News = ({ match, getArticles, articles, loader, error }) => {
               overview={article.overview}
               publishingDate={article.published_at}
               updatingDate={article.updated_at}
+              pageId={pageId}
               id={article.id}
             />
           );
         })}
         <div className="news__pagination">
-          <Pagination />
+          <Pagination match={match} />
         </div>
       </div>
     ) : (
@@ -89,7 +92,7 @@ News.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  getArticles: () => dispatch(getArticles())
+  getArticles: pageId => dispatch(getArticles(pageId))
 });
 
 const mapStateToProps = createStructuredSelector({
