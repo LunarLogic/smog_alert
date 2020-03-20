@@ -7,7 +7,8 @@ const INITIAL_STATE = {
   newsLoader: true,
   articleLoader: true,
   error: false,
-  errorCode: null
+  errorCode: null,
+  articlesPage: null
 };
 
 const newsReducer = (state = INITIAL_STATE, action) => {
@@ -60,6 +61,11 @@ const newsReducer = (state = INITIAL_STATE, action) => {
         ...state,
         article: {},
         newsLoader: true
+      };
+    case newsActionTypes.SET_ARTICLES_PAGE:
+      return {
+        ...state,
+        articlesPage: action.payload
       };
     default:
       return state;

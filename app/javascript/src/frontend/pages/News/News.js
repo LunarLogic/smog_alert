@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getArticles } from "../../redux/news/news.actions";
+import { useLocation } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
+import { getArticles, setArticlesPage } from "../../redux/news/news.actions";
 import {
   selectArticles,
   selectNewsLoader,
@@ -22,13 +23,24 @@ import {
 
 import "./News.scss";
 
-export const News = ({ match, getArticles, articles, loader, error }) => {
-  const { pageId } = match.params;
-  const { path, url } = match;
-  const redirectPath = path.split(":").shift();
+export const News = ({
+  match,
+  getArticles,
+  setArticlesPage,
+  articles,
+  loader,
+  error
+}) => {
+  const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
+  };
+  const pageId = useQuery().get("strona");
+  const { url } = match;
+  const redirectPath = "/aktualnosci?strona=";
 
   useEffect(() => {
     getArticles(pageId);
+    setArticlesPage(pageId);
     animateScroll.scrollToTop();
   }, [pageId]);
 
@@ -96,7 +108,8 @@ News.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  getArticles: pageId => dispatch(getArticles(pageId))
+  getArticles: pageId => dispatch(getArticles(pageId)),
+  setArticlesPage: () => dispatch(setArticlesPage())
 });
 
 const mapStateToProps = createStructuredSelector({

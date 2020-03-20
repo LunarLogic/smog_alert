@@ -46,3 +46,8 @@ export const getArticle = id => {
 export const resetArticle = () => {
   return { type: newsActionTypes.RESET_ARTICLE };
 };
+
+export const setArticlesPage = articlesPage => ({
+  type: newsActionTypes.SET_ARTICLES_PAGE,
+  payload: articlesPage
+});

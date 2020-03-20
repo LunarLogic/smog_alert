@@ -69,12 +69,8 @@ const App = ({ getOrganizationDetails }) => {
             <Route exact path="/" component={Homepage} />
             <Route exact path="/czym-oddycham" component={AirFacts} />
             <Route exact path="/statystyki" component={Statistics} />
-            <Route exact path="/aktualnosci/:pageId" component={News} />
-            <Route
-              exact
-              path="/aktualnosci/:pageId/:articleId"
-              component={Article}
-            />
+            <Route exact path="/aktualnosci" component={News} />
+            <Route exact path="/aktualnosci/:articleId" component={Article} />
             <Route exact path="/rozwiazania" component={Solutions} />
             <Route exact path="/zmien-piec" component={ChangeFurnace} />
             <Route component={Error404} />

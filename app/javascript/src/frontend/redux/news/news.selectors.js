@@ -30,3 +30,8 @@ export const selectPagination = createSelector(
   [selectNews],
   news => news.pagination
 );
+
+export const selectArticlesPage = createSelector(
+  [selectNews],
+  news => news.articlesPage
+);

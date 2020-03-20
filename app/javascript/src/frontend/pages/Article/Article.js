@@ -16,7 +16,8 @@ import {
   selectArticle,
   selectArticleLoader,
   selectNewsError,
-  selectNewsErrorCode
+  selectNewsErrorCode,
+  selectArticlesPage
 } from "../../redux/news/news.selectors";
 import { getDate } from "../../helpers";
 
@@ -28,11 +29,14 @@ export const Article = ({
   article,
   loader,
   error,
-  setCurrentPath,
-  errorCode
+  errorCode,
+  articlesPage
 }) => {
-  const { pageId, articleId } = match.params;
+  const { articleId } = match.params;
   const { title, body, published_at, updated_at } = article;
+  const hrefToArticles = articlesPage
+    ? `/aktualnosci/${articlesPage}`
+    : "/aktualnosci";
 
   useEffect(() => {
     getArticle(articleId);
@@ -52,7 +56,7 @@ export const Article = ({
               image={<LibraryBooksIcon />}
               text={"Przepraszamy, wybrany artykuł nie istnieje"}
               linkTo={{
-                href: `/aktualnosci/${pageId}`,
+                href: { hrefToArticles },
                 text: "Powrót do listy aktualności"
               }}
             />
@@ -87,7 +91,7 @@ export const Article = ({
             </div>
             <div className="article__container--author">Autor: </div>
           </div>
-          <Link className="article__button" to={`/aktualnosci/${pageId}`}>
+          <Link className="article__button" to={hrefToArticles}>
             <ArrowBackIcon />
             <div className="article__button--text">
               Powrót do listy aktualności
@@ -113,14 +117,16 @@ const mapStateToProps = createStructuredSelector({
   article: selectArticle,
   loader: selectArticleLoader,
   error: selectNewsError,
-  errorCode: selectNewsErrorCode
+  errorCode: selectNewsErrorCode,
+  articlesPage: selectArticlesPage
 });
 
 Article.propTypes = {
   match: PropTypes.object,
   getArticles: PropTypes.func,
   articles: PropTypes.array,
-  resetArticle: PropTypes.func
+  resetArticle: PropTypes.func,
+  articlesPage: PropTypes.number
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Article);
