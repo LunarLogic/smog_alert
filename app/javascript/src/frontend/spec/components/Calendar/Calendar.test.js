@@ -28,7 +28,7 @@ describe("<Calendar/>", () => {
     expect(mockCalendarChosenYear).toEqual(2017);
     wrapper
       .find(".day-number")
-      .at(0)
+      .at(1)
       .simulate("click");
     expect(mockSetCalendarChosenDay).toHaveBeenCalled();
   });
