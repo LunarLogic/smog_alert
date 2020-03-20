@@ -19,23 +19,58 @@ const Pagination = ({ redirectPath, pagination }) => {
     is_last_page
   } = pagination;
 
-  const [pagesArray, setPagesArray] = useState(
-    Array.from(Array(total_pages), (x, index) => index + 1)
-  );
+  const hadleBoxes = () => {
+    let boxes;
+    if (total_pages > 3) {
+      if (total_pages - current_page > 2) {
+        boxes = Array.from([0, 1, 2], x => current_page + x);
+        boxes.push(total_pages);
+      } else {
+        boxes = Array.from([2, 1, 0], x => total_pages - x);
+      }
+    } else {
+      boxes = Array.from(Array(total_pages), (x, index) => index + 1);
+    }
+    return boxes;
+  };
+
+  const [boxes, setBoxes] = useState(hadleBoxes());
 
   useEffect(() => {
-    if (current_page !== total_pages) {
-      if (total_pages > 3) {
-        if (total_pages - current_page > 2) {
-          setPagesArray(Array.from([0, 1, 2], x => current_page + x));
-        } else {
-          setPagesArray(Array.from([3, 2, 1], x => total_pages - x));
-        }
-      } else {
-        setPagesArray(Array.from(Array(total_pages), (x, index) => index + 1));
-      }
-    }
+    setBoxes(hadleBoxes());
   }, [current_page]);
+
+  const paginationPages = boxes.map((box, idx) => {
+    return box === total_pages && boxes[idx - 1] !== total_pages - 1 ? (
+      <React.Fragment key={box}>
+        <div className={`pagination-box`}>
+          <span>...</span>
+        </div>
+        <LinkButton
+          to={`${redirectPath}${box}`}
+          className={
+            current_page === box
+              ? "pagination-box pagination-page"
+              : "pagination-box"
+          }
+        >
+          <span>{box}</span>
+        </LinkButton>
+      </React.Fragment>
+    ) : (
+      <LinkButton
+        key={box}
+        to={`${redirectPath}${box}`}
+        className={
+          current_page === box
+            ? "pagination-box pagination-page"
+            : "pagination-box"
+        }
+      >
+        <span>{box}</span>
+      </LinkButton>
+    );
+  });
 
   return (
     <div className="pagination">
@@ -53,38 +88,7 @@ const Pagination = ({ redirectPath, pagination }) => {
       >
         <span>‹</span>
       </LinkButton>
-      {pagesArray.map(page => (
-        <LinkButton
-          key={page}
-          to={`${redirectPath}${page}`}
-          className={
-            current_page === page
-              ? "pagination-box pagination-page"
-              : "pagination-box"
-          }
-        >
-          <span>{page}</span>
-        </LinkButton>
-      ))}
-      {total_pages > 3 && (
-        <>
-          {pagesArray[pagesArray.length - 1] !== total_pages - 1 && (
-            <div className={`pagination-box`}>
-              <span>...</span>
-            </div>
-          )}
-          <LinkButton
-            to={`${redirectPath}${total_pages}`}
-            className={
-              current_page === total_pages
-                ? "pagination-box pagination-page"
-                : "pagination-box"
-            }
-          >
-            <span>{total_pages}</span>
-          </LinkButton>
-        </>
-      )}
+      {paginationPages}
       <LinkButton
         to={`${redirectPath}${next_page}`}
         className="pagination-box"
