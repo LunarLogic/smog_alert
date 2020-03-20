@@ -35,7 +35,7 @@ export const Article = ({
   const { articleId } = match.params;
   const { title, body, published_at, updated_at } = article;
   const hrefToArticles = articlesPage
-    ? `/aktualnosci/${articlesPage}`
+    ? `/aktualnosci?strona=${articlesPage}`
     : "/aktualnosci";
 
   useEffect(() => {
@@ -126,7 +126,7 @@ Article.propTypes = {
   getArticles: PropTypes.func,
   articles: PropTypes.array,
   resetArticle: PropTypes.func,
-  articlesPage: PropTypes.number
+  articlesPage: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Article);

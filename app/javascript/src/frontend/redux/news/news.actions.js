@@ -6,7 +6,9 @@ export const getArticles = (page = 1, per_page = 5) => {
     dispatch({ type: newsActionTypes.GET_ARTICLES_PENDING });
 
     return axios
-      .get(`/api/internal/articles?page=${page}&per_page=${per_page}`)
+      .get("/api/internal/articles", {
+        params: { page, per_page }
+      })
       .then(({ data }) => {
         dispatch({
           type: newsActionTypes.GET_ARTICLES_SUCCESS,

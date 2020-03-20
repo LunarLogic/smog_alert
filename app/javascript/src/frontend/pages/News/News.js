@@ -39,8 +39,8 @@ export const News = ({
   const redirectPath = "/aktualnosci?strona=";
 
   useEffect(() => {
-    getArticles(pageId);
     setArticlesPage(pageId);
+    getArticles(pageId);
     animateScroll.scrollToTop();
   }, [pageId]);
 
@@ -101,6 +101,7 @@ export const News = ({
 
 News.propTypes = {
   getArticles: PropTypes.func,
+  setArticlesPage: PropTypes.func,
   articles: PropTypes.array,
   match: PropTypes.object,
   loader: PropTypes.bool,
@@ -109,7 +110,7 @@ News.propTypes = {
 
 const mapDispatchToProps = dispatch => ({
   getArticles: pageId => dispatch(getArticles(pageId)),
-  setArticlesPage: () => dispatch(setArticlesPage())
+  setArticlesPage: pageId => dispatch(setArticlesPage(pageId))
 });
 
 const mapStateToProps = createStructuredSelector({
