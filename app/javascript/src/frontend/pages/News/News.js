@@ -49,8 +49,10 @@ export const News = ({ match, getArticles, articles, loader, error }) => {
 
     return articles.length ? (
       <div className="news">
-        <PageTitle title="Aktualności" />
         <div className="news__heading">Aktualności</div>
+        <div className="news__pagination news__pagination--top">
+          <Pagination redirectPath={redirectPath} />
+        </div>
         {articles.map(article => {
           return (
             <ArticleOverview
