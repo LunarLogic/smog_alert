@@ -64,7 +64,7 @@ export const Calendar = ({
       <CalendarYearly
         year={calendarChosenYear}
         customClasses={customClassesData}
-        firstDayOfWeek={1}
+        firstDayOfWeek={0}
         onPickDate={onDatePicked}
         selectedDay={calendarSelectedDay}
       />
