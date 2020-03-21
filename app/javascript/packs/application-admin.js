@@ -9,5 +9,18 @@ require("@rails/ujs").start();
 
 import "bootstrap";
 import "../stylesheets/application-admin";
+import "../src/admin/article_form"
 
-import "./admin/article_form";
+import React from "react";
+import ReactDOM from "react-dom";
+import Dashboard from "../src/admin/components/Dashboard/Dashboard"
+
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("dashboard-react");
+  if (container) {
+    ReactDOM.render(
+      <Dashboard/>,
+      container
+    );
+  }
+});

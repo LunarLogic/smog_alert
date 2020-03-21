@@ -44,6 +44,7 @@ Rails.application.routes.draw do
           get :calendar_daily_values
           get :hourly_average_for_month
           get :first_month
+          get :last_available
         end
       end
       resources :articles, only: [:index, :show]
@@ -53,6 +54,11 @@ Rails.application.routes.draw do
         end
       end
       resources :contact_form, only: [:create]
+      resources :locations, only: [] do
+        collection do
+          get :no_current_measurements
+        end
+      end
     end
   end
 

@@ -24,7 +24,7 @@ RSpec.describe API::Internal::MeasurementsController, type: :controller do
         expect(response.body).to be_json_eql(location_b.id.to_json).at_path('data/1/location_id')
         expect(response.body).to be_json_eql(measurements_a_new.till_date_time.to_json)
           .at_path('data/0/last_hour_measurement/till_date_time')
-        expect(response.body).to be_json_eql('bardzo dobry'.to_json)
+        expect(response.body).to be_json_eql('doskonały'.to_json)
           .at_path('data/0/last_hour_measurement/status')
       end
     end
@@ -64,9 +64,9 @@ RSpec.describe API::Internal::MeasurementsController, type: :controller do
       end
 
       it 'returns status of locations grouped by name' do
-        expect(response.body).to be_json_eql('dostateczny'.to_json)
+        expect(response.body).to be_json_eql('zły'.to_json)
           .at_path('data/0/status_of_locations_grouped_by_name')
-        expect(response.body).to be_json_eql('dostateczny'.to_json)
+        expect(response.body).to be_json_eql('zły'.to_json)
           .at_path('data/1/status_of_locations_grouped_by_name')
         expect(response.body).to be_json_eql(nil.to_json).at_path('data/2/status_of_locations_grouped_by_name')
       end
@@ -89,8 +89,9 @@ RSpec.describe API::Internal::MeasurementsController, type: :controller do
       it 'returns no measurement for location a' do
         expect(response.body).to have_json_path('data')
         expect(response.body).to have_json_size(2).at_path('data')
-        expect(response.body).to have_json_path('data/0/location_name')
+        expect(response.body).to have_json_path('data/1/location_name')
         expect(response.body).to be_json_eql(location_a.name.to_json).at_path('data/0/location_name')
+        expect(response.body).to be_json_eql(nil.to_json).at_path('data/0/last_hour_measurement')
       end
     end
   end
