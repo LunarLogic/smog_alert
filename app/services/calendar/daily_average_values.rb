@@ -41,7 +41,7 @@ module Calendar
       if number_of_measurements < 18
         'zbyt mało danych'
       else
-        Pm10GiosScaleChecker.new(pm10_average).call
+        GiosScaleChecker.new(:pm10, pm10_average).call
       end
     end
   end

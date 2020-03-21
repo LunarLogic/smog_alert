@@ -37,7 +37,7 @@ export const PollutionSpecificData = ({
               <PollutionIndexData
                 key={`${index}-pollution-index-data`}
                 indicator={data.name}
-                value={data.value.toString()}
+                value={data.value !== null ? data.value.toString() : '--'}
                 percent={data.value !== "--" ? percent : "--"}
                 limit={setLimit(data.name)}
               />

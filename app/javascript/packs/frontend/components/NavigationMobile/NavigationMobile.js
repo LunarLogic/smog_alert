@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { Link as ScrollLink } from "react-scroll";
+import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { PropTypes } from "prop-types";
@@ -11,19 +11,17 @@ import navigationContent from "../Navigation/navigationContent";
 import "./NavigationMobile.scss";
 import "./Hamburger.scss";
 
-import {
-  selectPath,
-  selectOrganizationDetails
-} from "../../redux/application/application.selectors";
+import { selectOrganizationDetails } from "../../redux/application/application.selectors";
 
-const NavigationMobile = ({ path, organizationDetails }) => {
+const NavigationMobile = ({ organizationDetails }) => {
   const { links, button } = navigationContent;
   const { name, logo } = organizationDetails;
+  const path = useLocation().pathname;
 
   const [hamburgerActive, setHamburgerActive] = useState(false);
 
   return (
-    <header className="hamburger-navigation">
+    <nav className="hamburger-navigation">
       <div className="hamburger-navigation-container">
         <div className="hamburger-navigation--closed">
           <div className="hamburger-navigation__brand">
@@ -49,11 +47,20 @@ const NavigationMobile = ({ path, organizationDetails }) => {
             </Link>
           </div>
           <div className="hamburger-navigation__links">
-            <CustomButton text={button} />
+            <Link
+              key={button.displayName}
+              to={button.path}
+              onClick={() => {
+                setHamburgerActive(false);
+              }}
+            >
+              <CustomButton text={button.displayName} />
+            </Link>
             <button
               className={`hamburger hamburger--spin ${
                 hamburgerActive ? "is-active" : ""
               }`}
+              aria-label="hamburger-menu"
               type="button"
               onClick={() => {
                 setHamburgerActive(!hamburgerActive);
@@ -71,55 +78,43 @@ const NavigationMobile = ({ path, organizationDetails }) => {
           }`}
         >
           {links.map(link => (
-            <NavLink
+            <Link
               key={link.displayName}
-              activeClassName="activeLink"
-              className="hamburger-navigation__links-item"
+              className={
+                path === link.path
+                  ? "hamburger-navigation__links-item isActive"
+                  : "hamburger-navigation__links-item"
+              }
               to={link.path}
               onClick={() => {
                 setHamburgerActive(false);
               }}
             >
               {link.displayName}
-            </NavLink>
+            </Link>
           ))}
-          {path.path === "/" ? (
-            <ScrollLink
-              className="hamburger-navigation__links-item"
-              to="map-section"
-              smooth={true}
-              duration={500}
-              offset={-50}
+          <div className="hamburger-navigation__links-button">
+            <Link
+              key={button.displayName}
+              to={button.path}
               onClick={() => {
                 setHamburgerActive(false);
               }}
             >
-              Mapa
-            </ScrollLink>
-          ) : (
-            <a
-              className="hamburger-navigation__links-item"
-              href="/#map-section"
-            >
-              Mapa
-            </a>
-          )}
-          <div className="hamburger-navigation__links-button">
-            <CustomButton text={button} />
+              <CustomButton text={button.displayName} />
+            </Link>
           </div>
         </div>
       </div>
-    </header>
+    </nav>
   );
 };
 
 const mapStateToProps = createStructuredSelector({
-  path: selectPath,
   organizationDetails: selectOrganizationDetails
 });
 
 NavigationMobile.propTypes = {
-  path: PropTypes.string,
   organizationDetails: PropTypes.object
 };
 

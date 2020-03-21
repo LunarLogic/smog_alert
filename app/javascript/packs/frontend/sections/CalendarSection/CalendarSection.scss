@@ -11,7 +11,7 @@
       flex-direction: column;
     }
     &-dropdown {
-      width: 40%;
+      width: 30rem;
       position: relative;
       @media only screen and (max-width: $bp-1000) {
         min-height: 20rem;

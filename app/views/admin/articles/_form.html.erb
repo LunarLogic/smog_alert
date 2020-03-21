@@ -8,5 +8,17 @@
     </div>
   <% end %>
   <br>
+  <div id="js-tags-fields">
+    <% article.tags.each do |tag| %>
+      <div class="d-flex tag-field">
+        <%= render 'tag', tag_name: tag.name %>
+      </div>
+    <% end %>
+  </div>
+  <p><button class="btn btn-secondary" id="js-add-tag-field-button">Dodaj tag</button></p>
   <%= f.button :submit, button_label, class: 'btn btn-primary' %>
 <% end %>
+
+<div id="js-tag-template" style="display:none">
+  <%= render 'tag', tag_name: nil %>
+</div>

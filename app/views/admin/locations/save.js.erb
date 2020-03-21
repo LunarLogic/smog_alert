@@ -1,2 +1,4 @@
-$('#save-installation-<%= @installation['id']%>').attr("disabled", true);
-$('#delete-flash').append("<div class='alert alert-info' role='alert'>Zapisano instalację <%= @location.name %> <%= @location.street %>. <%= escape_javascript(link_to 'Cofnij', admin_location_path(@location), method: :delete, remote: true, data: {dismiss: 'alert'}, class: 'alert-link') %><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+$(document).ready(function() {
+  $('#save-installation-<%= @installation['id']%>').attr("disabled", true);
+  $('#delete-flash').append("<div class='alert alert-info' role='alert'>Zapisano instalację <%= @location.name %> <%= @location.street %>. <%= escape_javascript(link_to 'Cofnij', admin_location_path(@location), method: :delete, remote: true, data: {dismiss: 'alert'}, class: 'alert-link') %><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>");
+});

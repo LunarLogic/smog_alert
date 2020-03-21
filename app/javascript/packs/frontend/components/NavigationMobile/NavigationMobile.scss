@@ -127,7 +127,8 @@
       &:first-of-type {
         padding-top: 3rem;
       }
-      &:hover {
+      &:hover,
+      &.isActive {
         color: $secondaryColor;
       }
 

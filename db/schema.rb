@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_14_152740) do
+ActiveRecord::Schema.define(version: 2020_02_25_115751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2020_02_14_152740) do
     t.boolean "published", default: false
     t.datetime "published_at"
     t.text "overview"
-    t.integer "user_id"
+    t.integer "user_id", null: false
     t.index ["published"], name: "index_articles_on_published"
   end
 
@@ -98,6 +98,22 @@ ActiveRecord::Schema.define(version: 2020_02_14_152740) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "taggings", force: :cascade do |t|
+    t.bigint "article_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_taggings_on_article_id"
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -120,4 +136,6 @@ ActiveRecord::Schema.define(version: 2020_02_14_152740) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "articles", "users"
   add_foreign_key "measurements", "locations"
+  add_foreign_key "taggings", "articles"
+  add_foreign_key "taggings", "tags"
 end

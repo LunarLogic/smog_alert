@@ -25,11 +25,14 @@ Rails.application.routes.draw do
       end
     end
     resources :users
+    get '/tags/names'
   end
 
   authenticate :user, ->(u) { u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
+
+  resources :apidocs, only: [:index]
 
   namespace :api do
     namespace :internal do
@@ -40,6 +43,7 @@ Rails.application.routes.draw do
           get :calendar_status
           get :calendar_daily_values
           get :hourly_average_for_month
+          get :first_month
         end
       end
       resources :articles, only: [:index, :show]

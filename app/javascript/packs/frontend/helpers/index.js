@@ -1,6 +1,8 @@
+import { changePickedDateIntoText } from "./changePickedDateIntoText";
 import { classNameForPollutionStatus } from "./classNameForPollutionStatus";
-import { yesterdayDateFormatted } from "./yesterdayDateFormatted";
 import { findMeasurement } from "./findMeasurement";
+import { findPreviousMonth } from "./findPreviousMonth";
+import { formatMonthlyDate } from "./formatMonthlyDate";
 import { setColor } from "./setColor";
 import { setIndicator } from "./setIndicator";
 import { setPercent } from "./setPercent";
@@ -10,10 +12,14 @@ import { setGradient } from "./setGradient";
 import { setAverageColor } from "./setAverageColor";
 import { setCloudColor } from "./setCloudColor";
 import { getDate } from "./getDate";
+import { yesterdayDateFormatted } from "./yesterdayDateFormatted";
 
 export {
+  changePickedDateIntoText,
   classNameForPollutionStatus,
   findMeasurement,
+  findPreviousMonth,
+  formatMonthlyDate,
   setColor,
   setIndicator,
   setPercent,

@@ -4,6 +4,7 @@ import ButtonsGroup from "./ButtonsGroup/ButtonsGroup";
 import Calendar from "./Calendar/Calendar";
 import CalendarDailyInfo from "./CalendarDailyInfo/CalendarDailyInfo";
 import CalendarLegendBox from "./CalendarLegendBox/CalendarLegendBox";
+import Chart from "./Chart/Chart";
 import ContactDetail from "./ContactDetail/ContactDetail";
 import CustomButton from "./CustomButton/CustomButton";
 import DropdownMenu from "./DropdownMenu/DropdownMenu";
@@ -33,6 +34,7 @@ export {
   Calendar,
   CalendarDailyInfo,
   CalendarLegendBox,
+  Chart,
   ContactDetail,
   CustomButton,
   DropdownMenu,
