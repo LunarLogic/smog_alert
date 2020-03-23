@@ -23,7 +23,7 @@ describe("News actions", () => {
       { type: newsActionTypes.GET_ARTICLES_PENDING },
       {
         type: newsActionTypes.GET_ARTICLES_SUCCESS,
-        payload: articlesMock.data
+        payload: articlesMock
       }
     ];
 

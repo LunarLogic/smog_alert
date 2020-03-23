@@ -6,11 +6,13 @@ import articleMock from "../../__mocks__/articleMock.json";
 describe("News reducer", () => {
   const initialState = {
     articles: [],
+    pagination: {},
     article: {},
     newsLoader: true,
     articleLoader: true,
     error: false,
-    errorCode: null
+    errorCode: null,
+    articlesPage: null
   };
   it("should return initial state", () => {
     expect(newsReducer(undefined, {})).toEqual(initialState);
@@ -24,13 +26,14 @@ describe("News reducer", () => {
     expect(
       newsReducer(initialState, {
         type: newsActionTypes.GET_ARTICLES_SUCCESS,
-        payload: articlesMock.data
+        payload: articlesMock
       })
     ).toEqual({
       ...initialState,
       newsLoader: false,
       error: false,
-      articles: articlesMock.data
+      articles: articlesMock.data,
+      pagination: articlesMock.meta.pagination
     });
   });
   it("should handle GET_ARTICLES_FAILURE", () => {

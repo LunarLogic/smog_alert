@@ -9,14 +9,19 @@ import articlesMock from "../../__mocks__/articlesMock.json";
 describe("News page", () => {
   it("renders loader when no response from API is yet provided", () => {
     const wrapperWithLoader = mount(
-      <News
-        match={{ params: { id: 1 } }}
-        getArticles={jest.fn()}
-        articles={[]}
-        setCurrentPath={jest.fn()}
-        loader={true}
-        error={false}
-      />
+      <Provider store={store}>
+        <MemoryRouter initialEntries={["/random"]}>
+          <News
+            match={{ params: { id: 1 } }}
+            getArticles={jest.fn()}
+            setArticlesPage={jest.fn()}
+            articles={[]}
+            setCurrentPath={jest.fn()}
+            loader={true}
+            error={false}
+          />
+        </MemoryRouter>
+      </Provider>
     );
     expect(wrapperWithLoader.exists("Loader")).toEqual(true);
   });
@@ -28,6 +33,7 @@ describe("News page", () => {
           <News
             match={{ params: { id: 1 } }}
             getArticles={jest.fn()}
+            setArticlesPage={jest.fn()}
             articles={[]}
             setCurrentPath={jest.fn()}
             loader={false}
@@ -52,6 +58,7 @@ describe("News page", () => {
           <News
             match={{ params: { id: 1 } }}
             getArticles={jest.fn()}
+            setArticlesPage={jest.fn()}
             articles={[]}
             setCurrentPath={jest.fn()}
             loader={false}
@@ -75,6 +82,7 @@ describe("News page", () => {
           <News
             match={{ params: { id: 1 } }}
             getArticles={jest.fn()}
+            setArticlesPage={jest.fn()}
             articles={articlesMock.data}
             setCurrentPath={jest.fn()}
             loader={false}

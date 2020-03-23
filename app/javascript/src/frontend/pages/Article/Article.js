@@ -32,7 +32,9 @@ export const Article = ({
   errorCode,
   articlesPage
 }) => {
-  const { articleId } = match.params;
+  const {
+    params: { articleId }
+  } = match;
   const { title, body, published_at, updated_at } = article;
   const hrefToArticles = articlesPage
     ? `/aktualnosci?strona=${articlesPage}`
