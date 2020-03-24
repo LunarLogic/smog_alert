@@ -3,14 +3,13 @@ describe API::Internal::ContactFormController do
     context 'when contact form params valid' do
       let!(:valid_params) do
         {
-          contact_form:
-          { sender_name: 'Test Sender',
+          contact_form: {
+            sender_name: 'Test Sender',
             sender_email: 'test@example.com',
-            message: 'Test message' }
+            message: 'Test message',
+          }
         }
       end
-
-      let!(:mail) { ContactMailer.with(valid_params).contact_form_email }
 
       it 'returns 204 No Content' do
         post '/api/internal/contact_form', params: valid_params
@@ -22,10 +21,11 @@ describe API::Internal::ContactFormController do
     context 'when contact form params NOT valid' do
       let!(:invalid_params) do
         {
-          contact_form:
-          { sender_name: '',
+          contact_form: {
+            sender_name: '',
             sender_email: 'test.example.com',
-            message: 'Test message' }
+            message: 'Test message',
+          }
         }
       end
 
@@ -39,8 +39,9 @@ describe API::Internal::ContactFormController do
         expect(response.body).to include('errors')
         expect(response.body).to eq(
           {
-            errors: { sender_name: ['nie może być puste'],
-                      sender_email: ['jest nieprawidłowe'] }
+            errors:
+              { sender_name: ['nie może być puste'],
+                sender_email: ['jest nieprawidłowe'] }
           }.to_json,
         )
       end
