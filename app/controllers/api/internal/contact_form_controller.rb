@@ -1,5 +1,4 @@
 class API::Internal::ContactFormController < API::Internal::BaseController
-
   def create
     contact_form = ContactForm.new(contact_form_params)
     if contact_form.valid?
