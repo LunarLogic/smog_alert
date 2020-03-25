@@ -2,8 +2,8 @@ class API::Internal::TagsController < API::Internal::BaseController
   include Swagger::Blocks
 
   def index
-    tags = tags_repository.all_tags
-    render json: tags
+    tags_names = tags_repository.tags_names
+    render json: tags_names
   end
 
   private
