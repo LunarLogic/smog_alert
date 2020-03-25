@@ -28,10 +28,11 @@ describe API::Internal::ArticlesController do
     end
 
     context 'when published articles in DB' do
+      let(:tag) { create(:tag) }
       let!(:not_published_article) { create(:article, published: false, published_at: nil, user: editor) }
       let!(:published_article_without_image) do
         create(:article, published: true, published_at: Time.current,
-                         updated_at: Time.current - 2.days, user: editor)
+                         updated_at: Time.current - 2.days, user: editor, tags: [tag])
       end
       let!(:published_article_with_image) do
         FactoryBot.create(:article, body: '#', published: true,

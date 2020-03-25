@@ -31,7 +31,7 @@ unless Rails.env.production?
     organization.logo.attach(io: File.open(path), filename: 'logo.jpg')
   end
 
-  ['smog', 'Zabierzów', 'ustawa', 'piec'].each do |name|
+  %w[smog Zabierzów ustawa piec].each do |name|
     Tag.create(name: name)
   end
 
