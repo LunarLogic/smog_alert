@@ -16,13 +16,14 @@ export const ArticleOverview = ({
   overview,
   publishingDate,
   updatingDate,
+  url,
   id,
   resetArticle
 }) => {
   return (
     <div className="article-overview">
       <div className="article-overview__title">
-        <Link to={`/aktualnosci/${id}`} onClick={resetArticle}>
+        <Link to={`${url}/${id}`} onClick={resetArticle}>
           {title}
         </Link>
       </div>
@@ -42,7 +43,7 @@ export const ArticleOverview = ({
           </div>
           <Link
             className="article-overview__container--button"
-            to={`/aktualnosci/${id}`}
+            to={`${url}/${id}`}
             onClick={resetArticle}
           >
             <div className="article-overview__container--button-text">

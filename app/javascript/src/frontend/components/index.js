@@ -10,12 +10,14 @@ import CustomButton from "./CustomButton/CustomButton";
 import DropdownMenu from "./DropdownMenu/DropdownMenu";
 import Footer from "./Footer/Footer";
 import Icon from "./Icon/Icon";
+import LinkButton from "./LinkButton/LinkButton";
 import Loader from "./Loader/Loader";
 import Recommendation from "./Recommendation/Recommendation";
 import Map from "./Map/Map";
 import Navigation from "./Navigation/Navigation";
 import NavigationMobile from "./NavigationMobile/NavigationMobile";
 import NoItemFound from "./NoItemFound/NoItemFound";
+import Pagination from "./Pagination/Pagination";
 import PageTitle from "./PageTitle/PageTitle";
 import PollutionBar from "./PollutionBar/PollutionBar";
 import PollutionCard from "./PollutionCard/PollutionCard";
@@ -40,6 +42,7 @@ export {
   DropdownMenu,
   Footer,
   Icon,
+  LinkButton,
   Loader,
   Recommendation,
   Map,
@@ -47,6 +50,7 @@ export {
   NavigationMobile,
   NoItemFound,
   PageTitle,
+  Pagination,
   PollutionBar,
   PollutionCard,
   PollutionComparison,

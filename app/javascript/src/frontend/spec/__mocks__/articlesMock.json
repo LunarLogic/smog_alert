@@ -16,5 +16,18 @@
       "published_at": "2020-02-18T11:27:53.958Z",
       "updated_at": "2020-02-18T11:27:53.965Z"
     }
-  ]
+  ],
+  "meta": {
+    "pagination": {
+    "per_page": 2,
+    "total_pages": 3,
+    "total_objects": 6,
+    "prev_page": 1,
+    "current_page": 2,
+    "next_page": 3,
+    "is_first_page": false,
+    "is_last_page": false,
+    "is_page_out_of_range": false
+    }
+  }
 }

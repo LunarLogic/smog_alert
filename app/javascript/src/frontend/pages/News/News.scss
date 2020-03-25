@@ -11,4 +11,13 @@
     display: flex;
     justify-content: center;
   }
+  &__pagination {
+    margin-top: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &--top {
+      margin-bottom: 4rem;
+    }
+  }
 }

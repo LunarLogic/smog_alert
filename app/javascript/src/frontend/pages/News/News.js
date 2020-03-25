@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getArticles } from "../../redux/news/news.actions";
+import { useLocation } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
+import { getArticles, setArticlesPage } from "../../redux/news/news.actions";
 import {
   selectArticles,
   selectNewsLoader,
-  selectNewsError
-} from "../../redux/redux.selectors";
+  selectNewsError,
+  selectPagination
+} from "../../redux/news/news.selectors";
 import { PropTypes } from "prop-types";
 import { animateScroll } from "react-scroll";
 import ImportContactsIcon from "@material-ui/icons/ImportContacts";
@@ -16,26 +18,35 @@ import {
   ArticleOverview,
   Loader,
   PageTitle,
-  NoItemFound
+  NoItemFound,
+  Pagination
 } from "../../components";
 
-import "./News.scss";
+import { articlesPathWithParameter, HOMEPAGE_PATH } from "../../helpers/paths";
 
-import { setCurrentPath } from "../../redux/application/application.actions";
+import "./News.scss";
 
 export const News = ({
   match,
   getArticles,
+  setArticlesPage,
   articles,
-  setCurrentPath,
+  pagination,
   loader,
   error
 }) => {
+  const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
+  };
+  const pageId = useQuery().get("strona");
+  const { url } = match;
+  const { total_pages } = pagination;
+
   useEffect(() => {
-    setCurrentPath(match.path);
-    getArticles();
+    setArticlesPage(pageId);
+    getArticles(pageId);
     animateScroll.scrollToTop();
-  }, []);
+  }, [pageId]);
 
   const displayArticles = () => {
     if (loader) {
@@ -47,15 +58,19 @@ export const News = ({
         <NoItemFound
           image={<ErrorOutlineIcon />}
           text="Przepraszamy, wystąpił błąd. Prosimy spróbować później."
-          linkTo={{ href: "/", text: "Powrót na stronę główną" }}
+          linkTo={{ href: HOMEPAGE_PATH, text: "Powrót na stronę główną" }}
         />
       );
     }
 
     return articles.length ? (
       <div className="news">
-        <PageTitle title="Aktualności" />
         <div className="news__heading">Aktualności</div>
+        {total_pages > 1 && (
+          <div className="news__pagination news__pagination--top">
+            <Pagination redirectPath={articlesPathWithParameter()} />
+          </div>
+        )}
         {articles.map(article => {
           return (
             <ArticleOverview
@@ -65,16 +80,22 @@ export const News = ({
               overview={article.overview}
               publishingDate={article.published_at}
               updatingDate={article.updated_at}
+              url={url}
               id={article.id}
             />
           );
         })}
+        {total_pages > 1 && (
+          <div className="news__pagination">
+            <Pagination redirectPath={articlesPathWithParameter()} />
+          </div>
+        )}
       </div>
     ) : (
       <NoItemFound
         image={<ImportContactsIcon />}
         text="Brak artykułów do wyświetlenia"
-        linkTo={{ href: "/", text: "Powrót na stronę główną" }}
+        linkTo={{ href: HOMEPAGE_PATH, text: "Powrót na stronę główną" }}
       />
     );
   };
@@ -88,20 +109,22 @@ export const News = ({
 
 News.propTypes = {
   getArticles: PropTypes.func,
+  setArticlesPage: PropTypes.func,
   articles: PropTypes.array,
-  setCurrentPath: PropTypes.func,
   match: PropTypes.object,
   loader: PropTypes.bool,
-  error: PropTypes.bool
+  error: PropTypes.bool,
+  pagination: PropTypes.object
 };
 
 const mapDispatchToProps = dispatch => ({
-  getArticles: () => dispatch(getArticles()),
-  setCurrentPath: path => dispatch(setCurrentPath(path))
+  getArticles: pageId => dispatch(getArticles(pageId)),
+  setArticlesPage: pageId => dispatch(setArticlesPage(pageId))
 });
 
 const mapStateToProps = createStructuredSelector({
   articles: selectArticles,
+  pagination: selectPagination,
   loader: selectNewsLoader,
   error: selectNewsError
 });

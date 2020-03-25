@@ -7,16 +7,25 @@ import { News } from "../../../pages/News/News";
 import articlesMock from "../../__mocks__/articlesMock.json";
 
 describe("News page", () => {
+  const match = {
+    params: { id: 1 }
+  };
   it("renders loader when no response from API is yet provided", () => {
     const wrapperWithLoader = mount(
-      <News
-        match={{ params: { id: 1 } }}
-        getArticles={jest.fn()}
-        articles={[]}
-        setCurrentPath={jest.fn()}
-        loader={true}
-        error={false}
-      />
+      <Provider store={store}>
+        <MemoryRouter initialEntries={["/random"]}>
+          <News
+            match={match}
+            getArticles={jest.fn()}
+            setArticlesPage={jest.fn()}
+            articles={[]}
+            setCurrentPath={jest.fn()}
+            loader={true}
+            error={false}
+            pagination={{}}
+          />
+        </MemoryRouter>
+      </Provider>
     );
     expect(wrapperWithLoader.exists("Loader")).toEqual(true);
   });
@@ -28,10 +37,12 @@ describe("News page", () => {
           <News
             match={{ params: { id: 1 } }}
             getArticles={jest.fn()}
+            setArticlesPage={jest.fn()}
             articles={[]}
             setCurrentPath={jest.fn()}
             loader={false}
             error={true}
+            pagination={{}}
           />
         </MemoryRouter>
       </Provider>
@@ -52,10 +63,12 @@ describe("News page", () => {
           <News
             match={{ params: { id: 1 } }}
             getArticles={jest.fn()}
+            setArticlesPage={jest.fn()}
             articles={[]}
             setCurrentPath={jest.fn()}
             loader={false}
             error={false}
+            pagination={{}}
           />
         </MemoryRouter>
       </Provider>
@@ -75,10 +88,12 @@ describe("News page", () => {
           <News
             match={{ params: { id: 1 } }}
             getArticles={jest.fn()}
+            setArticlesPage={jest.fn()}
             articles={articlesMock.data}
             setCurrentPath={jest.fn()}
             loader={false}
             error={false}
+            pagination={{}}
           />
         </MemoryRouter>
       </Provider>

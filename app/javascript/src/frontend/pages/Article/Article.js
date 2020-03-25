@@ -16,13 +16,18 @@ import {
   selectArticle,
   selectArticleLoader,
   selectNewsError,
-  selectNewsErrorCode
-} from "../../redux/redux.selectors";
+  selectNewsErrorCode,
+  selectArticlesPage
+} from "../../redux/news/news.selectors";
 import { getDate } from "../../helpers";
 
-import "./Article.scss";
+import {
+  articlesPathWithParameter,
+  ARTICLES_PATH,
+  HOMEPAGE_PATH
+} from "../../helpers/paths";
 
-import { setCurrentPath } from "../../redux/application/application.actions";
+import "./Article.scss";
 
 export const Article = ({
   match,
@@ -30,13 +35,18 @@ export const Article = ({
   article,
   loader,
   error,
-  setCurrentPath,
-  errorCode
+  errorCode,
+  articlesPage
 }) => {
-  const articleId = match.params.articleId;
+  const {
+    params: { articleId }
+  } = match;
   const { title, body, published_at, updated_at } = article;
+  const hrefToArticles = articlesPage
+    ? articlesPathWithParameter(articlesPage)
+    : ARTICLES_PATH;
+
   useEffect(() => {
-    setCurrentPath(match.path);
     getArticle(articleId);
     animateScroll.scrollToTop();
   }, []);
@@ -54,7 +64,7 @@ export const Article = ({
               image={<LibraryBooksIcon />}
               text={"Przepraszamy, wybrany artykuł nie istnieje"}
               linkTo={{
-                href: "/aktualnosci",
+                href: { hrefToArticles },
                 text: "Powrót do listy aktualności"
               }}
             />
@@ -64,7 +74,7 @@ export const Article = ({
             <NoItemFound
               image={<ErrorOutlineIcon />}
               text="Przepraszamy, wystąpił błąd. Prosimy spróbować później."
-              linkTo={{ href: "/", text: "Powrót na stronę główną" }}
+              linkTo={{ href: HOMEPAGE_PATH, text: "Powrót na stronę główną" }}
             />
           );
       }
@@ -89,7 +99,7 @@ export const Article = ({
             </div>
             <div className="article__container--author">Autor: </div>
           </div>
-          <Link className="article__button" to="/aktualnosci">
+          <Link className="article__button" to={hrefToArticles}>
             <ArrowBackIcon />
             <div className="article__button--text">
               Powrót do listy aktualności
@@ -108,23 +118,23 @@ export const Article = ({
 };
 
 const mapDispatchToProps = dispatch => ({
-  getArticle: id => dispatch(getArticle(id)),
-  setCurrentPath: path => dispatch(setCurrentPath(path))
+  getArticle: id => dispatch(getArticle(id))
 });
 
 const mapStateToProps = createStructuredSelector({
   article: selectArticle,
   loader: selectArticleLoader,
   error: selectNewsError,
-  errorCode: selectNewsErrorCode
+  errorCode: selectNewsErrorCode,
+  articlesPage: selectArticlesPage
 });
 
 Article.propTypes = {
   match: PropTypes.object,
   getArticles: PropTypes.func,
   articles: PropTypes.array,
-  setCurrentPath: PropTypes.func,
-  resetArticle: PropTypes.func
+  resetArticle: PropTypes.func,
+  articlesPage: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Article);

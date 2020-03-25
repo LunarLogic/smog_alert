@@ -2,11 +2,13 @@ import { newsActionTypes } from "./news.types";
 
 const INITIAL_STATE = {
   articles: [],
+  pagination: {},
   article: {},
   newsLoader: true,
   articleLoader: true,
   error: false,
-  errorCode: null
+  errorCode: null,
+  articlesPage: null
 };
 
 const newsReducer = (state = INITIAL_STATE, action) => {
@@ -23,7 +25,8 @@ const newsReducer = (state = INITIAL_STATE, action) => {
     case newsActionTypes.GET_ARTICLES_SUCCESS:
       return {
         ...state,
-        articles: action.payload,
+        articles: action.payload.data,
+        pagination: action.payload.meta.pagination,
         newsLoader: false,
         error: false
       };
@@ -58,6 +61,11 @@ const newsReducer = (state = INITIAL_STATE, action) => {
         ...state,
         article: {},
         newsLoader: true
+      };
+    case newsActionTypes.SET_ARTICLES_PAGE:
+      return {
+        ...state,
+        articlesPage: action.payload
       };
     default:
       return state;
