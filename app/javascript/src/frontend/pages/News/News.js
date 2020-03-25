@@ -21,6 +21,8 @@ import {
   Pagination
 } from "../../components";
 
+import { articlesPathWithParameter, HOMEPAGE_PATH } from "../../helpers/paths";
+
 import "./News.scss";
 
 export const News = ({
@@ -36,7 +38,6 @@ export const News = ({
   };
   const pageId = useQuery().get("strona");
   const { url } = match;
-  const redirectPath = "/aktualnosci?strona=";
 
   useEffect(() => {
     setArticlesPage(pageId);
@@ -54,7 +55,7 @@ export const News = ({
         <NoItemFound
           image={<ErrorOutlineIcon />}
           text="Przepraszamy, wystąpił błąd. Prosimy spróbować później."
-          linkTo={{ href: "/", text: "Powrót na stronę główną" }}
+          linkTo={{ href: HOMEPAGE_PATH, text: "Powrót na stronę główną" }}
         />
       );
     }
@@ -63,7 +64,7 @@ export const News = ({
       <div className="news">
         <div className="news__heading">Aktualności</div>
         <div className="news__pagination news__pagination--top">
-          <Pagination redirectPath={redirectPath} />
+          <Pagination redirectPath={articlesPathWithParameter()} />
         </div>
         {articles.map(article => {
           return (
@@ -80,14 +81,14 @@ export const News = ({
           );
         })}
         <div className="news__pagination">
-          <Pagination redirectPath={redirectPath} />
+          <Pagination redirectPath={articlesPathWithParameter()} />
         </div>
       </div>
     ) : (
       <NoItemFound
         image={<ImportContactsIcon />}
         text="Brak artykułów do wyświetlenia"
-        linkTo={{ href: "/", text: "Powrót na stronę główną" }}
+        linkTo={{ href: HOMEPAGE_PATH, text: "Powrót na stronę główną" }}
       />
     );
   };

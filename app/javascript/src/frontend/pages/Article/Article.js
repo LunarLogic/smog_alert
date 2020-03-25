@@ -21,6 +21,12 @@ import {
 } from "../../redux/news/news.selectors";
 import { getDate } from "../../helpers";
 
+import {
+  articlesPathWithParameter,
+  ARTICLES_PATH,
+  HOMEPAGE_PATH
+} from "../../helpers/paths";
+
 import "./Article.scss";
 
 export const Article = ({
@@ -37,8 +43,8 @@ export const Article = ({
   } = match;
   const { title, body, published_at, updated_at } = article;
   const hrefToArticles = articlesPage
-    ? `/aktualnosci?strona=${articlesPage}`
-    : "/aktualnosci";
+    ? articlesPathWithParameter(articlesPage)
+    : ARTICLES_PATH;
 
   useEffect(() => {
     getArticle(articleId);
@@ -68,7 +74,7 @@ export const Article = ({
             <NoItemFound
               image={<ErrorOutlineIcon />}
               text="Przepraszamy, wystąpił błąd. Prosimy spróbować później."
-              linkTo={{ href: "/", text: "Powrót na stronę główną" }}
+              linkTo={{ href: HOMEPAGE_PATH, text: "Powrót na stronę główną" }}
             />
           );
       }

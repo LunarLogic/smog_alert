@@ -9,7 +9,7 @@ import { LinkButton } from "../";
 
 import "./Pagination.scss";
 
-const Pagination = ({ redirectPath, pagination }) => {
+export const Pagination = ({ redirectPath, pagination }) => {
   const {
     total_pages,
     prev_page,
@@ -19,7 +19,7 @@ const Pagination = ({ redirectPath, pagination }) => {
     is_last_page
   } = pagination;
 
-  const hadleBoxes = () => {
+  const handleBoxes = () => {
     let boxes;
     if (total_pages > 3) {
       if (total_pages - current_page > 2) {
@@ -34,14 +34,18 @@ const Pagination = ({ redirectPath, pagination }) => {
     return boxes;
   };
 
-  const [boxes, setBoxes] = useState(hadleBoxes());
+  const [boxes, setBoxes] = useState(handleBoxes());
 
   useEffect(() => {
-    setBoxes(hadleBoxes());
+    setBoxes(handleBoxes());
   }, [current_page]);
 
+  const isLastPage = box => box === total_pages;
+  const isPreviousPagePenultimate = (boxes, idx) =>
+    boxes[idx - 1] === total_pages - 1;
+
   const paginationPages = boxes.map((box, idx) => {
-    return box === total_pages && boxes[idx - 1] !== total_pages - 1 ? (
+    return isLastPage(box) && !isPreviousPagePenultimate(boxes, idx) ? (
       <React.Fragment key={box}>
         <div className={`pagination-box`}>
           <span>...</span>
