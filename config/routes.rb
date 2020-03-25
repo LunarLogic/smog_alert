@@ -53,6 +53,7 @@ Rails.application.routes.draw do
           get :current_data
         end
       end
+      resources :contact_form, only: [:create]
       resources :locations, only: [] do
         collection do
           get :no_current_measurements
