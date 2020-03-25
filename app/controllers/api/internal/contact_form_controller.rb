@@ -1,5 +1,4 @@
 class API::Internal::ContactFormController < API::Internal::BaseController
-  skip_before_action :verify_authenticity_token
   def create
     contact_form = ContactForm.new(contact_form_params)
     if contact_form.valid?

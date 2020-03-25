@@ -1,6 +1,6 @@
 module API
   module Internal
-    class BaseController < ActionController::Base
+    class BaseController < ActionController::API
       abstract!
       rescue_from(ActionController::ParameterMissing) do |parameter_missing_exception|
         error = {}
