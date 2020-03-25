@@ -6,7 +6,8 @@ import { getArticles, setArticlesPage } from "../../redux/news/news.actions";
 import {
   selectArticles,
   selectNewsLoader,
-  selectNewsError
+  selectNewsError,
+  selectPagination
 } from "../../redux/news/news.selectors";
 import { PropTypes } from "prop-types";
 import { animateScroll } from "react-scroll";
@@ -30,6 +31,7 @@ export const News = ({
   getArticles,
   setArticlesPage,
   articles,
+  pagination,
   loader,
   error
 }) => {
@@ -38,6 +40,7 @@ export const News = ({
   };
   const pageId = useQuery().get("strona");
   const { url } = match;
+  const { total_pages } = pagination;
 
   useEffect(() => {
     setArticlesPage(pageId);
@@ -63,9 +66,11 @@ export const News = ({
     return articles.length ? (
       <div className="news">
         <div className="news__heading">Aktualności</div>
-        <div className="news__pagination news__pagination--top">
-          <Pagination redirectPath={articlesPathWithParameter()} />
-        </div>
+        {total_pages > 1 && (
+          <div className="news__pagination news__pagination--top">
+            <Pagination redirectPath={articlesPathWithParameter()} />
+          </div>
+        )}
         {articles.map(article => {
           return (
             <ArticleOverview
@@ -80,9 +85,11 @@ export const News = ({
             />
           );
         })}
-        <div className="news__pagination">
-          <Pagination redirectPath={articlesPathWithParameter()} />
-        </div>
+        {total_pages > 1 && (
+          <div className="news__pagination">
+            <Pagination redirectPath={articlesPathWithParameter()} />
+          </div>
+        )}
       </div>
     ) : (
       <NoItemFound
@@ -106,7 +113,8 @@ News.propTypes = {
   articles: PropTypes.array,
   match: PropTypes.object,
   loader: PropTypes.bool,
-  error: PropTypes.bool
+  error: PropTypes.bool,
+  pagination: PropTypes.object
 };
 
 const mapDispatchToProps = dispatch => ({
@@ -116,6 +124,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = createStructuredSelector({
   articles: selectArticles,
+  pagination: selectPagination,
   loader: selectNewsLoader,
   error: selectNewsError
 });

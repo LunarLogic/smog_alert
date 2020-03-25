@@ -7,18 +7,22 @@ import { News } from "../../../pages/News/News";
 import articlesMock from "../../__mocks__/articlesMock.json";
 
 describe("News page", () => {
+  const match = {
+    params: { id: 1 }
+  };
   it("renders loader when no response from API is yet provided", () => {
     const wrapperWithLoader = mount(
       <Provider store={store}>
         <MemoryRouter initialEntries={["/random"]}>
           <News
-            match={{ params: { id: 1 } }}
+            match={match}
             getArticles={jest.fn()}
             setArticlesPage={jest.fn()}
             articles={[]}
             setCurrentPath={jest.fn()}
             loader={true}
             error={false}
+            pagination={{}}
           />
         </MemoryRouter>
       </Provider>
@@ -38,6 +42,7 @@ describe("News page", () => {
             setCurrentPath={jest.fn()}
             loader={false}
             error={true}
+            pagination={{}}
           />
         </MemoryRouter>
       </Provider>
@@ -63,6 +68,7 @@ describe("News page", () => {
             setCurrentPath={jest.fn()}
             loader={false}
             error={false}
+            pagination={{}}
           />
         </MemoryRouter>
       </Provider>
@@ -87,6 +93,7 @@ describe("News page", () => {
             setCurrentPath={jest.fn()}
             loader={false}
             error={false}
+            pagination={{}}
           />
         </MemoryRouter>
       </Provider>
