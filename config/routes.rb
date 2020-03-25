@@ -58,6 +58,11 @@ Rails.application.routes.draw do
           get :no_current_measurements
         end
       end
+      resources :tags, only: [] do
+        collection do
+          get :index
+        end
+      end
     end
   end
 
