@@ -26,6 +26,13 @@ class API::Internal::ArticlesController < API::Internal::BaseController
         key :type, :integer
         key :default, 1
       end
+      parameter do
+        key :name, :tag
+        key :in, :query
+        key :description, 'Tag for filtering articles'
+        key :required, false
+        key :type, :string
+      end
       response 200 do
         key :description, 'Array of articles'
         schema do
@@ -151,7 +158,12 @@ class API::Internal::ArticlesController < API::Internal::BaseController
   end
 
   def index
-    paginated_articles = ArticlesRepository.new.published_articles.page(page).per(per_page)
+    if params[:tag]
+      tag = params[:tag]
+      paginated_articles = articles_repository.published_articles_with_tag(tag).page(page).per(per_page)
+    else
+      paginated_articles = articles_repository.published_articles.page(page).per(per_page)
+    end
     data = paginated_articles.map do |article|
       API::Internal::ArticleOverviewPresenter.new(article)
     end
@@ -193,5 +205,9 @@ class API::Internal::ArticlesController < API::Internal::BaseController
 
   def per_page
     @per_page ||= params[:per_page] ? params[:per_page].to_i : 5
+  end
+
+  def articles_repository
+    ArticlesRepository.new
   end
 end

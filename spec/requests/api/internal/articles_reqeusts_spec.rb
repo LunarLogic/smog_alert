@@ -39,6 +39,22 @@ describe API::Internal::ArticlesController do
                                     published_at: Time.current, user: editor)
       end
 
+      context 'when tag param provided' do
+        before { get api_internal_articles_path(tag: tag.name) }
+
+        it 'returns article with tag' do
+          expect(response.body).to be_json_eql({
+            id: published_article_without_image.id,
+            title: published_article_without_image.title,
+            image: nil,
+            overview: published_article_without_image.overview,
+            tags: published_article_without_image.tags.map(&:name),
+            published_at: published_article_without_image.published_at,
+            updated_at: published_article_without_image.updated_at
+          }.to_json).at_path('data/0')
+        end
+      end
+
       context 'when pagination params provided' do
         before { get api_internal_articles_path(page: 2, per_page: 2) }
 
