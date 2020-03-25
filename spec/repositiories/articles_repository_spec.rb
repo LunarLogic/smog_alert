@@ -32,7 +32,7 @@ RSpec.describe ArticlesRepository do
 
     it 'doesn\'t return published article that doesn\'t have tag with a given name' do
       tag = FactoryBot.create(:tag)
-      article = FactoryBot.create(:article, published: true, published_at: Time.current, user: user)
+      FactoryBot.create(:article, published: true, published_at: Time.current, user: user)
       response = subject.published_articles_with_tag(tag.name)
       expected_response = []
       expect(response).to eq(expected_response)
