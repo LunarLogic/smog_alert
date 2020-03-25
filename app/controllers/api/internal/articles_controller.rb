@@ -52,6 +52,12 @@ class API::Internal::ArticlesController < API::Internal::BaseController
               property :overview do
                 key :type, :string
               end
+              property :tags do
+                key :type, :array
+                items do
+                  key :type, :string
+                end
+              end
               property :published_at do
                 key :type, :string
               end
@@ -128,6 +134,12 @@ class API::Internal::ArticlesController < API::Internal::BaseController
             end
             property :body do
               key :type, :string
+            end
+            property :tags do
+              key :type, :array
+              items do
+                key :type, :string
+              end
             end
             property :published_at do
               key :type, :string
