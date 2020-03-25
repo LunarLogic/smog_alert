@@ -31,6 +31,10 @@ unless Rails.env.production?
     organization.logo.attach(io: File.open(path), filename: 'logo.jpg')
   end
 
+  ['smog', 'Zabierzów', 'ustawa', 'piec'].each do |name|
+    Tag.create(name: name)
+  end
+
   if Article.all.count < 45
     # unpublished_articles
     5.times.collect do
@@ -38,6 +42,7 @@ unless Rails.env.production?
         title: Faker::Lorem.unique.sentence,
         body: Faker::Lorem.sentence(word_count: 1000),
         overview: Faker::Lorem.sentence(word_count: 100),
+        tags: Tag.all,
         user_id: [editor.id, superadmin.id].sample,
       )
     end
@@ -48,6 +53,7 @@ unless Rails.env.production?
         title: Faker::Lorem.unique.sentence,
         body: Faker::Lorem.sentence(word_count: 1000),
         overview: Faker::Lorem.sentence(word_count: 100),
+        tags: Tag.all,
         user_id: [editor.id, superadmin.id].sample,
         published: true,
         published_at: Time.current,
@@ -62,6 +68,7 @@ unless Rails.env.production?
               ArticleImageHelper.html_with_image +
               Faker::Lorem.sentence(word_count: 200),
         overview: Faker::Lorem.sentence(word_count: 100),
+        tags: Tag.all,
         user_id: [editor.id, superadmin.id].sample,
         published: true,
         published_at: Time.current,
