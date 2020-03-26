@@ -1,0 +1,58 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.form {
+  font-size: 1.6rem;
+  line-height: 1.9rem;
+  &-field {
+    margin-bottom: 2.5rem;
+    &-label {
+      display: flex;
+      flex-direction: column;
+      &--title {
+        padding: 0.5rem 0;
+      }
+      input,
+      textarea {
+        position: relative;
+        display: flex;
+        width: inherit;
+        border: 0.1rem solid $frameColor;
+        border-radius: 0.4rem;
+        overflow: hidden;
+        font-size: 1.6rem;
+        line-height: 1.9rem;
+        padding: 1rem;
+        box-sizing: border-box;
+        background-color: white;
+        outline: none;
+      }
+      input {
+        height: 4rem;
+      }
+      textarea {
+        height: 15rem;
+      }
+    }
+    &-error {
+      position: absolute;
+      margin: 0.5rem 0;
+      font-size: 1.3rem;
+      line-height: 1.6rem;
+      color: $warningColor;
+    }
+  }
+  &-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    &-btn {
+      @include button;
+      &:disabled {
+        background-color: grey;
+      }
+      border: none;
+    }
+  }
+}

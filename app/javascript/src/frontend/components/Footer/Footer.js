@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { PropTypes } from "prop-types";
+
 import FacebookIcon from "@material-ui/icons/Facebook";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
+import SubjectOutlinedIcon from "@material-ui/icons/SubjectOutlined";
 
-import { ContactDetail } from "../";
+import { ContactDetail, FormModal } from "../";
 
 import { FooterLogo } from "./Footer.styles.jsx";
 import "./Footer.scss";
@@ -14,9 +16,32 @@ import { selectOrganizationDetails } from "../../redux/application/application.s
 
 const Footer = ({ organizationDetails }) => {
   const { logo, name, description, email, facebook } = organizationDetails;
+  const [modalOpen, setModalOpen] = useState(false);
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+  const openModal = () => {
+    setModalOpen(true);
+  };
   const footerContent = [
-    { value: email, icon: <MailOutlineIcon />, type: "email" },
-    { value: facebook, icon: <FacebookIcon />, type: "facebook" }
+    {
+      value: "Formularz kontaktowy",
+      icon: <SubjectOutlinedIcon />,
+      type: "contact-form",
+      handleClick: openModal
+    },
+    {
+      value: email,
+      icon: <MailOutlineIcon />,
+      type: "email",
+      handleClick: null
+    },
+    {
+      value: facebook,
+      icon: <FacebookIcon />,
+      type: "facebook",
+      handleClick: null
+    }
   ];
 
   return (
@@ -41,11 +66,13 @@ const Footer = ({ organizationDetails }) => {
                 icon={detail.icon}
                 item={detail.value}
                 type={detail.type}
+                handleClick={detail.handleClick}
               />
             ))}
           </div>
         </div>
       </div>
+      <FormModal isOpen={modalOpen} closeModal={closeModal} />
     </div>
   );
 };

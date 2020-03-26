@@ -9,6 +9,8 @@ import ContactDetail from "./ContactDetail/ContactDetail";
 import CustomButton from "./CustomButton/CustomButton";
 import DropdownMenu from "./DropdownMenu/DropdownMenu";
 import Footer from "./Footer/Footer";
+import Form from "./Form/Form";
+import FormModal from "./FormModal/FormModal";
 import Icon from "./Icon/Icon";
 import LinkButton from "./LinkButton/LinkButton";
 import Loader from "./Loader/Loader";
@@ -41,6 +43,8 @@ export {
   CustomButton,
   DropdownMenu,
   Footer,
+  Form,
+  FormModal,
   Icon,
   LinkButton,
   Loader,
