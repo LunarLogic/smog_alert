@@ -170,13 +170,13 @@ class API::Internal::ArticlesController < API::Internal::BaseController
   end
 
   def index
-    if params[:tag]
-      tag = params[:tag]
-      paginated_articles = articles_repository.published_articles_with_tag(tag).page(page).per(per_page)
-    else
-      paginated_articles = articles_repository.published_articles.page(page).per(per_page)
-    end
-    data = paginated_articles.map do |article|
+    articles =
+      if params[:tag]
+        articles_repository.published_articles_with_tag(params[:tag]).page(page).per(per_page)
+      else
+        articles_repository.published_articles.page(page).per(per_page)
+      end
+    data = articles.map do |article|
       API::Internal::ArticleOverviewPresenter.new(article)
     end
 
