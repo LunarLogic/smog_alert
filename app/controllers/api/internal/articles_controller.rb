@@ -26,6 +26,13 @@ class API::Internal::ArticlesController < API::Internal::BaseController
         key :type, :integer
         key :default, 1
       end
+      parameter do
+        key :name, :tag
+        key :in, :query
+        key :description, 'Tag for filtering articles'
+        key :required, false
+        key :type, :string
+      end
       response 200 do
         key :description, 'Array of articles'
         schema do
@@ -44,6 +51,12 @@ class API::Internal::ArticlesController < API::Internal::BaseController
               end
               property :overview do
                 key :type, :string
+              end
+              property :tags do
+                key :type, :array
+                items do
+                  key :type, :string
+                end
               end
               property :published_at do
                 key :type, :string
@@ -122,6 +135,12 @@ class API::Internal::ArticlesController < API::Internal::BaseController
             property :body do
               key :type, :string
             end
+            property :tags do
+              key :type, :array
+              items do
+                key :type, :string
+              end
+            end
             property :published_at do
               key :type, :string
             end
@@ -151,8 +170,13 @@ class API::Internal::ArticlesController < API::Internal::BaseController
   end
 
   def index
-    paginated_articles = ArticlesRepository.new.published_articles.page(page).per(per_page)
-    data = paginated_articles.map do |article|
+    articles =
+      if params[:tag]
+        articles_repository.published_articles_with_tag(params[:tag]).page(page).per(per_page)
+      else
+        articles_repository.published_articles.page(page).per(per_page)
+      end
+    data = articles.map do |article|
       API::Internal::ArticleOverviewPresenter.new(article)
     end
 
@@ -161,14 +185,14 @@ class API::Internal::ArticlesController < API::Internal::BaseController
       meta: {
         pagination: {
           per_page: per_page,
-          total_pages: paginated_articles.total_pages,
-          total_objects: paginated_articles.total_count,
-          prev_page: paginated_articles.prev_page,
-          current_page: paginated_articles.current_page,
-          next_page: paginated_articles.next_page,
-          is_first_page: paginated_articles.first_page?,
-          is_last_page: paginated_articles.last_page?,
-          is_page_out_of_range: paginated_articles.out_of_range?
+          total_pages: articles.total_pages,
+          total_objects: articles.total_count,
+          prev_page: articles.prev_page,
+          current_page: articles.current_page,
+          next_page: articles.next_page,
+          is_first_page: articles.first_page?,
+          is_last_page: articles.last_page?,
+          is_page_out_of_range: articles.out_of_range?
         }
       }
     }
@@ -193,5 +217,9 @@ class API::Internal::ArticlesController < API::Internal::BaseController
 
   def per_page
     @per_page ||= params[:per_page] ? params[:per_page].to_i : 5
+  end
+
+  def articles_repository
+    ArticlesRepository.new
   end
 end

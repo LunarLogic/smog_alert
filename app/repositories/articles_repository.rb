@@ -14,4 +14,8 @@ class ArticlesRepository
   def published_articles
     Article.where(published: true).order('updated_at DESC')
   end
+
+  def published_articles_with_tag(tag)
+    Article.includes(:tags).where(articles: { published: true }, tags: { name: tag })
+  end
 end

@@ -28,14 +28,31 @@ describe API::Internal::ArticlesController do
     end
 
     context 'when published articles in DB' do
+      let(:tag) { create(:tag) }
       let!(:not_published_article) { create(:article, published: false, published_at: nil, user: editor) }
       let!(:published_article_without_image) do
         create(:article, published: true, published_at: Time.current,
-                         updated_at: Time.current - 2.days, user: editor)
+                         updated_at: Time.current - 2.days, user: editor, tags: [tag])
       end
       let!(:published_article_with_image) do
         FactoryBot.create(:article, body: '#', published: true,
                                     published_at: Time.current, user: editor)
+      end
+
+      context 'when tag param provided' do
+        before { get api_internal_articles_path(tag: tag.name) }
+
+        it 'returns article with tag' do
+          expect(response.body).to be_json_eql({
+            id: published_article_without_image.id,
+            title: published_article_without_image.title,
+            image: nil,
+            overview: published_article_without_image.overview,
+            tags: published_article_without_image.tags.map(&:name),
+            published_at: published_article_without_image.published_at,
+            updated_at: published_article_without_image.updated_at
+          }.to_json).at_path('data/0')
+        end
       end
 
       context 'when pagination params provided' do
@@ -67,6 +84,7 @@ describe API::Internal::ArticlesController do
             title: published_article_without_image.title,
             image: nil,
             overview: published_article_without_image.overview,
+            tags: published_article_without_image.tags.map(&:name),
             published_at: published_article_without_image.published_at,
             updated_at: published_article_without_image.updated_at
           }.to_json).at_path('data/1')
@@ -86,6 +104,7 @@ describe API::Internal::ArticlesController do
             title: published_article_with_image.title,
             image: published_article_with_image.body,
             overview: published_article_with_image.overview,
+            tags: published_article_with_image.tags.map(&:name),
             published_at: published_article_with_image.published_at,
             updated_at: published_article_with_image.updated_at
           }.to_json).excluding('image').at_path('data/0')
@@ -115,7 +134,8 @@ describe API::Internal::ArticlesController do
     end
 
     context 'when article in DB AND published' do
-      let(:article) { create(:article, published: true, published_at: Time.current, user: editor) }
+      let(:tag) { create(:tag) }
+      let(:article) { create(:article, published: true, published_at: Time.current, user: editor, tags: [tag]) }
       let(:article_id) { article.id }
 
       it 'returns an article' do
@@ -123,6 +143,7 @@ describe API::Internal::ArticlesController do
           id: article.id,
           title: article.title,
           body: article.body.to_s,
+          tags: article.tags.map(&:name),
           published_at: article.published_at,
           updated_at: article.updated_at
         }.to_json).at_path('data')

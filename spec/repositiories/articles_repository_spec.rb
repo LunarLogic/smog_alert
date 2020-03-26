@@ -20,4 +20,22 @@ RSpec.describe ArticlesRepository do
       expect(article.published_at).to be nil
     end
   end
+
+  describe '#published_articles_with_tag' do
+    it 'returns published article that have tag with a given name' do
+      tag = FactoryBot.create(:tag)
+      article = FactoryBot.create(:article, published: true, published_at: Time.current, user: user, tags: [tag])
+      response = subject.published_articles_with_tag(tag.name)
+      expected_response = [article]
+      expect(response).to eq(expected_response)
+    end
+
+    it 'doesn\'t return published article that doesn\'t have tag with a given name' do
+      tag = FactoryBot.create(:tag)
+      FactoryBot.create(:article, published: true, published_at: Time.current, user: user)
+      result = subject.published_articles_with_tag(tag.name)
+      expected_result = []
+      expect(result).to eq(expected_result)
+    end
+  end
 end
