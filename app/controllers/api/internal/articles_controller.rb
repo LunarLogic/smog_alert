@@ -185,14 +185,14 @@ class API::Internal::ArticlesController < API::Internal::BaseController
       meta: {
         pagination: {
           per_page: per_page,
-          total_pages: paginated_articles.total_pages,
-          total_objects: paginated_articles.total_count,
-          prev_page: paginated_articles.prev_page,
-          current_page: paginated_articles.current_page,
-          next_page: paginated_articles.next_page,
-          is_first_page: paginated_articles.first_page?,
-          is_last_page: paginated_articles.last_page?,
-          is_page_out_of_range: paginated_articles.out_of_range?
+          total_pages: articles.total_pages,
+          total_objects: articles.total_count,
+          prev_page: articles.prev_page,
+          current_page: articles.current_page,
+          next_page: articles.next_page,
+          is_first_page: articles.first_page?,
+          is_last_page: articles.last_page?,
+          is_page_out_of_range: articles.out_of_range?
         }
       }
     }
