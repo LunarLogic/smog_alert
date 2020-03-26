@@ -52,7 +52,7 @@ class Admin::ArticlesController < Admin::BaseController
     else
       flash[:error] = 'Nie udało się opublikować wpisu'
     end
-    redirect_to admin_articles_path
+    redirect_to admin_articles_path(page: params[:page])
   end
 
   def unpublish
@@ -61,7 +61,7 @@ class Admin::ArticlesController < Admin::BaseController
     else
       flash[:error] = 'Nie udało się cofnąć publikacji wpisu'
     end
-    redirect_to admin_articles_path
+    redirect_to admin_articles_path(page: params[:page])
   end
 
   private

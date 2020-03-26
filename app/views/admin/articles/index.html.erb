@@ -27,9 +27,9 @@
         </td>
         <td>
         <% if article.published? %>
-          <%= link_to 'Cofnij publikację', unpublish_admin_article_path(article), method: :put, class: "btn btn-warning btn-sm" %>
+          <%= link_to 'Cofnij publikację', unpublish_admin_article_path(article, page: params[:page]), method: :put, class: "btn btn-warning btn-sm" %>
         <% else %>
-          <%= link_to 'Opublikuj wpis', publish_admin_article_path(article), method: :put, class: "btn btn-info btn-sm" %>
+          <%= link_to 'Opublikuj wpis', publish_admin_article_path(article, page: params[:page]), method: :put, class: "btn btn-info btn-sm" %>
         <% end %>
 
         <%= link_to 'Edytuj', edit_admin_article_path(article), class: "btn btn-light btn-sm"%>
