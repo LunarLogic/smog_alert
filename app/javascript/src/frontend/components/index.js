@@ -29,6 +29,7 @@ import PollutionScale from "./PollutionScale/PollutionScale";
 import PollutionSideCard from "./PollutionSideCard/PollutionSideCard";
 import PopUp from "./PopUp/PopUp";
 import Searchbox from "./Searchbox/Searchbox";
+import SuccessForm from "./SuccessForm/SuccessForm";
 import TownImage from "./TownImage/TownImage";
 
 export {
@@ -63,5 +64,6 @@ export {
   PollutionSideCard,
   PopUp,
   Searchbox,
+  SuccessForm,
   TownImage
 };
