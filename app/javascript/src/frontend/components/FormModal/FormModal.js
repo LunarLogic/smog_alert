@@ -1,6 +1,13 @@
 import React from "react";
 import Modal from "react-modal";
-import Form from "../Form/Form";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+
+import { Form, SuccessForm } from "../";
+
+import { selectFormContent } from "../../redux/form/form.selectors";
+import { setFormContent } from "../../redux/form/form.actions";
+import { isEmpty } from "../../helpers";
 
 import "./FormModal.scss";
 import CloseIcon from "@material-ui/icons/Close";
@@ -26,24 +33,41 @@ const customStyles = {
 
 Modal.setAppElement();
 
-const FormModal = ({ isOpen, closeModal }) => {
+const FormModal = ({ isOpen, closeModal, formContent, setFormContent }) => {
+  const handleCloseModal = () => {
+    setFormContent({});
+    closeModal();
+  };
+
   return (
     <Modal
       isOpen={isOpen}
-      onRequestClose={closeModal}
+      onRequestClose={handleCloseModal}
       style={customStyles}
       ariaHideApp={false}
       contentLabel="Form Modal"
     >
       <div className="modal-header">
         <p className="modal-header-heading">Napisz do nas !</p>
-        <span onClick={closeModal} className="modal-header-close">
+        <span onClick={handleCloseModal} className="modal-header-close">
           <CloseIcon />
         </span>
       </div>
-      <Form closeModal={closeModal} />
+      {isEmpty(formContent) ? (
+        <Form closeModal={closeModal} />
+      ) : (
+        <SuccessForm formContent={formContent} />
+      )}
     </Modal>
   );
 };
 
-export default FormModal;
+const mapDispatchToProps = dispatch => ({
+  setFormContent: content => dispatch(setFormContent(content))
+});
+
+const mapStateToProps = createStructuredSelector({
+  formContent: selectFormContent
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormModal);

@@ -1,12 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import { PropTypes } from "prop-types";
+import { connect } from "react-redux";
+
+import { setFormContent } from "../../redux/form/form.actions";
+
 import useForm from "./useForm";
 import { stateSchema, validationStateSchema } from "./formSchemas";
 
 import "./Form.scss";
 
-const Form = () => {
+const Form = ({ setFormContent }) => {
+  const [success, setSuccess] = useState(false);
+  const answer = {};
+
   const onSubmitForm = state => {
-    alert(JSON.stringify(state, null, 2));
+    answer["sender_name"] = state.name.value;
+    answer["sender_email"] = state.email.value;
+    answer["message"] = state.message.value;
+    axios.post("/api/internal/contact_form", answer).then(
+      response => {
+        switch (response.status) {
+          case 204:
+            console.log("204", response);
+            setFormContent(answer);
+            break;
+          case 200:
+            console.log("200", response);
+            break;
+        }
+      },
+      error => {
+        console.log("error", error);
+      }
+    );
   };
 
   const { state, handleOnChange, handleOnSubmit, disabled } = useForm(
@@ -68,9 +95,14 @@ const Form = () => {
             value="Wyślij"
           />
         </div>
+        {success && <div>Twoja wiadomość została wysłana</div>}
       </form>
     </div>
   );
 };
 
-export default Form;
+const mapDispatchToProps = dispatch => ({
+  setFormContent: answer => dispatch(setFormContent(answer))
+});
+
+export default connect(null, mapDispatchToProps)(Form);

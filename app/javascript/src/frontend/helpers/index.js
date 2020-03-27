@@ -4,6 +4,7 @@ import { findMeasurement } from "./findMeasurement";
 import { findPreviousMonth } from "./findPreviousMonth";
 import { formatMonthlyDate } from "./formatMonthlyDate";
 import { formatValue } from "./formatValue";
+import { isEmpty } from "./isEmptyObject";
 import { setColor } from "./setColor";
 import { setIndicator } from "./setIndicator";
 import { setPercent } from "./setPercent";
@@ -22,6 +23,7 @@ export {
   findPreviousMonth,
   formatMonthlyDate,
   formatValue,
+  isEmpty,
   setColor,
   setIndicator,
   setPercent,
