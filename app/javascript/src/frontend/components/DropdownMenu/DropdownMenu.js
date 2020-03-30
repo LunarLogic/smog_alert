@@ -27,7 +27,12 @@ export const DropdownMenu = ({
 
   return (
     <div className="dropdown">
-      <div className="dropdown__control" onClick={toggleMenu}>
+      <div
+        className="dropdown__control"
+        onClick={toggleMenu}
+        onBlur={toggleMenu}
+        tabIndex="0"
+      >
         <div className="dropdown__control--placeholder">
           {chosenCityToBeDisplayed}
         </div>
