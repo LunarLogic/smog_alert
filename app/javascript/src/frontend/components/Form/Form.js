@@ -11,7 +11,7 @@ import { stateSchema, validationStateSchema } from "./formSchemas";
 import "./Form.scss";
 
 const Form = ({ setFormContent }) => {
-  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
   const answer = {};
 
   const onSubmitForm = state => {
@@ -24,14 +24,17 @@ const Form = ({ setFormContent }) => {
           case 204:
             console.log("204", response);
             setFormContent(answer);
+            setError(false);
             break;
           case 200:
             console.log("200", response);
+            setError(false);
             break;
         }
       },
       error => {
         console.log("error", error);
+        setError(true);
       }
     );
   };
@@ -44,6 +47,7 @@ const Form = ({ setFormContent }) => {
 
   return (
     <div className="form">
+      <p className="form-heading">Napisz do nas !</p>
       <form onSubmit={handleOnSubmit}>
         <div className="form-field">
           <label className="form-field-label" htmlFor="name">
@@ -86,6 +90,17 @@ const Form = ({ setFormContent }) => {
             <p className="form-field-error">{state.message.error}</p>
           )}
         </div>
+        {error && (
+          <div className="form-submit--error">
+            Wysyłanie wiadomości nie powiodło się.
+            <br />
+            Spróbuj raz jeszcze lub napisz do nas bezpośrednio na:
+            <a href="mailto:zabierzow-smog@gmail.com">
+              {" "}
+              zabierzow-smog@gmail.com
+            </a>
+          </div>
+        )}
         <div className="form-submit">
           <input
             className="form-submit-btn"
@@ -95,7 +110,6 @@ const Form = ({ setFormContent }) => {
             value="Wyślij"
           />
         </div>
-        {success && <div>Twoja wiadomość została wysłana</div>}
       </form>
     </div>
   );

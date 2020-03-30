@@ -4,6 +4,13 @@
 .form {
   font-size: 1.6rem;
   line-height: 1.9rem;
+  &-heading {
+    font-size: 2.4rem;
+    line-height: 2.8rem;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 2.5rem;
+  }
   &-field {
     margin-bottom: 2.5rem;
     &-label {
@@ -47,6 +54,19 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 1rem;
+    &--error {
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      line-height: 2rem;
+      color: $warningColor;
+      a {
+        color: $textColor;
+        font-weight: 600;
+        &:hover {
+          color: $secondaryColor;
+        }
+      }
+    }
     &-btn {
       @include button;
       &:disabled {

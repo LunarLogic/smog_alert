@@ -48,7 +48,6 @@ const FormModal = ({ isOpen, closeModal, formContent, setFormContent }) => {
       contentLabel="Form Modal"
     >
       <div className="modal-header">
-        <p className="modal-header-heading">Napisz do nas !</p>
         <span onClick={handleCloseModal} className="modal-header-close">
           <CloseIcon />
         </span>
