@@ -44,6 +44,7 @@ const useForm = (stateSchema, frontValidationSchema = {}, callback) => {
       }
     }
     if (
+      frontValidationSchema[name] &&
       frontValidationSchema[name].validator !== null &&
       typeof frontValidationSchema[name].validator === "object"
     ) {

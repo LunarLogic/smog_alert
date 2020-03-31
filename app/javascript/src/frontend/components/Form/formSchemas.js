@@ -20,11 +20,7 @@ export const frontValidationStateSchema = {
     }
   },
   message: {
-    required: true,
-    validator: {
-      regEx: /^(,?\w{2,})+$/,
-      error: "Niepoprawny format wiadomości"
-    }
+    required: true
   }
 };
 
