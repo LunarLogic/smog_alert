@@ -1,14 +1,24 @@
 import React from "react";
 import CheckCircleOutlinedIcon from "@material-ui/icons/CheckCircleOutlined";
 
+import { formLabel } from "../../helpers/formLabel";
+
 import "./SuccessForm.scss";
 
 const SuccessForm = ({ formContent }) => {
   const printResponses = () => {
     return Object.keys(formContent).map(key => (
       <div className="success-form-field" key={key}>
-        <div className="success-form-field__key">{key}:</div>
-        <div className="success-form-field__value">{formContent[key]}</div>
+        <div className="success-form-field__key">{formLabel(key)}:</div>
+        <div
+          className={
+            key === "message"
+              ? "success-form-field__value textarea"
+              : "success-form-field__value"
+          }
+        >
+          {formContent[key]}
+        </div>
       </div>
     ));
   };

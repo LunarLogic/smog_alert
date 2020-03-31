@@ -4,6 +4,7 @@
 .form {
   font-size: 1.6rem;
   line-height: 1.9rem;
+  color: $textColor;
   &-heading {
     font-size: 2.4rem;
     line-height: 2.8rem;
@@ -33,6 +34,7 @@
         box-sizing: border-box;
         background-color: white;
         outline: none;
+        overflow-y: scroll;
       }
       input {
         height: 4rem;
@@ -41,12 +43,23 @@
         height: 15rem;
       }
     }
+    &-counter {
+      font-size: 11px;
+      line-height: 13px;
+      text-align: end;
+
+      position: absolute;
+      right: 0;
+      margin-top: 0.5rem 0;
+      margin-top: 0.5rem;
+      padding-right: 20px;
+    }
     &-error {
       position: absolute;
       margin: 0.5rem 0;
       font-size: 1.3rem;
       line-height: 1.6rem;
-      color: $warningColor;
+      color: red;
     }
   }
   &-submit {
@@ -58,12 +71,12 @@
       margin-bottom: 1.5rem;
       font-size: 1.5rem;
       line-height: 2rem;
-      color: $warningColor;
+      color: red;
       a {
         color: $textColor;
         font-weight: 600;
         &:hover {
-          color: $secondaryColor;
+          color: red;
         }
       }
     }
@@ -72,7 +85,12 @@
       &:disabled {
         background-color: grey;
       }
+      margin-top: 1rem;
       border: none;
     }
+  }
+  .required:after {
+    content: " *";
+    color: red;
   }
 }

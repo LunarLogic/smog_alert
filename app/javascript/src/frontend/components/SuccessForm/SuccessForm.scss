@@ -34,4 +34,8 @@
       text-transform: capitalize;
     }
   }
+  .textarea {
+    max-height: 150px;
+    overflow-y: scroll;
+  }
 }

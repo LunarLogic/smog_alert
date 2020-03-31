@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 
-const useForm = (stateSchema, validationSchema = {}, callback) => {
-  const [state, setState] = useState(stateSchema);
+const useForm = (stateSchema, frontValidationSchema = {}, callback) => {
+  const [frontValidationState, setFrontValidationState] = useState(stateSchema);
+  const [backendValidationState, setBackendValidationState] = useState(
+    stateSchema
+  );
+
   const [disabled, setDisabled] = useState(true);
   const [isIncomplete, setIsIncomplete] = useState(false);
 
@@ -15,13 +19,13 @@ const useForm = (stateSchema, validationSchema = {}, callback) => {
     if (isIncomplete) {
       setDisabled(validateState());
     }
-  }, [state, isIncomplete]);
+  }, [frontValidationState, isIncomplete]);
 
   const validateState = () => {
-    const hasErrorInState = Object.keys(validationSchema).some(key => {
-      const isFieldRequired = validationSchema[key].required;
-      const stateValue = state[key].value;
-      const stateError = state[key].error;
+    const hasErrorInState = Object.keys(frontValidationSchema).some(key => {
+      const isFieldRequired = frontValidationSchema[key].required;
+      const stateValue = frontValidationState[key].value;
+      const stateError = frontValidationState[key].error;
       return (isFieldRequired && !stateValue) || stateError;
     });
     return hasErrorInState;
@@ -34,20 +38,20 @@ const useForm = (stateSchema, validationSchema = {}, callback) => {
     const value = event.target.value;
 
     let error = "";
-    if (validationSchema[name].required) {
+    if (frontValidationSchema[name].required) {
       if (!value) {
-        error = "This field is required";
+        error = "To pole jest wymagane";
       }
     }
     if (
-      validationSchema[name].validator !== null &&
-      typeof validationSchema[name].validator === "object"
+      frontValidationSchema[name].validator !== null &&
+      typeof frontValidationSchema[name].validator === "object"
     ) {
-      if (value && !validationSchema[name].validator.regEx.test(value)) {
-        error = validationSchema[name].validator.error;
+      if (value && !frontValidationSchema[name].validator.regEx.test(value)) {
+        error = frontValidationSchema[name].validator.error;
       }
     }
-    setState(prevState => ({
+    setFrontValidationState(prevState => ({
       ...prevState,
       [name]: { value, error }
     }));
@@ -57,10 +61,17 @@ const useForm = (stateSchema, validationSchema = {}, callback) => {
     event.preventDefault();
 
     if (!validateState()) {
-      callback(state);
+      callback(frontValidationState);
     }
   };
-  return { state, disabled, handleOnChange, handleOnSubmit };
+  return {
+    frontValidationState,
+    backendValidationState,
+    setBackendValidationState,
+    disabled,
+    handleOnChange,
+    handleOnSubmit
+  };
 };
 
 export default useForm;

@@ -1,18 +1,18 @@
 export const stateSchema = {
-  name: { value: "", error: "" },
-  email: { value: "", error: "" },
+  sender_name: { value: "", error: "" },
+  sender_email: { value: "", error: "" },
   message: { value: "", error: "" }
 };
 
-export const validationStateSchema = {
-  name: {
+export const frontValidationStateSchema = {
+  sender_name: {
     required: true,
     validator: {
-      regEx: /^([a-zA-Z]{3,})+$/,
+      regEx: /^([a-zA-Z]{2,})+$/,
       error: "Niepoprawny format imienia"
     }
   },
-  email: {
+  sender_email: {
     required: true,
     validator: {
       regEx: /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/,
@@ -26,4 +26,10 @@ export const validationStateSchema = {
       error: "Niepoprawny format wiadomości"
     }
   }
+};
+
+export const backendFormAnswersSchema = {
+  sender_name: "",
+  sender_email: "",
+  message: ""
 };
