@@ -9,7 +9,7 @@ import {
   frontValidationStateSchema,
   backendFormAnswersSchema
 } from "./formSchemas";
-import { FORM_VALIDATION_PATH } from "../../helpers/paths";
+import { CONTACT_FORM_PATH } from "../../helpers/paths";
 
 import "./Form.scss";
 
@@ -18,9 +18,10 @@ const Form = ({ setFormContent }) => {
   const [backendValidationState, setBackendValidationState] = useState(
     stateSchema
   );
+  const MAX_NUMBER_OF_CHARACTERS = 5000;
 
   const validateForm = formAnswers =>
-    axios.post(FORM_VALIDATION_PATH, formAnswers).then(
+    axios.post(CONTACT_FORM_PATH, formAnswers).then(
       response => {
         switch (response.status) {
           case 204:
@@ -71,7 +72,7 @@ const Form = ({ setFormContent }) => {
   };
 
   const countCharacters = () =>
-    5000 - frontValidationState.message.value.length;
+    MAX_NUMBER_OF_CHARACTERS - frontValidationState.message.value.length;
 
   return (
     <div className="form">
@@ -132,7 +133,7 @@ const Form = ({ setFormContent }) => {
               name="message"
               value={frontValidationState.message.value}
               onChange={handleOnChange}
-              maxLength="5000"
+              maxLength={MAX_NUMBER_OF_CHARACTERS}
             />
           </label>
           <p className="form-field-counter">
