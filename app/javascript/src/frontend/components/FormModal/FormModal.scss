@@ -1,0 +1,17 @@
+.modal-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  &-close {
+    opacity: 0.6;
+    cursor: pointer;
+    &:hover {
+      opacity: 1;
+    }
+    svg {
+      width: 2.4rem;
+      height: 2.4rem;
+    }
+  }
+}

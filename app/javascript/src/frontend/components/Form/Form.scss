@@ -1,0 +1,96 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.form {
+  font-size: 1.6rem;
+  line-height: 1.9rem;
+  color: $textColor;
+  &-heading {
+    font-size: 2.4rem;
+    line-height: 2.8rem;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 2.5rem;
+  }
+  &-field {
+    margin-bottom: 2.5rem;
+    &-label {
+      display: flex;
+      flex-direction: column;
+      &--title {
+        padding: 0.5rem 0;
+      }
+      input,
+      textarea {
+        position: relative;
+        display: flex;
+        width: inherit;
+        border: 0.1rem solid $frameColor;
+        border-radius: 0.4rem;
+        overflow: hidden;
+        font-size: 1.6rem;
+        line-height: 1.9rem;
+        padding: 1rem;
+        box-sizing: border-box;
+        background-color: white;
+        outline: none;
+        overflow-y: scroll;
+      }
+      input {
+        height: 4rem;
+      }
+      textarea {
+        height: 15rem;
+      }
+    }
+    &-counter {
+      font-size: 11px;
+      line-height: 13px;
+      text-align: end;
+
+      position: absolute;
+      right: 0;
+      margin-top: 0.5rem 0;
+      margin-top: 0.5rem;
+      padding-right: 20px;
+    }
+    &-error {
+      position: absolute;
+      margin: 0.5rem 0;
+      font-size: 1.3rem;
+      line-height: 1.6rem;
+      color: red;
+    }
+  }
+  &-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    &--error {
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      line-height: 2rem;
+      color: red;
+      a {
+        color: $textColor;
+        font-weight: 600;
+        &:hover {
+          color: red;
+        }
+      }
+    }
+    &-btn {
+      @include button;
+      &:disabled {
+        background-color: grey;
+      }
+      margin-top: 1rem;
+      border: none;
+    }
+  }
+  .required:after {
+    content: " *";
+    color: red;
+  }
+}

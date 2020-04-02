@@ -27,3 +27,19 @@
   max-width: 75rem;
   margin: auto;
 }
+
+@mixin button {
+  height: 4.4rem;
+  width: 13rem;
+  background-color: $secondaryColor;
+  color: $secondaryColorContrast;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: inherit;
+  line-height: inherit;
+}

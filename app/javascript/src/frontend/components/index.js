@@ -9,6 +9,8 @@ import ContactDetail from "./ContactDetail/ContactDetail";
 import CustomButton from "./CustomButton/CustomButton";
 import DropdownMenu from "./DropdownMenu/DropdownMenu";
 import Footer from "./Footer/Footer";
+import Form from "./Form/Form";
+import FormModal from "./FormModal/FormModal";
 import Icon from "./Icon/Icon";
 import LinkButton from "./LinkButton/LinkButton";
 import Loader from "./Loader/Loader";
@@ -27,6 +29,7 @@ import PollutionScale from "./PollutionScale/PollutionScale";
 import PollutionSideCard from "./PollutionSideCard/PollutionSideCard";
 import PopUp from "./PopUp/PopUp";
 import Searchbox from "./Searchbox/Searchbox";
+import SuccessForm from "./SuccessForm/SuccessForm";
 import TownImage from "./TownImage/TownImage";
 
 export {
@@ -41,6 +44,8 @@ export {
   CustomButton,
   DropdownMenu,
   Footer,
+  Form,
+  FormModal,
   Icon,
   LinkButton,
   Loader,
@@ -59,5 +64,6 @@ export {
   PollutionSideCard,
   PopUp,
   Searchbox,
+  SuccessForm,
   TownImage
 };

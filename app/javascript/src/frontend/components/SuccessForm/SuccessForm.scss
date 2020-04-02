@@ -1,0 +1,41 @@
+@import "../../styles/variables";
+
+.success-form {
+  &__header {
+    font-size: 2rem;
+    line-height: 2.4rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color: $successColor;
+
+    display: flex;
+    align-items: center;
+
+    &-icon {
+      display: flex;
+      svg {
+        width: 3rem;
+        height: 3rem;
+        margin-right: 1rem;
+      }
+    }
+  }
+  &__content {
+    padding-top: 2rem;
+  }
+  &-field {
+    margin-bottom: 2.5rem;
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+    &__key {
+      padding: 0.5rem 0;
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+  }
+  .textarea {
+    max-height: 150px;
+    overflow-y: scroll;
+  }
+}

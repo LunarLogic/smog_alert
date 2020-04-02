@@ -3,7 +3,7 @@ import { PropTypes } from "prop-types";
 
 import "./ContactDetail.scss";
 
-const ContactDetail = ({ icon, item, type }) => {
+const ContactDetail = ({ icon, item, type, handleClick }) => {
   const setLinkType = (type, item) => {
     switch (type) {
       case "email":
@@ -18,6 +18,8 @@ const ContactDetail = ({ icon, item, type }) => {
             {item}
           </a>
         );
+      case "contact-form":
+        return <span className="contact-detail__item">{item}</span>;
       default:
         return (
           <a href={item} className="contact-detail__item">
@@ -28,7 +30,7 @@ const ContactDetail = ({ icon, item, type }) => {
   };
 
   return (
-    <div className="contact-detail">
+    <div className="contact-detail" onClick={handleClick ? handleClick : null}>
       <div className="contact-detail__icon">{icon}</div>
       {setLinkType(type, item)}
     </div>
