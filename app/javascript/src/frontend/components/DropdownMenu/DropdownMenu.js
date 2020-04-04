@@ -30,7 +30,7 @@ export const DropdownMenu = ({
       <div
         className="dropdown__control"
         onClick={toggleMenu}
-        onBlur={toggleMenu}
+        // onBlur={toggleMenu}
         tabIndex="0"
       >
         <div className="dropdown__control--placeholder">
