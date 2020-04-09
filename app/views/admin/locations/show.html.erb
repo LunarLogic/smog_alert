@@ -1,15 +1,17 @@
-<div class="header">
-  <h1><%= @location.name %></h1>
-</div>
-<% unless @location.street.nil? || @location.street.empty? %>
-  <p><br>Ulica:</br><%= @location.street%></p>
-<% end %>
-<p><br>Id Instalacji:</br><%= @location.installation_id%></p>
-<p><br>Długość:</br><%= @location.longitude%></p>
-<p><br>Szerokość:</br><%= @location.latitude%></p>
-
-<%= link_to 'Edytuj', edit_admin_location_path(@location), class: "btn btn-light btn-sm"%>
-<%= link_to 'Usuń', admin_location_path(@location), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Czy na pewno chcesz usunąć lokalizację #{@location.name}?"} %>
-<div style="display=block">
-  <%= link_to 'Wróć', admin_locations_path %>
+<div class="card" style="margin-top: 40px;">
+  <h3 class="card-header"><%= @location.name %></h3>
+  <div class="card-body">
+    <% unless @location.street.nil? || @location.street.empty? %>
+      <p class="card-text">Ulica: <%= @location.street%></p>
+    <% end %>
+    <p class="card-text">Id Instalacji:<%= @location.installation_id%></p>
+    <p class="card-text">Długość: <%= @location.longitude%></p>
+    <p class="card-text">Szerokość: <%= @location.latitude%></p>
+    <%= link_to 'Sprawdź pomiary', edit_admin_location_path(@location), class: "btn btn-primary btn-sm"%>
+    <%= link_to 'Edytuj', edit_admin_location_path(@location), class: "btn btn-light btn-sm"%>
+    <%= link_to 'Usuń', admin_location_path(@location), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "Czy na pewno chcesz usunąć lokalizację #{@location.name}?"} %>
+    <div style="display=block; margin-top: 10px;">
+      <%= link_to 'Wróć', admin_locations_path %>
+    </div>
+  </div>
 </div>
