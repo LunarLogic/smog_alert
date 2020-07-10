@@ -1,9 +1,9 @@
 {
   "data": {
-    "location_id": 15,
+    "location_id": 25,
     "location_name": "Nielepice",
-    "month": 12,
-    "year": 2019,
+    "month": 7,
+    "year": 2020,
     "average_pollution_by_hour": {
       "average_pm10": [
         {

@@ -58,7 +58,7 @@
     "webpack-dev-server": "^3.9.0"
   },
   "scripts": {
-    "test": "TZ=UTC jest"
+    "test": "TZ=UTC jest --env=jest-environment-jsdom-sixteen"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -75,5 +75,9 @@
       "last 1 safari version"
     ]
   },
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.0",
+    "jest-environment-jsdom-sixteen": "^1.0.3"
+  }
 }
