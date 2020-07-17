@@ -4,6 +4,11 @@ import calendarDailyValuesMock from "../__mocks__/calendarDailyValuesMock.json";
 import calendarStatusDataMock from "../__mocks__/calendarStatusDataMock.json";
 import chartFirstMonthDataMock from "../__mocks__/chartFirstMonthDataMock.json";
 import chartHourlyAverageForMonthData from "../__mocks__/chartHourlyAverageForMonthDataMock.json";
+import { yesterdayDateFormatted } from "../../helpers/yesterdayDateFormatted";
+import { formatMonthlyDate } from "../../helpers/formatMonthlyDate";
+import { findPreviousMonth } from "../../helpers/findPreviousMonth";
+
+const chartsChosenMonth = formatMonthlyDate(findPreviousMonth(new Date()));
 
 export function mockGettingCurrentMeasurements(mockAdapter) {
   mockAdapter
@@ -28,7 +33,7 @@ export function mockGettingArticles(mockAdapter) {
 export function mockGettingCalendarValuesData(mockAdapter) {
   mockAdapter
     .onGet(
-      "api/internal/measurements/calendar_daily_values?date=2020-07-13&location_id=25"
+      `api/internal/measurements/calendar_daily_values?date=${yesterdayDateFormatted()}&location_id=25`
     )
     .reply(200, calendarDailyValuesMock);
 }
@@ -50,7 +55,7 @@ export function mockGettingFirstMonthData(mockAdapter) {
 export function mockGettingHourlyAverageForMothData(mockAdapter) {
   mockAdapter
     .onGet(
-      "/api/internal/measurements/hourly_average_for_month?date=01-6-2020&location_id=25"
+      `/api/internal/measurements/hourly_average_for_month?date=${chartsChosenMonth}&location_id=25`
     )
     .reply(200, chartHourlyAverageForMonthData);
 }
