@@ -27,7 +27,6 @@ export const PollutionSideCard = ({
     getChosenCity("");
   };
 
-
   // List of cities for dropdown component
   let dropdownOptions = [];
 
@@ -43,7 +42,6 @@ export const PollutionSideCard = ({
       dropdownOptions.push(city.location_name);
     }
   });
-
 
   const loaderStyles = {
     height: "62.7rem"

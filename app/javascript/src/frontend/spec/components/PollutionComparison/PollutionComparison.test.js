@@ -23,7 +23,7 @@ describe("PollutionComparison", () => {
   });
 
   it("renders correct amount of PollutionBar components", () => {
-    expect(wrapper.find(".pollution-bar").length).toEqual(4);
+    expect(wrapper.find(".pollution-bar").length).toEqual(5);
   });
 
   it("sorts PollutionBars in decreasing order", () => {
