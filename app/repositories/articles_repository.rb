@@ -12,7 +12,7 @@ class ArticlesRepository
   end
 
   def published_articles
-    Article.where(published: true).order('updated_at DESC')
+    Article.where(published: true).with_rich_text_body_and_embeds.order('updated_at DESC')
   end
 
   def published_articles_with_tag(tag)
