@@ -72,21 +72,21 @@ describe 'admin search for installations' do
       within('.coordinates-search-form') do
         click_on('Szukaj')
       end
-      expect(find('tr.installation-row', text: 'Kolejowa')).to have_button('Dodaj')
-      within(find('tr.installation-row', text: 'Kolejowa')) do
+      expect(find('tr.installation-row', text: 'Szczyglice')).to have_button('Dodaj')
+      within(find('tr.installation-row', text: 'Szczyglice')) do
         expect(find('form')).to have_no_selector("input[value='Dodaj']:disabled")
         click_on 'Dodaj'
         expect(find('form')).to have_selector("input[value='Dodaj']:disabled")
-        expect(Location.last!.street).to eq('Kolejowa 26')
+        expect(Location.last!.street).to eq('Sportowa 38')
       end
-      expect(page).to have_content('Zapisano instalację Zabierzów Kolejowa 26.')
+      expect(page).to have_content('Zapisano instalację Szczyglice Sportowa 38.')
       within('#delete-flash') do
         click_on 'Cofnij'
-        expect(page).not_to have_content('Zapisano instalację Zabierzów Kolejowa 26.')
+        expect(page).not_to have_content('Zapisano instalację Szczyglice Sportowa 8.')
         sleep 1 # to wait for request to finnish
         expect(Location.count).to eq(0)
       end
-      within(find('tr.installation-row', text: 'Kolejowa')) do
+      within(find('tr.installation-row', text: 'Szczyglice')) do
         expect(find('form')).to have_no_selector("input[value='Dodaj']:disabled")
       end
     end
